@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "barryvdh/laravel-dompdf": "^3.1",
+        "buglinjo/laravel-webp": "^3.1",
         "diglactic/laravel-breadcrumbs": "^10.0",
         "jantinnerezo/livewire-alert": "^4.0",
         "laravel/framework": "^12.0",
