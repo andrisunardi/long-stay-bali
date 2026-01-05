@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82a42197aba9492f8278c31898e570a7",
+    "content-hash": "5e6d62326a657616ec01cac763856b4f",
     "packages": [
         {
             "name": "azure-oss/storage",
@@ -1309,6 +1309,53 @@
                 }
             ],
             "time": "2025-12-03T09:33:47+00:00"
+        },
+        {
+            "name": "garygreen/pretty-routes",
+            "version": "1.0.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/garygreen/pretty-routes.git",
+                "reference": "67d8c6cf31f62c057d9b804964f0c69944028287"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/garygreen/pretty-routes/zipball/67d8c6cf31f62c057d9b804964f0c69944028287",
+                "reference": "67d8c6cf31f62c057d9b804964f0c69944028287",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.*|6.*|7.*|8.*|^9.0|^10.0|^11.0|^12.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "PrettyRoutes\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PrettyRoutes\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gary Green",
+                    "email": "holegary@gmail.com"
+                }
+            ],
+            "description": "Pretty routes for Laravel 5+",
+            "support": {
+                "issues": "https://github.com/garygreen/pretty-routes/issues",
+                "source": "https://github.com/garygreen/pretty-routes/tree/1.0.14"
+            },
+            "time": "2025-02-28T00:21:13+00:00"
         },
         {
             "name": "graham-campbell/result-type",
