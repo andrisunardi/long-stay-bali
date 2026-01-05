@@ -8,6 +8,7 @@
     "require": {
         "php": "^8.2",
         "azure-oss/storage-blob-flysystem": "^1.4",
+        "azure-oss/storage-blob-laravel": "^1.4",
         "barryvdh/laravel-dompdf": "^3.1",
         "buglinjo/laravel-webp": "^3.1",
         "diglactic/laravel-breadcrumbs": "^10.0",

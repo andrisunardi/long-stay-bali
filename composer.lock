@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69f7b760e208689b672ba54c1b9d5aed",
+    "content-hash": "c66139a16e295c56e43270669de979b6",
     "packages": [
         {
             "name": "azure-oss/storage",
@@ -123,6 +123,63 @@
                 "source": "https://github.com/Azure-OSS/azure-storage-php-adapter-flysystem/tree/1.4.1"
             },
             "time": "2025-12-02T12:15:08+00:00"
+        },
+        {
+            "name": "azure-oss/storage-blob-laravel",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Azure-OSS/azure-storage-php-adapter-laravel.git",
+                "reference": "2da197581db2a0f76475f5b34e5997bb51f0a7a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Azure-OSS/azure-storage-php-adapter-laravel/zipball/2da197581db2a0f76475f5b34e5997bb51f0a7a1",
+                "reference": "2da197581db2a0f76475f5b34e5997bb51f0a7a1",
+                "shasum": ""
+            },
+            "require": {
+                "azure-oss/storage-blob-flysystem": "^1.2",
+                "illuminate/filesystem": "^10|^11|^12",
+                "illuminate/support": "^10|^11|^12",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.17",
+                "orchestra/testbench": "^8.27",
+                "phpstan/phpstan": "^1.11",
+                "phpstan/phpstan-deprecation-rules": "^1.2",
+                "phpstan/phpstan-strict-rules": "^1.6"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AzureOss\\LaravelAzureStorageBlob\\AzureStorageBlobServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AzureOss\\LaravelAzureStorageBlob\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brecht Vermeersch",
+                    "email": "brechtvermeersch@outlook.be"
+                }
+            ],
+            "description": "Azure Storage Blob filesystem driver for Laravel",
+            "support": {
+                "issues": "https://github.com/Azure-OSS/azure-storage-php-adapter-laravel/issues",
+                "source": "https://github.com/Azure-OSS/azure-storage-php-adapter-laravel/tree/1.4.0"
+            },
+            "time": "2025-08-12T07:36:24+00:00"
         },
         {
             "name": "barryvdh/laravel-dompdf",
