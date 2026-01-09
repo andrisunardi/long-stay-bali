@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Localization;
+use App\Livewire\Home\HomePage;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -15,7 +16,5 @@ Route::any('locale/{locale}', function ($locale) {
 Route::group(['middleware' => [
     Localization::class,
 ]], function () {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::any('', HomePage::class)->name('home');
 });
