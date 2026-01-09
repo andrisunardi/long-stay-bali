@@ -43,7 +43,7 @@ cp .htaccess ~/long-stay-bali.diw.co.id/
 cd ~/long-stay-bali.diw.co.id/
 rm -f index.php
 cp -f server.php index.php
-cd ~/src
+cd ~/src-long-stay-bali
 echo ""
 
 echo "UP"
