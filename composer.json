@@ -27,7 +27,8 @@
         "mobiledetect/mobiledetectlib": "^4.8",
         "opcodesio/log-viewer": "^3.21",
         "predis/predis": "^3.3",
-        "simplesoftwareio/simple-qrcode": "^4.2"
+        "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-activitylog": "^4.10"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
