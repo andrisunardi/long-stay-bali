@@ -2,7 +2,7 @@ echo "START DEPLOY"
 echo ""
 
 echo "DOWN"
-/usr/bin/php8.3 artisan down --render="errors.maintenance" --secret="dev"
+php artisan down --render="errors.maintenance" --secret="dev"
 echo ""
 
 echo "CLEAN GIT"
@@ -18,22 +18,22 @@ git pull origin main
 echo ""
 
 echo "COMPOSER"
-/usr/bin/php8.3 /usr/local/bin/composer install
-/usr/bin/php8.3 /usr/local/bin/composer dump-autoload
+composer install
+composer dump-autoload
 echo ""
 
 echo "MIGRATION"
-/usr/bin/php8.3 artisan migrate --force
+php artisan migrate --force
 echo ""
 
 echo "OPTIMIZE"
-/usr/bin/php8.3 artisan clear-compiled
-/usr/bin/php8.3 artisan optimize
-/usr/bin/php8.3 artisan config:cache
-/usr/bin/php8.3 artisan event:cache
-/usr/bin/php8.3 artisan route:cache
-/usr/bin/php8.3 artisan view:cache
-/usr/bin/php8.3 artisan optimize:clear
+php artisan clear-compiled
+php artisan optimize
+php artisan config:cache
+php artisan event:cache
+php artisan route:cache
+php artisan view:cache
+php artisan optimize:clear
 echo ""
 
 echo "PUBLIC HTML"
@@ -47,7 +47,7 @@ cd ~/src
 echo ""
 
 echo "UP"
-/usr/bin/php8.3 artisan up
+php artisan up
 echo ""
 
 echo "END DEPLOY"
