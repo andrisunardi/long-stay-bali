@@ -26963,6 +26963,40 @@ namespace Illuminate\Support {
         }
 
             }
+    /**
+     */
+    class Str {
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param mixed $value
+         * @static
+         */
+        public static function idr($value)
+        {
+            return \Illuminate\Support\Str::idr($value);
+        }
+
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param mixed $value
+         * @static
+         */
+        public static function successDanger($value)
+        {
+            return \Illuminate\Support\Str::successDanger($value);
+        }
+
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param mixed $value
+         * @static
+         */
+        public static function yesNo($value)
+        {
+            return \Illuminate\Support\Str::yesNo($value);
+        }
+
+            }
     }
 
 namespace Illuminate\Http {
