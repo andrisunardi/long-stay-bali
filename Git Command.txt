@@ -1,0 +1,15 @@
+git remote remove origin
+git remote add github-andrisunardi https://github.com/andrisunardi/long-stay-bali.git
+git remote add github-diw.co.id https://github.com/diw-co-id/long-stay-bali.git
+git remote add gitlab-andrisunardi https://oauth2:5bwKkwfBnwkPa-sD5v1A@gitlab.com/andrisunardi/long-stay-bali.git
+git remote add gitlab-diw.co.id https://oauth2:DP-hVaYXfRzrN_3UHduU@gitlab.com/diw.co.id/long-stay-bali.git
+git remote add bitbucket-andrisunardi https://andrisunardi@bitbucket.org/andrisunardi/long-stay-bali.git
+git remote add bitbucket-diw.co.id https://diw-co-id@bitbucket.org/diw-co-id/long-stay-bali.git
+git remote add all https://github.com/andrisunardi/long-stay-bali.git
+git remote set-url --add all https://github.com/diw-co-id/long-stay-bali.git
+git remote set-url --add all https://oauth2:5bwKkwfBnwkPa-sD5v1A@gitlab.com/andrisunardi/long-stay-bali.git
+git remote set-url --add all https://oauth2:DP-hVaYXfRzrN_3UHduU@gitlab.com/diw.co.id/long-stay-bali.git
+git remote set-url --add all https://andrisunardi@bitbucket.org/andrisunardi/long-stay-bali.git
+git remote set-url --add all https://diw-co-id@bitbucket.org/diw-co-id/long-stay-bali.git
+git push all master
+git remote -v
