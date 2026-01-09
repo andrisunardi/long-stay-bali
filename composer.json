@@ -29,7 +29,8 @@
         "predis/predis": "^3.3",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-activitylog": "^4.10",
-        "spatie/laravel-ignition": "^2.9"
+        "spatie/laravel-ignition": "^2.9",
+        "spatie/laravel-menu": "^4.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.16",
