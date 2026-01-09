@@ -24735,6 +24735,2190 @@ namespace Livewire {
             }
     }
 
+namespace Maatwebsite\Excel\Facades {
+    /**
+     */
+    class Excel {
+        /**
+         * @param object $export
+         * @param string|null $fileName
+         * @param string $writerType
+         * @param array $headers
+         * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @static
+         */
+        public static function download($export, $fileName, $writerType = null, $headers = [])
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->download($export, $fileName, $writerType, $headers);
+        }
+
+        /**
+         * @param string|null $disk Fallback for usage with named properties
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $diskName
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @return bool
+         * @throws \PhpOffice\PhpSpreadsheet\Exception
+         * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
+         * @static
+         */
+        public static function store($export, $filePath, $diskName = null, $writerType = null, $diskOptions = [], $disk = null)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->store($export, $filePath, $diskName, $writerType, $diskOptions, $disk);
+        }
+
+        /**
+         * @param object $export
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string $writerType
+         * @param mixed $diskOptions
+         * @return \Illuminate\Foundation\Bus\PendingDispatch
+         * @static
+         */
+        public static function queue($export, $filePath, $disk = null, $writerType = null, $diskOptions = [])
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->queue($export, $filePath, $disk, $writerType, $diskOptions);
+        }
+
+        /**
+         * @param object $export
+         * @param string $writerType
+         * @return string
+         * @static
+         */
+        public static function raw($export, $writerType)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->raw($export, $writerType);
+        }
+
+        /**
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Maatwebsite\Excel\Reader|\Illuminate\Foundation\Bus\PendingDispatch
+         * @static
+         */
+        public static function import($import, $filePath, $disk = null, $readerType = null)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->import($import, $filePath, $disk, $readerType);
+        }
+
+        /**
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return array
+         * @static
+         */
+        public static function toArray($import, $filePath, $disk = null, $readerType = null)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->toArray($import, $filePath, $disk, $readerType);
+        }
+
+        /**
+         * @param object $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @return \Illuminate\Support\Collection
+         * @static
+         */
+        public static function toCollection($import, $filePath, $disk = null, $readerType = null)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->toCollection($import, $filePath, $disk, $readerType);
+        }
+
+        /**
+         * @param \Illuminate\Contracts\Queue\ShouldQueue $import
+         * @param string|\Symfony\Component\HttpFoundation\File\UploadedFile $filePath
+         * @param string|null $disk
+         * @param string $readerType
+         * @return \Illuminate\Foundation\Bus\PendingDispatch
+         * @static
+         */
+        public static function queueImport($import, $filePath, $disk = null, $readerType = null)
+        {
+            /** @var \Maatwebsite\Excel\Excel $instance */
+            return $instance->queueImport($import, $filePath, $disk, $readerType);
+        }
+
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @param-closure-this static  $macro
+         * @return void
+         * @static
+         */
+        public static function macro($name, $macro)
+        {
+            \Maatwebsite\Excel\Excel::macro($name, $macro);
+        }
+
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void
+         * @throws \ReflectionException
+         * @static
+         */
+        public static function mixin($mixin, $replace = true)
+        {
+            \Maatwebsite\Excel\Excel::mixin($mixin, $replace);
+        }
+
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool
+         * @static
+         */
+        public static function hasMacro($name)
+        {
+            return \Maatwebsite\Excel\Excel::hasMacro($name);
+        }
+
+        /**
+         * Flush the existing macros.
+         *
+         * @return void
+         * @static
+         */
+        public static function flushMacros()
+        {
+            \Maatwebsite\Excel\Excel::flushMacros();
+        }
+
+        /**
+         * @param string $concern
+         * @param callable $handler
+         * @param string $event
+         * @static
+         */
+        public static function extend($concern, $handler, $event = 'Maatwebsite\\Excel\\Events\\BeforeWriting')
+        {
+            return \Maatwebsite\Excel\Excel::extend($concern, $handler, $event);
+        }
+
+        /**
+         * When asserting downloaded, stored, queued or imported, use regular expression
+         * to look for a matching file path.
+         *
+         * @return void
+         * @static
+         */
+        public static function matchByRegex()
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            $instance->matchByRegex();
+        }
+
+        /**
+         * When asserting downloaded, stored, queued or imported, use regular string
+         * comparison for matching file path.
+         *
+         * @return void
+         * @static
+         */
+        public static function doNotMatchByRegex()
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            $instance->doNotMatchByRegex();
+        }
+
+        /**
+         * @param string $fileName
+         * @param callable|null $callback
+         * @static
+         */
+        public static function assertDownloaded($fileName, $callback = null)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertDownloaded($fileName, $callback);
+        }
+
+        /**
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static
+         */
+        public static function assertStored($filePath, $disk = null, $callback = null)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertStored($filePath, $disk, $callback);
+        }
+
+        /**
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static
+         */
+        public static function assertQueued($filePath, $disk = null, $callback = null)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertQueued($filePath, $disk, $callback);
+        }
+
+        /**
+         * @static
+         */
+        public static function assertQueuedWithChain($chain)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertQueuedWithChain($chain);
+        }
+
+        /**
+         * @param string $classname
+         * @param callable|null $callback
+         * @static
+         */
+        public static function assertExportedInRaw($classname, $callback = null)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertExportedInRaw($classname, $callback);
+        }
+
+        /**
+         * @param string $filePath
+         * @param string|callable|null $disk
+         * @param callable|null $callback
+         * @static
+         */
+        public static function assertImported($filePath, $disk = null, $callback = null)
+        {
+            /** @var \Maatwebsite\Excel\Fakes\ExcelFake $instance */
+            return $instance->assertImported($filePath, $disk, $callback);
+        }
+
+            }
+    }
+
+namespace Opcodes\LogViewer\Facades {
+    /**
+     * @see \Opcodes\LogViewer\LogViewerService
+     */
+    class LogViewer {
+        /**
+         * @static
+         */
+        public static function timezone()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->timezone();
+        }
+
+        /**
+         * @static
+         */
+        public static function basePathForLogs()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->basePathForLogs();
+        }
+
+        /**
+         * @return \Opcodes\LogViewer\LogFileCollection|\Opcodes\LogViewer\LogFile[]
+         * @static
+         */
+        public static function getFiles()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getFiles();
+        }
+
+        /**
+         * @static
+         */
+        public static function getFilesGroupedByFolder()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getFilesGroupedByFolder();
+        }
+
+        /**
+         * Find the file with the given identifier or file name.
+         *
+         * @static
+         */
+        public static function getFile($fileIdentifier)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getFile($fileIdentifier);
+        }
+
+        /**
+         * @static
+         */
+        public static function getFolder($folderIdentifier)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getFolder($folderIdentifier);
+        }
+
+        /**
+         * @static
+         */
+        public static function supportsHostsFeature()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->supportsHostsFeature();
+        }
+
+        /**
+         * @static
+         */
+        public static function resolveHostsUsing($callback)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->resolveHostsUsing($callback);
+        }
+
+        /**
+         * @static
+         */
+        public static function getHosts()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getHosts();
+        }
+
+        /**
+         * @static
+         */
+        public static function getHost($hostIdentifier)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getHost($hostIdentifier);
+        }
+
+        /**
+         * @static
+         */
+        public static function clearFileCache()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->clearFileCache();
+        }
+
+        /**
+         * @static
+         */
+        public static function getRouteDomain()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getRouteDomain();
+        }
+
+        /**
+         * @static
+         */
+        public static function getRoutePrefix()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getRoutePrefix();
+        }
+
+        /**
+         * @static
+         */
+        public static function getRouteMiddleware()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getRouteMiddleware();
+        }
+
+        /**
+         * @static
+         */
+        public static function auth($callback = null)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->auth($callback);
+        }
+
+        /**
+         * @static
+         */
+        public static function hasAuthCallback()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->hasAuthCallback();
+        }
+
+        /**
+         * @static
+         */
+        public static function lazyScanChunkSize()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->lazyScanChunkSize();
+        }
+
+        /**
+         * @static
+         */
+        public static function lazyScanTimeout()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->lazyScanTimeout();
+        }
+
+        /**
+         * Get the maximum number of bytes of the log that we should display.
+         *
+         * @static
+         */
+        public static function maxLogSize()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->maxLogSize();
+        }
+
+        /**
+         * @static
+         */
+        public static function setMaxLogSize($bytes)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->setMaxLogSize($bytes);
+        }
+
+        /**
+         * @static
+         */
+        public static function extend($type, $class)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->extend($type, $class);
+        }
+
+        /**
+         * @static
+         */
+        public static function useLogFileClass($class)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->useLogFileClass($class);
+        }
+
+        /**
+         * @static
+         */
+        public static function useLogReaderClass($class)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->useLogReaderClass($class);
+        }
+
+        /**
+         * @static
+         */
+        public static function logReaderClass()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->logReaderClass();
+        }
+
+        /**
+         * @static
+         */
+        public static function setViewLayout($layout)
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->setViewLayout($layout);
+        }
+
+        /**
+         * @static
+         */
+        public static function getViewLayout()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->getViewLayout();
+        }
+
+        /**
+         * Determine if Log Viewer's published assets are up-to-date.
+         *
+         * @throws \RuntimeException
+         * @static
+         */
+        public static function assetsAreCurrent()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->assetsAreCurrent();
+        }
+
+        /**
+         * Get the current version of the Log Viewer
+         *
+         * @static
+         */
+        public static function version()
+        {
+            /** @var \Opcodes\LogViewer\LogViewerService $instance */
+            return $instance->version();
+        }
+
+            }
+    }
+
+namespace SimpleSoftwareIO\QrCode\Facades {
+    /**
+     */
+    class QrCode {
+        /**
+         * Generates the QrCode.
+         *
+         * @param string $text
+         * @param string|null $filename
+         * @return void|\Illuminate\Support\HtmlString|string
+         * @throws WriterException
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function generate($text, $filename = null)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->generate($text, $filename);
+        }
+
+        /**
+         * Merges an image over the QrCode.
+         *
+         * @param string $filepath
+         * @param float $percentage
+         * @param \SimpleSoftwareIO\QrCode\SimpleSoftwareIO\QrCode\boolean|bool $absolute
+         * @return \Generator
+         * @static
+         */
+        public static function merge($filepath, $percentage = 0.2, $absolute = false)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->merge($filepath, $percentage, $absolute);
+        }
+
+        /**
+         * Merges an image string with the center of the QrCode.
+         *
+         * @param string $content
+         * @param float $percentage
+         * @return \Generator
+         * @static
+         */
+        public static function mergeString($content, $percentage = 0.2)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->mergeString($content, $percentage);
+        }
+
+        /**
+         * Sets the size of the QrCode.
+         *
+         * @param int $pixels
+         * @return \Generator
+         * @static
+         */
+        public static function size($pixels)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->size($pixels);
+        }
+
+        /**
+         * Sets the format of the QrCode.
+         *
+         * @param string $format
+         * @return \Generator
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function format($format)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->format($format);
+        }
+
+        /**
+         * Sets the foreground color of the QrCode.
+         *
+         * @param int $red
+         * @param int $green
+         * @param int $blue
+         * @param null|int $alpha
+         * @return \Generator
+         * @static
+         */
+        public static function color($red, $green, $blue, $alpha = null)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->color($red, $green, $blue, $alpha);
+        }
+
+        /**
+         * Sets the background color of the QrCode.
+         *
+         * @param int $red
+         * @param int $green
+         * @param int $blue
+         * @param null|int $alpha
+         * @return \Generator
+         * @static
+         */
+        public static function backgroundColor($red, $green, $blue, $alpha = null)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->backgroundColor($red, $green, $blue, $alpha);
+        }
+
+        /**
+         * Sets the eye color for the provided eye index.
+         *
+         * @param int $eyeNumber
+         * @param int $innerRed
+         * @param int $innerGreen
+         * @param int $innerBlue
+         * @param int $outterRed
+         * @param int $outterGreen
+         * @param int $outterBlue
+         * @return \Generator
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function eyeColor($eyeNumber, $innerRed, $innerGreen, $innerBlue, $outterRed = 0, $outterGreen = 0, $outterBlue = 0)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->eyeColor($eyeNumber, $innerRed, $innerGreen, $innerBlue, $outterRed, $outterGreen, $outterBlue);
+        }
+
+        /**
+         * @static
+         */
+        public static function gradient($startRed, $startGreen, $startBlue, $endRed, $endGreen, $endBlue, $type)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->gradient($startRed, $startGreen, $startBlue, $endRed, $endGreen, $endBlue, $type);
+        }
+
+        /**
+         * Sets the eye style.
+         *
+         * @param string $style
+         * @return \Generator
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function eye($style)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->eye($style);
+        }
+
+        /**
+         * Sets the style of the blocks for the QrCode.
+         *
+         * @param string $style
+         * @param float $size
+         * @return \Generator
+         * @throws InvalidArgumentException
+         * @static
+         */
+        public static function style($style, $size = 0.5)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->style($style, $size);
+        }
+
+        /**
+         * Sets the encoding for the QrCode.
+         * 
+         * Possible values are
+         * ISO-8859-2, ISO-8859-3, ISO-8859-4, ISO-8859-5, ISO-8859-6,
+         * ISO-8859-7, ISO-8859-8, ISO-8859-9, ISO-8859-10, ISO-8859-11,
+         * ISO-8859-12, ISO-8859-13, ISO-8859-14, ISO-8859-15, ISO-8859-16,
+         * SHIFT-JIS, WINDOWS-1250, WINDOWS-1251, WINDOWS-1252, WINDOWS-1256,
+         * UTF-16BE, UTF-8, ASCII, GBK, EUC-KR.
+         *
+         * @param string $encoding
+         * @return \Generator
+         * @static
+         */
+        public static function encoding($encoding)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->encoding($encoding);
+        }
+
+        /**
+         * Sets the error correction for the QrCode.
+         * 
+         * L: 7% loss.
+         * M: 15% loss.
+         * Q: 25% loss.
+         * H: 30% loss.
+         *
+         * @param string $errorCorrection
+         * @return \Generator
+         * @static
+         */
+        public static function errorCorrection($errorCorrection)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->errorCorrection($errorCorrection);
+        }
+
+        /**
+         * Sets the margin of the QrCode.
+         *
+         * @param int $margin
+         * @return \Generator
+         * @static
+         */
+        public static function margin($margin)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->margin($margin);
+        }
+
+        /**
+         * Fetches the Writer.
+         *
+         * @param \BaconQrCode\Renderer\ImageRenderer $renderer
+         * @return \BaconQrCode\Writer
+         * @static
+         */
+        public static function getWriter($renderer)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getWriter($renderer);
+        }
+
+        /**
+         * Fetches the Image Renderer.
+         *
+         * @return \BaconQrCode\Renderer\ImageRenderer
+         * @static
+         */
+        public static function getRenderer()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getRenderer();
+        }
+
+        /**
+         * Returns the Renderer Style.
+         *
+         * @return \BaconQrCode\Renderer\RendererStyle\RendererStyle
+         * @static
+         */
+        public static function getRendererStyle()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getRendererStyle();
+        }
+
+        /**
+         * Fetches the formatter.
+         *
+         * @return \BaconQrCode\Renderer\Image\ImageBackEndInterface
+         * @static
+         */
+        public static function getFormatter()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getFormatter();
+        }
+
+        /**
+         * Fetches the module.
+         *
+         * @return \BaconQrCode\Renderer\Module\ModuleInterface
+         * @static
+         */
+        public static function getModule()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getModule();
+        }
+
+        /**
+         * Fetches the eye style.
+         *
+         * @return \BaconQrCode\Renderer\Eye\EyeInterface
+         * @static
+         */
+        public static function getEye()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getEye();
+        }
+
+        /**
+         * Fetches the color fill.
+         *
+         * @return \BaconQrCode\Renderer\RendererStyle\Fill
+         * @static
+         */
+        public static function getFill()
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->getFill();
+        }
+
+        /**
+         * Creates a RGB or Alpha channel color.
+         *
+         * @param int $red
+         * @param int $green
+         * @param int $blue
+         * @param null|int $alpha
+         * @return \BaconQrCode\Renderer\Color\ColorInterface
+         * @static
+         */
+        public static function createColor($red, $green, $blue, $alpha = null)
+        {
+            /** @var \SimpleSoftwareIO\QrCode\Generator $instance */
+            return $instance->createColor($red, $green, $blue, $alpha);
+        }
+
+            }
+    }
+
+namespace Spatie\LaravelIgnition\Facades {
+    /**
+     * @see \Spatie\FlareClient\Flare
+     */
+    class Flare {
+        /**
+         * @static
+         */
+        public static function make($apiKey = null, $contextDetector = null)
+        {
+            return \Spatie\FlareClient\Flare::make($apiKey, $contextDetector);
+        }
+
+        /**
+         * @static
+         */
+        public static function setApiToken($apiToken)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setApiToken($apiToken);
+        }
+
+        /**
+         * @static
+         */
+        public static function apiTokenSet()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->apiTokenSet();
+        }
+
+        /**
+         * @static
+         */
+        public static function setBaseUrl($baseUrl)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setBaseUrl($baseUrl);
+        }
+
+        /**
+         * @static
+         */
+        public static function setStage($stage)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setStage($stage);
+        }
+
+        /**
+         * @static
+         */
+        public static function sendReportsImmediately()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->sendReportsImmediately();
+        }
+
+        /**
+         * @static
+         */
+        public static function determineVersionUsing($determineVersionCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->determineVersionUsing($determineVersionCallable);
+        }
+
+        /**
+         * @static
+         */
+        public static function reportErrorLevels($reportErrorLevels)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reportErrorLevels($reportErrorLevels);
+        }
+
+        /**
+         * @static
+         */
+        public static function filterExceptionsUsing($filterExceptionsCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->filterExceptionsUsing($filterExceptionsCallable);
+        }
+
+        /**
+         * @static
+         */
+        public static function filterReportsUsing($filterReportsCallable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->filterReportsUsing($filterReportsCallable);
+        }
+
+        /**
+         * @param array<class-string<ArgumentReducer>|ArgumentReducer>|\Spatie\Backtrace\Arguments\ArgumentReducers|null $argumentReducers
+         * @static
+         */
+        public static function argumentReducers($argumentReducers)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->argumentReducers($argumentReducers);
+        }
+
+        /**
+         * @static
+         */
+        public static function withStackFrameArguments($withStackFrameArguments = true, $forcePHPIniSetting = false)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->withStackFrameArguments($withStackFrameArguments, $forcePHPIniSetting);
+        }
+
+        /**
+         * @param class-string $exceptionClass
+         * @static
+         */
+        public static function overrideGrouping($exceptionClass, $type = 'exception_message_and_class')
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->overrideGrouping($exceptionClass, $type);
+        }
+
+        /**
+         * @static
+         */
+        public static function version()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->version();
+        }
+
+        /**
+         * @return array<int, FlareMiddleware|class-string<FlareMiddleware>>
+         * @static
+         */
+        public static function getMiddleware()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getMiddleware();
+        }
+
+        /**
+         * @static
+         */
+        public static function setContextProviderDetector($contextDetector)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setContextProviderDetector($contextDetector);
+        }
+
+        /**
+         * @static
+         */
+        public static function setContainer($container)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->setContainer($container);
+        }
+
+        /**
+         * @static
+         */
+        public static function registerFlareHandlers()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerFlareHandlers();
+        }
+
+        /**
+         * @static
+         */
+        public static function registerExceptionHandler()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerExceptionHandler();
+        }
+
+        /**
+         * @static
+         */
+        public static function registerErrorHandler($errorLevels = null)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerErrorHandler($errorLevels);
+        }
+
+        /**
+         * @param \Spatie\FlareClient\FlareMiddleware\FlareMiddleware|array<FlareMiddleware>|class-string<FlareMiddleware>|callable $middleware
+         * @return \Spatie\FlareClient\Flare
+         * @static
+         */
+        public static function registerMiddleware($middleware)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->registerMiddleware($middleware);
+        }
+
+        /**
+         * @return array<int,FlareMiddleware|class-string<FlareMiddleware>>
+         * @static
+         */
+        public static function getMiddlewares()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getMiddlewares();
+        }
+
+        /**
+         * @param string $name
+         * @param string $messageLevel
+         * @param array<int, mixed> $metaData
+         * @return \Spatie\FlareClient\Flare
+         * @static
+         */
+        public static function glow($name, $messageLevel = 'info', $metaData = [])
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->glow($name, $messageLevel, $metaData);
+        }
+
+        /**
+         * @static
+         */
+        public static function handleException($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->handleException($throwable);
+        }
+
+        /**
+         * @return mixed
+         * @static
+         */
+        public static function handleError($code, $message, $file = '', $line = 0)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->handleError($code, $message, $file, $line);
+        }
+
+        /**
+         * @static
+         */
+        public static function applicationPath($applicationPath)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->applicationPath($applicationPath);
+        }
+
+        /**
+         * @static
+         */
+        public static function report($throwable, $callback = null, $report = null, $handled = null)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->report($throwable, $callback, $report, $handled);
+        }
+
+        /**
+         * @static
+         */
+        public static function reportHandled($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reportHandled($throwable);
+        }
+
+        /**
+         * @static
+         */
+        public static function reportMessage($message, $logLevel, $callback = null)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reportMessage($message, $logLevel, $callback);
+        }
+
+        /**
+         * @static
+         */
+        public static function sendTestReport($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->sendTestReport($throwable);
+        }
+
+        /**
+         * @static
+         */
+        public static function reset()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->reset();
+        }
+
+        /**
+         * @static
+         */
+        public static function anonymizeIp()
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->anonymizeIp();
+        }
+
+        /**
+         * @param array<int, string> $fieldNames
+         * @return \Spatie\FlareClient\Flare
+         * @static
+         */
+        public static function censorRequestBodyFields($fieldNames)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->censorRequestBodyFields($fieldNames);
+        }
+
+        /**
+         * @static
+         */
+        public static function createReport($throwable)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->createReport($throwable);
+        }
+
+        /**
+         * @static
+         */
+        public static function createReportFromMessage($message, $logLevel)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->createReportFromMessage($message, $logLevel);
+        }
+
+        /**
+         * @static
+         */
+        public static function stage($stage)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->stage($stage);
+        }
+
+        /**
+         * @static
+         */
+        public static function messageLevel($messageLevel)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->messageLevel($messageLevel);
+        }
+
+        /**
+         * @param string $groupName
+         * @param mixed $default
+         * @return array<int, mixed>
+         * @static
+         */
+        public static function getGroup($groupName = 'context', $default = [])
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->getGroup($groupName, $default);
+        }
+
+        /**
+         * @static
+         */
+        public static function context($key, $value)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->context($key, $value);
+        }
+
+        /**
+         * @param string $groupName
+         * @param array<string, mixed> $properties
+         * @return \Spatie\FlareClient\Flare
+         * @static
+         */
+        public static function group($groupName, $properties)
+        {
+            /** @var \Spatie\FlareClient\Flare $instance */
+            return $instance->group($groupName, $properties);
+        }
+
+            }
+    }
+
+namespace Spatie\Menu\Laravel\Facades {
+    /**
+     */
+    class Menu extends \Spatie\Menu\Menu {
+        /**
+         * Set all relevant children active based on the current request's URL.
+         * 
+         * /, /about, /contact => request to /about will set the about link active.
+         * 
+         * /en, /en/about, /en/contact => request to /en won't set /en active if the
+         *                                request root is set to /en.
+         *
+         * @param string $requestRoot If the link's URL is an exact match with the
+         *                            request root, the link won't be set active.
+         *                            This behavior is to avoid having home links
+         *                            active on every request.
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActiveFromRequest($requestRoot = '/')
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveFromRequest($requestRoot);
+        }
+
+        /**
+         * @static
+         */
+        public static function url($path, $text, $parameters = [], $secure = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->url($path, $text, $parameters, $secure);
+        }
+
+        /**
+         * @static
+         */
+        public static function action($action, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->action($action, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @static
+         */
+        public static function route($name, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->route($name, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @static
+         */
+        public static function view($name, $data = [])
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->view($name, $data);
+        }
+
+        /**
+         * @static
+         */
+        public static function urlIf($condition, $path, $text, $parameters = [], $secure = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->urlIf($condition, $path, $text, $parameters, $secure);
+        }
+
+        /**
+         * @static
+         */
+        public static function actionIf($condition, $action, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->actionIf($condition, $action, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @static
+         */
+        public static function routeIf($condition, $name, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->routeIf($condition, $name, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @static
+         */
+        public static function viewIf($condition, $name, $data = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->viewIf($condition, $name, $data);
+        }
+
+        /**
+         * @static
+         */
+        public static function addIfCan($authorization, $item)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addIfCan($authorization, $item);
+        }
+
+        /**
+         * @static
+         */
+        public static function linkIfCan($authorization, $url, $text)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->linkIfCan($authorization, $url, $text);
+        }
+
+        /**
+         * @static
+         */
+        public static function htmlIfCan($authorization, $html)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->htmlIfCan($authorization, $html);
+        }
+
+        /**
+         * @static
+         */
+        public static function submenuIfCan($authorization, $header, $menu = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->submenuIfCan($authorization, $header, $menu);
+        }
+
+        /**
+         * @static
+         */
+        public static function urlIfCan($authorization, $path, $text, $parameters = [], $secure = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->urlIfCan($authorization, $path, $text, $parameters, $secure);
+        }
+
+        /**
+         * @static
+         */
+        public static function actionIfCan($authorization, $action, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->actionIfCan($authorization, $action, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @static
+         */
+        public static function routeIfCan($authorization, $name, $text, $parameters = [], $absolute = true)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->routeIfCan($authorization, $name, $text, $parameters, $absolute);
+        }
+
+        /**
+         * @internal param $condition
+         * @static
+         */
+        public static function viewIfCan($authorization, $name, $data = null)
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->viewIfCan($authorization, $name, $data);
+        }
+
+        /**
+         * @static
+         */
+        public static function toHtml()
+        {
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->toHtml();
+        }
+
+        /**
+         * Create a new menu, optionally prefilled with items.
+         *
+         * @param array $items
+         * @return static
+         * @static
+         */
+        public static function new($items = [])
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            return \Spatie\Menu\Laravel\Menu::new($items);
+        }
+
+        /**
+         * Build a new menu from an array. The callback receives a menu instance as
+         * the accumulator, the array item as the second parameter, and the item's
+         * key as the third.
+         *
+         * @param array|\Iterator $items
+         * @param callable $callback
+         * @param \Spatie\Menu\Menu|null $initial
+         * @return static
+         * @static
+         */
+        public static function build($items, $callback, $initial = null)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            return \Spatie\Menu\Laravel\Menu::build($items, $callback, $initial);
+        }
+
+        /**
+         * Fill a menu from an array. The callback receives a menu instance as
+         * the accumulator, the array item as the second parameter, and the item's
+         * key as the third.
+         *
+         * @param array|\Iterator $items
+         * @param callable $callback
+         * @return static
+         * @static
+         */
+        public static function fill($items, $callback)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->fill($items, $callback);
+        }
+
+        /**
+         * Add an item to the menu. This also applies all registered filters to the
+         * item.
+         *
+         * @param \Spatie\Menu\Item $item
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function add($item)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->add($item);
+        }
+
+        /**
+         * Add an item to the menu if a (non-strict) condition is met.
+         *
+         * @param bool|callable $condition
+         * @param \Spatie\Menu\Item $item
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function addIf($condition, $item)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addIf($condition, $item);
+        }
+
+        /**
+         * Shortcut function to add a plain link to the menu.
+         *
+         * @param string $url
+         * @param string $text
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function link($url, $text)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->link($url, $text);
+        }
+
+        /**
+         * Shortcut function to add an empty item to the menu.
+         *
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function empty()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->empty();
+        }
+
+        /**
+         * Add a link to the menu if a (non-strict) condition is met.
+         *
+         * @param bool|callable $condition
+         * @param string $url
+         * @param string $text
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function linkIf($condition, $url, $text)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->linkIf($condition, $url, $text);
+        }
+
+        /**
+         * Shortcut function to add raw html to the menu.
+         *
+         * @param string $html
+         * @param array $parentAttributes
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function html($html, $parentAttributes = [])
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->html($html, $parentAttributes);
+        }
+
+        /**
+         * Add a chunk of html if a (non-strict) condition is met.
+         *
+         * @param bool|callable $condition
+         * @param string $html
+         * @param array $parentAttributes
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function htmlIf($condition, $html, $parentAttributes = [])
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->htmlIf($condition, $html, $parentAttributes);
+        }
+
+        /**
+         * @static
+         */
+        public static function submenu($header, $menu = null)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->submenu($header, $menu);
+        }
+
+        /**
+         * @static
+         */
+        public static function submenuIf($condition, $header, $menu = null)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->submenuIf($condition, $header, $menu);
+        }
+
+        /**
+         * Iterate over all the items and apply a callback. If you typehint the
+         * item parameter in the callable, it wil only be applied to items of that
+         * type.
+         *
+         * @param callable $callable
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function each($callable)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->each($callable);
+        }
+
+        /**
+         * Register a filter to the menu. When an item is added, all filters will be
+         * applied to the item. If you typehint the item parameter in the callable, it
+         * will only be applied to items of that type.
+         *
+         * @param callable $callable
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function registerFilter($callable)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->registerFilter($callable);
+        }
+
+        /**
+         * Apply a callable to all existing items, and register it as a filter so it
+         * will get applied to all new items too. If you typehint the item parameter
+         * in the callable, it wil only be applied to items of that type.
+         *
+         * @param callable $callable
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function applyToAll($callable)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->applyToAll($callable);
+        }
+
+        /**
+         * Wrap the entire menu in an html element. This is another level of
+         * wrapping above the `wrapperTag`.
+         *
+         * @param string $element
+         * @param array $attributes
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function wrap($element, $attributes = [])
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->wrap($element, $attributes);
+        }
+
+        /**
+         * Determine whether the menu is active.
+         *
+         * @return bool
+         * @static
+         */
+        public static function isActive()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->isActive();
+        }
+
+        /**
+         * A menu can be active but not exact-active, unless its prepend is.
+         *
+         * @return bool
+         * @static
+         */
+        public static function isExactActive()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->isExactActive();
+        }
+
+        /**
+         * Set multiple items in the menu as active based on a callable that filters
+         * through items. If you typehint the item parameter in the callable, it will
+         * only be applied to items of that type.
+         *
+         * @param callable|string $urlOrCallable
+         * @param string $root
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActive($urlOrCallable, $root = '/')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActive($urlOrCallable, $root);
+        }
+
+        /**
+         * Set the class name that will be used on exact-active items for this menu.
+         *
+         * @param string $class
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setExactActiveClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setExactActiveClass($class);
+        }
+
+        /**
+         * Set all relevant children active based on the current request's URL.
+         * 
+         * /, /about, /contact => request to /about will set the about link active.
+         * 
+         * /en, /en/about, /en/contact => request to /en won't set /en active if the
+         *                                request root is set to /en.
+         *
+         * @param string $url The current request url.
+         * @param string $root If the link's URL is an exact match with the request
+         *                     root, the link won't be set active. This behavior is
+         *                     to avoid having home links active on every request.
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActiveFromUrl($url, $root = '/')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveFromUrl($url, $root);
+        }
+
+        /**
+         * @static
+         */
+        public static function setActiveFromCallable($callable)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveFromCallable($callable);
+        }
+
+        /**
+         * Set the class name that will be used on active items for this menu.
+         *
+         * @param string $class
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActiveClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveClass($class);
+        }
+
+        /**
+         * Add a class to all items in the menu.
+         *
+         * @param string $class
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function addItemClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addItemClass($class);
+        }
+
+        /**
+         * Set an attribute on all items in the menu.
+         *
+         * @param string $attribute
+         * @param string $value
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setItemAttribute($attribute, $value = '')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setItemAttribute($attribute, $value);
+        }
+
+        /**
+         * Add a parent class to all items in the menu.
+         *
+         * @param string $class
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function addItemParentClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addItemParentClass($class);
+        }
+
+        /**
+         * Add a parent attribute to all items in the menu.
+         *
+         * @param string $attribute
+         * @param string $value
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setItemParentAttribute($attribute, $value = '')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setItemParentAttribute($attribute, $value);
+        }
+
+        /**
+         * Set tag for items wrapper.
+         *
+         * @param string|null $wrapperTagName
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setWrapperTag($wrapperTagName = null)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setWrapperTag($wrapperTagName);
+        }
+
+        /**
+         * Unset tag for items wrapper.
+         *
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function withoutWrapperTag()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->withoutWrapperTag();
+        }
+
+        /**
+         * Set the parent tag name.
+         *
+         * @param string|null $parentTagName
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setParentTag($parentTagName = null)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setParentTag($parentTagName);
+        }
+
+        /**
+         * Render items without a parent tag.
+         *
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function withoutParentTag()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->withoutParentTag();
+        }
+
+        /**
+         * Set whether active class should (also) be on link.
+         *
+         * @param bool $activeClassOnLink
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActiveClassOnLink($activeClassOnLink = true)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveClassOnLink($activeClassOnLink);
+        }
+
+        /**
+         * Set whether active class should (also) be on parent.
+         *
+         * @param $activeClassOnParent
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function setActiveClassOnParent($activeClassOnParent = true)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setActiveClassOnParent($activeClassOnParent);
+        }
+
+        /**
+         * @param bool $condition
+         * @param callable $callable
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function if($condition, $callable)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->if($condition, $callable);
+        }
+
+        /**
+         * Create a empty blueprint of the menu (copies `filters` and `activeClass`).
+         *
+         * @return static
+         * @static
+         */
+        public static function blueprint()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->blueprint();
+        }
+
+        /**
+         * Render the menu.
+         *
+         * @return string
+         * @static
+         */
+        public static function render()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->render();
+        }
+
+        /**
+         * The amount of items in the menu.
+         *
+         * @return int
+         * @static
+         */
+        public static function count()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->count();
+        }
+
+        /**
+         * @static
+         */
+        public static function getIterator()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->getIterator();
+        }
+
+        /**
+         * @static
+         */
+        public static function setAttribute($attribute, $value = '')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setAttribute($attribute, $value);
+        }
+
+        /**
+         * @static
+         */
+        public static function setAttributes($attributes)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setAttributes($attributes);
+        }
+
+        /**
+         * @static
+         */
+        public static function addClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addClass($class);
+        }
+
+        /**
+         * @static
+         */
+        public static function id($id)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->id($id);
+        }
+
+        /**
+         * Return an array of attributes to apply on the parent. This generally means
+         * the attributes that should be applied on the <li> tag.
+         *
+         * @return array
+         * @static
+         */
+        public static function parentAttributes()
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->parentAttributes();
+        }
+
+        /**
+         * @static
+         */
+        public static function setParentAttribute($attribute, $value = '')
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setParentAttribute($attribute, $value);
+        }
+
+        /**
+         * @static
+         */
+        public static function setParentAttributes($attributes)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->setParentAttributes($attributes);
+        }
+
+        /**
+         * @static
+         */
+        public static function addParentClass($class)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->addParentClass($class);
+        }
+
+        /**
+         * @static
+         */
+        public static function parentId($id)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->parentId($id);
+        }
+
+        /**
+         * Prepend the anchor with a string of html on render.
+         *
+         * @param string|\Spatie\Menu\Item $prepend
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function prepend($prepend)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->prepend($prepend);
+        }
+
+        /**
+         * Prepend the text with a string of html on render if a certain condition is
+         * met.
+         *
+         * @param mixed $condition
+         * @param string|\Spatie\Menu\Item $prepend
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function prependIf($condition, $prepend)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->prependIf($condition, $prepend);
+        }
+
+        /**
+         * Append a text of html to the menu on render.
+         *
+         * @param string|\Spatie\Menu\Item $append
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function append($append)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->append($append);
+        }
+
+        /**
+         * Append the text with a string of html on render if a certain condition is
+         * met.
+         *
+         * @param bool|callable $condition
+         * @param string|\Spatie\Menu\Item $append
+         * @return \Spatie\Menu\Laravel\Menu
+         * @static
+         */
+        public static function appendIf($condition, $append)
+        {
+            //Method inherited from \Spatie\Menu\Menu 
+            /** @var \Spatie\Menu\Laravel\Menu $instance */
+            return $instance->appendIf($condition, $append);
+        }
+
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @param-closure-this static  $macro
+         * @return void
+         * @static
+         */
+        public static function macro($name, $macro)
+        {
+            \Spatie\Menu\Laravel\Menu::macro($name, $macro);
+        }
+
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @param bool $replace
+         * @return void
+         * @throws \ReflectionException
+         * @static
+         */
+        public static function mixin($mixin, $replace = true)
+        {
+            \Spatie\Menu\Laravel\Menu::mixin($mixin, $replace);
+        }
+
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool
+         * @static
+         */
+        public static function hasMacro($name)
+        {
+            return \Spatie\Menu\Laravel\Menu::hasMacro($name);
+        }
+
+        /**
+         * Flush the existing macros.
+         *
+         * @return void
+         * @static
+         */
+        public static function flushMacros()
+        {
+            \Spatie\Menu\Laravel\Menu::flushMacros();
+        }
+
+            }
+    }
+
 namespace Illuminate\Support {
     /**
      * @template TKey of array-key
@@ -24750,6 +26934,32 @@ namespace Illuminate\Support {
         public static function debug()
         {
             return \Illuminate\Support\Collection::debug();
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\DownloadCollectionMixin::downloadExcel()
+         * @param string $fileName
+         * @param string|null $writerType
+         * @param mixed $withHeadings
+         * @param array $responseHeaders
+         * @static
+         */
+        public static function downloadExcel($fileName, $writerType = null, $withHeadings = false, $responseHeaders = [])
+        {
+            return \Illuminate\Support\Collection::downloadExcel($fileName, $writerType, $withHeadings, $responseHeaders);
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\StoreCollectionMixin::storeExcel()
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string|null $writerType
+         * @param mixed $withHeadings
+         * @static
+         */
+        public static function storeExcel($filePath, $disk = null, $writerType = null, $withHeadings = false)
+        {
+            return \Illuminate\Support\Collection::storeExcel($filePath, $disk, $writerType, $withHeadings);
         }
 
             }
@@ -24837,6 +27047,36 @@ namespace Illuminate\Routing {
         public static function lazy($enabled = true)
         {
             return \Illuminate\Routing\Route::lazy($enabled);
+        }
+
+        /**
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $roles
+         * @static
+         */
+        public static function role($roles = [])
+        {
+            return \Illuminate\Routing\Route::role($roles);
+        }
+
+        /**
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $permissions
+         * @static
+         */
+        public static function permission($permissions = [])
+        {
+            return \Illuminate\Routing\Route::permission($permissions);
+        }
+
+        /**
+         * @see \Spatie\Permission\PermissionServiceProvider::registerMacroHelpers()
+         * @param mixed $rolesOrPermissions
+         * @static
+         */
+        public static function roleOrPermission($rolesOrPermissions = [])
+        {
+            return \Illuminate\Routing\Route::roleOrPermission($rolesOrPermissions);
         }
 
             }
@@ -26945,6 +29185,56 @@ namespace  {
         {
             /** @var \Illuminate\Database\Eloquent\Builder $instance */
             return $instance->mergeConstraintsFrom($from);
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\DownloadQueryMacro::__invoke()
+         * @param string $fileName
+         * @param string|null $writerType
+         * @param mixed $withHeadings
+         * @static
+         */
+        public static function downloadExcel($fileName, $writerType = null, $withHeadings = false)
+        {
+            return \Illuminate\Database\Eloquent\Builder::downloadExcel($fileName, $writerType, $withHeadings);
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\StoreQueryMacro::__invoke()
+         * @param string $filePath
+         * @param string|null $disk
+         * @param string|null $writerType
+         * @param mixed $withHeadings
+         * @static
+         */
+        public static function storeExcel($filePath, $disk = null, $writerType = null, $withHeadings = false)
+        {
+            return \Illuminate\Database\Eloquent\Builder::storeExcel($filePath, $disk, $writerType, $withHeadings);
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\ImportMacro::__invoke()
+         * @param string $filename
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @static
+         */
+        public static function import($filename, $disk = null, $readerType = null)
+        {
+            return \Illuminate\Database\Eloquent\Builder::import($filename, $disk, $readerType);
+        }
+
+        /**
+         * @see \Maatwebsite\Excel\Mixins\ImportAsMacro::__invoke()
+         * @param string $filename
+         * @param callable $mapping
+         * @param string|null $disk
+         * @param string|null $readerType
+         * @static
+         */
+        public static function importAs($filename, $mapping, $disk = null, $readerType = null)
+        {
+            return \Illuminate\Database\Eloquent\Builder::importAs($filename, $mapping, $disk, $readerType);
         }
 
         /**
@@ -29817,6 +32107,11 @@ namespace  {
     class LivewireAlert extends \Jantinnerezo\LivewireAlert\LivewireAlert {}
     class Horizon extends \Laravel\Horizon\Horizon {}
     class Livewire extends \Livewire\Livewire {}
+    class Excel extends \Maatwebsite\Excel\Facades\Excel {}
+    class LogViewer extends \Opcodes\LogViewer\Facades\LogViewer {}
+    class QrCode extends \SimpleSoftwareIO\QrCode\Facades\QrCode {}
+    class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
+    class Menu extends \Spatie\Menu\Laravel\Facades\Menu {}
 }
 
 
