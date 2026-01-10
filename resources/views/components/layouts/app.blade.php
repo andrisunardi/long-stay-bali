@@ -19,40 +19,38 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
-    <div class="d-flex flex-column min-vh-100">
-        @if (View::getSection('code') != 503)
-            @if (Route::is('cms.*'))
-                {{-- @livewire('layouts.cms.header') --}}
-            @else
-                {{-- @livewire('layouts.header') --}}
-            @endif
+<body class="d-flex flex-column min-vh-100">
+    @if (View::getSection('code') != 503)
+        @if (Route::is('cms.*'))
+            {{-- @livewire('layouts.cms.header') --}}
+        @else
+            {{-- @livewire('layouts.header') --}}
         @endif
+    @endif
 
-        <main class="flex-grow-1 @if (!Route::is(['cms.login', 'cms.forgot-password'])) pt-5 my-4 @endif">
-            @if (View::hasSection('code'))
-                @if (Route::is('cms.*'))
-                    {{-- @livewire('layouts.cms.error') --}}
-                @else
-                    {{-- @livewire('layouts.error') --}}
-                @endif
-            @else
-                @if (!Route::is(['home', 'cms.home', 'cms.login', 'cms.forgot-password']))
-                    {{ Breadcrumbs::render() }}
-                @endif
-
-                {{ $slot }}
-            @endif
-        </main>
-
-        @if (View::getSection('code') != 503)
+    <main class="flex-grow-1 @if (!Route::is(['cms.login', 'cms.forgot-password'])) pt-5 my-4 @endif">
+        @if (View::hasSection('code'))
             @if (Route::is('cms.*'))
-                {{-- @livewire('layouts.cms.footer') --}}
+                {{-- @livewire('layouts.cms.error') --}}
             @else
-                {{-- @livewire('layouts.footer') --}}
+                {{-- @livewire('layouts.error') --}}
             @endif
+        @else
+            @if (!Route::is(['home', 'cms.home', 'cms.login', 'cms.forgot-password']))
+                {{ Breadcrumbs::render() }}
+            @endif
+
+            {{ $slot }}
         @endif
-    </div>
+    </main>
+
+    @if (View::getSection('code') != 503)
+        @if (Route::is('cms.*'))
+            {{-- @livewire('layouts.cms.footer') --}}
+        @else
+            {{-- @livewire('layouts.footer') --}}
+        @endif
+    @endif
 
     @if (Route::is('cms.*'))
         {{-- @livewire('modal.modal-logs') --}}

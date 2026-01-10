@@ -3,13 +3,15 @@
 namespace App\Livewire\CMS\Login;
 
 use App\Livewire\Component;
-use App\Livewire\Forms\CMS\Login\LoginForm;
+use App\Livewire\Forms\CMS\LoginForm;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class LoginPage extends Component
 {
     public LoginForm $form;
+
+    public bool $passwordVisibility = false;
 
     public function mount(): void
     {
@@ -18,8 +20,13 @@ class LoginPage extends Component
             //     'html' => trans('index.you_already_login'),
             // ]);
 
-            $this->redirect(route('cms.index'), navigate: true);
+            $this->redirectIntended(route('cms.index'), navigate: true);
         }
+    }
+
+    public function changePasswordVisibility(): void
+    {
+        $this->passwordVisibility = ! $this->passwordVisibility;
     }
 
     public function submit(): void
@@ -31,7 +38,7 @@ class LoginPage extends Component
             //     'html' => trans('index.login_has_been_successfully'),
             // ]);
 
-            $this->redirectIntended(route('cms.index'));
+            $this->redirectIntended(route('cms.index'), navigate: true);
 
             return;
         }

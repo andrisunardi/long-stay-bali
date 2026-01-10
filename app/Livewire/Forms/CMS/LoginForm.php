@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Forms\CMS\Login;
+namespace App\Livewire\Forms\CMS;
 
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Validate;
@@ -29,7 +29,7 @@ class LoginForm extends Form
         return Auth::attempt(
             [
                 'username' => $this->username,
-                'password' => $this->password
+                'password' => $this->password,
             ],
             $this->remember,
         );

@@ -1,79 +1,109 @@
 @section('title', trans('page.login'))
 @section('icon', 'fas fa-sign-in-alt')
 
-<main>
-    <div class="bg-body-secondary">
-        <div class="container">
-            <div class="row justify-content-center align-items-center vh-100 mt-sm-5 mt-md-auto">
-                <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4">
-                    <div class="mb-3 d-flex justify-content-center">
-                        <img draggable="false" class="w-50" src="{{ asset('images/logo.png') }}"
-                            alt="{{ trans('index.logo') }} - {{ config('app.name') }}">
+<div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center py-sm-5 py-md-auto">
+    <div>
+        <h3 class="text-uppercase text-center fw-bold">
+            {{ config('app.name') }}
+        </h3>
+        <p class="text-center">Please Login With Your Acount To Continue</p>
+        <form wire:submit.prevent="submit" role="form" autocomplete="off">
+            <div class="d-grid gap-3">
+                <div>
+                    <label class="form-label" for="username">
+                        {{ trans('field.username') }}
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <span class="fas fa-user fa-fw "></span>
+                        </div>
+                        <input type="text" class="form-control" id="username" name="username" minlength="1"
+                            maxlength="50" placeholder="{{ trans('field.username') }}" required autocapitalize="none"
+                            autofocus wire:key="username" wire:model.lazy="username" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                    </div>
+                    @error('form.username')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div>
+                    <label class="form-label" for="password">
+                        {{ trans('field.password') }}
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock fa-fw "></span>
+                        </div>
+                        <input type="{{ $passwordVisibility ? 'text' : 'password' }}" class="form-control"
+                            id="password" name="password" minlength="1" maxlength="50"
+                            placeholder="{{ trans('field.password') }}" required autocapitalize="none"
+                            wire:key="password" wire:model.lazy="password" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                        <div class="input-group-text pointer">
+                            <span class="fas fa-{{ $passwordVisibility ? 'eye' : 'eye-slash' }} fa-fw"
+                                wire:click="changePasswordVisibility" offline.class="disabled"
+                                wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                            </span>
+                        </div>
+                    </div>
+                    @error('form.username')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="d-flex justify-content-between gap-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="1" id="remember_me"
+                            name="remember_me">
+                        <label class="form-check-label" for="remember_me">
+                            {{ trans('field.remember_me') }}
+                        </label>
                     </div>
 
-                    <div class="card shadow rounded border-0 mb-sm-5 mb-md-auto">
-                        <div class="card-header text-center">
-                            <h5 class="card-title">{{ config('app.name') }}</h5>
-                            <p class="card-text">@yield('title')</p>
-                        </div>
-
-                        <div class="card-body">
-                            <form wire:submit.prevent="submit" role="form" autocomplete="off">
-                                <div class="d-grid gap-3">
-                                    <div class="mb-3">
-                                        {{-- <x-form.username :key="'form.username'" :maxlength="50"
-                                            :required="true" :autocapitalize="'none'" :autofocus="true" /> --}}
-                                    </div>
-
-                                    <div class="mb-3">
-                                        {{-- <x-form.password :key="'form.password'" :maxlength="50"
-                                            :required="true" :autocapitalize="'none'" /> --}}
-                                    </div>
-
-                                    <div class="mb-3">
-                                        {{-- <x-form.boolean :key="'form.remember'" :title="trans('validation.attributes.remember')"
-                                            :type="'checkbox'" :text="trans('index.stay_login')" :second="false" :required="false"
-                                            :label="false" /> --}}
-                                    </div>
-
-                                    <div class="row align-items-center justify-content-between">
-                                        <div class="col">
-                                            {{-- <x-link :class="'small text-decoration-none'" :text="trans('index.forgot_password')"
-                                                :href="route('cms.forgot-password')" /> --}}
-                                        </div>
-                                        <div class="col">
-                                            {{-- <x-form.submit :text="trans('index.login')" :icon="'fas fa-sign-in-alt'" /> --}}
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="card-footer text-center">
-                            <small class="text-body-secondary">
-                                &copy; {{ trans('footer.copyright') }}
-                                {{ env('APP_YEAR') && env('APP_YEAR') != now()->year ? env('APP_YEAR') . ' - ' : null }}
-                                {{ now()->year }} &reg;
-                                <a draggable="false" href="{{ route('index') }}" target="_blank"
-                                    class="text-body text-decoration-none">
-                                    <strong>{{ env('APP_NAME') }}</strong>&trade;
-                                </a>
-                                <br />
-                                {{ trans('footer.all_rights_reserved') }}.
-                            </small>
-                            <br>
-                            <small class="text-body-secondary">
-                                {{ trans('footer.created_and_designed_by') }}
-                                <a draggable="false" href="https://www.diw.co.id" target="_blank">
-                                    <img draggable="false" src="{{ asset('images/icon-diw.co.id.png') }}"
-                                        alt="Icon DIW.co.id"
-                                        title="{{ trans('footer.created_and_designed_by') }} DIW.co.id">
-                                </a>
-                            </small>
-                        </div>
+                    <div>
+                        <a draggable="false" href="{{ route('cms.login') }}" wire:navigate>
+                            {{ trans('page.forgot_password') }}
+                        </a>
                     </div>
                 </div>
+
+                <button type="submit" class="btn btn-primary bg-gradient w-100" wire:key="submit"
+                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                    wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="submit">
+                        <span class="fas fa-sign-in-alt fa-fw"></span>
+                        {{ trans('page.login') }}
+                    </span>
+                    <span wire:loading wire:target="submit" class="w-100">
+                        <span class="spinner-border spinner-border-sm"></span>
+                        {{ trans('page.login') }}
+                    </span>
+                </button>
+            </div>
+        </form>
+
+        <div class="text-body-secondary text-center small mt-4">
+            <div class="small">
+                &copy; {{ trans('footer.copyright') }}
+                2025 - {{ now()->year }} &reg;
+                <a draggable="false" href="{{ route('index') }}" target="_blank"
+                    class="text-body text-decoration-none">
+                    <strong>{{ config('app.name') }}</strong>&trade;
+                </a>
+                <br />
+                {{ trans('footer.all_rights_reserved') }}.
+            </div>
+
+            <div class="small mt-2">
+                {{ trans('footer.created_and_designed_by') }}
+                <a draggable="false" href="https://www.diw.co.id" target="_blank">
+                    <img draggable="false" src="{{ asset('images/icon-diw.co.id.png') }}" alt="Icon DIW.co.id"
+                        title="{{ trans('footer.created_and_designed_by') }} DIW.co.id">
+                </a>
             </div>
         </div>
     </div>
-</main>
+</div>
