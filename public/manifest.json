@@ -1,0 +1,25 @@
+{
+    "short_name": "Long Stay Bali",
+    "name": "Long Stay Bali - PT. BRE",
+    "description": "Monthly and yearly rentals in Bali Find your home, live better, stay longer.",
+    "icons": [
+        {
+            "src": "images/favicon.png",
+            "sizes": "400x400",
+            "type": "image/x-icon",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "images/logo.png",
+            "type": "image/png",
+            "sizes": "400x400",
+            "purpose": "any maskable"
+        }
+    ],
+    "start_url": "/",
+    "scope": ".",
+    "display": "fullscreen",
+    "orientation": "portrait",
+    "theme_color": "#000000",
+    "background_color": "#000000"
+}
