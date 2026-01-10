@@ -16,5 +16,7 @@ Route::any('locale/{locale}', function ($locale) {
 Route::group(['middleware' => [
     Localization::class,
 ]], function () {
-    Route::any('', HomePage::class)->name('home');
+    Route::any('', HomePage::class)->name('index');
+
+    Route::prefix('cms')->name('cms.')->as('cms.')->group(base_path('routes/cms.php'));
 });

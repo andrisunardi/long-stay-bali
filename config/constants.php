@@ -7,4 +7,6 @@ return [
         'mail' => env('SLACK_MAIL'),
         'channel' => env('SLACK_CHANNEL'),
     ],
+
+    'color' => '',
 ];
