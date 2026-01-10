@@ -11,10 +11,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 50);
-            $table->string('phone', 20)->unique()->nullable();
-            $table->string('email', 50)->unique()->nullable();
-            $table->boolean('is_active')->default(true);
+            $table->string('name', 50)->unique();
+            $table->string('email', 50)->unique();
+            $table->string('phone', 15)->unique();
+            $table->string('username', 50)->unique();
+            $table->string('password', 60);
+            $table->string('image_url', 80)->nullable();
+            $table->boolean('is_active')->unsigned()->default(true);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignIdFor(User::class, 'deleted_by')->nullable()->constrained('users')->nullOnDelete();

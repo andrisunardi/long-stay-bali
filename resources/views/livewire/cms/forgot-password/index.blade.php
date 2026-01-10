@@ -1,5 +1,5 @@
-@section('title', trans('page.login'))
-@section('icon', 'fas fa-sign-in-alt')
+@section('title', trans('page.forgot_password'))
+@section('icon', 'fas fa-question')
 
 <div class="container-fluid min-vh-100 d-flex justify-content-center align-items-center py-sm-5 py-md-auto">
     <div>
@@ -8,7 +8,7 @@
         </h3>
 
         <p class="text-center">
-            {{ trans('message.please_login_with_your_account_to_continue') }}
+            {{ trans('message.enter_your_email_and_username_to_get_new_password') }}
         </p>
 
         <form wire:submit.prevent="submit" role="form" autocomplete="off">

@@ -68,6 +68,18 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static Builder<static>|User withoutRole($roles, $guard = null)
  * @method static Builder<static>|User withoutTrashed()
  *
+ * @property string $username
+ * @property string $password
+ * @property string|null $image_url
+ * @property Carbon|null $email_verified_at
+ * @property Carbon|null $phone_verified_at
+ *
+ * @method static Builder<static>|User whereEmailVerifiedAt($value)
+ * @method static Builder<static>|User whereImageUrl($value)
+ * @method static Builder<static>|User wherePassword($value)
+ * @method static Builder<static>|User wherePhoneVerifiedAt($value)
+ * @method static Builder<static>|User whereUsername($value)
+ *
  * @mixin \Eloquent
  */
 class User extends Authenticatable
