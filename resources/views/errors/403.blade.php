@@ -1,5 +1,6 @@
-@extends('errors::minimal')
+@extends('components.layouts.app')
 
-@section('title', __('Forbidden'))
-@section('code', '403')
-@section('message', __($exception->getMessage() ?: 'Forbidden'))
+@section("title", "403 - Forbidden")
+@section("code", "403")
+@section("message", "Forbidden")
+@section("description", "The request was a legal request, but the server is refusing to respond to it")

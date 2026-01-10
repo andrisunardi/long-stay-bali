@@ -1,5 +1,6 @@
-@extends('errors::minimal')
+@extends('components.layouts.app')
 
-@section('title', __('Server Error'))
-@section('code', '500')
-@section('message', __('Server Error'))
+@section("title", "500 - Internal Server Error")
+@section("code", "500")
+@section("message", "Internal Server Error")
+@section("description", "A generic error message, given when no more specific message is suitable")
