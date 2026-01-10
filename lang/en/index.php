@@ -1,0 +1,35 @@
+<?php
+
+return [
+
+    'logo' => 'Logo',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+    'all' => 'All',
+
+];

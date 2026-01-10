@@ -1,4 +1,4 @@
-@section('title', trans('index.login'))
+@section('title', trans('page.login'))
 @section('icon', 'fas fa-sign-in-alt')
 
 <main>
@@ -8,12 +8,12 @@
                 <div class="col-sm-10 col-md-8 col-lg-6 col-xl-4">
                     <div class="mb-3 d-flex justify-content-center">
                         <img draggable="false" class="w-50" src="{{ asset('images/logo.png') }}"
-                            alt="{{ trans('index.logo') }} - {{ env('APP_TITLE') }}">
+                            alt="{{ trans('index.logo') }} - {{ config('app.name') }}">
                     </div>
 
                     <div class="card shadow rounded border-0 mb-sm-5 mb-md-auto">
                         <div class="card-header text-center">
-                            <h5 class="card-title">{{ env('APP_NAME') }}</h5>
+                            <h5 class="card-title">{{ config('app.name') }}</h5>
                             <p class="card-text">@yield('title')</p>
                         </div>
 
@@ -51,7 +51,7 @@
 
                         <div class="card-footer text-center">
                             <small class="text-body-secondary">
-                                &copy; {{ trans('index.copyright') }}
+                                &copy; {{ trans('footer.copyright') }}
                                 {{ env('APP_YEAR') && env('APP_YEAR') != now()->year ? env('APP_YEAR') . ' - ' : null }}
                                 {{ now()->year }} &reg;
                                 <a draggable="false" href="{{ route('index') }}" target="_blank"
@@ -59,15 +59,15 @@
                                     <strong>{{ env('APP_NAME') }}</strong>&trade;
                                 </a>
                                 <br />
-                                {{ trans('index.all_rights_reserved') }}.
+                                {{ trans('footer.all_rights_reserved') }}.
                             </small>
                             <br>
                             <small class="text-body-secondary">
-                                {{ trans('index.created_and_designed_by') }}
+                                {{ trans('footer.created_and_designed_by') }}
                                 <a draggable="false" href="https://www.diw.co.id" target="_blank">
                                     <img draggable="false" src="{{ asset('images/icon-diw.co.id.png') }}"
                                         alt="Icon DIW.co.id"
-                                        title="{{ trans('index.created_and_designed_by') }} DIW.co.id">
+                                        title="{{ trans('footer.created_and_designed_by') }} DIW.co.id">
                                 </a>
                             </small>
                         </div>

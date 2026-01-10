@@ -22,16 +22,22 @@
 <body>
     <div class="d-flex flex-column min-vh-100">
         @if (View::getSection('code') != 503)
-            @can('cms')
-                @livewire('layouts.header')
-            @endcan
+            @if (Route::is('cms.*'))
+                {{-- @livewire('layouts.cms.header') --}}
+            @else
+                {{-- @livewire('layouts.header') --}}
+            @endif
         @endif
 
-        <main class="flex-grow-1 @can('cms') pt-5 my-4 @endcan">
+        <main class="flex-grow-1 @if (!Route::is(['cms.login', 'cms.forgot-password'])) pt-5 my-4 @endif">
             @if (View::hasSection('code'))
-                @livewire('layouts.error')
+                @if (Route::is('cms.*'))
+                    {{-- @livewire('layouts.cms.error') --}}
+                @else
+                    {{-- @livewire('layouts.error') --}}
+                @endif
             @else
-                @if (Route::is('cms.*') && !Route::is('cms.home'))
+                @if (!Route::is(['home', 'cms.home', 'cms.login', 'cms.forgot-password']))
                     {{ Breadcrumbs::render() }}
                 @endif
 
@@ -40,18 +46,22 @@
         </main>
 
         @if (View::getSection('code') != 503)
-            @livewire('layouts.footer')
+            @if (Route::is('cms.*'))
+                {{-- @livewire('layouts.cms.footer') --}}
+            @else
+                {{-- @livewire('layouts.footer') --}}
+            @endif
         @endif
     </div>
 
     @if (Route::is('cms.*'))
-        @livewire('modal.modal-logs')
+        {{-- @livewire('modal.modal-logs') --}}
 
-        @livewire('modal.modal-language')
+        {{-- @livewire('modal.modal-language') --}}
 
-        @livewire('modal.modal-theme')
+        {{-- @livewire('modal.modal-theme') --}}
 
-        @livewire('modal.modal-account')
+        {{-- @livewire('modal.modal-account') --}}
     @endif
 
     <script src="{{ asset('js/color-modes.js') }}"></script>
