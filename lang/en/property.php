@@ -2,6 +2,10 @@
 
 return [
 
+    'property' => 'Property',
+    'monthly_from' => 'Monthly From',
+    'yearly_from' => 'Yearly From',
+
     'property_identity' => 'Property Identity',
     'internal_property_code' => 'Internal Property Code',
     'availability_date' => 'Availability Date',
