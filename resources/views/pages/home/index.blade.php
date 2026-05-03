@@ -12,7 +12,7 @@ new #[Title('Home')] class extends Component {};
     @if (request()->getHost() == 'solivingbali.com')
         <x-home.coming-soon />
     @else
-        <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/banner/home.png')," />
+        <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/hero/home.png')" />
 
         <livewire:home.our-values lazy />
 
@@ -21,5 +21,7 @@ new #[Title('Home')] class extends Component {};
         <livewire:home.our-services lazy />
 
         <livewire:home.guides lazy />
+
+        <x-home.cta :image="asset('images/banner/home.png')" />
     @endif
 </div>

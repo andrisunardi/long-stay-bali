@@ -20,7 +20,34 @@ return [
     'our_values' => [
         'sub_title' => 'Nilai-Nilai Kami',
         'title' => 'Ruang yang Dirancang untuk Hidup, Lebih dari Sekadar Menginap Singkat',
-        'description' => 'Untuk tinggal lebih lama, dirancang untuk menyesuaikan kehidupan sehari-hari Anda di Bali. Di mana hidup terasa nyaman dengan ritme Anda sendiri.',
+        'description' => 'Untuk tinggal lebih lama, dirancang untuk sesuai dengan kehidupan sehari-hari Anda di Bali. Di mana hidup terasa tenang dengan ritme Anda sendiri.',
+    ],
+
+    'select_locations' => [
+        'title' => 'Sekarang tersedia di lokasi terpilih',
+        'description' => 'Kami mulai dengan jumlah rumah terbatas, dipilih berdasarkan cara orang benar-benar hidup',
+        'property' => 'Properti',
+    ],
+
+    'our_services' => [
+        'sub_title' => 'Layanan Kami',
+        'title' => 'Dukungan yang membuat hidup menjadi mudah',
+        'description' => 'Dari pindah hingga kehidupan sehari-hari, kami menyediakan dukungan yang dapat diandalkan sehingga Anda dapat hidup nyaman di Bali',
+        'request_a_service' => 'Minta Layanan',
+        'view_more' => 'Lihat Lebih Banyak',
+    ],
+
+    'guides' => [
+        'sub_title' => 'Panduan',
+        'title' => 'Memahami kehidupan di Bali, dibuat lebih sederhana',
+        'description' => 'Panduan praktis untuk membantu Anda menavigasi kehidupan jangka panjang, pilihan sewa, dan tempat tinggal',
+        'read_more' => 'Baca Lebih Lanjut',
+    ],
+
+    'cta' => [
+        'title' => 'Bicarakan dengan kami tentang kepindahan Anda',
+        'description' => 'Kami akan membantu Anda menemukan rumah yang tepat dan mendukung Anda di setiap langkah.',
+        'button' => 'Hubungi Kami',
     ],
 
 ];

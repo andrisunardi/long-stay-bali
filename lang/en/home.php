@@ -44,4 +44,10 @@ return [
         'read_more' => 'Read More',
     ],
 
+    'cta' => [
+        'title' => 'Talk to us about your move',
+        'description' => "We'll help you find the right home and support you every step of the way.",
+        'button' => 'Contact Us',
+    ],
+
 ];
