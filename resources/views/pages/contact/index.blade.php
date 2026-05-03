@@ -8,7 +8,7 @@ new #[Title('Contact')] class extends Component {};
 
 @section('title', trans('page.contact'))
 
-<div>
+<section class="py-5">
     <x-contact.header />
 
     {{-- prettier-ignore --}}
@@ -17,4 +17,4 @@ new #[Title('Contact')] class extends Component {};
     :google-maps="config('constants.contact.google_maps')"
     :google-maps-iframe="config('constants.contact.google_maps_iframe')"
     />
-</div>
+</section>
