@@ -85,7 +85,7 @@ new #[Lazy] class extends Component {
                         <div class="ratio ratio-21x9 overflow-hidden">
                             <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide['slug']]) }}"
                                 wire:navigate>
-                                <img draggable="false"
+                                <img draggable="false" loading="lazy" decoding="async"
                                     class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
                                     src="{{ $guide->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('home.guides.guide') }} - {{ $guide->translate_title }} - {{ config('constants.meta.title') }}"

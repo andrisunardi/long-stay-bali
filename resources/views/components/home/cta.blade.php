@@ -9,7 +9,7 @@
 
         <div class="container-md position-absolute top-50 start-50 translate-middle w-100 px-3">
             <div class="bg-light rounded-4 shadow p-4 p-lg-5 position-relative overflow-hidden">
-                <img draggable="false"
+                <img draggable="false" loading="lazy" decoding="async"
                     class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover user-select-none pe-none"
                     src="{{ $imageUrl ?? asset('images/banner/home.png') }}"
                     alt="{{ trans('index.banner') }} - {{ config('constants.title') }}">
