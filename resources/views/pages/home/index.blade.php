@@ -19,5 +19,7 @@ new #[Title('Home')] class extends Component {};
         <livewire:home.select-locations lazy />
 
         <livewire:home.our-services lazy />
+
+        <livewire:home.guides lazy />
     @endif
 </div>

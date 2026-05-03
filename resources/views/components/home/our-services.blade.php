@@ -21,6 +21,9 @@ new #[Lazy] class extends Component {
             <div class="d-grid gap-4">
                 <div class="text-center">
                     <div class="placeholder-glow">
+                        <span class="placeholder col-4 col-sm-2 col-xl-1"></span>
+                    </div>
+                    <div class="placeholder-glow">
                         <h1 class="display-6 placeholder rounded col-10 col-lg-9 col-xl-7"></h1>
                     </div>
                     <div class="placeholder-glow">
@@ -70,6 +73,7 @@ new #[Lazy] class extends Component {
     <div class="container-md py-5">
         <div class="d-grid gap-4">
             <div class="text-center">
+                <p class="lead mb-0">{{ trans('home.our_services.sub_title') }}</p>
                 <h1 class="display-6 fw-medium">{{ trans('home.our_services.title') }}</h1>
                 <p class="small text-muted">{{ trans('home.our_services.description') }}</p>
             </div>
