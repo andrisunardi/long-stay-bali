@@ -186,6 +186,11 @@ class PropertyService
         return $property->delete();
     }
 
+    public function detail(string $slug): ?Property
+    {
+        return Property::where('slug', $slug)->first();
+    }
+
     public function uploadImages(Property $property, array $images = []): Property
     {
         $google = new GoogleDrive;

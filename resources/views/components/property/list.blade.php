@@ -50,7 +50,7 @@ new #[Lazy] class extends Component {
 
                         <div class="mt-3">
                             <span class="fas fa-location-dot fa-fw"></span>
-                            {{ $property->area->name }}
+                            {{ $property->area->name ?? 'Bali' }}
                         </div>
 
                         <h1 class="h6 text-truncate mt-3">
