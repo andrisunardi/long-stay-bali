@@ -18,7 +18,7 @@ class GuideSeeder extends Seeder
             'body_id' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'body_zh' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'google_file_id' => '',
-            'image_url' => 'https://solivingbali.com/assets/images/property/what-to-know-before-renting-long-term-in-bali.png',
+            'image_url' => 'https://solivingbali.com/assets/images/guides/what-to-know-before-renting-long-term-in-bali.png',
             'slug' => 'what-to-know-before-renting-long-term-in-bali',
         ]);
 
@@ -31,7 +31,7 @@ class GuideSeeder extends Seeder
             'body_id' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'body_zh' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'google_file_id' => '',
-            'image_url' => 'https://solivingbali.com/assets/images/property/monthly-vs-yearly-rentals.png',
+            'image_url' => 'https://solivingbali.com/assets/images/guides/monthly-vs-yearly-rentals.png',
             'slug' => 'monthly-vs-yearly-rentals',
         ]);
 
@@ -44,7 +44,7 @@ class GuideSeeder extends Seeder
             'body_id' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'body_zh' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'google_file_id' => '',
-            'image_url' => 'https://solivingbali.com/assets/images/property/choosing-the-right-area-to-live-in-bali.png',
+            'image_url' => 'https://solivingbali.com/assets/images/guides/choosing-the-right-area-to-live-in-bali.png',
             'slug' => 'choosing-the-right-area-to-live-in-bali',
         ]);
 
@@ -57,7 +57,7 @@ class GuideSeeder extends Seeder
             'body_id' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'body_zh' => 'Lorem ipsum dolor sit amet consectetu pelleue faucibus volutpat Lorem ipsum dolor sit amet consectetur. Massa vutate ullamcorper pelleue faucibus volutpat metus. metus.',
             'google_file_id' => '',
-            'image_url' => 'https://solivingbali.com/assets/images/property/choosing-the-right-area-to-live-in-bali-2.png',
+            'image_url' => 'https://solivingbali.com/assets/images/guides/choosing-the-right-area-to-live-in-bali-2.png',
             'slug' => 'choosing-the-right-area-to-live-in-bali-2',
         ]);
     }

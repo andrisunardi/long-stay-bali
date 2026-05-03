@@ -2,37 +2,7 @@
 
 use App\Livewire\Component;
 
-new class extends Component {
-    public function navigations(): array
-    {
-        return [
-            [
-                'id' => 1,
-                'name' => trans('page.home'),
-                'url' => route('home'),
-                'route' => 'home',
-            ],
-            [
-                'id' => 2,
-                'name' => trans('page.service'),
-                'url' => route('service'),
-                'route' => 'service',
-            ],
-            [
-                'id' => 3,
-                'name' => trans('page.about'),
-                'url' => route('about'),
-                'route' => 'about',
-            ],
-            [
-                'id' => 4,
-                'name' => trans('page.guide'),
-                'url' => route('guide'),
-                'route' => 'guide',
-            ],
-        ];
-    }
-};
+new class extends Component {};
 ?>
 
 <footer class="text-bg-dark py-5">
