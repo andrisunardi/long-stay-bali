@@ -1,53 +1,50 @@
 <?php
 
 use App\Livewire\Component;
-use App\Services\GuideCategoryService;
+use App\Services\GuideService;
 use Livewire\Attributes\Title;
-use App\Models\GuideCategory;
+use App\Models\Guide;
 
-new #[Title('Detail | Guide Category')] class extends Component {
-    public GuideCategory $guideCategory;
+new #[Title('Detail | Guide')] class extends Component {
+    public Guide $guide;
 
-    public function mount(GuideCategory $guideCategory): void
+    public function mount(Guide $guide): void
     {
-        $this->guideCategory = $guideCategory;
-        $this->guideCategory->loadCount(['guides']);
+        $this->guide = $guide;
     }
 
     public function changeShow(): void
     {
-        $service = new GuideCategoryService();
-        $service->show(guideCategory: $this->guideCategory);
-        $this->guideCategory->loadCount(['guides']);
+        $service = new GuideService();
+        $service->show(guide: $this->guide);
 
-        $this->alertSuccess(title: trans('index.change_show') . ' ' . trans('index.success'), body: trans('page.guide_category') . ' ' . trans('message.has_been_successfully_changed'));
+        $this->alertSuccess(title: trans('index.change_show') . ' ' . trans('index.success'), body: trans('page.guide') . ' ' . trans('message.has_been_successfully_changed'));
     }
 
     public function changeActive(): void
     {
-        $service = new GuideCategoryService();
-        $service->active(guideCategory: $this->guideCategory);
-        $this->guideCategory->loadCount(['guides']);
+        $service = new GuideService();
+        $service->active(guide: $this->guide);
 
-        $this->alertSuccess(title: trans('index.change_active') . ' ' . trans('index.success'), body: trans('page.guide_category') . ' ' . trans('message.has_been_successfully_changed'));
+        $this->alertSuccess(title: trans('index.change_active') . ' ' . trans('index.success'), body: trans('page.guide') . ' ' . trans('message.has_been_successfully_changed'));
     }
 
     public function delete(): void
     {
-        $service = new GuideCategoryService();
-        $service->delete(guideCategory: $this->guideCategory);
+        $service = new GuideService();
+        $service->delete(guide: $this->guide);
 
         session()->flash('success', [
             'title' => trans('index.delete') . ' ' . trans('index.success'),
-            'message' => trans('page.guide_category') . ' ' . trans('message.has_been_successfully_deleted'),
+            'message' => trans('page.guide') . ' ' . trans('message.has_been_successfully_deleted'),
         ]);
 
-        $this->redirect(route('cms.guide-category.index'), navigate: true);
+        $this->redirect(route('cms.guide.index'), navigate: true);
     }
 };
 ?>
 
-@section('title', trans('page.guide_category'))
+@section('title', trans('page.guide'))
 
 <div class="container-fluid">
     <div class="card">
@@ -58,8 +55,7 @@ new #[Title('Detail | Guide Category')] class extends Component {
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-auto">
-                    <a draggable="false" class="btn btn-info w-100" href="{{ route('cms.guide-category.index') }}"
-                        wire:navigate>
+                    <a draggable="false" class="btn btn-info w-100" href="{{ route('cms.guide.index') }}" wire:navigate>
                         <span class="fas fa-arrow-left fa-fw"></span>
                         {{ trans('index.back') }}
                     </a>
@@ -74,34 +70,83 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->id }}
+                        {{ $guide->id }}
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.name') }}</div>
+                        <div class="fw-bold">{{ trans('field.guide_category_id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->name }}
+                        @if ($guide->category)
+                            <a draggable="false"
+                                href="{{ route('cms.guide-category.detail', ['guideCategory' => $guide->category]) }}"
+                                wire:navigate>
+                                {{ $guide->category->name }}
+                            </a>
+                        @endif
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.name_id') }}</div>
+                        <div class="fw-bold">{{ trans('field.title') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->name_id }}
+                        {{ $guide->title }}
+
+                        @if ($guide->is_show && $guide->is_active)
+                            <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
+                                target="_blank">
+                                <span class="fas fa-external-link fa-fw"></span>
+                            </a>
+                        @endif
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.name_zh') }}</div>
+                        <div class="fw-bold">{{ trans('field.title_id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->name_zh }}
+                        {{ $guide->title_id }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.title_zh') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $guide->title_zh }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.body') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $guide->body !!}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.body_id') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $guide->body_id !!}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.body_zh') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $guide->body_zh !!}
                     </div>
                 </div>
 
@@ -110,21 +155,21 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.show') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @can('guideCategory.edit')
+                        @can('guide.edit')
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch"
-                                    id="is_show_{{ $guideCategory->id }}" name="is_show" value="1"
-                                    {{ $guideCategory->is_show ? 'checked' : '' }}
-                                    wire:click="changeShow({{ $guideCategory->id }})" wire:offline.class="disabled"
-                                    wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
-                                <label class="form-check-label text-{{ Str::successDanger($guideCategory->is_show) }}"
-                                    for="is_show_{{ $guideCategory->id }}">
-                                    {{ Str::yesNo($guideCategory->is_show) }}
+                                    id="is_show_{{ $guide->id }}" name="is_show" value="1"
+                                    {{ $guide->is_show ? 'checked' : '' }} wire:click="changeShow({{ $guide->id }})"
+                                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                    wire:loading.attr="disabled">
+                                <label class="form-check-label text-{{ Str::successDanger($guide->is_show) }}"
+                                    for="is_show_{{ $guide->id }}">
+                                    {{ Str::yesNo($guide->is_show) }}
                                 </label>
                             </div>
                         @else
-                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($guideCategory->is_show) }}">
-                                {{ Str::yesNo($guideCategory->is_show) }}
+                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($guide->is_show) }}">
+                                {{ Str::yesNo($guide->is_show) }}
                             </span>
                         @endcan
                     </div>
@@ -135,21 +180,21 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.active') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @can('guideCategory.edit')
+                        @can('guide.edit')
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch"
-                                    id="is_active_{{ $guideCategory->id }}" name="is_active" value="1"
-                                    {{ $guideCategory->is_active ? 'checked' : '' }}
-                                    wire:click="changeActive({{ $guideCategory->id }})" wire:offline.class="disabled"
+                                    id="is_active_{{ $guide->id }}" name="is_active" value="1"
+                                    {{ $guide->is_active ? 'checked' : '' }}
+                                    wire:click="changeActive({{ $guide->id }})" wire:offline.class="disabled"
                                     wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
-                                <label class="form-check-label text-{{ Str::successDanger($guideCategory->is_active) }}"
-                                    for="is_active_{{ $guideCategory->id }}">
-                                    {{ Str::yesNo($guideCategory->is_active) }}
+                                <label class="form-check-label text-{{ Str::successDanger($guide->is_active) }}"
+                                    for="is_active_{{ $guide->id }}">
+                                    {{ Str::yesNo($guide->is_active) }}
                                 </label>
                             </div>
                         @else
-                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($guideCategory->is_active) }}">
-                                {{ Str::yesNo($guideCategory->is_active) }}
+                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($guide->is_active) }}">
+                                {{ Str::yesNo($guide->is_active) }}
                             </span>
                         @endcan
                     </div>
@@ -157,14 +202,10 @@ new #[Title('Detail | Guide Category')] class extends Component {
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('index.total') }} {{ trans('page.guide') }}</div>
+                        <div class="fw-bold">{{ trans('field.slug') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        <a draggable="false"
-                            href="{{ route('cms.guide.index', ['guide_category_id' => $guideCategory->id]) }}"
-                            wire:navigate>
-                            {{ $guideCategory->guides_count }}
-                        </a>
+                        {{ $guide->slug }}
                     </div>
                 </div>
 
@@ -173,7 +214,7 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.created_by') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->createdBy?->name ?? '-' }}
+                        {{ $guide->createdBy?->name ?? '-' }}
                     </div>
                 </div>
 
@@ -182,7 +223,7 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.updated_by') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $guideCategory->updatedBy?->name ?? '-' }}
+                        {{ $guide->updatedBy?->name ?? '-' }}
                     </div>
                 </div>
 
@@ -191,10 +232,10 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.created_at') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @if ($guideCategory->created_at)
-                            {{ $guideCategory->created_at->isoFormat('LLLL') }}
+                        @if ($guide->created_at)
+                            {{ $guide->created_at->isoFormat('LLLL') }}
                             <br class="d-lg-none">
-                            ({{ $guideCategory->created_at->diffForHumans() }})
+                            ({{ $guide->created_at->diffForHumans() }})
                         @endif
                     </div>
                 </div>
@@ -204,10 +245,10 @@ new #[Title('Detail | Guide Category')] class extends Component {
                         <div class="fw-bold">{{ trans('field.updated_at') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @if ($guideCategory->updated_at)
-                            {{ $guideCategory->updated_at->isoFormat('LLLL') }}
+                        @if ($guide->updated_at)
+                            {{ $guide->updated_at->isoFormat('LLLL') }}
                             <br class="d-lg-none">
-                            ({{ $guideCategory->updated_at->diffForHumans() }})
+                            ({{ $guide->updated_at->diffForHumans() }})
                         @endif
                     </div>
                 </div>
@@ -216,18 +257,17 @@ new #[Title('Detail | Guide Category')] class extends Component {
             <hr />
 
             <div class="row g-3">
-                @can('guideCategory.edit')
+                @can('guide.edit')
                     <div class="col-auto">
                         <a draggable="false" class="btn btn-success w-100"
-                            href="{{ route('cms.guide-category.edit', ['guideCategory' => $guideCategory]) }}"
-                            wire:navigate>
+                            href="{{ route('cms.guide.edit', ['guide' => $guide]) }}" wire:navigate>
                             <span class="fas fa-edit fa-fw"></span>
                             {{ trans('index.edit') }}
                         </a>
                     </div>
                 @endcan
 
-                @can('guideCategory.delete')
+                @can('guide.delete')
                     <div class="col-auto">
                         <button type="button" class="btn btn-danger w-100" wire:click="delete"
                             wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
@@ -247,5 +287,5 @@ new #[Title('Detail | Guide Category')] class extends Component {
         </div>
     </div>
 
-    <livewire:activity-log :model="$guideCategory" />
+    <livewire:activity-log :model="$guide" />
 </div>

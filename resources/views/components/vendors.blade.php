@@ -31,3 +31,5 @@
 @include('vendors.tom-select')
 
 @include('vendors.snowflakes')
+
+@include('vendors.trix')

@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="10">
-                <b>{{ trans('page.guide_category') }}</b>
+            <th align="center" colspan="14">
+                <b>{{ trans('page.guide') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="10"></td>
+            <td colspan="14"></td>
         </tr>
         <tr>
-            <th align="center" colspan="10">
+            <th align="center" colspan="14">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="10"></td>
+            <td colspan="14"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -24,22 +24,28 @@
                 <b>{{ trans('field.id') }}</b>
             </th>
             <th valign="middle" align="center">
-                <b>{{ trans('field.name') }}</b>
+                <b>{{ trans('field.guide_category_id') }}</b>
             </th>
             <th valign="middle" align="center">
-                <b>{{ trans('field.name_id') }}</b>
+                <b>{{ trans('field.title') }}</b>
             </th>
             <th valign="middle" align="center">
-                <b>{{ trans('field.name_zh') }}</b>
+                <b>{{ trans('field.title_id') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.title_zh') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.google_file_id') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.image_url') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.show') }}</b>
             </th>
             <th valign="middle" align="center">
-                <b>{{ trans('field.active') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('index.total') }} {{ trans('page.guide') }}</b>
+                <b>{{ trans('field.slug') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.created_by') }}</b>
@@ -56,48 +62,57 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($guideCategories as $guideCategory)
+        @forelse ($guides as $guide)
             <tr>
                 <td valign="middle" align="center">
                     {{ $loop->iteration }}
                 </td>
                 <td valign="middle" align="center">
-                    {{ $guideCategory->id }}
+                    {{ $guide->id }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->name }}
+                    {{ $guide->category?->name }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->name_id }}
+                    {{ $guide->title }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->name_zh }}
+                    {{ $guide->title_id }}
+                </td>
+                <td valign="middle" align="left">
+                    {{ $guide->title_zh }}
+                </td>
+                <td valign="middle" align="left">
+                    {{ $guide->google_file_id }}
+                </td>
+                <td valign="middle" align="left">
+                    {{ $guide->image_url }}
                 </td>
                 <td valign="middle" align="center">
-                    {{ Str::yesNo($guideCategory->is_show) }}
+                    {{ Str::yesNo($guide->is_show) }}
                 </td>
                 <td valign="middle" align="center">
-                    {{ Str::yesNo($guideCategory->is_active) }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $guideCategory->guides_count }}
+                    {{ Str::yesNo($guide->is_active) }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->createdBy?->name }}
+                    {{ $guide->slug }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->updatedBy?->name }}
+                    {{ $guide->createdBy?->name }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->created_at }}
+                    {{ $guide->updatedBy?->name }}
                 </td>
                 <td valign="middle" align="left">
-                    {{ $guideCategory->updated_at }}
+                    {{ $guide->created_at }}
+                </td>
+                <td valign="middle" align="left">
+                    {{ $guide->updated_at }}
                 </td>
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="10">
+                <td align="center" colspan="14">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -105,7 +120,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="10"></td>
+            <td colspan="14"></td>
         </tr>
     </tfoot>
 </table>

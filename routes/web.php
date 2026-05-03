@@ -23,7 +23,10 @@ Route::group(['middleware' => [Localization::class]], function () {
 
     Route::livewire('/about', 'pages::about')->name('about');
     Route::livewire('/service', 'pages::service')->name('service');
-    Route::livewire('/guide', 'pages::guide')->name('guide');
+
+    Route::livewire('/guide', 'pages::guide')->name('guide.index');
+    Route::livewire('/guide/{slug}', 'pages::guide.detail')->name('guide.detail');
+
     Route::livewire('/contact', 'pages::contact')->name('contact');
 
     Route::livewire('/property', 'pages::property')->name('property.index');

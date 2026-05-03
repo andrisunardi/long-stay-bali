@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             ValueSeeder::class,
 
             GuideCategorySeeder::class,
-            // GuideSeeder::class,
+            GuideSeeder::class,
 
             PropertySeeder::class,
             PropertyImageSeeder::class,
