@@ -1,58 +1,3 @@
-<?php
-
-use App\Enums\Currency;
-use App\Enums\Language;
-use App\Livewire\Component;
-
-new class extends Component {
-    public function navigations(): array
-    {
-        return [
-            [
-                'id' => 1,
-                'name' => trans('page.home'),
-                'url' => route('home'),
-                'route' => 'home',
-            ],
-            [
-                'id' => 2,
-                'name' => trans('page.service'),
-                'url' => route('service'),
-                'route' => 'service',
-            ],
-            [
-                'id' => 3,
-                'name' => trans('page.about'),
-                'url' => route('about'),
-                'route' => 'about',
-            ],
-            [
-                'id' => 4,
-                'name' => trans('page.guide'),
-                'url' => route('guide.index'),
-                'route' => 'guide',
-            ],
-            [
-                'id' => 6,
-                'name' => trans('page.contact'),
-                'url' => route('contact'),
-                'route' => 'contact',
-            ],
-        ];
-    }
-
-    public function languages(): array
-    {
-        return Language::cases();
-    }
-
-    public function currencies(): array
-    {
-        return Currency::cases();
-    }
-};
-?>
-
 <header id="header" class="fixed-top py-3" data-use-banner="{{ Route::is('home') ? '1' : '0' }}">
     <div class="container-md">
         <div class="row row-cols-2 row-cols-lg-3 align-items-center">
@@ -65,11 +10,11 @@ new class extends Component {
             </div>
 
             <div class="col text-center d-none d-lg-flex align-items-center gap-lg-3 gap-xl-4">
-                @foreach ($this->navigations() as $navigation)
-                    <a draggable="false" href="{{ $navigation['url'] }}"
+                @foreach (config('navigations') as $navigation)
+                    <a draggable="false" href="{{ route($navigation['route']) }}"
                         class="header-color {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}" wire:navigate
-                        wire:key="navigation-{{ $navigation['id'] }}">
-                        {{ $navigation['name'] }}
+                        wire:key="navigation-{{ $navigation['id'] }}" wire:navigate>
+                        {{ trans($navigation['name']) }}
                     </a>
                 @endforeach
             </div>
@@ -118,7 +63,7 @@ new class extends Component {
                                 </span>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end mt-3">
-                                @foreach ($this->currencies() as $currency)
+                                @foreach (Currency::cases() as $currency)
                                     <li wire:key="currency-{{ $currency->value }}">
                                         <a draggable="false" class="dropdown-item icon-link"
                                             href="{{ route('currency', ['currency' => $currency->value]) }}">
@@ -167,11 +112,12 @@ new class extends Component {
                 <div class="offcanvas-body">
                     <div class="d-grid gap-5 mt-4">
                         <ul class="list-unstyled d-grid gap-4 mb-0">
-                            @foreach ($this->navigations() as $navigation)
+                            @foreach (config('navigations') as $navigation)
                                 <li wire:key="navigation-{{ $navigation['id'] }}">
-                                    <a draggable="false" href="{{ $navigation['url'] }}" wire:navigate
-                                        class="d-flex justify-content-between align-items-center text-body {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}">
-                                        <span>{{ $navigation['name'] }}</span>
+                                    <a draggable="false"
+                                        class="d-flex justify-content-between align-items-center text-body {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}"
+                                        href="{{ route($navigation['route']) }}" wire:navigate>
+                                        <span>{{ trans($navigation['name']) }}</span>
                                         <span class="fas fa-angle-right fa-fw"></span>
                                     </a>
                                 </li>
@@ -219,7 +165,7 @@ new class extends Component {
                                         </span>
                                     </a>
                                     <ul class="dropdown-menu mt-2">
-                                        @foreach ($this->currencies() as $currency)
+                                        @foreach (Currency::cases() as $currency)
                                             <li wire:key="currency-{{ $currency->value }}">
                                                 <a draggable="false" class="dropdown-item icon-link"
                                                     href="{{ route('currency', ['currency' => $currency->value]) }}">

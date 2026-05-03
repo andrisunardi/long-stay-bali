@@ -194,47 +194,48 @@ namespace App\Models{
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activities
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection<int, Activity> $activities
  * @property-read int|null $activities_count
- * @property-read \App\Models\GuideCategory|null $category
- * @property-read \App\Models\User|null $createdBy
- * @property-read \App\Models\User|null $deletedBy
+ * @property-read GuideCategory|null $category
+ * @property-read User|null $createdBy
+ * @property-read User|null $deletedBy
  * @property-read string $translate_body
  * @property-read string $translate_title
- * @property-read \App\Models\User|null $updatedBy
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide active()
+ * @property-read User|null $updatedBy
+ * @method static Builder<static>|Guide active()
  * @method static \Database\Factories\GuideFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide inactive()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide notShown()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide show()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereBody($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereBodyId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereBodyZh($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereGoogleFileId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereGuideCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereImageUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereIsShow($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereTitleId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereTitleZh($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide withoutTrashed()
+ * @method static Builder<static>|Guide inactive()
+ * @method static Builder<static>|Guide newModelQuery()
+ * @method static Builder<static>|Guide newQuery()
+ * @method static Builder<static>|Guide notShown()
+ * @method static Builder<static>|Guide onlyTrashed()
+ * @method static Builder<static>|Guide query()
+ * @method static Builder<static>|Guide show()
+ * @method static Builder<static>|Guide whereBody($value)
+ * @method static Builder<static>|Guide whereBodyId($value)
+ * @method static Builder<static>|Guide whereBodyZh($value)
+ * @method static Builder<static>|Guide whereCreatedAt($value)
+ * @method static Builder<static>|Guide whereCreatedBy($value)
+ * @method static Builder<static>|Guide whereDeletedAt($value)
+ * @method static Builder<static>|Guide whereDeletedBy($value)
+ * @method static Builder<static>|Guide whereGoogleFileId($value)
+ * @method static Builder<static>|Guide whereGuideCategoryId($value)
+ * @method static Builder<static>|Guide whereId($value)
+ * @method static Builder<static>|Guide whereImageUrl($value)
+ * @method static Builder<static>|Guide whereIsActive($value)
+ * @method static Builder<static>|Guide whereIsShow($value)
+ * @method static Builder<static>|Guide whereSlug($value)
+ * @method static Builder<static>|Guide whereTitle($value)
+ * @method static Builder<static>|Guide whereTitleId($value)
+ * @method static Builder<static>|Guide whereTitleZh($value)
+ * @method static Builder<static>|Guide whereUpdatedAt($value)
+ * @method static Builder<static>|Guide whereUpdatedBy($value)
+ * @method static Builder<static>|Guide withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Guide withoutTrashed()
+ * @mixin \Eloquent
  */
 	class Guide extends \Eloquent {}
 }

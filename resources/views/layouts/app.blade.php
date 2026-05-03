@@ -31,7 +31,7 @@
             @endauth
         @else
             @if (request()->getHost() != 'solivingbali.com')
-                <livewire:layouts::header />
+                <x-layout.header />
             @endif
         @endif
     @endif
@@ -61,7 +61,7 @@
             @endauth
         @else
             @if (request()->getHost() != 'solivingbali.com')
-                <x-footer />
+                <x-layout.footer />
             @endif
         @endif
     @endif
