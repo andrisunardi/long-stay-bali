@@ -1,9 +1,8 @@
-<?php
-
-use App\Livewire\Component;
-
-new class extends Component {};
-?>
+@props([
+    'address' => null,
+    'googleMaps' => null,
+    'googleMapsIframe' => null,
+])
 
 <section class="py-5 bg-light">
     <div class="container-md">
@@ -11,14 +10,13 @@ new class extends Component {};
             <div>
                 <h5 class="fw-bold">{{ trans('index.office_location') }}</h5>
                 <h6>
-                    <a draggable="false" class="text-secondary" href="{{ config('constants.contact.google_maps') }}"
-                        target="_blank">
-                        {{ config('constants.contact.address') }}
+                    <a draggable="false" class="text-secondary" href="{{ $googleMaps }}" target="_blank">
+                        {{ $address }}
                     </a>
                 </h6>
             </div>
 
-            <iframe class="w-100 rounded-5" height="300" src="{{ config('constants.contact.google_maps_iframe') }}"></iframe>
+            <iframe class="w-100 rounded-5" height="300" src="{{ $googleMapsIframe }}"></iframe>
         </div>
     </div>
 </section>

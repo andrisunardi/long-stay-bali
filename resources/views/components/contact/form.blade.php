@@ -5,15 +5,19 @@ use App\Enums\Property\PropertyRentalType;
 use App\Livewire\Component;
 use App\Livewire\Forms\Contact\ContactSubmitForm;
 use App\Services\AreaService;
+use App\Services\DistrictService;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Exception;
 
 new class extends Component {
     public ContactSubmitForm $form;
 
+    public string $district_id = '';
+
     public function resetForm(): void
     {
         $this->form->reset();
+        $this->reset(['district_id']);
     }
 
     public function submit(): void
@@ -33,10 +37,16 @@ new class extends Component {
         }
     }
 
+    public function districts(): object
+    {
+        $service = new DistrictService();
+        return $service->index(isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+    }
+
     public function areas(): object
     {
         $service = new AreaService();
-        return $service->index(isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+        return $service->index(districtId: $this->district_id, isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
     }
 
     public function propertyBedrooms(): array
@@ -121,7 +131,30 @@ new class extends Component {
                 @enderror
             </div>
 
-            <div class="col-sm-3 col-xl-4">
+            <div class="col-sm-6">
+                <label class="form-label" for="district_id">
+                    {{ trans('contact.form.label.district') }}
+                    <span class="text-danger">*</span>
+                </label>
+
+                <select class="form-select rounded-5" id="district_id" name="district_id"
+                    placeholder="{{ trans('contact.form.placeholder.district') }}" required wire:model.lazy="district_id"
+                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                    wire:loading.attr="disabled">
+                    <option class="">{{ trans('index.district') }}</option>
+                    @foreach ($this->districts() as $district)
+                        <option value="{{ $district->id }}" wire:key="district-{{ $district->id }}">
+                            {{ $district->name }}
+                        </option>
+                    @endforeach
+                </select>
+
+                @error('form.district_id')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-sm-6">
                 <label class="form-label" for="area_id">
                     {{ trans('contact.form.label.area') }}
                     <span class="text-danger">*</span>
@@ -144,15 +177,15 @@ new class extends Component {
                 @enderror
             </div>
 
-            <div class="col-sm-5 col-xl-4">
+            <div class="col-sm-6">
                 <label class="form-label" for="bedroom">
                     {{ trans('contact.form.label.bedroom') }}
                     <span class="text-danger">*</span>
                 </label>
 
-                <select class="form-select rounded-5" id="bedroom" name="bedroom" required wire:model="form.bedroom"
-                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                    wire:loading.attr="disabled">
+                <select class="form-select rounded-5" id="bedroom" name="bedroom" required
+                    wire:model="form.bedroom" wire:offline.class="disabled" wire:offline.attr="disabled"
+                    wire:loading.class="disabled" wire:loading.attr="disabled">
                     <option class="">{{ trans('contact.form.label.bedroom') }}</option>
                     @foreach ($this->propertyBedrooms() as $propertyBedroom)
                         <option value="{{ $propertyBedroom->value }}"
@@ -167,7 +200,7 @@ new class extends Component {
                 @enderror
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-6">
                 <label class="form-label rounded-5" for="rental_type">
                     {{ trans('contact.form.label.rental_type') }}
                     <span class="text-danger">*</span>

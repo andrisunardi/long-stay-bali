@@ -63,6 +63,11 @@ return [
     'yes' => 'Yes',
 
     'up' => 'Up',
+    'district' => 'District',
+    'index' => 'Index',
+    'index' => 'Index',
+    'index' => 'Index',
+    'index' => 'Index',
     'index' => 'Index',
     'index' => 'Index',
     'index' => 'Index',

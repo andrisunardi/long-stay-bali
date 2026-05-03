@@ -20,6 +20,7 @@ return [
             'last_name' => 'Last name',
             'email' => 'Email',
             'phone' => 'Whatsapp number',
+            'district' => 'Select district',
             'area' => 'Select area',
             'bedroom' => 'Select number of bedroom',
             'rental_type' => 'Select period',
