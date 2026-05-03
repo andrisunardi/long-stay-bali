@@ -6,6 +6,8 @@ return [
     'monthly_from' => 'Monthly From',
     'yearly_from' => 'Yearly From',
     'inquiry_availability' => 'Inquiry Availability',
+    'months' => 'months',
+    'location_property' => 'Location Property',
 
     'property_identity' => 'Property Identity',
     'internal_property_code' => 'Internal Property Code',
