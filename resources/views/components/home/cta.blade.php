@@ -1,5 +1,7 @@
 @props([
     'imageUrl' => null,
+    'buttonName' => null,
+    'buttonLink' => null,
 ])
 
 <section>
@@ -12,7 +14,7 @@
                 <img draggable="false" loading="lazy" decoding="async"
                     class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover user-select-none pe-none"
                     src="{{ $imageUrl ?? asset('images/banner/home.png') }}"
-                    alt="{{ trans('index.banner') }} - {{ config('constants.title') }}">
+                    alt="{{ trans('index.banner') }} - {{ config('constants.meta.title') }}">
 
                 <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
@@ -24,10 +26,9 @@
                         </p>
                     </div>
                     <div class="col-sm-auto">
-                        <a draggable="false" class="btn btn-success rounded-pill px-4"
-                            href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from home page"
-                            target="_blank">
-                            {{ trans('home.cta.button') }}
+                        <a draggable="false" class="btn btn-success rounded-pill px-4" href="{{ $buttonLink }}"
+                            wire:navigate>
+                            {{ $buttonName }}
                             <span class="fas fa-arrow-right fa-fw"></span>
                         </a>
                     </div>

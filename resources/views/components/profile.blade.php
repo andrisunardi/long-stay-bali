@@ -142,7 +142,7 @@ new class extends Component {
                     <span class="d-flex gap-2">
                         <img draggable="false" loading="lazy" decoding="async" class="user-select-none pe-none"
                             width="20" src="{{ asset('images/flag/' . app()->getLocale() . '.svg') }}"
-                            alt="{{ trans('index.flag') }} - {{ app()->getLocale() }} - {{ config('constants.title') }}" />
+                            alt="{{ trans('index.flag') }} - {{ app()->getLocale() }} - {{ config('constants.meta.title') }}" />
                         <span class="text-uppercase">
                             {{ collect($this->languages())->firstWhere('code', app()->getLocale())['name'] }}
                         </span>
@@ -158,7 +158,7 @@ new class extends Component {
                                 href="{{ route('locale', ['locale' => $language['code']]) }}">
                                 <img draggable="false" loading="lazy" decoding="async" class="user-select-none pe-none"
                                     width="20" src="{{ $language['image_url'] }}"
-                                    alt="{{ trans('index.flag') }} {{ $language['code'] }} - {{ config('constants.title') }}" />
+                                    alt="{{ trans('index.flag') }} {{ $language['code'] }} - {{ config('constants.meta.title') }}" />
                                 <span class="text-uppercase">{{ $language['name'] }}</span>
                             </a>
                         </li>

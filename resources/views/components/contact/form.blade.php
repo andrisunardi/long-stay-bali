@@ -240,7 +240,7 @@ new class extends Component {
             </div>
 
             <div class="col-12">
-                <button type="submit" class="btn btn-success rounded-3 w-100" wire:offline.class="disabled"
+                <button type="submit" class="btn btn-success rounded-pill w-100" wire:offline.class="disabled"
                     wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="submit">
                         <span class="fas fa-paper-plane fa-fw"></span>

@@ -1,7 +1,14 @@
+@props([
+    'imageUrl' => null,
+    'buttonName' => null,
+    'buttonLink' => null,
+])
+
+
 <section class="position-relative">
     <img draggable="false" loading="lazy" decoding="async" class="w-100 object-fit-cover user-select-none pe-none"
-        style="height: 20rem" src="{{ asset('images/banner/about.png') }}"
-        alt="{{ trans('index.banner') }} - {{ config('constants.title') }}">
+        style="height: 20rem" src="{{ $imageUrl ?? asset('images/banner/about.png') }}"
+        alt="{{ trans('index.banner') }} - {{ config('constants.meta.title') }}">
 
     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
         <div class="container-md">
@@ -15,11 +22,10 @@
                             <p class="text-muted small">
                                 {{ trans('about.cta.description') }}
                             </p>
-                            <a draggable="false" class="btn btn-success w-100 rounded-pill"
-                                href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from about page"
+                            <a draggable="false" class="btn btn-success w-100 rounded-pill" href="{{ $buttonLink }}"
                                 target="_blank">
                                 <i class="fab fa-whatsapp me-2"></i>
-                                {{ trans('about.cta.button_name') }}
+                                {{ $buttonName }}
                             </a>
                         </div>
                     </div>
