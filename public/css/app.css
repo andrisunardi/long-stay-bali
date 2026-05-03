@@ -1,5 +1,22 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
+.bg-sand {
+    background-color: #f4ede3 !important;
+    color: #000000 !important;
+}
+
+.text-sand {
+    color: #f4ede3 !important;
+}
+
+.rounded-top-start {
+    border-top-left-radius: var(--bs-border-radius);
+}
+
+.rounded-bottom-end {
+    border-bottom-right-radius: var(--bs-border-radius);
+}
+
 body {
     font-family: "Poppins", sans-serif;
 }

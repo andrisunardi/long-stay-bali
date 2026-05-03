@@ -39,6 +39,12 @@ new #[Lazy] class extends Component {
                                     src="{{ $property->image->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
                                     onerror="this.onerror=null; this.src='/images/placeholder.png';" />
+
+                                <div class="position-absolute top-0 start-0 w-100">
+                                    <span class="bg-sand px-2 rounded-top-start rounded-bottom-end">
+                                        <small>{{ trans('property.inquiry_availability') }}</small>
+                                    </span>
+                                </div>
                             </a>
                         </div>
 
@@ -55,12 +61,12 @@ new #[Lazy] class extends Component {
                         </h1>
 
                         <div class="d-flex gap-3">
-                            <span class="px-2 py-1 small rounded" style="background-color: #F4EDE3; !important">
+                            <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-location-dot fa-fw fa-xs text-success"></span>
                                 <span class="text-black small">Villa</span>
                             </span>
 
-                            <span class="px-2 py-1 small rounded" style="background-color: #F4EDE3; !important">
+                            <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-bed fa-fw fa-xs text-success"></span>
                                 <span class="text-black small">2 BR</span>
                             </span>
