@@ -1,10 +1,3 @@
-<?php
-
-use App\Livewire\Component;
-
-new class extends Component {};
-?>
-
 <footer class="text-bg-dark py-5">
     <div class="container-md py-5">
         <div class="d-flex flex-column text-center justify-content-center gap-4">

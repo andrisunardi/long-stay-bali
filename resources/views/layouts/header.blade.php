@@ -28,8 +28,8 @@ new class extends Component {
             ],
             [
                 'id' => 4,
-                'name' => trans('page.guide.index'),
-                'url' => route('guide'),
+                'name' => trans('page.guide'),
+                'url' => route('guide.index'),
                 'route' => 'guide',
             ],
             [
