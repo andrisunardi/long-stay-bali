@@ -23,7 +23,7 @@ new #[Lazy] class extends Component {
 
 <section class="py-5">
     <div class="container-md py-5">
-        <div class="d-grid gap-4">
+        <div class="d-flex flex-column gap-4">
             <div>
                 <p class="lead mb-0">Over <b>50</b> homes in Canggu, Bali</p>
             </div>
