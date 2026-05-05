@@ -99,14 +99,14 @@ new class extends Component {
                         @if ($bedroom)
                             {{ PropertyBedroom::getDescription($bedroom) }}
                         @else
-                            {{ trans('index.all') }} {{ trans('field.bedroom') }}
+                            {{ trans('index.all') }}
                         @endif
                     </button>
 
                     <ul class="dropdown-menu w-100 mt-2">
                         <li wire:key="bedroom">
                             <button type="button" class="dropdown-item" wire:click="changeBedroom">
-                                {{ trans('index.all') }} {{ trans('field.bedroom') }}
+                                {{ trans('index.all') }}
                             </button>
                         </li>
                         @foreach ($this->propertyBedrooms() as $propertyBedroom)

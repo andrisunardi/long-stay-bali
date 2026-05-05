@@ -15,20 +15,20 @@ enum PropertyBedroom: int
     public function description(): string
     {
         return match ($this) {
-            self::OneBedroom => '1 Bedroom',
-            self::TwoBedroom => '2 Bedroom',
-            self::ThreeBedroom => '3 Bedroom',
-            self::FourBedroom => '4 Bedroom',
+            self::OneBedroom => '1',
+            self::TwoBedroom => '2',
+            self::ThreeBedroom => '3',
+            self::FourBedroom => '4',
         };
     }
 
     public static function getDescription(int $value): string
     {
         return match ($value) {
-            self::OneBedroom->value => '1 Bedroom',
-            self::TwoBedroom->value => '2 Bedroom',
-            self::ThreeBedroom->value => '3 Bedroom',
-            self::FourBedroom->value => '4 Bedroom',
+            self::OneBedroom->value => '1',
+            self::TwoBedroom->value => '2',
+            self::ThreeBedroom->value => '3',
+            self::FourBedroom->value => '4',
         };
     }
 }
