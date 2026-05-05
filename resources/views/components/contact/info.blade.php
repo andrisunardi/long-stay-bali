@@ -27,7 +27,7 @@
             <a draggable="false" class="text-body" href="{{ $socialMedia['link'] }}" target="_blank"
                 wire:key="social-media-{{ $socialMedia['id'] }}">
                 <span class="{{ $socialMedia['icon'] }} fa-fw text-success"></span>
-                {{ $socialMedia['name'] }}
+                {{ $socialMedia['username'] }}
             </a>
         @endforeach
     </div>

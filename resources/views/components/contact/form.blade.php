@@ -67,34 +67,18 @@ new class extends Component {
 
     <form wire:submit.prevent="submit" role="form" autocomplete="off">
         <div class="row g-4">
-            <div class="col-sm-6">
-                <label class="form-label" for="first_name">
-                    {{ trans('contact.form.label.first_name') }}
+            <div class="col-12">
+                <label class="form-label" for="name">
+                    {{ trans('contact.form.label.name') }}
                     <span class="text-danger">*</span>
                 </label>
 
-                <input type="text" class="form-control rounded-3" id="first_name" name="first_name" minlength="1"
-                    maxlength="50" placeholder="{{ trans('contact.form.placeholder.first_name') }}" required
-                    wire:model="form.first_name" wire:offline.class="disabled" wire:offline.attr="disabled"
+                <input type="text" class="form-control rounded-3" id="name" name="name" minlength="1"
+                    maxlength="50" placeholder="{{ trans('contact.form.placeholder.name') }}" required
+                    wire:model="form.name" wire:offline.class="disabled" wire:offline.attr="disabled"
                     wire:loading.class="disabled" wire:loading.attr="disabled">
 
-                @error('form.first_name')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-sm-6">
-                <label class="form-label" for="last_name">
-                    {{ trans('contact.form.label.last_name') }}
-                    <span class="text-danger">*</span>
-                </label>
-
-                <input type="text" class="form-control rounded-3" id="last_name" name="last_name" minlength="1"
-                    maxlength="50" placeholder="{{ trans('contact.form.placeholder.last_name') }}" required
-                    wire:model="form.last_name" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled">
-
-                @error('form.last_name')
+                @error('form.name')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -131,108 +115,16 @@ new class extends Component {
                 @enderror
             </div>
 
-            <div class="col-sm-6">
-                <label class="form-label" for="district_id">
-                    {{ trans('contact.form.label.district') }}
-                    <span class="text-danger">*</span>
-                </label>
-
-                <select class="form-select rounded-3" id="district_id" name="district_id"
-                    placeholder="{{ trans('contact.form.placeholder.district') }}" required
-                    wire:model.lazy="district_id" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled">
-                    <option class="">{{ trans('index.district') }}</option>
-                    @foreach ($this->districts() as $district)
-                        <option value="{{ $district->id }}" wire:key="district-{{ $district->id }}">
-                            {{ $district->name }}
-                        </option>
-                    @endforeach
-                </select>
-
-                @error('form.district_id')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-sm-6">
-                <label class="form-label" for="area_id">
-                    {{ trans('contact.form.label.area') }}
-                    <span class="text-danger">*</span>
-                </label>
-
-                <select class="form-select rounded-3" id="area_id" name="area_id"
-                    placeholder="{{ trans('contact.form.placeholder.area') }}" required wire:model="form.area_id"
-                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                    wire:loading.attr="disabled">
-                    <option class="">{{ trans('index.area') }}</option>
-                    @foreach ($this->areas() as $area)
-                        <option value="{{ $area->id }}" wire:key="area-{{ $area->id }}">
-                            {{ $area->name }}
-                        </option>
-                    @endforeach
-                </select>
-
-                @error('form.area_id')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-sm-6">
-                <label class="form-label" for="bedroom">
-                    {{ trans('contact.form.label.bedroom') }}
-                    <span class="text-danger">*</span>
-                </label>
-
-                <select class="form-select rounded-3" id="bedroom" name="bedroom" required
-                    wire:model="form.bedroom" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled">
-                    <option class="">{{ trans('contact.form.label.bedroom') }}</option>
-                    @foreach ($this->propertyBedrooms() as $propertyBedroom)
-                        <option value="{{ $propertyBedroom->value }}"
-                            wire:key="property-bedroom-{{ $propertyBedroom->value }}">
-                            {{ $propertyBedroom->description() }}
-                        </option>
-                    @endforeach
-                </select>
-
-                @error('form.bedroom')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-sm-6">
-                <label class="form-label rounded-3" for="rental_type">
-                    {{ trans('contact.form.label.rental_type') }}
-                    <span class="text-danger">*</span>
-                </label>
-
-                <select class="form-select rounded-3" id="rental_type" name="rental_type" required
-                    wire:model="form.rental_type" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled">
-                    <option class="">{{ trans('contact.form.placeholder.rental_type') }}</option>
-                    @foreach ($this->propertyRentalTypes() as $propertyRentalType)
-                        <option value="{{ $propertyRentalType->value }}"
-                            wire:key="property-rental_type-{{ $propertyRentalType->value }}">
-                            {{ $propertyRentalType->name }}
-                        </option>
-                    @endforeach
-                </select>
-
-                @error('form.rental_type')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
             <div class="col-12">
                 <label class="form-label" for="message">
                     {{ trans('contact.form.label.message') }}
                     <span class="text-danger">*</span>
                 </label>
 
-                <textarea type="text" class="form-control rounded-3" id="message" name="message" minlength="1"
-                    maxlength="1000" rows="5" placeholder="{{ trans('contact.form.placeholder.message') }}" required
-                    wire:model="form.message" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled"></textarea>
+                <textarea type="text" class="form-control rounded-3" id="message" name="message" minlength="1" maxlength="1000"
+                    rows="5" placeholder="{{ trans('contact.form.placeholder.message') }}" required wire:model="form.message"
+                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                    wire:loading.attr="disabled"></textarea>
 
                 @error('form.message')
                     <div class="form-text text-danger">{{ $message }}</div>

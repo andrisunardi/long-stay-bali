@@ -16,6 +16,7 @@ return [
             'title' => 'Failed to send your message. Please try again later.',
         ],
         'label' => [
+            'name' => 'Full Name',
             'first_name' => 'First name',
             'last_name' => 'Last name',
             'email' => 'Email',
@@ -27,6 +28,7 @@ return [
             'message' => 'Message',
         ],
         'placeholder' => [
+            'name' => 'Enter your full name',
             'first_name' => 'Enter your first name',
             'last_name' => 'Enter your last name',
             'email' => 'Enter your email',

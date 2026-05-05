@@ -151,6 +151,29 @@ new #[Title('Edit | Contact')] class extends Component {
                     </div>
 
                     <div class="col-sm-6">
+                        <label class="form-label" for="last_name">
+                            {{ trans('validation.attributes.last_name') }}
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-user fa-fw "></span>
+                            </div>
+                            <input type="text" class="form-control" id="last_name" name="last_name" minlength="1"
+                                maxlength="25" placeholder="{{ trans('index.ex') . '. John Doe' }}"
+                                wire:model="form.last_name" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 25
+                        </div>
+                        @error('form.last_name')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="company">
                             {{ trans('validation.attributes.company') }}
                             <span class="text-danger">*</span>

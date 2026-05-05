@@ -16,16 +16,19 @@ return [
             'title' => 'Gagal mengirim pesan Anda. Silakan coba lagi nanti.',
         ],
         'label' => [
+            'name' => 'Nama Lengkap',
             'first_name' => 'Nama depan',
             'last_name' => 'Nama belakang',
             'email' => 'Email',
             'phone' => 'Nomor Whatsapp',
+            'district' => 'Pilih kabupaten',
             'area' => 'Pilih area',
             'bedroom' => 'Pilih jumlah kamar tidur',
             'rental_type' => 'Pilih periode',
             'message' => 'Pesan',
         ],
         'placeholder' => [
+            'name' => 'Masukkan nama lengkap Anda',
             'first_name' => 'Masukkan nama depan Anda',
             'last_name' => 'Masukkan nama belakang Anda',
             'email' => 'Masukkan email Anda',
@@ -34,7 +37,7 @@ return [
             'rental_type' => 'Periode sewa',
             'message' => 'Masukkan pesan',
         ],
-        'submit' => 'Kirim',
+        'submit' => 'Kirim Formulir',
     ],
 
 ];

@@ -6,6 +6,7 @@ use App\Libraries\GoHighLevel;
 use App\Models\Contact;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class ContactService
@@ -89,6 +90,14 @@ class ContactService
                 $data['name'] = trim("{$data['first_name']} {$data['last_name']}");
             }
 
+            if (! isset($data['first_name'])) {
+                $data['first_name'] = Str::before($data['name'], ' ');
+            }
+
+            if (! isset($data['last_name'])) {
+                $data['last_name'] = Str::after($data['name'], ' ');
+            }
+
             $contacts = (new GoHighLevel)->createContacts(data: $data);
 
             if (! ($contacts['contact']['id'] ?? null)) {
@@ -116,6 +125,18 @@ class ContactService
     {
         try {
             DB::beginTransaction();
+
+            if (! isset($data['name'])) {
+                $data['name'] = trim("{$data['first_name']} {$data['last_name']}");
+            }
+
+            if (! isset($data['first_name'])) {
+                $data['first_name'] = Str::before($data['name'], ' ');
+            }
+
+            if (! isset($data['last_name'])) {
+                $data['last_name'] = Str::after($data['name'], ' ');
+            }
 
             $data['area_id'] = $data['area_id'] ?? null ?: null;
             $data['bedroom'] = $data['bedroom'] ?? null ?: null;

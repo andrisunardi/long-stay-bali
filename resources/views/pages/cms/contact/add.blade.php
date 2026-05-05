@@ -169,14 +169,13 @@ new #[Title('Add | Contact')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="last_name">
                             {{ trans('validation.attributes.last_name') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-user fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="last_name" name="last_name" minlength="1"
-                                maxlength="25" placeholder="{{ trans('index.ex') . '. John Doe' }}" required
+                                maxlength="25" placeholder="{{ trans('index.ex') . '. John Doe' }}"
                                 wire:model="form.last_name" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>

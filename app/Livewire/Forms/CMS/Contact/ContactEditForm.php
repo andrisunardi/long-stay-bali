@@ -22,8 +22,8 @@ class ContactEditForm extends Form
     #[Validate('required|string|min:1|max:25')]
     public string $first_name = '';
 
-    #[Validate('required|string|min:1|max:25')]
-    public string $last_name = '';
+    #[Validate('nullable|string|min:1|max:25')]
+    public ?string $last_name = '';
 
     #[Validate('required|string|min:1|max:50')]
     public string $company = '';
