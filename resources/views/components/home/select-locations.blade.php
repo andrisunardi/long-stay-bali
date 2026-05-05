@@ -32,7 +32,7 @@ new #[Lazy] class extends Component {
                 <div class="row row-cols-1 row-cols-sm-2 justify-content-end g-4">
                     @for ($i = 0; $i < 4; $i++)
                         <div class="col">
-                            <div class="ratio ratio-21x9 overflow-hidden">
+                            <div class="ratio ratio-16x9 overflow-hidden">
                                 <div class="placeholder-glow w-100 h-100">
                                     <span class="placeholder w-100 h-100 rounded"></span>
                                 </div>
@@ -56,7 +56,7 @@ new #[Lazy] class extends Component {
             <div class="row row-cols-1 row-cols-sm-2 justify-content-end g-4">
                 @foreach ($properties as $property)
                     <div class="col" wire:key="property-{{ $property->id }}">
-                        <div class="ratio ratio-21x9 overflow-hidden">
+                        <div class="ratio ratio-16x9 overflow-hidden">
                             <a draggable="false" href="{{ route('property.detail', ['slug' => $property['slug']]) }}"
                                 wire:navigate>
                                 <img draggable="false" loading="lazy" decoding="async"
