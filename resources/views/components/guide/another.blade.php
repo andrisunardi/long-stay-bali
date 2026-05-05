@@ -6,7 +6,7 @@
     <div class="container-md">
         <div class="d-grid gap-4">
             <div>
-                <span class="small border px-3 py-2 rounded-5 text-body">
+                <span class="small border p-2 rounded-5 text-body">
                     {{ $guide->category->translate_name }}
                 </span>
             </div>

@@ -17,8 +17,8 @@ new #[Title('Guide')] class extends Component {
 };
 ?>
 
-@section('title', trans('page.guide'))
+@section('title', $guide->translate_title)
 
-<div>
-    {{-- <x-guide.content :content="$content" /> --}}
+<div class="py-5 mt-4">
+    <x-guide.content :guide="$guide" />
 </div>

@@ -21,4 +21,6 @@ new #[Title('Guide')] class extends Component {
 
 <div class="py-5 mt-4">
     <x-guide.content :guide="$guide" />
+
+    {{-- <x-guide.another /> --}}
 </div>
