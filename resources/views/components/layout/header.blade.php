@@ -4,7 +4,7 @@
             <div class="col text-start">
                 <a draggable="false" href="{{ route('home') }}" wire:navigate>
                     <img draggable="false" loading="lazy" decoding="async" class="logo user-select-none pe-none"
-                        height="50" src="{{ asset('images/logo.png') }}"
+                        height="40" src="{{ asset('images/logo.png') }}"
                         alt="{{ trans('index.logo') }} - {{ config('app.name') }}" />
                 </a>
             </div>

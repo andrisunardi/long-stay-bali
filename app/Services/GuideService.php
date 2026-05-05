@@ -97,7 +97,9 @@ class GuideService
         try {
             DB::beginTransaction();
 
-            $this->uploadImage(guide: $guide, fileId: $image);
+            $this->uploadImage(guide: $guide, fileId: $data['image']);
+
+            Arr::pull($data, 'image');
 
             $guide->update($data);
             $guide->refresh();
@@ -143,6 +145,16 @@ class GuideService
         $guide->refresh();
 
         return $guide;
+    }
+
+    public function latest(): ?Guide
+    {
+        return Guide::latest()->show()->active()->first();
+    }
+
+    public function detail(string $slug): ?Guide
+    {
+        return Guide::where('slug', $slug)->show()->active()->first();
     }
 
     public function uploadImage(Guide $guide, string $fileId): Guide

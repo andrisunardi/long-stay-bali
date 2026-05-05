@@ -81,9 +81,9 @@ new #[Lazy] class extends Component {
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-4">
                 @foreach ($guides as $guide)
-                    <div class="col" wire:key="guide-{{ $guide['id'] }}">
+                    <div class="col" wire:key="guide-{{ $guide->id }}">
                         <div class="ratio ratio-16x9 overflow-hidden">
-                            <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide['slug']]) }}"
+                            <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
                                 wire:navigate>
                                 <img draggable="false" loading="lazy" decoding="async"
                                     class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
