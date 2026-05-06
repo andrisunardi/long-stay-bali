@@ -24,7 +24,7 @@ return [
     ],
 
     'select_locations' => [
-        'title' => 'Maintenant disponible dans certains endroits',
+        'title' => 'Découvrez les nouvelles annonces, maintenant disponibles',
         'description' => 'Nous commençons avec un nombre limité de logements, choisis selon la façon dont les gens vivent réellement',
         'property' => 'Propriété',
     ],

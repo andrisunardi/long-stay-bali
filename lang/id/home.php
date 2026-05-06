@@ -24,7 +24,7 @@ return [
     ],
 
     'select_locations' => [
-        'title' => 'Sekarang tersedia di lokasi terpilih',
+        'title' => 'Jelajahi Daftar Properti Baru, Kini Tersedia',
         'description' => 'Kami mulai dengan jumlah rumah terbatas, dipilih berdasarkan cara orang benar-benar hidup',
         'property' => 'Properti',
     ],
