@@ -6,12 +6,17 @@ use App\Services\GuideService;
 use Livewire\Attributes\Title;
 
 new #[Title('Guide')] class extends Component {
-    public Guide $guide;
+    public ?Guide $guide = null;
 
     public function mount(string $slug): void
     {
         $service = new GuideService();
         $this->guide = $service->detail(slug: $slug);
+
+        if (!$this->guide) {
+            abort(404);
+        }
+
         $this->guide->loadMissing(['category']);
     }
 };

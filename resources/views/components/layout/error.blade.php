@@ -1,10 +1,3 @@
-<?php
-
-use App\Livewire\Component;
-
-new class extends Component {};
-?>
-
 <main class="container d-flex justify-content-center align-items-center text-center vh-100 my-sm-5 my-md-auto">
     <div class="d-grid gap-4">
         <div class="d-flex justify-content-center">

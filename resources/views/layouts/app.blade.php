@@ -39,9 +39,9 @@
     <main class="flex-grow-1 @if (Route::is('cms.*') && !Route::is(['cms.login', 'cms.forgot-password'])) pt-5 my-4 @endif">
         @if (View::hasSection('code'))
             @if (!Route::is('cms.*'))
-                <livewire:layouts::cms.error />
+                <x-cms.layout.error />
             @else
-                <livewire:layouts::error />
+                <x-layout.error />
             @endif
         @else
             @if (Route::is('cms.*'))
@@ -57,7 +57,7 @@
     @if (!View::hasSection('code'))
         @if (Route::is('cms.*'))
             @auth
-                <x-cms.footer />
+                <x-cms.layout.footer />
             @endauth
         @else
             @if (request()->getHost() != 'solivingbali.com')
