@@ -42,6 +42,8 @@ return [
         'title' => 'Understanding life in Bali, made simpler',
         'description' => 'Practical guidance to help you navigate long-term living, rental choices, and where to live',
         'read_more' => 'Read More',
+        'another_guide' => 'Another Guide',
+        'all_category' => 'All Category',
     ],
 
     'cta' => [

@@ -42,6 +42,8 @@ return [
         'title' => '了解巴厘岛生活，变得更简单',
         'description' => '实用指导，帮助您了解长期居住、租房选择和居住地点',
         'read_more' => '阅读更多',
+        'another_guide' => '其他指南',
+        'all_category' => '全部',
     ],
 
     'cta' => [

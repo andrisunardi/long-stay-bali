@@ -42,6 +42,8 @@ return [
         'title' => 'Memahami kehidupan di Bali, dibuat lebih sederhana',
         'description' => 'Panduan praktis untuk membantu Anda menavigasi kehidupan jangka panjang, pilihan sewa, dan tempat tinggal',
         'read_more' => 'Baca Lebih Lanjut',
+        'another_guide' => 'Panduan Lainnya',
+        'all_category' => 'Semua Kategori',
     ],
 
     'cta' => [
