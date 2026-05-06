@@ -1,10 +1,3 @@
-<?php
-
-use App\Livewire\Component;
-
-new class extends Component {};
-?>
-
 <nav class="navbar bg-body-tertiary fixed-top border-bottom">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center w-100">

@@ -27,7 +27,7 @@
     @if (!View::hasSection('code'))
         @if (Route::is('cms.*'))
             @auth
-                <livewire:layouts::cms.header />
+                <x-cms.layout.header />
             @endauth
         @else
             @if (request()->getHost() != 'solivingbali.com')
@@ -77,7 +77,6 @@
             </a>
         @endif
     @endif
-
 
     @if (Route::is('cms.*'))
         <livewire:modal.search-menu />
