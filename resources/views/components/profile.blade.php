@@ -20,9 +20,9 @@ new class extends Component {
             ],
             [
                 'id' => 3,
-                'code' => 'zh',
-                'name' => 'Chinese',
-                'image_url' => asset('images/flag/zh.svg'),
+                'code' => 'fr',
+                'name' => 'French',
+                'image_url' => asset('images/flag/fr.svg'),
             ],
         ];
     }

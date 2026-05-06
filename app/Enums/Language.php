@@ -8,5 +8,5 @@ enum Language: string
 
     case Indonesia = 'id';
 
-    case Chinese = 'zh';
+    case French = 'fr';
 }
