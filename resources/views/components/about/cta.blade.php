@@ -4,7 +4,6 @@
     'buttonLink' => null,
 ])
 
-
 <section class="position-relative">
     <img draggable="false" loading="lazy" decoding="async" class="w-100 object-fit-cover user-select-none pe-none"
         style="height: 20rem" src="{{ $imageUrl ?? asset('images/banner/about.png') }}"

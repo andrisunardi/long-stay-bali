@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Models\Property;
 use Exception;
@@ -18,6 +19,7 @@ class PropertyService
         ?string $districtId = null,
         ?string $areaId = null,
         ?string $status = null,
+        array $statuses = [],
         ?string $startDate = null,
         ?string $endDate = null,
         bool $random = false,
@@ -45,6 +47,7 @@ class PropertyService
             ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
             ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
             ->when($status, fn ($q) => $q->where('status', $status))
+            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
             ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
             ->when($random, fn ($q) => $q->inRandomOrder())
@@ -188,7 +191,10 @@ class PropertyService
 
     public function detail(string $slug): ?Property
     {
-        return Property::where('slug', $slug)->first();
+        return Property::query()
+            ->whereIn('status', [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value])
+            ->where('slug', $slug)
+            ->first();
     }
 
     public function uploadImages(Property $property, array $images = []): Property
