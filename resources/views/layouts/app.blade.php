@@ -57,7 +57,7 @@
     @if (!View::hasSection('code'))
         @if (Route::is('cms.*'))
             @auth
-                <livewire:layouts::cms.footer />
+                <x-cms.footer />
             @endauth
         @else
             @if (request()->getHost() != 'solivingbali.com')

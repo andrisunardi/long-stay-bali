@@ -1,10 +1,3 @@
-<?php
-
-use App\Livewire\Component;
-
-new class extends Component {};
-?>
-
 <footer class="bg-body-tertiary small p-3">
     <div class="row justify-content-between align-items-center small">
         <div class="col-md text-center text-md-start">
