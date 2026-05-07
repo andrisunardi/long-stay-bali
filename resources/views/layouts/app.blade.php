@@ -36,7 +36,7 @@
         @endif
     @endif
 
-    <main class="flex-grow-1 @if (Route::is('cms.*') && !Route::is(['cms.login', 'cms.forgot-password'])) pt-5 my-4 @endif">
+    <main class="flex-grow-1 @if (!Route::is(['home', 'cms.login', 'cms.forgot-password'])) pt-5 mt-4 @endif">
         @if (View::hasSection('code'))
             @if (!Route::is('cms.*'))
                 <x-cms.layout.error />

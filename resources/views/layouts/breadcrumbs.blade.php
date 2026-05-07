@@ -1,7 +1,7 @@
 <div>
     @if (!Route::is('cms.*'))
     @else
-        <div class="container-fluid my-2">
+        <div class="container-fluid my-3">
             <div class="row">
                 <div class="col-sm">
                     <h4>

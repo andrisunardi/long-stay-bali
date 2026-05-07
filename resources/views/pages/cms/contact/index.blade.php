@@ -113,7 +113,7 @@ new #[Title('Contact')] class extends Component {
 @section('title', trans('page.contact'))
 
 <div class="container-fluid">
-    <div class="card">
+    <div class="card my-3">
         <div class="card-header text-bg-primary">
             <span class="fas fa-search fa-fw"></span>
             {{ trans('index.search') }} @yield('title')
@@ -271,7 +271,7 @@ new #[Title('Contact')] class extends Component {
         </div>
     </div>
 
-    <div class="card mt-3">
+    <div class="card my-3">
         <div class="card-header text-bg-primary">
             <span class="fas fa-table fa-fw"></span>
             {{ trans('index.data') }} @yield('title')
