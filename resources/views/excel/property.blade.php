@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="14">
+            <th align="center" colspan="16">
                 <b>{{ trans('page.property') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="16"></td>
         </tr>
         <tr>
-            <th align="center" colspan="14">
+            <th align="center" colspan="16">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="16"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -52,6 +52,12 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.area_id') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.monthly_price') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.yearly_price') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.created_at') }}</b>
@@ -100,6 +106,12 @@
                 <td valign="middle">
                     {{ $property->area?->name }}
                 </td>
+                <td valign="middle" align="right">
+                    {{ $property->monthly_price }}
+                </td>
+                <td valign="middle" align="right">
+                    {{ $property->yearly_price }}
+                </td>
                 <td valign="middle">
                     {{ $property->created_at }}
                 </td>
@@ -109,7 +121,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="14">
+                <td align="center" colspan="16">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -117,7 +129,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="16"></td>
         </tr>
     </tfoot>
 </table>

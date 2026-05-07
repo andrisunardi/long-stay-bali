@@ -103,6 +103,9 @@ class PropertyFactory extends Factory
             'operational_risk' => fake()->randomElement(PropertyOperationalRisk::cases()),
             'operational_risk_comment' => fake()->text(),
 
+            'monthly_price' => fake()->numberBetween(100, 1000),
+            'yearly_price' => fake()->numberBetween(100, 1000),
+
             'image_path' => null,
             'status' => fake()->randomElement(PropertyStatus::cases()),
             'slug' => $slug,

@@ -84,6 +84,8 @@ return [
     'target_profiles' => 'Profil Cible',
 
     'price_and_inclusions' => 'Prix et Inclusions',
+    'monthly_price' => 'Prix Mensuel',
+    'yearly_price' => 'Prix Annuel',
 
     'images' => 'Images',
 

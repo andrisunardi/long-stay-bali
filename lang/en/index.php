@@ -23,7 +23,7 @@ return [
     'district' => 'District',
     'edit' => 'Edit',
     'enter_to_search' => 'Enter to Search',
-    'ex' => 'Ex',
+    'ex' => 'Ex.',
     'export' => 'Export',
     'failed' => 'Failed',
     'forgot_password' => 'Forgot Password',

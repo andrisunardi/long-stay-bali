@@ -229,6 +229,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereDescriptionId($value)
  * @method static Builder<static>|Property whereDescriptionZh($value)
  *
+ * @property string|null $google_maps_url
+ * @property int $monthly_price
+ * @property int $yearly_price
+ *
+ * @method static Builder<static>|Property whereGoogleMapsUrl($value)
+ * @method static Builder<static>|Property whereMonthlyPrice($value)
+ * @method static Builder<static>|Property whereYearlyPrice($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -315,6 +323,9 @@ class Property extends Model
         'operational_risk',
         'operational_risk_comment',
 
+        'monthly_price',
+        'yearly_price',
+
         'image_path',
         'status',
         'slug',
@@ -399,6 +410,9 @@ class Property extends Model
 
             'operational_risk' => PropertyOperationalRisk::class,
             'operational_risk_comment' => 'string',
+
+            'monthly_price' => 'integer',
+            'yearly_price' => 'integer',
 
             'image_path' => 'string',
             'status' => PropertyStatus::class,

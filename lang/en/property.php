@@ -84,6 +84,8 @@ return [
     'target_profiles' => 'Target Profile',
 
     'price_and_inclusions' => 'Price And Inclusions',
+    'monthly_price' => 'Monthly Price',
+    'yearly_price' => 'Yearly Price',
 
     'images' => 'Images',
 

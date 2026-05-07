@@ -23,7 +23,7 @@ return [
     'detail' => 'Detail',
     'edit' => 'Edit',
     'enter_to_search' => 'Masukkan untuk Mencari',
-    'ex' => 'Contoh',
+    'ex' => 'Contoh.',
     'export' => 'Ekspor',
     'failed' => 'Gagal',
     'forgot_password' => 'Lupa Kata Sandi',

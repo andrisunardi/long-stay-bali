@@ -77,6 +77,8 @@ return [
     'target_profiles' => 'Profil Target',
 
     'price_and_inclusions' => 'Harga dan Fasilitas yang Termasuk',
+    'monthly_price' => 'Harga Bulanan',
+    'yearly_price' => 'Harga Tahunan',
 
     'images' => 'Gambar',
 

@@ -23,7 +23,7 @@ return [
     'detail' => 'Détail',
     'edit' => 'Modifier',
     'enter_to_search' => 'Entrer pour Rechercher',
-    'ex' => 'Ex',
+    'ex' => 'Ex.',
     'export' => 'Exporter',
     'failed' => 'Échec',
     'forgot_password' => 'Mot de Passe Oublié',

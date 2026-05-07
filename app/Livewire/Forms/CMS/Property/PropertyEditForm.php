@@ -208,11 +208,17 @@ class PropertyEditForm extends Form
     #[Validate('nullable|string|min:0|max:65535')]
     public ?string $operational_risk_comment = '';
 
-    // #[Validate('nullable|image|file|mimes:jpg,jpeg,png,gif,webp|max:12288')]
-    // public ?TemporaryUploadedFile $image = null;
+    #[Validate('required|integer|min:1|max:100000000000')]
+    public int $monthly_price = 0;
+
+    #[Validate('required|integer|min:1|max:100000000000')]
+    public int $yearly_price = 0;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
+
+    // #[Validate('nullable|image|file|mimes:jpg,jpeg,png,gif,webp|max:12288')]
+    // public ?TemporaryUploadedFile $image = null;
 
     #[Validate(['nullable', 'array', 'min:0'])]
     public array $images = [];
@@ -269,23 +275,33 @@ class PropertyEditForm extends Form
         $this->quiet_access_road = $property->quiet_access_road;
         $this->orientation = $property->orientation?->value;
         $this->view = $property->view;
+
         $this->living_area_has_natural_light = $property->living_area_has_natural_light;
         $this->bedroom_1_has_natural_light = $property->bedroom_1_has_natural_light;
         $this->bedroom_2_has_natural_light = $property->bedroom_2_has_natural_light;
         $this->noise_source_identified = $property->noise_source_identified;
+
         $this->internet_speedtest = $property->internet_speedtest;
         $this->power_backup = $property->power_backup?->value;
         $this->water_source = $property->water_source?->value;
         $this->electricity = $property->electricity?->value;
+
         $this->eligible_for_upper = $property->eligible_for_upper;
         $this->eligible_for_premium = $property->eligible_for_premium;
+
         $this->design_driven_property = $property->design_driven_property;
         $this->usability_limitations = $property->usability_limitations;
+
         $this->trade_off_identified = $property->trade_off_identified;
         $this->trade_off_description = $property->trade_off_description;
         $this->target_profiles = $property->target_profiles;
+
+        $this->monthly_price = $property->monthly_price;
+        $this->yearly_price = $property->yearly_price;
+
         $this->operational_risk = $property->operational_risk?->value;
         $this->operational_risk_comment = $property->operational_risk_comment;
+
         $this->status = $property->status?->value;
     }
 

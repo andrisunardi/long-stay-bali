@@ -138,10 +138,8 @@
                 </label>
                 <x-form.trix model="form.description" />
                 <div class="form-text">
-                    {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
-                    {{ trans('helper.unique') }}
                 </div>
                 @error('form.description')
                     <div class="form-text text-danger">{{ $message }}</div>
@@ -154,7 +152,6 @@
                 </label>
                 <x-form.trix model="form.description_id" />
                 <div class="form-text">
-                    {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
                 </div>
@@ -169,7 +166,6 @@
                 </label>
                 <x-form.trix model="form.description_fr" />
                 <div class="form-text">
-                    {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
                 </div>

@@ -528,16 +528,22 @@ namespace App\Models{
  * @method static Builder<static>|Property withoutTrashed()
  * @method static Builder<static>|Property yearly()
  * @property-read int|null $images_count
- * @mixin \Eloquent
  * @property string|null $description
  * @property string|null $description_id
  * @property string|null $description_zh
  * @property string|null $description_fr
  * @property-read string $translate_description
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionFr($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionZh($value)
+ * @method static Builder<static>|Property whereDescription($value)
+ * @method static Builder<static>|Property whereDescriptionFr($value)
+ * @method static Builder<static>|Property whereDescriptionId($value)
+ * @method static Builder<static>|Property whereDescriptionZh($value)
+ * @mixin \Eloquent
+ * @property string|null $google_maps_url
+ * @property int $monthly_price
+ * @property int $yearly_price
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereGoogleMapsUrl($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyPrice($value)
  */
 	class Property extends \Eloquent {}
 }

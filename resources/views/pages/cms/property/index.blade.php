@@ -323,6 +323,7 @@ new #[Title('Property')] class extends Component {
                                 {{ trans('field.district_id') }} &
                                 {{ trans('field.area_id') }}
                             </th>
+                            <th width="1%">{{ trans('field.price') }}</th>
                             <th width="1%">{{ trans('field.action') }}</th>
                         </tr>
                     </thead>
@@ -418,6 +419,10 @@ new #[Title('Property')] class extends Component {
                                             {{ $property->area->name }}
                                         </a>
                                     @endif
+                                </td>
+                                <td>
+                                    <div>{{ Str::idr($property->monthly_price) }}</div>
+                                    <div>{{ Str::idr($property->yearly_price) }}</div>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">

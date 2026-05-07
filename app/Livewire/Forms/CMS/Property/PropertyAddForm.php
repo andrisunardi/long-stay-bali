@@ -207,11 +207,17 @@ class PropertyAddForm extends Form
     #[Validate('nullable|string|min:1|max:65535')]
     public string $operational_risk_comment = '';
 
-    // #[Validate('nullable|image|file|mimes:jpg,jpeg,png,gif,webp|max:12288')]
-    // public ?TemporaryUploadedFile $image = null;
+    #[Validate('required|integer|min:1|max:100000000000')]
+    public int $monthly_price = 0;
+
+    #[Validate('required|integer|min:1|max:100000000000')]
+    public int $yearly_price = 0;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
+
+    // #[Validate('nullable|image|file|mimes:jpg,jpeg,png,gif,webp|max:12288')]
+    // public ?TemporaryUploadedFile $image = null;
 
     #[Validate(['nullable', 'array', 'min:0'])]
     public array $images = [];

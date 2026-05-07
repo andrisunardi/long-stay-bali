@@ -87,6 +87,9 @@ return new class extends Migration
             $table->boolean('operational_risk')->unsigned()->nullable();
             $table->text('operational_risk_comment')->nullable();
 
+            $table->unsignedBigInteger('monthly_price')->default(0);
+            $table->unsignedBigInteger('yearly_price')->default(0);
+
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);
             $table->string('slug', 50)->unique();
