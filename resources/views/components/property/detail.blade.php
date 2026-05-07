@@ -62,10 +62,10 @@
                         </span>
                     </div>
 
-                    <div class="mt-3">
+                    {{-- <div class="mt-3">
                         <span class="fas fa-location-dot fa-fw"></span>
                         {{ $property->address }}
-                    </div>
+                    </div> --}}
 
                     <p class="border-top border-bottom pt-4 pb-4 mt-4 mb-4">
                         This fully furnished apartment is designed for comfortable long-term living in Bali. Located in
@@ -227,7 +227,7 @@
                 </div>
             </div>
 
-            <hr />
+            {{-- <hr />
 
             <div class="d-grid gap-3">
                 <div>
@@ -242,7 +242,7 @@
 
                 <iframe class="w-100 rounded-5" height="300"
                     src="{{ config('constants.contact.google_maps_iframe') }}"></iframe>
-            </div>
+            </div> --}}
         </div>
     </div>
 </section>

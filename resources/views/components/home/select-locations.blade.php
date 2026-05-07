@@ -10,7 +10,7 @@ new #[Lazy] class extends Component {
     public function mount(): void
     {
         $service = new PropertyService();
-        $this->properties = $service->index(limit: 4, paginate: false);
+        $this->properties = $service->index(statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], limit: 4, paginate: false);
         $this->properties->loadMissing(['area', 'image']);
     }
 };
