@@ -67,9 +67,11 @@
                         {{ $property->address }}
                     </div> --}}
 
-                    <div class="border-top border-bottom py-2 my-3">
-                        <p>{!! $property->translate_description !!}</p>
-                    </div>
+                    <hr class="my-4" />
+
+                    <p class="mb-0">{!! $property->translate_description !!}</p>
+
+                    <hr class="my-4" />
 
                     <h4 class="mb-3">Property details</h4>
 

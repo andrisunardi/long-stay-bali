@@ -425,7 +425,7 @@ class Property extends Model
         return Carbon::parse($value)->setTimezone(config('app.timezone'));
     }
 
-    public function getTranslateDescriptionAttribute(): string
+    public function getTranslateDescriptionAttribute(): ?string
     {
         $locale = App::getLocale();
         $language = [
