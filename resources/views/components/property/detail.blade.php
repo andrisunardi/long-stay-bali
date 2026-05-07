@@ -58,6 +58,11 @@
 
                     <div class="d-flex gap-3">
                         <span class="px-2 py-1 small rounded bg-sand">
+                            <span class="fas fa-code fa-fw fa-xs text-success"></span>
+                            <span class="text-black small">{{ $property->code }}</span>
+                        </span>
+
+                        <span class="px-2 py-1 small rounded bg-sand">
                             <span class="fas fa-location-dot fa-fw fa-xs text-success"></span>
                             <span class="text-black small">Villa</span>
                         </span>
