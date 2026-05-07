@@ -47,7 +47,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-6">
+                <div class="col-xl-7">
                     <div class="mb-3">
                         <span class="badge rounded-pill text-bg-success">
                             {{ $property->code }}
@@ -201,39 +201,29 @@
                     </table>
                 </div>
 
-                <div class="offset-xl-2 col-xl-4">
-                    <div class="card card-body">
-                        <h4>Pricing overview</h4>
-                        <p>Prices may vary depending on length of stay and availability</p>
-
+                <div class="offset-xl-2 col-xl-3">
+                    <div class="sticky-top" style="top: 5rem">
                         <div class="card card-body">
                             <div class="d-grid gap-2">
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-secondary">{{ trans('property.monthly_from') }}</span>
-                                    <span class="fw-medium">{{ Str::idr(9000000) }}</span>
+                                    <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                                    <span class="text-secondary">{{ trans('property.per_month') }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between">
-                                    <span class="text-secondary">{{ trans('property.yearly_from') }}</span>
-                                    <span class="fw-medium">{{ Str::idr(9000000 * 12) }}</span>
+                                    <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                                    <span class="text-secondary">{{ trans('property.per_year') }}</span>
                                 </div>
                             </div>
+
+                            <hr />
+
+                            <a draggable="false" class="btn btn-success w-100 rounded-pill"
+                                href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from property page"
+                                target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i>
+                                {{ trans('about.cta.button_name') }}
+                            </a>
                         </div>
-
-                        <h4 class="mt-4">Planned stay</h4>
-
-                        <button class="btn btn-outline-dark">
-                            <span class="fas fa-calendar"></span>
-                            04 May 2026 - 28 May 2026 (1 Month)
-                        </button>
-
-                        <hr />
-
-                        <a draggable="false" class="btn btn-success w-100 rounded-pill"
-                            href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from property page"
-                            target="_blank">
-                            <i class="fab fa-whatsapp me-2"></i>
-                            {{ trans('about.cta.button_name') }}
-                        </a>
                     </div>
                 </div>
             </div>

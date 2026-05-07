@@ -3,8 +3,8 @@
 return [
 
     'property' => 'Propriété',
-    'monthly_from' => 'Mensuel À Partir De',
-    'yearly_from' => 'Annuel À Partir De',
+    'per_month' => 'Par Mois',
+    'per_year' => 'Par An',
     'inquiry_availability' => 'Demande de Disponibilité',
     'months' => 'mois',
     'location_property' => 'Localisation de la Propriété',
@@ -37,7 +37,7 @@ return [
     'legal_and_basic_eligibility' => 'Légal et Éligibilité de Base',
     'full_legal_documentation_available' => 'Documentation Légale Complète Disponible',
     'signed_listing_agreement' => 'Accord de Mise en Vente Signé',
-    'lease_agreement' => 'Contrat de Location',
+    'lease_agreement' => 'Contrat de Bail',
     'land_certificate' => 'Certificat de Terrain',
     'owners_id' => 'ID du Propriétaire',
     'imb' => 'IMB (Permis de Construction)',
@@ -47,7 +47,7 @@ return [
     'fully_furnished' => 'Entièrement Meublé (pas semi-meublé)',
     'rental_type_accepted' => 'Type de Location Accepté (Mensuel / Annuel / Les Deux)',
     'minimum_rental_duration' => 'Durée Minimale de Location (mois)',
-    'owner_price_flexibility' => 'Flexibilité de Prix du Propriétaire (Fixe / Négociable)',
+    'owner_price_flexibility' => 'Flexibilité du Prix du Propriétaire (Fixe / Négociable)',
     'price_coherent_with_upper_or_premium_positioning' => 'Prix Cohérent avec Positionnement Haut de Gamme / Premium',
 
     'environment_and_tranquility' => 'Environnement et Tranquillité',
@@ -55,7 +55,7 @@ return [
     'no_festive_venue_nearby' => 'Aucun Lieu Festif à Proximité',
     'no_ongoing_or_imminent_construction' => 'Aucune Construction en Cours ou Imminente',
     'quiet_access_road_or_gang' => 'Route d\'Accès ou Gang Calme',
-    'orientation' => 'Orientation (Soleil Matinal / Après-midi / Mixte)',
+    'orientation' => 'Orientation (Soleil Matin / Après-midi / Mixte)',
     'view' => 'Vue (texte libre)',
 
     'light_and_acoustics' => 'Lumière et Acoustique',

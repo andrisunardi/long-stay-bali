@@ -3,8 +3,8 @@
 return [
 
     'property' => 'Property',
-    'monthly_from' => 'Monthly From',
-    'yearly_from' => 'Yearly From',
+    'per_month' => 'Per Month',
+    'per_year' => 'Per Year',
     'inquiry_availability' => 'Inquiry Availability',
     'months' => 'months',
     'location_property' => 'Location Property',
