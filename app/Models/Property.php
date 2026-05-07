@@ -432,6 +432,7 @@ class Property extends Model
             'en' => $this->description,
             'id' => $this->description_id,
             'zh' => $this->description_zh,
+            'fr' => $this->description_fr,
         ];
 
         return $language[$locale] ?? $this->description;

@@ -133,47 +133,47 @@
     <div class="col-sm-6">
         <div class="d-flex flex-column gap-3">
             <div>
-                <label class="form-label" for="body">
-                    {{ trans('validation.attributes.body') }}
+                <label class="form-label" for="description">
+                    {{ trans('validation.attributes.description') }}
                 </label>
-                <x-form.trix model="form.body" />
+                <x-form.trix model="form.description" />
                 <div class="form-text">
                     {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
                     {{ trans('helper.unique') }}
                 </div>
-                @error('form.body')
+                @error('form.description')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div>
-                <label class="form-label" for="body_id">
-                    {{ trans('validation.attributes.body_id') }}
+                <label class="form-label" for="description_id">
+                    {{ trans('validation.attributes.description_id') }}
                 </label>
-                <x-form.trix model="form.body_id" />
+                <x-form.trix model="form.description_id" />
                 <div class="form-text">
                     {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
                 </div>
-                @error('form.body_id')
+                @error('form.description_id')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div>
-                <label class="form-label" for="body_fr">
-                    {{ trans('validation.attributes.body_fr') }}
+                <label class="form-label" for="description_fr">
+                    {{ trans('validation.attributes.description_fr') }}
                 </label>
-                <x-form.trix model="form.body_fr" />
+                <x-form.trix model="form.description_fr" />
                 <div class="form-text">
                     {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 65.535,
                 </div>
-                @error('form.body_fr')
+                @error('form.description_fr')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>

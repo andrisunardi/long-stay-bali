@@ -67,11 +67,9 @@
                         {{ $property->address }}
                     </div> --}}
 
-                    <p class="border-top border-bottom pt-4 pb-4 mt-4 mb-4">
-                        This fully furnished apartment is designed for comfortable long-term living in Bali. Located in
-                        Canggu,
-                        it offers easy access to daily essentials while maintaining a calm residential atmosphere.
-                    </p>
+                    <div class="border-top border-bottom py-2 my-3">
+                        <p>{!! $property->translate_description !!}</p>
+                    </div>
 
                     <h4 class="mb-3">Property details</h4>
 

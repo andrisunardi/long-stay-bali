@@ -64,6 +64,13 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
                         {{ $property->name }}
+
+                        @if (in_array($property->status, [PropertyStatus::AcceptUpper, PropertyStatus::AcceptPremium]))
+                            <a draggable="false" href="{{ route('property.detail', ['slug' => $property->slug]) }}"
+                                target="_blank">
+                                <span class="fas fa-external-link fa-fw"></span>
+                            </a>
+                        @endif
                     </div>
                 </div>
 
@@ -87,10 +94,10 @@ new #[Title('Detail | Property')] class extends Component {
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.description_zh') }}</div>
+                        <div class="fw-bold">{{ trans('field.description_fr') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {!! $property->description_zh !!}
+                        {!! $property->description_fr !!}
                     </div>
                 </div>
 

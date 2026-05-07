@@ -371,6 +371,14 @@ new #[Title('Property')] class extends Component {
                                             wire:navigate>
                                             {{ $property->name }}
                                         </a>
+
+                                        @if (in_array($property->status, [PropertyStatus::AcceptUpper, PropertyStatus::AcceptPremium]))
+                                            <a draggable="false"
+                                                href="{{ route('property.detail', ['slug' => $property->slug]) }}"
+                                                target="_blank">
+                                                <span class="fas fa-external-link fa-fw"></span>
+                                            </a>
+                                        @endif
                                     </div>
                                 </td>
                                 <td>
