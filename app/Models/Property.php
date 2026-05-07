@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -217,6 +218,16 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property yearly()
  *
  * @property-read int|null $images_count
+ * @property string|null $description
+ * @property string|null $description_id
+ * @property string|null $description_zh
+ * @property string|null $description_fr
+ * @property-read string $translate_description
+ *
+ * @method static Builder<static>|Property whereDescription($value)
+ * @method static Builder<static>|Property whereDescriptionFr($value)
+ * @method static Builder<static>|Property whereDescriptionId($value)
+ * @method static Builder<static>|Property whereDescriptionZh($value)
  *
  * @mixin \Eloquent
  */
@@ -232,6 +243,9 @@ class Property extends Model
     protected $fillable = [
         'code',
         'name',
+        'description',
+        'description_id',
+        'description_fr',
         'user_id',
         'availability_date',
         'visit_date',
@@ -313,6 +327,9 @@ class Property extends Model
         return [
             'code' => 'string',
             'name' => 'string',
+            'description' => 'string',
+            'description_id' => 'string',
+            'description_fr' => 'string',
             'user_id' => 'integer',
             'availability_date' => 'date',
             'visit_date' => 'date',
@@ -406,6 +423,18 @@ class Property extends Model
     public function getUpdatedAtAttribute(string $value): Carbon
     {
         return Carbon::parse($value)->setTimezone(config('app.timezone'));
+    }
+
+    public function getTranslateDescriptionAttribute(): string
+    {
+        $locale = App::getLocale();
+        $language = [
+            'en' => $this->description,
+            'id' => $this->description_id,
+            'zh' => $this->description_zh,
+        ];
+
+        return $language[$locale] ?? $this->description;
     }
 
     // public function getImageAttribute(): string

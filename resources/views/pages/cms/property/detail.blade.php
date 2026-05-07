@@ -67,6 +67,33 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.description') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $property->description !!}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.description_id') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $property->description_id !!}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.description_zh') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {!! $property->description_zh !!}
+                    </div>
+                </div>
+
                 {{-- <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
                         <div class="fw-bold">Image</div>

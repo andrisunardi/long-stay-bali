@@ -181,7 +181,6 @@ new #[Title('Add | Guide')] class extends Component {
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
-                            {{ trans('helper.unique') }}
                         </div>
                         @error('form.body')
                             <div class="form-text text-danger">{{ $message }}</div>
@@ -198,7 +197,6 @@ new #[Title('Add | Guide')] class extends Component {
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
-                            {{ trans('helper.unique') }}
                         </div>
                         @error('form.body_id')
                             <div class="form-text text-danger">{{ $message }}</div>
@@ -215,7 +213,6 @@ new #[Title('Add | Guide')] class extends Component {
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
-                            {{ trans('helper.unique') }}
                         </div>
                         @error('form.body_zh')
                             <div class="form-text text-danger">{{ $message }}</div>

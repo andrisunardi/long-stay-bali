@@ -2,30 +2,6 @@
     <div class="col-sm-6">
         <div class="d-grid gap-3">
             <div>
-                <label class="form-label" for="name">
-                    {{ trans('validation.attributes.name') }}
-                    <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                    <div class="input-group-text">
-                        <span class="fas fa-building fa-fw "></span>
-                    </div>
-                    <input type="text" class="form-control" id="name" name="name" minlength="1"
-                        maxlength="50" placeholder="{{ trans('index.ex') . '. Canggu Villa' }}" required
-                        wire:model="form.name" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
-                </div>
-                <div class="form-text">
-                    {{ trans('helper.required') }},
-                    {{ trans('helper.minlength') }} : 1,
-                    {{ trans('helper.maxlength') }} : 50
-                </div>
-                @error('form.name')
-                    <div class="form-text text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div>
                 <label class="form-label" for="code">
                     {{ trans('property.internal_property_code') }}
                     <span class="text-danger">*</span>
@@ -46,6 +22,30 @@
                     {{ trans('helper.unique') }}
                 </div>
                 @error('form.code')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label class="form-label" for="name">
+                    {{ trans('validation.attributes.name') }}
+                    <span class="text-danger">*</span>
+                </label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span class="fas fa-building fa-fw "></span>
+                    </div>
+                    <input type="text" class="form-control" id="name" name="name" minlength="1"
+                        maxlength="50" placeholder="{{ trans('index.ex') . '. Canggu Villa' }}" required
+                        wire:model="form.name" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        wire:loading.class="disabled" wire:loading.attr="disabled">
+                </div>
+                <div class="form-text">
+                    {{ trans('helper.required') }},
+                    {{ trans('helper.minlength') }} : 1,
+                    {{ trans('helper.maxlength') }} : 50
+                </div>
+                @error('form.name')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -124,6 +124,56 @@
                     {{ Date::parse('2099-12-31')->isoFormat('DD MMMM YYYY') }}
                 </div>
                 @error('form.visit_date')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="d-flex flex-column gap-3">
+            <div>
+                <label class="form-label" for="body">
+                    {{ trans('validation.attributes.body') }}
+                </label>
+                <x-form.trix model="form.body" />
+                <div class="form-text">
+                    {{ trans('helper.required') }},
+                    {{ trans('helper.minlength') }} : 1,
+                    {{ trans('helper.maxlength') }} : 65.535,
+                    {{ trans('helper.unique') }}
+                </div>
+                @error('form.body')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label class="form-label" for="body_id">
+                    {{ trans('validation.attributes.body_id') }}
+                </label>
+                <x-form.trix model="form.body_id" />
+                <div class="form-text">
+                    {{ trans('helper.required') }},
+                    {{ trans('helper.minlength') }} : 1,
+                    {{ trans('helper.maxlength') }} : 65.535,
+                </div>
+                @error('form.body_id')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label class="form-label" for="body_fr">
+                    {{ trans('validation.attributes.body_fr') }}
+                </label>
+                <x-form.trix model="form.body_fr" />
+                <div class="form-text">
+                    {{ trans('helper.required') }},
+                    {{ trans('helper.minlength') }} : 1,
+                    {{ trans('helper.maxlength') }} : 65.535,
+                </div>
+                @error('form.body_fr')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>

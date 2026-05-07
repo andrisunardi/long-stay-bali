@@ -16,6 +16,9 @@ return new class extends Migration
             $table->id();
             $table->string('code', 10)->unique();
             $table->string('name', 50);
+            $table->text('description')->nullable();
+            $table->text('description_id')->nullable();
+            $table->text('description_zh')->nullable();
             $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->date('availability_date')->nullable();
             $table->date('visit_date')->nullable();

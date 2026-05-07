@@ -32,6 +32,9 @@ class PropertyFactory extends Factory
         return [
             'code' => $code,
             'name' => fake()->name(),
+            'description' => fake()->paragraph(),
+            'description_id' => fake()->paragraph(),
+            'description_zh' => fake()->paragraph(),
             'user_id' => $user->id,
             'availability_date' => fake()->date(),
             'visit_date' => fake()->date(),

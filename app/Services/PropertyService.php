@@ -37,6 +37,9 @@ class PropertyService
                 $query->where(function ($query) use ($search) {
                     $query->where('code', 'like', "%{$search}%")
                         ->orWhere('name', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('description_id', 'like', "%{$search}%")
+                        ->orWhere('description_zh', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'phone', 'like', "%{$search}%")

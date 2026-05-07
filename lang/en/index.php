@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     'access' => 'Access',
     'add' => 'Add',
     'all' => 'All',
@@ -21,6 +20,7 @@ return [
     'data' => 'Data',
     'delete' => 'Delete',
     'detail' => 'Detail',
+    'district' => 'District',
     'edit' => 'Edit',
     'enter_to_search' => 'Enter to Search',
     'ex' => 'Ex',
@@ -46,7 +46,6 @@ return [
     'printed_date' => 'Printed Today',
     'profile_menu' => 'Profile Menu',
     'refresh' => 'Refresh',
-    'refresh' => 'Refresh',
     'rental_type' => 'Rental Type',
     'reset_filter' => 'Reset Filter',
     'reset' => 'Reset',
@@ -59,17 +58,8 @@ return [
     'today' => 'Today',
     'token' => 'Token',
     'total' => 'Total',
+    'up' => 'Up',
     'visit' => 'Visit',
     'yes' => 'Yes',
-
-    'up' => 'Up',
-    'district' => 'District',
-    'index' => 'Index',
-    'index' => 'Index',
-    'index' => 'Index',
-    'index' => 'Index',
-    'index' => 'Index',
-    'index' => 'Index',
-    'index' => 'Index',
 
 ];

@@ -529,6 +529,15 @@ namespace App\Models{
  * @method static Builder<static>|Property yearly()
  * @property-read int|null $images_count
  * @mixin \Eloquent
+ * @property string|null $description
+ * @property string|null $description_id
+ * @property string|null $description_zh
+ * @property string|null $description_fr
+ * @property-read string $translate_description
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionFr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionZh($value)
  */
 	class Property extends \Eloquent {}
 }

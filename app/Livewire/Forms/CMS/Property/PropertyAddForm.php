@@ -27,6 +27,15 @@ class PropertyAddForm extends Form
     #[Validate('required|string|min:1|max:50')]
     public string $name = '';
 
+    #[Validate('nullable|string|min:1|max:65535')]
+    public string $description = '';
+
+    #[Validate('nullable|string|min:1|max:65535')]
+    public string $description_id = '';
+
+    #[Validate('nullable|string|min:1|max:65535')]
+    public string $description_fr = '';
+
     #[Validate('nullable|integer|exists:users,id')]
     public ?int $user_id = null;
 
@@ -201,7 +210,7 @@ class PropertyAddForm extends Form
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
 
-    #[Validate(['required', 'array', 'min:1'])]
+    #[Validate(['nullable', 'array', 'min:0'])]
     public array $images = [];
 
     public function submit(): Property
