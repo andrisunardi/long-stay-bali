@@ -14,7 +14,7 @@
 
                 <div class="col-3 col-sm-6 col-lg-2 offset-xl-2">
                     <div class="d-grid gap-3">
-                        @foreach (config('navigations') as $navigation)
+                        @foreach (collect(config('navigations'))->reject(fn($item) => $item['route'] === 'contact')->values() as $navigation)
                             <div wire:key="navigation-{{ $navigation['id'] }}">
                                 <a draggable="false" class="text-light" href="{{ route($navigation['route']) }}"
                                     wire:navigate>
