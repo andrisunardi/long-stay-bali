@@ -94,7 +94,7 @@ new class extends Component {
                         <div class="{{ $id_area ? '' : 'position-relative w-100' }}">
                             <input type="search" id="search_area" name="search_area" class="form-control"
                                 minlength="1" maxlength="50" placeholder="{{ trans('home.form.area') }}" required
-                                wire:model.live="search_area" data-bs-toggle="dropdown">
+                                wire:model.live.debounce.500ms="search_area" data-bs-toggle="dropdown">
 
                             <ul class="dropdown-menu {{ $search_area ? 'show' : '' }} w-100 mt-2">
                                 <li>
