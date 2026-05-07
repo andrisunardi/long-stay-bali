@@ -250,6 +250,7 @@ class Property extends Model
         'availability_date',
         'visit_date',
 
+        'google_maps_url',
         'latitude',
         'longitude',
         'address',
@@ -334,6 +335,7 @@ class Property extends Model
             'availability_date' => 'date',
             'visit_date' => 'date',
 
+            'google_maps_url' => 'string',
             'latitude' => 'decimal:7',
             'longitude' => 'decimal:7',
             'address' => 'string',

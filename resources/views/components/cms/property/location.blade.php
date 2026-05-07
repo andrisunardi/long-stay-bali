@@ -1,6 +1,26 @@
 <div class="row g-3 mb-3">
     <div class="col-sm-6">
-        <div class="rounded h-100" id="map" wire:ignore></div>
+        {{-- <div class="rounded h-100" id="map" wire:ignore></div> --}}
+        <div>
+            <label class="form-label" for="google_maps_url">
+                {{-- {{ trans('validation.attributes.google_maps_url') }} --}}
+                Google Maps URL
+            </label>
+            <div class="input-group">
+                <div class="input-group-text">
+                    <span class="fas fa-globe fa-fw "></span>
+                </div>
+                <textarea class="form-control" rows="5" id="google_maps_url" name="google_maps_url"
+                    placeholder="{{ trans('index.ex') }} " wire:model="form.google_maps_url" wire:offline.class="disabled"
+                    wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled"></textarea>
+            </div>
+            <div class="form-text">
+                {{ trans('helper.required') }}
+            </div>
+            @error('form.google_maps_url')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 
     <div class="col-sm-6">
