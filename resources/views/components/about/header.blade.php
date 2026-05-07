@@ -1,4 +1,4 @@
-<section class="py-5 my-5">
+<section class="py-5">
     <div class="container-md">
         <div class="row justify-content-center text-center">
             <div class="col-lg-9 col-xl-7">

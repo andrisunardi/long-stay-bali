@@ -202,7 +202,7 @@
             const useBanner = $header.data("use-banner") == 1;
 
             function handleScroll() {
-                if ($(window).scrollTop() > 100) {
+                if ($(window).scrollTop() > 50) {
                     $header.addClass("bg-white text-black");
                     $header.find(".header-color")
                         .removeClass("text-white")

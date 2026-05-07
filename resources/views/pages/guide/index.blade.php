@@ -19,7 +19,7 @@ new #[Title('Guide')] class extends Component {
 
 @section('title', trans('page.guide'))
 
-<div class="py-5 mt-4">
+<div>
     <x-guide.content :guide="$guide" />
 
     <livewire:guide.another />

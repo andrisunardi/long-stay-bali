@@ -108,7 +108,7 @@ new #[Lazy] class extends Component {
                             {{ Str::limit(strip_tags($guide->translate_body), 100) }}
                         </p>
 
-                        <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
+                        <a draggable="false" class="text-success" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
                             wire:navigate>
                             {{ trans('home.guides.read_more') }}
                             <span class="fas fa-chevron-right fa-fw fa-xs"></span>
