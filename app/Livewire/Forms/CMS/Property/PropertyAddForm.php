@@ -45,6 +45,9 @@ class PropertyAddForm extends Form
     #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:today|before_or_equal:2999-12-31')]
     public string $visit_date = '';
 
+    #[Validate('nullable|string|min:1|max:65535')]
+    public string $google_maps_url = '';
+
     #[Validate('nullable|string')]
     public string $latitude = '';
 

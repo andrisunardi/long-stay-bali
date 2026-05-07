@@ -46,6 +46,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|date|date_format:Y-m-d|before_or_equal:2999-12-31')]
     public ?string $visit_date = '';
 
+    #[Validate('nullable|string|min:1|max:65535')]
+    public string $google_maps_url = '';
+
     #[Validate('nullable|string')]
     public ?string $latitude = '';
 
@@ -227,6 +230,7 @@ class PropertyEditForm extends Form
         $this->availability_date = $property->availability_date?->toDateString();
         $this->visit_date = $property->visit_date?->toDateString();
 
+        $this->google_maps_url = $property->google_maps_url;
         $this->latitude = $property->latitude;
         $this->longitude = $property->longitude;
         $this->address = $property->address;
