@@ -47,7 +47,7 @@ class PropertyEditForm extends Form
     public ?string $visit_date = '';
 
     #[Validate('nullable|string|min:1|max:65535')]
-    public string $google_maps_url = '';
+    public ?string $google_maps_url = '';
 
     #[Validate('nullable|string')]
     public ?string $latitude = '';
