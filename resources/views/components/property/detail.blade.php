@@ -48,6 +48,12 @@
 
             <div class="row">
                 <div class="col-xl-6">
+                    <div class="mb-3">
+                        <span class="badge rounded-pill text-bg-success">
+                            {{ $property->code }}
+                        </span>
+                    </div>
+
                     <h1>{{ $property->name }}</h1>
 
                     <div class="d-flex gap-3">
