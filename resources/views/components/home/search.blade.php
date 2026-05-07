@@ -3,11 +3,49 @@
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyType;
 use App\Livewire\Component;
+use App\Services\AreaService;
+use Livewire\Attributes\Url;
 
 new class extends Component {
+    // public object $areas;
+
+    #[Url(except: null)]
+    public ?int $id_area = null;
+
+    public string $search_area = '';
+
+    public bool $click_search_area = false;
+
     public string $bedroom = '';
 
     public string $type = '';
+
+    // public function mount(): void
+    // {
+    //     $this->loadAreas();
+    // }
+
+    public function areas(): object
+    {
+        $service = new AreaService();
+        $areas = $service->index(search: $this->search_area, isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+        $areas->loadMissing(['district']);
+
+        return $areas;
+    }
+
+    public function changeArea(int $value): void
+    {
+        $this->reset(['search_area']);
+        $area = $this->areas()->firstWhere('id', $value);
+        $this->search_area = "{$area->name}, {$area->district?->name}";
+        $this->id_area = $area->id;
+    }
+
+    public function removeArea(): void
+    {
+        $this->reset(['id_area', 'search_area']);
+    }
 
     public function changeBedroom(string $value = ''): void
     {
@@ -36,25 +74,52 @@ new class extends Component {
 
     <form wire:submit.prevent="submit" role="form" autocomplete="off">
         <div class="row g-4">
-            <div class="col-12" wire:ignore>
+            <div class="col-12">
                 <label class="form-label">
                     <span class="fas fa-location-dot fa-fw"></span>
                     {{ trans('validation.attributes.area') }}
                     <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
-                    <select class="form-select tags" data-placeholder="{{ trans('home.form.area') }}" multiple
-                        wire:model="form.area" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
-                        <optgroup label="Tibubeneng">
-                            <option value="Canggu" data-description="Tibubeneng" selected>
-                                Canggu
-                            </option>
-                            <option value="Seminyak" data-description="Tibubeneng">
-                                Seminyak
-                            </option>
-                        </optgroup>
-                    </select>
+                    @if ($id_area)
+                        <input type="text" id="search_area" name="search_area" class="form-control disabled"
+                            value="{{ $search_area }}" disabled>
+
+                        <button type="button" class="btn border" wire:key="removeArea" wire:click="removeArea"
+                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                            wire:loading.attr="disabled">
+                            <span class="fas fa-times fa-fw"></span>
+                        </button>
+                    @else
+                        <div class="{{ $id_area ? '' : 'position-relative w-100' }}">
+                            <input type="search" id="search_area" name="search_area" class="form-control"
+                                minlength="1" maxlength="50" placeholder="{{ trans('home.form.area') }}" required
+                                wire:model.live="search_area" data-bs-toggle="dropdown">
+
+                            <ul class="dropdown-menu {{ $search_area ? 'show' : '' }} w-100 mt-2">
+                                <li>
+                                    <h6 class="dropdown-header">
+                                        {{ trans('home.form.area') }}
+                                    </h6>
+                                </li>
+                                @forelse ($this->areas() as $area)
+                                    <li wire:key="area-{{ $area->id }}">
+                                        <button type="button" class="dropdown-item"
+                                            wire:click="changeArea({{ $area->id }})">
+                                            <span class="fas fa-location-dot fa-fw"></span>
+                                            {{ $area->name }}, {{ $area->district?->name ?? '-' }}
+                                        </button>
+                                    </li>
+                                @empty
+                                    <li>
+                                        <h6 class="dropdown-header">
+                                            {{ trans('message.no_data_available') }}
+                                        </h6>
+                                    </li>
+                                @endforelse
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
 

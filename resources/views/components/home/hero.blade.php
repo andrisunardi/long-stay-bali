@@ -27,7 +27,7 @@
                     <div class="display-6 fw-bold text-white">{!! $description !!}</div>
                 </div>
                 <div class="col-lg-5 offset-lg-1">
-                    <livewire:home.form />
+                    <livewire:home.search />
                 </div>
             </div>
         </div>

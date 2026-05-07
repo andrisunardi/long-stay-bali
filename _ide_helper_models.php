@@ -537,13 +537,13 @@ namespace App\Models{
  * @method static Builder<static>|Property whereDescriptionFr($value)
  * @method static Builder<static>|Property whereDescriptionId($value)
  * @method static Builder<static>|Property whereDescriptionZh($value)
- * @mixin \Eloquent
  * @property string|null $google_maps_url
  * @property int $monthly_price
  * @property int $yearly_price
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereGoogleMapsUrl($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyPrice($value)
+ * @method static Builder<static>|Property whereGoogleMapsUrl($value)
+ * @method static Builder<static>|Property whereMonthlyPrice($value)
+ * @method static Builder<static>|Property whereYearlyPrice($value)
+ * @mixin \Eloquent
  */
 	class Property extends \Eloquent {}
 }
