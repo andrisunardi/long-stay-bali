@@ -140,7 +140,7 @@ return [
     'local_sites_path' => env('DEBUGBAR_LOCAL_SITES_PATH', env('IGNITION_LOCAL_SITES_PATH')),
 
     'storage' => [
-        'enabled' => env('DEBUGBAR_STORAGE_ENABLED', true),
+        'enabled' => env('DEBUGBAR_STORAGE_ENABLED', false),
         'open' => env('DEBUGBAR_OPEN_STORAGE'),
         'driver' => env('DEBUGBAR_STORAGE_DRIVER', 'file'),
         'path' => env('DEBUGBAR_STORAGE_PATH', storage_path('debugbar')),

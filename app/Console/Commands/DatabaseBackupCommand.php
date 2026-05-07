@@ -13,9 +13,9 @@ class DatabaseBackupCommand extends Command
 
     public function handle(): bool
     {
-        $username = config('database.mysql.username');
-        $password = config('database.mysql.password');
-        $database = config('database.mysql.database');
+        $username = config('database.connections.mysql.username');
+        $password = config('database.connections.mysql.password');
+        $database = config('database.connections.mysql.database');
 
         $date = now()->today()->toDateString();
         $path = storage_path("app/private/database/{$date}.sql");
