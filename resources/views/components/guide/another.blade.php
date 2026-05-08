@@ -37,7 +37,7 @@ new #[Lazy] class extends Component {
 
 @placeholder
     <section class="py-5 bg-light">
-        <div class="container-md py-5">
+        <div class="container-md">
             <div class="d-flex flex-column gap-4">
                 <div class="text-start">
                     <div class="placeholder-glow">
@@ -88,7 +88,7 @@ new #[Lazy] class extends Component {
 @endplaceholder
 
 <section class="py-5 bg-light">
-    <div class="container-md py-5">
+    <div class="container-md">
         <div class="d-flex flex-column gap-4">
             <div class="text-start">
                 <h1 class="display-6 fw-medium">{{ trans('home.guides.another_guide') }}</h1>

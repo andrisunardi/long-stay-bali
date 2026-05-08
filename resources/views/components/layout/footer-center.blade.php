@@ -1,5 +1,5 @@
 <footer class="text-bg-dark py-5">
-    <div class="container-md py-5">
+    <div class="container-md">
         <div class="d-flex flex-column text-center justify-content-center gap-4">
             <div>
                 <a draggable="false" href="{{ route('home') }}" wire:navigate>
