@@ -4,21 +4,88 @@ use App\Enums\Property\PropertyStatus;
 use App\Livewire\Component;
 use App\Services\PropertyService;
 use Livewire\Attributes\Lazy;
+use Livewire\Attributes\Url;
 
 new #[Lazy] class extends Component {
     public object $properties;
 
+    public ?int $area_id = null;
+
+    public string $text_area = '';
+
+    public ?int $bedroom = null;
+
+    public int $min_price = 0;
+
+    public int $max_price = 100000000000;
+
     public function mount(): void
     {
         $service = new PropertyService();
-        $this->properties = $service->index(statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], paginate: false);
+        $this->properties = $service->index(areaId: $this->area_id, statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], paginate: false);
         $this->properties->loadMissing(['area', 'image']);
+
+        if ($this->area_id) {
+            $area = $this->areas()->firstWhere('id', $this->area_id);
+            $this->text_area = "{$area->name}, {$area->district?->name}";
+        }
     }
 };
 ?>
 
 @placeholder
     <section class="py-5">
+        <div class="container-md py-5">
+            <div class="d-flex flex-column gap-4">
+                <div>
+                    <div class="placeholder-glow">
+                        <span class="placeholder col-6"></span>
+                    </div>
+                </div>
+
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+                    @for ($i = 0; $i < 8; $i++)
+                        <div class="col">
+                            <div class="ratio ratio-16x9 overflow-hidden">
+                                <div class="placeholder-glow">
+                                    <div class="placeholder w-100 h-100 rounded"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-4"></span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-8"></span>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-3 mt-3">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-3 rounded"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-3 rounded"></span>
+                                </div>
+                            </div>
+
+                            <div class="mt-3 d-grid gap-2">
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                </div>
+                                <div class="placeholder-glow">
+                                    <span class="placeholder col-6"></span>
+                                </div>
+                            </div>
+                        </div>
+                    @endfor
+                </div>
+            </div>
+        </div>
     </section>
 @endplaceholder
 
@@ -26,7 +93,12 @@ new #[Lazy] class extends Component {
     <div class="container-md py-5">
         <div class="d-flex flex-column gap-4">
             <div>
-                <p class="lead mb-0">Over <b>50</b> homes in Canggu, Bali</p>
+                <p class="lead mb-0">
+                    {!! trans('property.property_count', [
+                        'count' => $properties->count(),
+                        'area' => $text_area ?? 'all areas',
+                    ]) !!}
+                </p>
             </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
@@ -74,13 +146,13 @@ new #[Lazy] class extends Component {
                         </div>
 
                         <div class="mt-3 d-grid gap-2">
-                            <div>
-                                {{ trans('property.monthly_from') }}
-                                <b>{{ Str::idr(9000000) }}</b>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                                <span class="text-secondary">{{ trans('property.per_month') }}</span>
                             </div>
-                            <div>
-                                {{ trans('property.yearly_from') }}
-                                <b>{{ Str::idr(9000000 * 12) }}</b>
+                            <div class="d-flex justify-content-between">
+                                <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                                <span class="text-secondary">{{ trans('property.per_year') }}</span>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,9 @@
 
 return [
 
+    'property_count' => 'Over <b>:count</b> homes in :area',
+    'all_areas' => 'all areas',
+
     'property' => 'Property',
     'per_month' => 'Per Month',
     'per_year' => 'Per Year',

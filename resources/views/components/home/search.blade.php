@@ -109,8 +109,8 @@ new class extends Component {
             <div class="col-12">
                 {{-- prettier-ignore --}}
                 <x-home.search.button
-                :area-id="$min_price"
-                :bedroom="$max_price"
+                :area-id="$area_id"
+                :bedroom="$bedroom"
                 :min-price="$min_price"
                 :max-price="$max_price"
                 />
