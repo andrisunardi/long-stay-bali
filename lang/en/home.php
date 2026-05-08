@@ -10,12 +10,14 @@ return [
     'search' => [
         'title' => 'Search long-term homes',
 
+        'area' => 'Area',
         'area_title' => 'Suggested Destinations',
         'area_placeholder' => 'Choose preferred area',
-        'area' => 'Area',
+
+        'bedroom' => 'Bedroom',
+        'bedroom_placeholder' => 'Number of bedrooms',
 
         'when' => 'Planned move-in',
-        'bedroom' => 'Number of bedrooms',
         'type' => 'All type',
         'price_range' => 'Budget range',
 

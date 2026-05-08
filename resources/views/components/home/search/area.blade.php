@@ -11,13 +11,19 @@
     </label>
     <div class="input-group">
         @if ($idArea)
-            <input type="text" id="search_area" name="search_area" class="form-control disabled"
-                value="{{ $searchArea }}" disabled>
+            <div class="form-control bg-secondary-subtle">
+                {{ $searchArea }}
+            </div>
 
             <button type="button" class="btn border" wire:key="removeArea" wire:click="removeArea"
                 wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                 wire:loading.attr="disabled">
-                <span class="fas fa-times fa-fw"></span>
+                <span wire:loading.remove wire:target="removeArea">
+                    <span class="fas fa-times fa-fw"></span>
+                </span>
+                <span wire:loading wire:target="removeArea" class="w-100">
+                    <span class="spinner-border spinner-border-sm"></span>
+                </span>
             </button>
         @else
             <div class="{{ $idArea ? '' : 'position-relative w-100' }}">

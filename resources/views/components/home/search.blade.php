@@ -14,9 +14,18 @@ new class extends Component {
 
     public bool $click_search_area = false;
 
+    #[Url(except: null)]
     public string $bedroom = '';
 
     public string $type = '';
+
+    public function mount(): void
+    {
+        if ($this->id_area) {
+            $area = $this->areas()->firstWhere('id', $this->id_area);
+            $this->search_area = "{$area->name}, {$area->district?->name}";
+        }
+    }
 
     public function areas(): object
     {
@@ -91,52 +100,11 @@ new class extends Component {
             </div>
 
             <div class="col-6">
-                <label class="form-label">
-                    <span class="fas fa-bed fa-fw"></span>
-                    {{ trans('validation.attributes.bedroom') }}
-                    <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                    {{-- <select class="form-select" id="bedrooms" name="bedrooms"
-                        placeholder="{{ trans('home.search.bedrooms') }}" required wire:model="form.bedrooms"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
-                        <option class="">
-                            {{ trans('index.all') }} {{ trans('field.type') }}
-                        </option>
-                        @foreach ($this->propertyTypes() as $propertyType)
-                            <option value="{{ $propertyType->value }}" wire:key="property-type-{{ $propertyType }}">
-                                {{ $propertyType->name }}
-                            </option>
-                        @endforeach
-                    </select> --}}
-
-                    <button type="button"
-                        class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-                        data-bs-toggle="dropdown">
-                        @if ($bedroom)
-                            {{ PropertyBedroom::getDescription($bedroom) }}
-                        @else
-                            {{ trans('index.all') }}
-                        @endif
-                    </button>
-
-                    <ul class="dropdown-menu w-100 mt-2">
-                        <li wire:key="bedroom">
-                            <button type="button" class="dropdown-item" wire:click="changeBedroom">
-                                {{ trans('index.all') }}
-                            </button>
-                        </li>
-                        @foreach ($this->propertyBedrooms() as $propertyBedroom)
-                            <li wire:key="property-bedroom-{{ $propertyBedroom }}">
-                                <button type="button" class="dropdown-item"
-                                    wire:click="changeBedroom({{ $propertyBedroom->value }})">
-                                    {{ $propertyBedroom->description() }}
-                                </button>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+                {{-- prettier-ignore --}}
+                <x-home.search.bedroom
+                :bedroom="$bedroom"
+                :property-bedrooms="$this->propertyBedrooms()"
+                />
             </div>
 
             <div class="col-6">
@@ -213,10 +181,12 @@ new class extends Component {
             </div>
 
             <div class="col-12">
-                <button type="submit" class="btn btn-success w-100 rounded-5">
+                <a draggable="false"
+                    href="{{ route('property.index', ['area_id' => $id_area, 'bedroom' => $bedroom]) }}"
+                    class="btn btn-success w-100 rounded-5" wire:navigate>
                     <span class="fas fa-search fa-fw"></span>
                     {{ trans('home.search.button') }}
-                </button>
+                </a>
             </div>
         </div>
     </form>
