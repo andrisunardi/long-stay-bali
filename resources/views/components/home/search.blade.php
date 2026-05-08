@@ -75,52 +75,12 @@ new class extends Component {
     <form wire:submit.prevent="submit" role="form" autocomplete="off">
         <div class="row g-4">
             <div class="col-12">
-                <label class="form-label">
-                    <span class="fas fa-location-dot fa-fw"></span>
-                    {{ trans('validation.attributes.area') }}
-                    <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                    @if ($id_area)
-                        <input type="text" id="search_area" name="search_area" class="form-control disabled"
-                            value="{{ $search_area }}" disabled>
-
-                        <button type="button" class="btn border" wire:key="removeArea" wire:click="removeArea"
-                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                            wire:loading.attr="disabled">
-                            <span class="fas fa-times fa-fw"></span>
-                        </button>
-                    @else
-                        <div class="{{ $id_area ? '' : 'position-relative w-100' }}">
-                            <input type="search" id="search_area" name="search_area" class="form-control"
-                                minlength="1" maxlength="50" placeholder="{{ trans('home.form.area') }}" required
-                                wire:model.live.debounce.500ms="search_area" data-bs-toggle="dropdown">
-
-                            <ul class="dropdown-menu {{ $search_area ? 'show' : '' }} w-100 mt-2">
-                                <li>
-                                    <h6 class="dropdown-header">
-                                        {{ trans('home.form.area') }}
-                                    </h6>
-                                </li>
-                                @forelse ($this->areas() as $area)
-                                    <li wire:key="area-{{ $area->id }}">
-                                        <button type="button" class="dropdown-item"
-                                            wire:click="changeArea({{ $area->id }})">
-                                            <span class="fas fa-location-dot fa-fw"></span>
-                                            {{ $area->name }}, {{ $area->district?->name ?? '-' }}
-                                        </button>
-                                    </li>
-                                @empty
-                                    <li>
-                                        <h6 class="dropdown-header">
-                                            {{ trans('message.no_data_available') }}
-                                        </h6>
-                                    </li>
-                                @endforelse
-                            </ul>
-                        </div>
-                    @endif
-                </div>
+                {{-- prettier-ignore --}}
+                <x-home.search.area
+                :id-area="$id_area"
+                :search-area="$search_area"
+                :areas="$this->areas()"
+                />
             </div>
 
             <div class="col-6">
