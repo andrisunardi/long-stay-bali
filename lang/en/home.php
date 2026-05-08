@@ -19,7 +19,10 @@ return [
 
         'when' => 'Planned move-in',
         'type' => 'All type',
-        'price_range' => 'Budget range',
+
+        'price' => 'Budget range',
+        'minimum_price' => 'Minimum Price',
+        'maximum_price' => 'Maximum Price',
 
         'button' => 'Find a home',
     ],

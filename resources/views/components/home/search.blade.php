@@ -17,6 +17,12 @@ new class extends Component {
     #[Url(except: null)]
     public string $bedroom = '';
 
+    #[Url(except: null)]
+    public int $min_price = 0;
+
+    #[Url(except: null)]
+    public int $max_price = 100000000000;
+
     public string $type = '';
 
     public function mount(): void
@@ -107,82 +113,22 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-6">
-                <label class="form-label">
-                    <span class="fas fa-building fa-fw"></span>
-                    {{ trans('validation.attributes.property_type') }}
-                    <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                    {{-- <select class="form-select" id="property_type" name="property_type"
-                        placeholder="{{ trans('home.search.property_type') }}" required wire:model="form.property_type"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
-                        <option class="">
-                            {{ trans('index.all') }} {{ trans('field.type') }}
-                        </option>
-                        @foreach ($propertyTypes as $propertyType)
-                            <option value="{{ $propertyType->value }}" wire:key="property-type-{{ $propertyType }}">
-                                {{ $propertyType->name }}
-                            </option>
-                        @endforeach
-                    </select> --}}
-
-                    <div class="dropdown w-100">
-                        {{-- <input type="text" class="form-control" readonly minlength="1" maxlength="50"
-                            data-bs-toggle="dropdown" placeholder="{{ trans('home.search.type') }}" required
-                            wire:model="type" wire:offline.class="disabled" wire:offline.attr="disabled"
-                            wire:loading.class="disabled" wire:loading.attr="disabled"> --}}
-
-                        <button type="button"
-                            class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-                            data-bs-toggle="dropdown">
-                            @if ($type)
-                                {{ PropertyType::getDescription($type) }}
-                            @else
-                                {{ trans('index.all') }} {{ trans('field.type') }}
-                            @endif
-                        </button>
-
-                        <ul class="dropdown-menu w-100 mt-2">
-                            <li wire:key="type">
-                                <button type="button" class="dropdown-item" wire:click="changeType">
-                                    {{ trans('index.all') }} {{ trans('field.type') }}
-                                </button>
-                            </li>
-                            @foreach ($this->propertyTypes() as $propertyType)
-                                <li wire:key="property-type-{{ $propertyType }}">
-                                    <button type="button" class="dropdown-item"
-                                        wire:click="changeType({{ $propertyType->value }})">
-                                        {{ $propertyType->description() }}
-                                    </button>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label">
-                    <span class="fas fa-tags fa-fw"></span>
-                    {{ trans('validation.attributes.price_range') }}
-                    <span class="text-danger">*</span>
-                </label>
-                <div class="input-group">
-                    <div class="dropdown w-100">
-                        <input type="text" class="form-control" minlength="1" maxlength="50"
-                            placeholder="{{ trans('home.search.price_range') }}" required wire:model="form.name"
-                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                            wire:loading.attr="disabled">
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-12">
+                {{-- prettier-ignore --}}
+                <x-home.search.price
+                :min-price="$min_price"
+                :max-price="$max_price"
+                />
             </div>
 
             <div class="col-12">
                 <a draggable="false"
-                    href="{{ route('property.index', ['area_id' => $id_area, 'bedroom' => $bedroom]) }}"
+                    href="{{ route('property.index', [
+                        'area_id' => $id_area,
+                        'bedroom' => $bedroom,
+                        'min_price' => $min_price,
+                        'max_price' => $max_price,
+                    ]) }}"
                     class="btn btn-success w-100 rounded-5" wire:navigate>
                     <span class="fas fa-search fa-fw"></span>
                     {{ trans('home.search.button') }}
