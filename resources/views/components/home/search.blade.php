@@ -7,8 +7,6 @@ use App\Services\AreaService;
 use Livewire\Attributes\Url;
 
 new class extends Component {
-    // public object $areas;
-
     #[Url(except: null)]
     public ?int $id_area = null;
 
@@ -19,11 +17,6 @@ new class extends Component {
     public string $bedroom = '';
 
     public string $type = '';
-
-    // public function mount(): void
-    // {
-    //     $this->loadAreas();
-    // }
 
     public function areas(): object
     {
@@ -70,7 +63,7 @@ new class extends Component {
 ?>
 
 <div class="card card-body">
-    <h5 class="card-title mb-4">{{ trans('home.form.title') }}</h5>
+    <h5 class="card-title mb-4">{{ trans('home.search.title') }}</h5>
 
     <form wire:submit.prevent="submit" role="form" autocomplete="off">
         <div class="row g-4">
@@ -91,7 +84,7 @@ new class extends Component {
                 </label>
                 <div class="input-group">
                     <input type="text" class="form-control" minlength="1" maxlength="50"
-                        placeholder="{{ trans('home.form.when') }}" required wire:model="form.name"
+                        placeholder="{{ trans('home.search.when') }}" required wire:model="form.name"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>
@@ -105,7 +98,7 @@ new class extends Component {
                 </label>
                 <div class="input-group">
                     {{-- <select class="form-select" id="bedrooms" name="bedrooms"
-                        placeholder="{{ trans('home.form.bedrooms') }}" required wire:model="form.bedrooms"
+                        placeholder="{{ trans('home.search.bedrooms') }}" required wire:model="form.bedrooms"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                         <option class="">
@@ -154,7 +147,7 @@ new class extends Component {
                 </label>
                 <div class="input-group">
                     {{-- <select class="form-select" id="property_type" name="property_type"
-                        placeholder="{{ trans('home.form.property_type') }}" required wire:model="form.property_type"
+                        placeholder="{{ trans('home.search.property_type') }}" required wire:model="form.property_type"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                         <option class="">
@@ -169,7 +162,7 @@ new class extends Component {
 
                     <div class="dropdown w-100">
                         {{-- <input type="text" class="form-control" readonly minlength="1" maxlength="50"
-                            data-bs-toggle="dropdown" placeholder="{{ trans('home.form.type') }}" required
+                            data-bs-toggle="dropdown" placeholder="{{ trans('home.search.type') }}" required
                             wire:model="type" wire:offline.class="disabled" wire:offline.attr="disabled"
                             wire:loading.class="disabled" wire:loading.attr="disabled"> --}}
 
@@ -211,7 +204,7 @@ new class extends Component {
                 <div class="input-group">
                     <div class="dropdown w-100">
                         <input type="text" class="form-control" minlength="1" maxlength="50"
-                            placeholder="{{ trans('home.form.price_range') }}" required wire:model="form.name"
+                            placeholder="{{ trans('home.search.price_range') }}" required wire:model="form.name"
                             wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                             wire:loading.attr="disabled">
                         </ul>
@@ -222,7 +215,7 @@ new class extends Component {
             <div class="col-12">
                 <button type="submit" class="btn btn-success w-100 rounded-5">
                     <span class="fas fa-search fa-fw"></span>
-                    {{ trans('home.form.button') }}
+                    {{ trans('home.search.button') }}
                 </button>
             </div>
         </div>

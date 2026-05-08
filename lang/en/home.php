@@ -7,14 +7,19 @@ return [
         'description' => 'Start your monthly and yearly living experience with us.',
     ],
 
-    'form' => [
+    'search' => [
         'title' => 'Search long-term homes',
-        'button' => 'Find a home',
-        'area' => 'Choose preferred area',
+
+        'area_title' => 'Suggested Destinations',
+        'area_placeholder' => 'Choose preferred area',
+        'area' => 'Area',
+
         'when' => 'Planned move-in',
         'bedroom' => 'Number of bedrooms',
         'type' => 'All type',
         'price_range' => 'Budget range',
+
+        'button' => 'Find a home',
     ],
 
     'our_values' => [

@@ -7,7 +7,7 @@
 <div>
     <label class="form-label">
         <span class="fas fa-location-dot fa-fw"></span>
-        {{ trans('validation.attributes.area') }}
+        {{ trans('home.search.area') }}
         <span class="text-danger">*</span>
     </label>
     <div class="input-group">
@@ -23,18 +23,19 @@
         @else
             <div class="{{ $idArea ? '' : 'position-relative w-100' }}">
                 <input type="search" id="search_area" name="search_area" class="form-control" minlength="1"
-                    maxlength="50" placeholder="{{ trans('home.form.area') }}" required
+                    maxlength="50" placeholder="{{ trans('home.search.area_placeholder') }}" required
                     wire:model.live.debounce.500ms="search_area" data-bs-toggle="dropdown">
 
-                <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-2">
+                <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-3">
                     <li>
-                        <h6 class="dropdown-header">
-                            {{ trans('home.form.area') }}
-                        </h6>
+                        <small class="dropdown-header text-muted">
+                            {{ trans('home.search.area_title') }}
+                        </small>
                     </li>
                     @forelse ($areas as $area)
-                        <li wire:key="area-{{ $area->id }}">
-                            <button type="button" class="dropdown-item" wire:click="changeArea({{ $area->id }})">
+                        <li class="border-top border-bottom py-1" wire:key="area-{{ $area->id }}">
+                            <button type="button" class="dropdown-item text-wrap icon-link"
+                                wire:click="changeArea({{ $area->id }})">
                                 <span class="fas fa-location-dot fa-fw"></span>
                                 {{ $area->name }}, {{ $area->district?->name ?? '-' }}
                             </button>
