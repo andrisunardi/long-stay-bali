@@ -1,5 +1,5 @@
 @props([
-    'idArea' => null,
+    'areaId' => null,
     'searchArea' => null,
     'areas' => collect(),
 ])
@@ -10,7 +10,7 @@
         {{ trans('home.search.area') }}
     </label>
     <div class="input-group">
-        @if ($idArea)
+        @if ($areaId)
             <div class="form-control bg-secondary-subtle">
                 {{ $searchArea }}
             </div>
@@ -26,7 +26,7 @@
                 </span>
             </button>
         @else
-            <div class="{{ $idArea ? '' : 'position-relative w-100' }}">
+            <div class="{{ $areaId ? '' : 'position-relative w-100' }}">
                 <input type="text" id="search_area" name="search_area" class="form-control" minlength="1"
                     maxlength="50" placeholder="{{ trans('home.search.area_placeholder') }}" data-bs-toggle="dropdown"
                     wire:model.live.debounce.500ms="search_area" wire:offline.class="disabled"

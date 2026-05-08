@@ -1,21 +1,18 @@
 <?php
 
 use App\Enums\Property\PropertyBedroom;
-use App\Enums\Property\PropertyType;
 use App\Livewire\Component;
 use App\Services\AreaService;
 use Livewire\Attributes\Url;
 
 new class extends Component {
     #[Url(except: null)]
-    public ?int $id_area = null;
+    public ?int $area_id = null;
 
     public string $search_area = '';
 
-    public bool $click_search_area = false;
-
     #[Url(except: null)]
-    public string $bedroom = '';
+    public ?int $bedroom = null;
 
     #[Url(except: null)]
     public int $min_price = 0;
@@ -23,12 +20,10 @@ new class extends Component {
     #[Url(except: null)]
     public int $max_price = 100000000000;
 
-    public string $type = '';
-
     public function mount(): void
     {
-        if ($this->id_area) {
-            $area = $this->areas()->firstWhere('id', $this->id_area);
+        if ($this->area_id) {
+            $area = $this->areas()->firstWhere('id', $this->area_id);
             $this->search_area = "{$area->name}, {$area->district?->name}";
         }
     }
@@ -47,32 +42,22 @@ new class extends Component {
         $this->reset(['search_area']);
         $area = $this->areas()->firstWhere('id', $value);
         $this->search_area = "{$area->name}, {$area->district?->name}";
-        $this->id_area = $area->id;
+        $this->area_id = $area->id;
     }
 
     public function removeArea(): void
     {
-        $this->reset(['id_area', 'search_area']);
+        $this->reset(['area_id', 'search_area']);
     }
 
-    public function changeBedroom(string $value = ''): void
+    public function changeBedroom(?int $value = null): void
     {
         $this->bedroom = $value;
-    }
-
-    public function changeType(string $value = ''): void
-    {
-        $this->type = $value;
     }
 
     public function propertyBedrooms(): array
     {
         return PropertyBedroom::cases();
-    }
-
-    public function propertyTypes(): array
-    {
-        return PropertyType::cases();
     }
 };
 ?>
@@ -85,7 +70,7 @@ new class extends Component {
             <div class="col-12">
                 {{-- prettier-ignore --}}
                 <x-home.search.area
-                :id-area="$id_area"
+                :area-id="$area_id"
                 :search-area="$search_area"
                 :areas="$this->areas()"
                 />
@@ -122,17 +107,13 @@ new class extends Component {
             </div>
 
             <div class="col-12">
-                <a draggable="false"
-                    href="{{ route('property.index', [
-                        'area_id' => $id_area,
-                        'bedroom' => $bedroom,
-                        'min_price' => $min_price,
-                        'max_price' => $max_price,
-                    ]) }}"
-                    class="btn btn-success w-100 rounded-5" wire:navigate>
-                    <span class="fas fa-search fa-fw"></span>
-                    {{ trans('home.search.button') }}
-                </a>
+                {{-- prettier-ignore --}}
+                <x-home.search.button
+                :area-id="$min_price"
+                :bedroom="$max_price"
+                :min-price="$min_price"
+                :max-price="$max_price"
+                />
             </div>
         </div>
     </form>
