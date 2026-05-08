@@ -8,7 +8,6 @@
     <label class="form-label">
         <span class="fas fa-location-dot fa-fw"></span>
         {{ trans('home.search.area') }}
-        <span class="text-danger">*</span>
     </label>
     <div class="input-group">
         @if ($idArea)
@@ -22,9 +21,10 @@
             </button>
         @else
             <div class="{{ $idArea ? '' : 'position-relative w-100' }}">
-                <input type="search" id="search_area" name="search_area" class="form-control" minlength="1"
-                    maxlength="50" placeholder="{{ trans('home.search.area_placeholder') }}" required
-                    wire:model.live.debounce.500ms="search_area" data-bs-toggle="dropdown">
+                <input type="text" id="search_area" name="search_area" class="form-control" minlength="1"
+                    maxlength="50" placeholder="{{ trans('home.search.area_placeholder') }}" data-bs-toggle="dropdown"
+                    wire:model.live.debounce.500ms="search_area" wire:offline.class="disabled"
+                    wire:offline.attr="disabled">
 
                 <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-3">
                     <li>
