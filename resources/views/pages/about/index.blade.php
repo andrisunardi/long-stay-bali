@@ -16,7 +16,7 @@ new #[Title('About')] class extends Component {};
     <livewire:about.our-values lazy />
 
     {{-- prettier-ignore --}}
-    <x-about.cta
+    <x-section.cta
     :image-url="asset('images/banner/about.png')"
     :button-name="trans('about.cta.button_name')"
     :button-link="'https://api.whatsapp.com/send/?phone=' .

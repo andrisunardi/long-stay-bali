@@ -62,5 +62,6 @@ return [
     'visit' => 'Visit',
     'yes' => 'Yes',
     'clear' => 'Clear',
+    'overview' => 'Overview',
 
 ];
