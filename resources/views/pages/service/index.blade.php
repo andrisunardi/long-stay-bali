@@ -16,6 +16,8 @@ new #[Title('Service')] class extends Component {};
     :image-url="asset('images/service/overview.png')"
     />
 
+    <livewire:service.our-services lazy />
+
     {{-- prettier-ignore --}}
     <x-section.cta
     :image-url="asset('images/banner/service.png')"
