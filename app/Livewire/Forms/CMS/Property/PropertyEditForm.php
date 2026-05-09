@@ -32,10 +32,10 @@ class PropertyEditForm extends Form
     public ?string $description = '';
 
     #[Validate('nullable|string|min:1|max:65535')]
-    public string $description_id = '';
+    public ?string $description_id = '';
 
     #[Validate('nullable|string|min:1|max:65535')]
-    public string $description_fr = '';
+    public ?string $description_fr = '';
 
     #[Validate('nullable|integer|exists:users,id')]
     public ?int $user_id = null;
