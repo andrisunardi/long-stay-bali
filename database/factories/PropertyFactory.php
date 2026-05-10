@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -38,6 +39,7 @@ class PropertyFactory extends Factory
             'user_id' => $user->id,
             'availability_date' => fake()->date(),
             'visit_date' => fake()->date(),
+            'bedroom' => fake()->randomElement(PropertyBedroom::cases()),
 
             'latitude' => fake()->latitude(),
             'longitude' => fake()->longitude(),

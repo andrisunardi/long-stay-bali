@@ -127,6 +127,32 @@
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div>
+                <label class="form-label" for="bedroom">
+                    {{ trans('property.bedroom') }}
+                </label>
+                <div>
+                    @foreach ($this->propertyBedrooms() as $propertyBedroom)
+                        <div class="form-check form-check-inline"
+                            wire:key="rental-type-{{ $propertyBedroom->value }}">
+                            <input class="form-check-input" type="radio"
+                                id="bedroom_{{ $propertyBedroom->value }}" name="bedroom"
+                                value="{{ $propertyBedroom->value }}"
+                                {{ $propertyBedroom->value == $form->bedroom ? 'checked' : '' }}
+                                wire:model.lazy="form.bedroom" wire:offline.class="disabled"
+                                wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
+                            <label class="form-check-label" for="bedroom_{{ $propertyBedroom->value }}">
+                                {{ $propertyBedroom->value }}
+                            </label>
+                        </div>
+                    @endforeach
+                </div>
+                @error('form.bedroom')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
         </div>
     </div>
 

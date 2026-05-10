@@ -2,6 +2,9 @@
 
 return [
 
+    'property_count' => 'Plus de <b>:count</b> maisons dans :area',
+    'all_areas' => 'toutes les zones',
+
     'property' => 'Propriété',
     'per_month' => 'Par Mois',
     'per_year' => 'Par An',
@@ -14,6 +17,7 @@ return [
     'availability_date' => 'Date de Disponibilité',
     'agent_name' => 'Nom de l\'Agent',
     'date_of_visit' => 'Date de Visite',
+    'bedroom' => 'Chambre',
 
     'location' => 'Localisation',
     'gps_coordinates' => 'Coordonnées GPS (Lat / Long):',
@@ -37,7 +41,7 @@ return [
     'legal_and_basic_eligibility' => 'Légal et Éligibilité de Base',
     'full_legal_documentation_available' => 'Documentation Légale Complète Disponible',
     'signed_listing_agreement' => 'Accord de Mise en Vente Signé',
-    'lease_agreement' => 'Contrat de Bail',
+    'lease_agreement' => 'Contrat de Location',
     'land_certificate' => 'Certificat de Terrain',
     'owners_id' => 'ID du Propriétaire',
     'imb' => 'IMB (Permis de Construction)',

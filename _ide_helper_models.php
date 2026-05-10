@@ -544,6 +544,12 @@ namespace App\Models{
  * @method static Builder<static>|Property whereMonthlyPrice($value)
  * @method static Builder<static>|Property whereYearlyPrice($value)
  * @mixin \Eloquent
+ * @property \App\Enums\Property\PropertyBedroom $bedroom
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fourBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property oneBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property threeedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property twoBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBedroom($value)
  */
 	class Property extends \Eloquent {}
 }

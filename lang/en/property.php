@@ -17,6 +17,7 @@ return [
     'availability_date' => 'Availability Date',
     'agent_name' => 'Agent Name',
     'date_of_visit' => 'Date of Visit',
+    'bedroom' => 'Bedroom',
 
     'location' => 'Location',
     'gps_coordinates' => 'GPS Coordinates (Lat / Long):',

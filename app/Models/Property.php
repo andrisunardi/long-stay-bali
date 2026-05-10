@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -237,6 +238,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereMonthlyPrice($value)
  * @method static Builder<static>|Property whereYearlyPrice($value)
  *
+ * @property PropertyBedroom $bedroom
+ *
+ * @method static Builder<static>|Property fourBedroom()
+ * @method static Builder<static>|Property oneBedroom()
+ * @method static Builder<static>|Property threeedroom()
+ * @method static Builder<static>|Property twoBedroom()
+ * @method static Builder<static>|Property whereBedroom($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -257,6 +266,7 @@ class Property extends Model
         'user_id',
         'availability_date',
         'visit_date',
+        'bedroom',
 
         'google_maps_url',
         'latitude',
@@ -345,6 +355,7 @@ class Property extends Model
             'user_id' => 'integer',
             'availability_date' => 'date',
             'visit_date' => 'date',
+            'bedroom' => PropertyBedroom::class,
 
             'google_maps_url' => 'string',
             'latitude' => 'decimal:7',
@@ -463,6 +474,26 @@ class Property extends Model
     // {
     //     return "https://lh3.googleusercontent.com/d/{$this->internet_speedtest_image_path}";
     // }
+
+    public function scopeOneBedroom(Builder $query): void
+    {
+        $query->where('bedroom', PropertyBedroom::OneBedroom);
+    }
+
+    public function scopeTwoBedroom(Builder $query): void
+    {
+        $query->where('bedroom', PropertyBedroom::TwoBedroom);
+    }
+
+    public function scopeThreeedroom(Builder $query): void
+    {
+        $query->where('bedroom', PropertyBedroom::ThreeBedroom);
+    }
+
+    public function scopeFourBedroom(Builder $query): void
+    {
+        $query->where('bedroom', PropertyBedroom::FourBedroom);
+    }
 
     public function scopeOpen(Builder $query): void
     {

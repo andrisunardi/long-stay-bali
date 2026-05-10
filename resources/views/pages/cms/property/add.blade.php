@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOrientation;
@@ -12,13 +13,13 @@ use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyWaterSource;
 use App\Livewire\Component;
 use App\Livewire\Forms\CMS\Property\PropertyAddForm;
-use App\Services\DistrictService;
 use App\Services\AreaService;
+use App\Services\DistrictService;
 use App\Services\UserService;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-use Livewire\Attributes\Title;
 use Livewire\Attributes\On;
+use Livewire\Attributes\Title;
 
 new #[Title('Add | Property')] class extends Component {
     public PropertyAddForm $form;
@@ -85,6 +86,11 @@ new #[Title('Add | Property')] class extends Component {
     {
         $service = new AreaService();
         return $service->index(districtId: $this->form->district_id, isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+    }
+
+    public function propertyBedrooms(): array
+    {
+        return PropertyBedroom::cases();
     }
 
     public function propertyLivingStyles(): array

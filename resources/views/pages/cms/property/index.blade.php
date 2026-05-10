@@ -365,6 +365,11 @@ new #[Title('Property')] class extends Component {
                                         <span class="badge text-bg-{{ $property->status->color() }} rounded-pill">
                                             {{ $property->status->description() }}
                                         </span>
+
+                                        <span class="badge text-bg-primary rounded-pill">
+                                            <span class="fas fa-bed fa-fw"></span>
+                                            {{ $property->bedroom->value }}
+                                        </span>
                                     </div>
                                     <div>
                                         <a draggable="false"

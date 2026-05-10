@@ -16,6 +16,7 @@ class PropertyService
     public function index(
         ?string $search = null,
         ?string $userId = null,
+        ?string $bedroom = null,
         ?string $districtId = null,
         ?string $areaId = null,
         ?string $status = null,
@@ -47,6 +48,7 @@ class PropertyService
                 });
             })
             ->when($userId, fn ($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
             ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
             ->when($status, fn ($q) => $q->where('status', $status))

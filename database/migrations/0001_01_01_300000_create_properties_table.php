@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyStatus;
 use App\Models\Area;
 use App\Models\District;
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->date('availability_date')->nullable();
             $table->date('visit_date')->nullable();
+            $table->unsignedTinyInteger('bedroom')->default(PropertyBedroom::OneBedroom->value);
 
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();

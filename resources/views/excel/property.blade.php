@@ -39,6 +39,9 @@
                 <b>{{ trans('field.visit_date') }}</b>
             </th>
             <th valign="middle" align="center">
+                <b>{{ trans('field.bedroom') }}</b>
+            </th>
+            <th valign="middle" align="center">
                 <b>{{ trans('field.latitude') }}</b>
             </th>
             <th valign="middle" align="center">
@@ -90,6 +93,9 @@
                 </td>
                 <td valign="middle">
                     {{ $property->visit_date?->toDateString() }}
+                </td>
+                <td valign="middle" align="center">
+                    {{ $property->bedroom->name }}
                 </td>
                 <td valign="middle">
                     {{ $property->latitude }}
