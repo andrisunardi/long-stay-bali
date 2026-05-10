@@ -32,18 +32,18 @@ new class extends Component {
         $this->search_area = "{$area->name}, {$area->district?->name}";
         $this->areaId = $area->id;
 
-        $this->dispatch('area-id-changed', id: $value);
+        $this->dispatch('area-changed', id: $area->id, name: $this->search_area);
     }
 
     public function removeArea(): void
     {
         $this->reset(['areaId', 'search_area']);
-        $this->dispatch('area-id-changed', id: null);
+        $this->dispatch('area-changed', id: null, name: '');
     }
 };
 ?>
 
-<section class="py-5">
+<section class="pt-5">
     <div class="container-md">
         <div class="row">
             <div class="col-sm-6 col-xl">

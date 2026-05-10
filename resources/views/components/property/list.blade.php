@@ -10,12 +10,16 @@ new #[Lazy] class extends Component {
     #[Reactive]
     public ?int $areaId = null;
 
-    public string $textArea = '';
+    #[Reactive]
+    public string $areaName = '';
 
+    #[Reactive]
     public ?int $bedroom = null;
 
+    #[Reactive]
     public int $minPrice = 0;
 
+    #[Reactive]
     public int $maxPrice = 100000000000;
 
     public function properties(): object
@@ -88,14 +92,14 @@ new #[Lazy] class extends Component {
 <section class="py-5">
     <div class="container-md">
         <div class="d-flex flex-column gap-4">
-            {{-- <div>
-                <p class="lead mb-0">
+            <div>
+                <p class="mb-0">
                     {!! trans('property.property_count', [
-                        'count' => $properties->count(),
-                        'area' => $text_area ?? 'all areas',
+                        'count' => $this->properties()->count(),
+                        'area' => $areaName ?: 'all areas',
                     ]) !!}
                 </p>
-            </div> --}}
+            </div>
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
                 @foreach ($this->properties() as $property)

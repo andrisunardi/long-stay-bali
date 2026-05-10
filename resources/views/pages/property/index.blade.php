@@ -9,7 +9,7 @@ new #[Title('Property')] class extends Component {
     #[Url(except: null)]
     public ?int $area_id = null;
 
-    public string $search_area = '';
+    public string $area_name = '';
 
     #[Url(except: null)]
     public ?int $bedroom = null;
@@ -20,10 +20,11 @@ new #[Title('Property')] class extends Component {
     #[Url(except: null)]
     public int $max_price = 100000000000;
 
-    #[On('area-id-changed')]
-    public function changeAreaId(?int $id = null): void
+    #[On('area-changed')]
+    public function changeArea(?int $id = null, string $name = ''): void
     {
         $this->area_id = $id;
+        $this->area_name = $name;
     }
 };
 ?>
@@ -31,16 +32,14 @@ new #[Title('Property')] class extends Component {
 @section('title', trans('page.property'))
 
 <div>
-    {{-- prettier-ignore --}}
-    <livewire:property.search
-    :area-id="$area_id"
-    :search-area="$search_area"
-    />
+    <livewire:property.search :area-id="$area_id" />
+
+    <hr />
 
     {{-- prettier-ignore --}}
     <livewire:property.list
     :area-id="$area_id"
-    :search-area="$search_area"
+    :area-name="$area_name"
     :bedroom="$bedroom"
     :min-price="$min_price"
     :max-price="$max_price"
