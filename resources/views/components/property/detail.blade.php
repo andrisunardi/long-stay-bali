@@ -18,6 +18,11 @@
                         </span>
 
                         <span class="px-2 py-1 small rounded bg-sand">
+                            <span class="fas fa-city fa-fw fa-xs text-success"></span>
+                            <span class="text-black small">{{ $property->area?->district?->name ?? 'Bali' }}</span>
+                        </span>
+
+                        <span class="px-2 py-1 small rounded bg-sand">
                             <span class="fas fa-bed fa-fw fa-xs text-success"></span>
                             <span class="text-black small">{{ $property->bedroom->value }}</span>
                         </span>
@@ -30,7 +35,13 @@
 
                     <hr class="my-4" />
 
-                    <p class="mb-0">{!! $property->translate_description !!}</p>
+                    <p class="mb-0">
+                        @if ($property->translate_description)
+                            {!! $property->translate_description !!}
+                        @else
+                            <span class="fst-italic text-muted">No Description About This Property</span>
+                        @endif
+                    </p>
 
                     <hr class="my-4" />
 
@@ -51,7 +62,7 @@
                                 Bedrooms
                             </div>
                             <div class="col-8">
-                                2
+                                {{ $property->bedroom->value }}
                             </div>
                         </div>
 
@@ -60,7 +71,7 @@
                                 Bathrooms
                             </div>
                             <div class="col-8">
-                                1
+                                {{ $property->number_of_bathrooms ?? 0 }}
                             </div>
                         </div>
 
@@ -69,7 +80,7 @@
                                 Type Property
                             </div>
                             <div class="col-8">
-                                Apartment
+                                Villa
                             </div>
                         </div>
 
@@ -78,7 +89,7 @@
                                 Type Furnish
                             </div>
                             <div class="col-8">
-                                Full furnished
+                                {{ $property->fully_furnished ? 'Full furnished' : 'Non furnished' }}
                             </div>
                         </div>
 

@@ -26,7 +26,7 @@ new #[Lazy] class extends Component {
     {
         $service = new PropertyService();
         $properties = $service->index(areaId: $this->areaId, statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], paginate: false);
-        $properties->loadMissing(['area', 'image']);
+        $properties->loadMissing(['area.district', 'image']);
 
         return $properties;
     }
@@ -137,6 +137,11 @@ new #[Lazy] class extends Component {
                             <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-code fa-fw fa-xs text-success"></span>
                                 <span class="text-black small">{{ $property->code }}</span>
+                            </span>
+
+                            <span class="px-2 py-1 small rounded bg-sand">
+                                <span class="fas fa-city fa-fw fa-xs text-success"></span>
+                                <span class="text-black small">{{ $property->area?->district?->name ?? 'Bali' }}</span>
                             </span>
 
                             <span class="px-2 py-1 small rounded bg-sand">

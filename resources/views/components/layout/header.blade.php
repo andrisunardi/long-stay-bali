@@ -7,6 +7,8 @@
                         height="40" src="{{ asset('images/logo.png') }}"
                         alt="{{ trans('index.logo') }} - {{ config('app.name') }}" />
                 </a>
+
+                <input type="text" id="search_code" name="search_code" wire:model="" />
             </div>
 
             <div class="col text-center d-none d-lg-flex align-items-center gap-lg-3 gap-xl-4">

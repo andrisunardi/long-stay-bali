@@ -17,7 +17,7 @@ new #[Title('Property Detail')] class extends Component {
             abort(404);
         }
 
-        $this->property->loadMissing(['area', 'image']);
+        $this->property->loadMissing(['area.district', 'image']);
     }
 };
 ?>
