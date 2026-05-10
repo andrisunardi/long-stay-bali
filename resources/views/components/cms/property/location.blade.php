@@ -97,8 +97,8 @@
                     <div class="input-group-text">
                         <span class="fas fa-city fa-fw "></span>
                     </div>
-                    <select class="form-select select2" id="district_id" name="district_id" wire:key="form.district_id"
-                        wire:model.lazy="district_id" wire:offline.class="disabled" wire:offline.attr="disabled"
+                    <select class="form-select select2-delete" id="district_id" name="district_id"
+                        wire:model.lazy="form.district_id" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                         <option value="">
                             {{ trans('index.select') }}
@@ -124,9 +124,9 @@
                     <div class="input-group-text">
                         <span class="fas fa-archway fa-fw "></span>
                     </div>
-                    <select class="form-select select2" id="area_id" name="area_id" wire:key="form.area_id"
-                        wire:model.lazy="area_id" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
+                    <select class="form-select select2-delete" id="area_id" name="area_id" wire:model.lazy="form.area_id"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
                         <option value="">
                             {{ trans('index.select') }} {{ trans('validation.attributes.area_id') }}
                         </option>
