@@ -9,12 +9,6 @@
 
             <div class="row">
                 <div class="col-xl-7">
-                    <div class="mb-3">
-                        <span class="badge rounded-pill text-bg-success">
-                            {{ $property->code }}
-                        </span>
-                    </div>
-
                     <h1>{{ $property->name }}</h1>
 
                     <div class="d-flex gap-3">
@@ -24,13 +18,8 @@
                         </span>
 
                         <span class="px-2 py-1 small rounded bg-sand">
-                            <span class="fas fa-location-dot fa-fw fa-xs text-success"></span>
-                            <span class="text-black small">Villa</span>
-                        </span>
-
-                        <span class="px-2 py-1 small rounded bg-sand">
                             <span class="fas fa-bed fa-fw fa-xs text-success"></span>
-                            <span class="text-black small">2 BR</span>
+                            <span class="text-black small">{{ $property->bedroom->value }}</span>
                         </span>
                     </div>
 
