@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
 
@@ -8,21 +9,14 @@ new class extends Component {
 
     public string $search_area = '';
 
+    public ?int $bedroom = null;
+
     public function mount(): void
     {
         if ($this->areaId) {
             $area = $this->areas()->firstWhere('id', $this->areaId);
             $this->search_area = "{$area->name}, {$area->district?->name}";
         }
-    }
-
-    public function areas(): object
-    {
-        $service = new AreaService();
-        $areas = $service->index(search: $this->search_area, isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
-        $areas->loadMissing(['district']);
-
-        return $areas;
     }
 
     public function changeArea(int $value): void
@@ -40,6 +34,26 @@ new class extends Component {
         $this->reset(['areaId', 'search_area']);
         $this->dispatch('area-changed', id: null, name: '');
     }
+
+    public function changeBedroom(?int $value = null): void
+    {
+        $this->bedroom = $value;
+        $this->dispatch('bedroom-changed', value: $value);
+    }
+
+    public function areas(): object
+    {
+        $service = new AreaService();
+        $areas = $service->index(search: $this->search_area, isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+        $areas->loadMissing(['district']);
+
+        return $areas;
+    }
+
+    public function propertyBedrooms(): array
+    {
+        return PropertyBedroom::cases();
+    }
 };
 ?>
 
@@ -52,6 +66,14 @@ new class extends Component {
                 :area-id="$areaId"
                 :search-area="$search_area"
                 :areas="$this->areas()"
+                />
+            </div>
+
+            <div class="col-sm-6 col-xl">
+                {{-- prettier-ignore --}}
+                <x-property.search.bedroom
+                :bedroom="$bedroom"
+                :property-bedrooms="$this->propertyBedrooms()"
                 />
             </div>
         </div>

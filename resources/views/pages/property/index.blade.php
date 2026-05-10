@@ -26,6 +26,12 @@ new #[Title('Property')] class extends Component {
         $this->area_id = $id;
         $this->area_name = $name;
     }
+
+    #[On('bedroom-changed')]
+    public function changeBedroom(?int $value = null): void
+    {
+        $this->bedroom = $value;
+    }
 };
 ?>
 
