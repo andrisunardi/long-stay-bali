@@ -35,7 +35,7 @@ new #[Lazy] class extends Component {
 
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
                     @for ($i = 0; $i < 8; $i++)
-                        <div class="col" wire:key="standard-{{ $id }}">
+                        <div class="col" wire:key="standard-{{ $i }}">
                             <div class="border-top border-5 py-5">
                                 <div class="placeholder-glow">
                                     <h7 class="placeholder rounded col-8"></h7>
