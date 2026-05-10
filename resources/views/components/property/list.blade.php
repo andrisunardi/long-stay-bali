@@ -4,31 +4,27 @@ use App\Enums\Property\PropertyStatus;
 use App\Livewire\Component;
 use App\Services\PropertyService;
 use Livewire\Attributes\Lazy;
-use Livewire\Attributes\Url;
+use Livewire\Attributes\Reactive;
 
 new #[Lazy] class extends Component {
-    public object $properties;
+    #[Reactive]
+    public ?int $areaId = null;
 
-    public ?int $area_id = null;
-
-    public string $text_area = '';
+    public string $textArea = '';
 
     public ?int $bedroom = null;
 
-    public int $min_price = 0;
+    public int $minPrice = 0;
 
-    public int $max_price = 100000000000;
+    public int $maxPrice = 100000000000;
 
-    public function mount(): void
+    public function properties(): object
     {
         $service = new PropertyService();
-        $this->properties = $service->index(areaId: $this->area_id, statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], paginate: false);
-        $this->properties->loadMissing(['area', 'image']);
+        $properties = $service->index(areaId: $this->areaId, statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], paginate: false);
+        $properties->loadMissing(['area', 'image']);
 
-        if ($this->area_id) {
-            $area = $this->areas()->firstWhere('id', $this->area_id);
-            $this->text_area = "{$area->name}, {$area->district?->name}";
-        }
+        return $properties;
     }
 };
 ?>
@@ -92,17 +88,17 @@ new #[Lazy] class extends Component {
 <section class="py-5">
     <div class="container-md">
         <div class="d-flex flex-column gap-4">
-            <div>
+            {{-- <div>
                 <p class="lead mb-0">
                     {!! trans('property.property_count', [
                         'count' => $properties->count(),
                         'area' => $text_area ?? 'all areas',
                     ]) !!}
                 </p>
-            </div>
+            </div> --}}
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-                @foreach ($properties as $property)
+                @foreach ($this->properties() as $property)
                     <div class="col" wire:key="property-{{ $property['id'] }}">
                         <div class="ratio ratio-16x9 overflow-hidden">
                             <a draggable="false" href="{{ route('property.detail', ['slug' => $property['slug']]) }}"
