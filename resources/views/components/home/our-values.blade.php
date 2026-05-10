@@ -68,10 +68,14 @@ new #[Lazy] class extends Component {
                     <div class="col" wire:key="value-{{ $value->id }}">
                         <div class="card card-body h-100">
                             <div class="mb-4">
-                                <span class="fa-stack fa-xl">
+                                <img draggable="false" loading="lazy" decoding="async"
+                                    class="user-select-none pe-none" height="100"
+                                    src="{{ asset('images/value/' . Str::slug($value->title) . '.png') }}"
+                                    alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
+                                {{-- <span class="fa-stack fa-xl">
                                     <i class="fas fa-circle fa-stack-2x fa-inverse text-light"></i>
                                     <i class="{{ $value->icon }} fa-stack-1x text-success"></i>
-                                </span>
+                                </span> --}}
                             </div>
                             <h5 class="card-title">{{ $value->translate_title }}</h5>
                             <p class="card-text">{{ $value->translate_short_description }}</p>

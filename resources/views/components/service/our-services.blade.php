@@ -87,10 +87,14 @@ new #[Lazy] class extends Component {
                         <div class="card h-100">
                             <div class="card-body">
                                 <div class="mb-4">
-                                    <span class="fa-stack fa-xl">
+                                    {{-- <span class="fa-stack fa-xl">
                                         <i class="fas fa-circle fa-stack-2x fa-inverse text-light"></i>
                                         <i class="{{ $service['icon'] }} fa-stack-1x text-success"></i>
-                                    </span>
+                                    </span> --}}
+                                    <img draggable="false" loading="lazy" decoding="async"
+                                        class="user-select-none pe-none" height="100"
+                                        src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                        alt="{{ trans('index.service') }} - {{ $service['name'] }} - {{ config('constants.meta.title') }}">
                                 </div>
                                 <h5 class="scard-title">{{ $service['name'] }}</h5>
                                 <p class="scard-text">{{ $service['description'] }}</p>
