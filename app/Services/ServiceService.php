@@ -6,9 +6,11 @@ class ServiceService
 {
     public function all(): object
     {
+        $id = 1;
+
         return collect([
             [
-                'id' => 1,
+                'id' => $id++,
                 'name' => 'Home, Managed',
                 'description' => 'Reliable support to keep your home running smoothly',
                 'icon' => 'fas fa-home',
@@ -19,7 +21,7 @@ class ServiceService
                 ],
             ],
             [
-                'id' => 2,
+                'id' => $id++,
                 'name' => 'Settling In',
                 'description' => 'Everything you need to get started in Bali',
                 'icon' => 'fas fa-motorcycle',
@@ -30,7 +32,7 @@ class ServiceService
                 ],
             ],
             [
-                'id' => 3,
+                'id' => $id++,
                 'name' => 'Living Well',
                 'description' => 'Support for your daily routine and wellbeing',
                 'icon' => 'fas fa-broom',

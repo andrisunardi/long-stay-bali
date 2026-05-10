@@ -92,8 +92,8 @@ new #[Lazy] class extends Component {
                                         <i class="{{ $service['icon'] }} fa-stack-1x text-success"></i>
                                     </span>
                                 </div>
-                                <h5 class="card-title">{{ $service['name'] }}</h5>
-                                <p class="card-text">{{ $service['description'] }}</p>
+                                <h5 class="scard-title">{{ $service['name'] }}</h5>
+                                <p class="scard-text">{{ $service['description'] }}</p>
                                 <ul>
                                     @foreach ($service['inclusions'] as $key => $inclusion)
                                         <li wire:key="inclusion-{{ $key }}">
@@ -113,13 +113,6 @@ new #[Lazy] class extends Component {
                         </div>
                     </div>
                 @endforeach
-            </div>
-
-            <div class="text-center mt-4">
-                <a draggable="false" class="btn btn-success" href="{{ route('service') }}" wire:navigate>
-                    {{ trans('home.our_services.view_more') }}
-                    <span class="fas fa-chevron-right fa-fw"></span>
-                </a>
             </div>
         </div>
     </div>

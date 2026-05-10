@@ -10,6 +10,11 @@ return [
         'description' => "Our support doesn't stop when you get the key. We're here to make life in Bali feel effortless. Continues beyond the handover. Helping you settle in, stay comfortable, and truly enjoy your life here.",
     ],
 
+    'our_standard' => [
+        'title' => 'Our Standard',
+        'description' => 'A consistent standard behind every home and every experience. Defined by clarity, quality, and a more thoughtful way of living in Bali.',
+    ],
+
     'cta' => [
         'title' => 'Thinking about living in Bali?',
         'description' => "Share what you're looking for, and we'll help you find a home that fits your way of living",
