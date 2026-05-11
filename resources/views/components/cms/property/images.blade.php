@@ -71,6 +71,13 @@ new #[Lazy] class extends Component {
         $this->currentFolderId = config('constants.folder_id.property');
         $this->loadFiles();
     }
+
+    public function removeSelected($fileId)
+    {
+        $this->selected = array_values(array_filter($this->selected, fn($id) => $id !== $fileId));
+
+        $this->dispatch('imagesUpdated', images: $this->selected);
+    }
 };
 ?>
 
@@ -79,9 +86,11 @@ new #[Lazy] class extends Component {
 
     <hr />
 
-    <x-cms.property.selected-google-drive : :files="$files" :selected="$selected" />
+    @if (count($selected))
+        <x-cms.property.selected-google-drive : :files="$files" :selected="$selected" />
 
-    <hr />
+        <hr />
+    @endif
 
     <x-cms.property.files-google-drive :files="$files" :selected="$selected" />
 </div>
