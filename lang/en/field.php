@@ -80,7 +80,7 @@ return [
     'body_id' => 'Body ID',
     'body_zh' => 'Body ZH',
     'slug' => 'Slug',
-    'index' => 'Index',
+    'price' => 'Price',
     'index' => 'Index',
     'index' => 'Index',
     'index' => 'Index',

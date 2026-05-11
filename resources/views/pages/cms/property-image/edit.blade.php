@@ -163,11 +163,15 @@ new #[Title('Edit | Property Image')] class extends Component {
                                 <label class="form-label" for="image">
                                     {{ trans('validation.attributes.image') }}
                                 </label>
-                                <div class="input-group">
-                                    <div class="input-group-text">
-                                        <span class="fas fa-image fa-fw "></span>
-                                    </div>
-                                    <input type="file" class="form-control" id="image" name="image"
+                                <div id="drop-zone"
+                                    class="border border-2 rounded p-4 text-center"
+                                    ondragover="event.preventDefault(); this.classList.add('border-success','bg-success-subtle')"
+                                    ondragleave="this.classList.remove('border-success','bg-success-subtle')"
+                                    ondrop="handleImageDrop(event)">
+                                    <span class="fas fa-cloud-upload-alt fa-2x text-muted d-block mb-2"></span>
+                                    <span class="text-muted small">Drag &amp; drop image here or</span>
+                                    <label for="image" class="btn btn-sm btn-outline-success ms-1 mb-0">Browse</label>
+                                    <input type="file" class="d-none" id="image" name="image"
                                         accept="image/*,capture=camera,image/jpg,image/jpeg,image/png,image/gif,image/webp"
                                         wire:model="form.image" wire:offline.class="disabled"
                                         wire:offline.attr="disabled" wire:loading.class="disabled"
@@ -188,28 +192,56 @@ new #[Title('Edit | Property Image')] class extends Component {
                                         wire:target="form.image">
                                         {{ trans('message.please_wait_until_the_uploading_finished') }}
                                     </div>
-
-                                    <div>
+                                    <div class="ratio ratio-1x1">
                                         <img draggable="false" loading="lazy" decoding="async"
-                                            class="img-fluid w-100 rounded" width="100"
+                                            class="rounded object-fit-cover"
                                             src="{{ $form->image->temporaryUrl() }}" alt="Image Temporary Url"
-                                            onerror="asset('images/image-not-available.png')" />
+                                            onerror="this.src='{{ asset('images/image-not-available.png') }}'" />
                                     </div>
                                 </div>
-                            @elseif ($propertyImage->image_path)
-                                <div class="mt-3">
-                                    <a draggable="false" href="{{ $propertyImage->image }}" target="_blank">
+                            @elseif ($propertyImage->image_url)
+                                <div class="ratio ratio-1x1">
+                                    <a draggable="false" href="{{ $propertyImage->image_url }}" target="_blank">
                                         <img draggable="false" loading="lazy" decoding="async"
-                                            class="img-fluid w-100 rounded" width="100"
-                                            src="{{ $propertyImage->image }}"
+                                            class="rounded object-fit-cover w-100 h-100"
+                                            src="{{ $propertyImage->image_url }}"
                                             alt="{{ trans('page.property_image') }} - {{ $propertyImage->id }}"
-                                            onerror="asset('images/image-not-available.png')" />
+                                            onerror="this.src='{{ asset('images/image-not-available.png') }}'" />
                                     </a>
                                 </div>
                             @endif
                         </div>
                     </div>
                 </div>
+
+                @if ($propertyImage->property && $propertyImage->property->images->count() > 0)
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <span class="fas fa-images fa-fw"></span>
+                            {{ trans('page.property_image') }} — {{ $propertyImage->property->name }}
+                        </label>
+                        <div class="row row-cols-3 row-cols-sm-4 row-cols-md-6 g-2">
+                            @foreach ($propertyImage->property->images->sortBy('position') as $img)
+                                <div class="col">
+                                    <div class="ratio ratio-1x1">
+                                        <a draggable="false" href="{{ $img->image_url }}" target="_blank"
+                                            class="d-block {{ $img->id === $propertyImage->id ? 'border border-3 border-success rounded' : '' }}">
+                                            <img draggable="false" loading="lazy" decoding="async"
+                                                class="rounded object-fit-cover w-100 h-100"
+                                                src="{{ $img->image_url }}"
+                                                alt="{{ $img->name }}"
+                                                title="{{ $img->name }}"
+                                                onerror="this.src='{{ asset('images/image-not-available.png') }}'" />
+                                        </a>
+                                    </div>
+                                    <div class="text-center mt-1">
+                                        <small class="text-muted text-truncate d-block">{{ $img->name }}</small>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
 
                 <hr />
 
@@ -252,5 +284,18 @@ new #[Title('Edit | Property Image')] class extends Component {
         $("#property_id").on("change", function() {
             @this.set("form.property_id", $(this).val())
         })
+
+        function handleImageDrop(event) {
+            event.preventDefault()
+            const dropZone = document.getElementById('drop-zone')
+            dropZone.classList.remove('border-success', 'bg-success-subtle')
+            const file = event.dataTransfer.files[0]
+            if (!file) return
+            const input = document.getElementById('image')
+            const dt = new DataTransfer()
+            dt.items.add(file)
+            input.files = dt.files
+            input.dispatchEvent(new Event('change'))
+        }
     </script>
 @endscript
