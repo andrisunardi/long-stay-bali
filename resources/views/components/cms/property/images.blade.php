@@ -6,16 +6,19 @@ use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Session;
 
 new #[Lazy] class extends Component {
+    public ?object $property = null;
+
     public array $selectedImages = [];
 
-    public ?string $currentFolderId = '13alt2Sqn0xIsndoTa0ZG1jSqns1jsBg3';
+    public string $currentFolderId = '';
 
     public array $files = [];
 
-    public array $folderStack = [];
+    public array $folders = [];
 
     public function mount()
     {
+        $this->currentFolderId = config('constants.folder_id.property');
         $this->loadFiles();
     }
 
@@ -38,7 +41,7 @@ new #[Lazy] class extends Component {
     public function open($file)
     {
         if ($file['type'] === 'folder') {
-            $this->folderStack[] = [
+            $this->folders[] = [
                 'id' => $this->currentFolderId,
                 'name' => $file['name'],
             ];
@@ -54,76 +57,31 @@ new #[Lazy] class extends Component {
 
     public function goTo($index)
     {
-        $folder = $this->folderStack[$index];
+        $folder = $this->folders[$index];
 
         $this->currentFolderId = $folder['id'];
-        $this->folderStack = array_slice($this->folderStack, 0, $index);
+        $this->folders = array_slice($this->folders, 0, $index);
 
         $this->loadFiles();
     }
 
-    public function goRoot()
+    public function home()
     {
-        $this->folderStack = [];
-        $this->currentFolderId = $this->rootFolderId;
-
+        $this->folders = [];
+        $this->currentFolderId = config('constants.folder_id.property');
         $this->loadFiles();
     }
 };
 ?>
 
 <div>
-    <nav aria-label="breadcrumb" class="mb-3 border-bottom">
-        <ol class="breadcrumb">
-            @if (!count($folderStack))
-                <li class="breadcrumb-item active">
-                    <span class="fas fa-home fa-fw"></span>
-                    {{ trans('page.home') }}
-                </li>
-            @else
-                <li class="breadcrumb-item">
-                    <a href="#" wire:click.prevent="goRoot">
-                        <span class="fas fa-home fa-fw"></span>
-                        {{ trans('page.home') }}
-                    </a>
-                </li>
-                @foreach ($folderStack as $index => $folder)
-                    <li class="breadcrumb-item {{ $loop->last ? 'active' : '' }}">
-                        @if ($loop->last)
-                            {{ $folder['name'] }}
-                        @else
-                            <a href="#" wire:click.prevent="goTo({{ $index }})">
-                                {{ $folder['name'] }}
-                            </a>
-                        @endif
-                    </li>
-                @endforeach
-            @endif
-        </ol>
-    </nav>
+
+    <x-cms.property.folders-google-drive :folders="$folders" />
+
+    <hr />
 
     @if (count($selectedImages))
         <div class="mb-4">
-            {{-- <div class="d-flex flex-wrap gap-3">
-                @foreach ($selectedImages as $index => $imageId)
-                    @php
-                        $file = collect($files)->firstWhere('id', $imageId);
-                    @endphp
-
-                    @if ($file)
-                        <div class="position-relative" style="width: 100px;">
-                            <div class="ratio ratio-1x1">
-                                <img src="{{ $file['thumbnail'] }}" class="img-fluid object-fit-cover rounded">
-                            </div>
-
-                            <span
-                                class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-primary">
-                                {{ $index + 1 }}
-                            </span>
-                        </div>
-                    @endif
-                @endforeach
-            </div> --}}
             <div class="row g-4">
                 @foreach ($selectedImages as $key => $imageId)
                     @php
@@ -164,7 +122,7 @@ new #[Lazy] class extends Component {
                     $file = collect($files)->firstWhere('id', $imageId);
                 @endphp
                 @if ($file)
-                    <x-cms.modal.image-google-drive :image="$file['id']" />
+                    <x-cms.modal.images-google-drive :image="$file['id']" />
                 @endif
             @endforeach
         </div>

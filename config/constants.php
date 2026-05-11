@@ -36,6 +36,7 @@ return [
     'folder_id' => [
         'property' => env('FOLDER_ID_PROPERTY'),
         'user' => env('FOLDER_ID_USER'),
+        'guide' => env('FOLDER_ID_GUIDE'),
     ],
 
     // META

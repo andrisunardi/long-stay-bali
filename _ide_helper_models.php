@@ -543,13 +543,13 @@ namespace App\Models{
  * @method static Builder<static>|Property whereGoogleMapsUrl($value)
  * @method static Builder<static>|Property whereMonthlyPrice($value)
  * @method static Builder<static>|Property whereYearlyPrice($value)
+ * @property PropertyBedroom $bedroom
+ * @method static Builder<static>|Property fourBedroom()
+ * @method static Builder<static>|Property oneBedroom()
+ * @method static Builder<static>|Property threeedroom()
+ * @method static Builder<static>|Property twoBedroom()
+ * @method static Builder<static>|Property whereBedroom($value)
  * @mixin \Eloquent
- * @property \App\Enums\Property\PropertyBedroom $bedroom
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fourBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property oneBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property threeedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property twoBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBedroom($value)
  */
 	class Property extends \Eloquent {}
 }
