@@ -65,7 +65,7 @@ new #[Lazy] class extends Component {
                                     alt="{{ trans('home.select_locations.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
                                     onerror="this.onerror=null; this.src='/images/placeholder.png';" />
 
-                                <div class="position-absolute top-0 start-0 w-100 py-3 px-3">
+                                <div class="position-absolute top-0 start-0 w-100 p-3">
                                     <span class="badge rounded-pill text-bg-success">
                                         {{ $property->area->name ?? 'Bali' }}
                                     </span>

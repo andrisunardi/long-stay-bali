@@ -1,4 +1,9 @@
-@props(['property' => null, 'form', 'tab', 'type'])
+@props([
+    'property' => null,
+    'form',
+    'tab',
+    'type',
+])
 
 @if ($tab == PropertyTab::PropertyIndentity->value)
     <x-cms.property.property-identity :property="$property" :form="$form" :type="$type" />

@@ -213,10 +213,10 @@ class PropertyEditForm extends Form
     public ?string $operational_risk_comment = '';
 
     #[Validate('required|integer|min:1|max:100000000000')]
-    public int $monthly_price = 0;
+    public ?int $monthly_price = 0;
 
     #[Validate('required|integer|min:1|max:100000000000')]
-    public int $yearly_price = 0;
+    public ?int $yearly_price = 0;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
