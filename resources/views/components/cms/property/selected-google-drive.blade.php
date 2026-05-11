@@ -15,7 +15,10 @@
                         <a draggable="false" role="button" data-bs-toggle="modal"
                             data-bs-target="#modal-image-{{ $file['id'] }}">
                             <div class="ratio ratio-1x1">
-                                <img src="{{ $file['thumbnail'] }}" class="img-fluid object-fit-cover rounded">
+                                <img draggable="false" loading="lazy" decoding="async"
+                                    class="img-fluid w-100 h-100 object-fit-cover rounded"
+                                    src="{{ $file['thumbnail'] }}" alt="Google Drive - {{ $file['id'] }}">
+
                                 <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded">
                                 </div>
                             </div>
@@ -43,7 +46,7 @@
             $file = collect($files)->firstWhere('id', $imageId);
         @endphp
         @if ($file)
-            <x-cms.modal.images-google-drive :image="$file['id']" />
+            <x-cms.modal.image-google-drive :image="$file['id']" />
         @endif
     @endforeach
 @endif
