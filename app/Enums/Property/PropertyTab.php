@@ -49,7 +49,7 @@ enum PropertyTab: int
     public function icon(): string
     {
         return match ($this) {
-            self::PropertyIndentity => 'fas fa-files fa-fw',
+            self::PropertyIndentity => 'fas fa-building fa-fw',
             self::Location => 'fas fa-location-dot fa-fw',
             self::SizeAndSurfaces => 'fas fa-arrows-up-down-left-right fa-fw',
             self::BathroomsAndLayout => 'fas fa-bath fa-fw',

@@ -19,6 +19,19 @@ new #[Lazy] class extends Component {
     public function mount()
     {
         $this->currentFolderId = config('constants.folder_id.property');
+        $this->selected = $this->property->images
+            ->map(
+                fn($propertyImage) => [
+                    'id' => $propertyImage->google_file_id ?: $propertyImage->id,
+                    'name' => $propertyImage->name,
+                    'type' => 'url',
+                    'thumbnail' => $propertyImage->image_url,
+                    'size' => '',
+                ],
+            )
+            ->values()
+            ->toArray();
+
         $this->loadFiles();
     }
 
@@ -30,11 +43,20 @@ new #[Lazy] class extends Component {
 
     public function toggleSelect($file)
     {
-        if (in_array($file['id'], $this->selected)) {
-            $this->selected = array_values(array_filter($this->selected, fn($i) => $i !== $file['id']));
+        $exists = collect($this->selected)->contains(fn($image) => (string) $image['id'] === (string) $file['id']);
+
+        if ($exists) {
+            $this->selected = array_values(
+                array_filter(
+                    $this->selected,
+
+                    fn($image) => (string) $image['id'] !== (string) $file['id'],
+                ),
+            );
         } else {
             $this->selected[] = $file;
         }
+
         $this->dispatch('imagesUpdated', images: $this->selected);
     }
 
@@ -74,7 +96,7 @@ new #[Lazy] class extends Component {
 
     public function removeSelected($fileId)
     {
-        $this->selected = array_values(array_filter($this->selected, fn($id) => $id !== $fileId));
+        $this->selected = array_values(array_filter($this->selected, fn($image) => (string) $image['id'] !== (string) $fileId));
 
         $this->dispatch('imagesUpdated', images: $this->selected);
     }

@@ -242,43 +242,101 @@ class PropertyService
     {
         $google = new GoogleDrive;
 
-        if (count($images)) {
-            $directory = 'images/property';
-            $baseUrl = request()->getSchemeAndHttpHost();
+        $directory = 'images/property';
+        $baseUrl = request()->getSchemeAndHttpHost();
 
-            $assetPath = config('constants.assets.path').'/'.$directory;
-            $assetUrl = config('constants.assets.url');
+        $assetPath = config('constants.assets.path').'/'.$directory;
+        $assetUrl = config('constants.assets.url');
 
-            $fullUrl = "{$baseUrl}{$assetUrl}";
+        $fullUrl = "{$baseUrl}{$assetUrl}";
 
-            foreach ($images as $key => $file) {
-                $content = $google->download($file['id']);
-                $position = $key + 1;
+        $existingImages = $property->images()->get();
 
-                try {
-                    $image = Image::make($content);
+        $keepGoogleIds = collect($images)
+            ->where('type', 'image')
+            ->pluck('id')
+            ->values()
+            ->toArray();
 
-                    $image->resize(1200, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                    });
+        foreach ($existingImages as $existingImage) {
+            // if (! $existingImage->google_file_id) {
+            //     $exists = collect($images)->contains(
+            //         fn ($image) => $image['thumbnail'] === $existingImage->image_url
+            //     );
 
-                    $fileName = "{$property->slug}-{$position}.webp";
-                    $fullPath = "{$assetPath}/{$fileName}";
+            //     if (! $exists) {
+            //         $existingImage->delete();
+            //     }
 
-                    $encoded = (string) $image->encode('webp', 70);
-                    file_put_contents($fullPath, $encoded);
+            //     continue;
+            // }
 
-                    $property->images()->create([
-                        'name' => $file['name'],
-                        'image_url' => "{$fullUrl}/{$directory}/{$fileName}",
-                        'google_file_id' => $file['id'],
-                        'position' => $position,
-                    ]);
-                } catch (Exception $e) {
-                    DB::rollBack();
-                    throw $e;
+            // if (! in_array($existingImage->google_file_id, $keepGoogleIds)) {
+            //     if (file_exists(public_path(
+            //         str_replace($baseUrl, '', $existingImage->image_url)
+            //     ))) {
+            //         unlink(public_path(
+            //             str_replace($baseUrl, '', $existingImage->image_url)
+            //         ));
+            //     }
+
+            //     $existingImage->delete();
+            // }
+        }
+
+        foreach ($images as $key => $file) {
+            $position = $key + 1;
+
+            if ($file['type'] === 'url') {
+                $existingImage = $property
+                    ->images()
+                    ->where('image_url', $file['thumbnail'])
+                    ->first();
+
+                if ($existingImage) {
+                    $existingImage->update(['position' => $position]);
                 }
+
+                continue;
+            }
+
+            $existingImage = $property
+                ->images()
+                ->where('google_file_id', $file['id'])
+                ->first();
+
+            if ($existingImage) {
+                $existingImage->update(['position' => $position]);
+
+                continue;
+            }
+
+            try {
+                $content = $google->download($file['id']);
+
+                $image = Image::make($content);
+
+                $image->resize(1200, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+
+                $fileName = "{$property->slug}-{$position}.webp";
+                $fullPath = "{$assetPath}/{$fileName}";
+
+                $encoded = (string) $image->encode('webp', 70);
+
+                file_put_contents($fullPath, $encoded);
+
+                $property->images()->create([
+                    'name' => $file['name'],
+                    'image_url' => "{$fullUrl}/{$directory}/{$fileName}",
+                    'google_file_id' => $file['id'],
+                    'position' => $position,
+                ]);
+            } catch (Exception $e) {
+                DB::rollBack();
+                throw $e;
             }
         }
 
