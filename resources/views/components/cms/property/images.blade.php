@@ -81,5 +81,7 @@ new #[Lazy] class extends Component {
 
     <x-cms.property.selected-google-drive : :files="$files" :selected="$selected" />
 
+    <hr />
+
     <x-cms.property.files-google-drive :files="$files" :selected="$selected" />
 </div>
