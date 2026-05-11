@@ -4,9 +4,9 @@
 ])
 
 <div class="row g-4">
-    @foreach ($selected as $key => $imageId)
+    @foreach ($selected as $key => $row)
         @php
-            $file = collect($files)->firstWhere('id', $imageId);
+            $file = collect($files)->firstWhere('id', $row['id']);
         @endphp
         @if ($file)
             <div class="col-4 col-sm-3 col-lg-2 col-xl-1" wire:key="image-{{ $file['id'] }}">

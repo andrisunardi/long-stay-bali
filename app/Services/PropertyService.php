@@ -251,8 +251,8 @@ class PropertyService
 
             $fullUrl = "{$baseUrl}{$assetUrl}";
 
-            foreach ($images as $key => $fileId) {
-                $content = $google->download($fileId);
+            foreach ($images as $key => $file) {
+                $content = $google->download($file['id']);
                 $position = $key + 1;
 
                 try {
@@ -270,9 +270,9 @@ class PropertyService
                     file_put_contents($fullPath, $encoded);
 
                     $property->images()->create([
-                        'name' => '',
+                        'name' => $file['name'],
                         'image_url' => "{$fullUrl}/{$directory}/{$fileName}",
-                        'google_file_id' => '',
+                        'google_file_id' => $file['id'],
                         'position' => $position,
                     ]);
                 } catch (Exception $e) {

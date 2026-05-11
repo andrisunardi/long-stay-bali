@@ -28,12 +28,12 @@ new #[Lazy] class extends Component {
         $this->files = $google->listFiles($this->currentFolderId);
     }
 
-    public function toggleSelect($id)
+    public function toggleSelect($file)
     {
-        if (in_array($id, $this->selected)) {
-            $this->selected = array_values(array_filter($this->selected, fn($i) => $i !== $id));
+        if (in_array($file['id'], $this->selected)) {
+            $this->selected = array_values(array_filter($this->selected, fn($i) => $i !== $file['id']));
         } else {
-            $this->selected[] = $id;
+            $this->selected[] = $file;
         }
         $this->dispatch('imagesUpdated', images: $this->selected);
     }
@@ -51,7 +51,7 @@ new #[Lazy] class extends Component {
 
             $this->loadFiles();
         } else {
-            $this->toggleSelect($file['id']);
+            $this->toggleSelect($file);
         }
     }
 
