@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -47,16 +48,16 @@ class PropertyService
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn ($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
-            ->when($status, fn ($q) => $q->where('status', $status))
-            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
-            ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
-            ->when($random, fn ($q) => $q->inRandomOrder())
-            ->when($trash, fn ($q) => $q->onlyTrashed())
+            ->when($userId, fn($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
+            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
+            ->when($status, fn($q) => $q->where('status', $status))
+            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
+            ->when($startDate, fn($q) => $q->whereDate('created_at', '>=', $startDate))
+            ->when($endDate, fn($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($random, fn($q) => $q->inRandomOrder())
+            ->when($trash, fn($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -245,43 +246,24 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path').'/'.$directory;
+        $assetPath = config('constants.assets.path') . '/' . $directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
 
-        $existingImages = $property->images()->get();
+        $imageUrls = collect($images)->pluck('thumbnail');
+        $propertyImages = PropertyImage::whereNotIn('image_url', $imageUrls)->get();
 
-        $keepGoogleIds = collect($images)
-            ->where('type', 'image')
-            ->pluck('id')
-            ->values()
-            ->toArray();
+        foreach ($propertyImages as $propertyImage) {
+            if (file_exists(public_path(
+                str_replace($baseUrl, '', $propertyImage->image_url)
+            ))) {
+                unlink(public_path(
+                    str_replace($baseUrl, '', $propertyImage->image_url)
+                ));
+            }
 
-        foreach ($existingImages as $existingImage) {
-            // if (! $existingImage->google_file_id) {
-            //     $exists = collect($images)->contains(
-            //         fn ($image) => $image['thumbnail'] === $existingImage->image_url
-            //     );
-
-            //     if (! $exists) {
-            //         $existingImage->delete();
-            //     }
-
-            //     continue;
-            // }
-
-            // if (! in_array($existingImage->google_file_id, $keepGoogleIds)) {
-            //     if (file_exists(public_path(
-            //         str_replace($baseUrl, '', $existingImage->image_url)
-            //     ))) {
-            //         unlink(public_path(
-            //             str_replace($baseUrl, '', $existingImage->image_url)
-            //         ));
-            //     }
-
-            //     $existingImage->delete();
-            // }
+            $propertyImage->delete();
         }
 
         foreach ($images as $key => $file) {
