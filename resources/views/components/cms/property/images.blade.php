@@ -20,6 +20,7 @@ new #[Lazy] class extends Component {
     {
         $this->currentFolderId = config('constants.folder_id.property');
         $this->selected = $this->property->images
+            ->sortBy('position')
             ->map(
                 fn($propertyImage) => [
                     'id' => $propertyImage->google_file_id ?: $propertyImage->id,
@@ -97,6 +98,28 @@ new #[Lazy] class extends Component {
     public function removeSelected($fileId)
     {
         $this->selected = array_values(array_filter($this->selected, fn($image) => (string) $image['id'] !== (string) $fileId));
+
+        $this->dispatch('imagesUpdated', images: $this->selected);
+    }
+
+    public function moveLeft($index)
+    {
+        if ($index <= 0) {
+            return;
+        }
+
+        [$this->selected[$index - 1], $this->selected[$index]] = [$this->selected[$index], $this->selected[$index - 1]];
+
+        $this->dispatch('imagesUpdated', images: $this->selected);
+    }
+
+    public function moveRight($index)
+    {
+        if ($index >= count($this->selected) - 1) {
+            return;
+        }
+
+        [$this->selected[$index + 1], $this->selected[$index]] = [$this->selected[$index], $this->selected[$index + 1]];
 
         $this->dispatch('imagesUpdated', images: $this->selected);
     }

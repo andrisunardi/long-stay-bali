@@ -93,7 +93,7 @@ class PropertyImage extends Model
             'name' => 'string',
             'google_file_id' => 'string',
             'image_url' => 'string',
-            'position' => 'string',
+            'position' => 'integer',
         ];
     }
 

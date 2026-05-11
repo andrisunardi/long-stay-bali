@@ -31,6 +31,22 @@
                         </a>
                     </div>
 
+                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1">
+                        @if ($key > 0)
+                            <a draggable="false" role="button" class="btn btn-sm btn-light rounded-pill"
+                                wire:click.stop="moveLeft({{ $key }})">
+                                <span class="fas fa-arrow-left"></span>
+                            </a>
+                        @endif
+
+                        @if ($key < count($selected) - 1)
+                            <a draggable="false" role="button" class="btn btn-sm btn-light rounded-pill"
+                                wire:click.stop="moveRight({{ $key }})">
+                                <span class="fas fa-arrow-right"></span>
+                            </a>
+                        @endif
+                    </div>
+
                     <a draggable="false" role="button"
                         class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger icon-link p-1"
                         wire:click="removeSelected('{{ $file['id'] }}')" wire:offline.class="disabled"
@@ -64,6 +80,22 @@
                             data-bs-target="#modal-image-{{ $row['id'] }}">
                             {{ $key + 1 }}
                         </a>
+                    </div>
+
+                    <div class="position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1">
+                        @if ($key > 0)
+                            <a draggable="false" role="button" class="btn btn-sm btn-light rounded-pill"
+                                wire:click.stop="moveLeft({{ $key }})">
+                                <span class="fas fa-arrow-left"></span>
+                            </a>
+                        @endif
+
+                        @if ($key < count($selected) - 1)
+                            <a draggable="false" role="button" class="btn btn-sm btn-light rounded-pill"
+                                wire:click.stop="moveRight({{ $key }})">
+                                <span class="fas fa-arrow-right"></span>
+                            </a>
+                        @endif
                     </div>
 
                     <a draggable="false" role="button"
