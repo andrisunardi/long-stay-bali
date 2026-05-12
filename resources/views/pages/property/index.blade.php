@@ -38,7 +38,7 @@ new #[Title('Property')] class extends Component {
 @section('title', trans('page.property'))
 
 <div>
-    <livewire:property.search :area-id="$area_id" />
+    <livewire:property.search :area-id="$area_id" :bedroom="$bedroom" />
 
     <hr />
 
