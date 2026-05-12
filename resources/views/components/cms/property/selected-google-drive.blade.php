@@ -3,14 +3,14 @@
     'selected' => [],
 ])
 
-<div class="row g-4">
+<div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-4">
     @foreach ($selected as $key => $row)
         @php
             $file = collect($files)->firstWhere('id', $row['id']);
         @endphp
 
         @if ($file)
-            <div class="col-4 col-sm-3 col-lg-2 col-xl-1" wire:key="image-{{ $file['id'] }}">
+            <div class="col" wire:key="image-{{ $file['id'] }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $file['id'] }}">
@@ -18,16 +18,15 @@
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $file['thumbnail'] }}"
                                 alt="Google Drive - {{ $file['id'] }}">
-
-                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded">
-                            </div>
                         </div>
                     </a>
 
-                    <div class="position-absolute top-50 start-50 translate-middle text-white">
+                    <div class="position-absolute top-0 start-0 text-white p-2">
                         <a draggable="false" role="button" data-bs-toggle="modal"
                             data-bs-target="#modal-image-{{ $file['id'] }}">
-                            {{ $key + 1 }}
+                            <span class="badge rounded-pill text-bg-light">
+                                {{ $key + 1 }}
+                            </span>
                         </a>
                     </div>
 
@@ -61,7 +60,7 @@
                 </div>
             </div>
         @else
-            <div class="col-4 col-sm-3 col-lg-2 col-xl-1" wire:key="image-{{ $row['id'] }}">
+            <div class="col" wire:key="image-{{ $row['id'] }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $row['id'] }}">
@@ -69,16 +68,15 @@
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $row['thumbnail'] }}"
                                 alt="Google Drive - {{ $row['id'] }}">
-
-                            <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded">
-                            </div>
                         </div>
                     </a>
 
-                    <div class="position-absolute top-50 start-50 translate-middle text-white">
+                    <div class="position-absolute top-0 start-0 text-white p-2">
                         <a draggable="false" role="button" data-bs-toggle="modal"
-                            data-bs-target="#modal-image-{{ $row['id'] }}">
-                            {{ $key + 1 }}
+                            data-bs-target="#modal-image-{{ $file['id'] }}">
+                            <span class="badge rounded-pill text-bg-light">
+                                {{ $key + 1 }}
+                            </span>
                         </a>
                     </div>
 
