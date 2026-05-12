@@ -28,6 +28,7 @@ new #[Title('Add | Property')] class extends Component {
 
     public function mount(): void
     {
+        $this->form->availability_date = today()->toDateString();
         $this->form->visit_date = today()->toDateString();
         $this->dispatch('resetForm');
 
