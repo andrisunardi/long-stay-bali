@@ -1,8 +1,9 @@
 @props([
+    'id' => null,
     'image' => null,
 ])
 
-<div class="modal fade" id="modal-image-{{ $image }}" tabindex="-1">
+<div class="modal fade" id="modal-image-{{ $id }}" tabindex="-1">
     <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,9 +14,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body p-0">
-                <a draggable="false" href="https://lh3.googleusercontent.com/d/{{ $image }}" target="_blank">
+                <a draggable="false" href="{{ $image }}" target="_blank">
                     <img draggable="false" loading="lazy" decoding="async" class="img-fluid w-100"
-                        src="https://lh3.googleusercontent.com/d/{{ $image }}" alt="Google Drive">
+                        src="{{ $image }}" alt="Google Drive">
                 </a>
             </div>
         </div>

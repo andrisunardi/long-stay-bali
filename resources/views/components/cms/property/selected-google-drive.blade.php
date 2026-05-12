@@ -10,10 +10,10 @@
         @endphp
 
         @if ($file)
-            <div class="col" wire:key="image-{{ $file['id'] }}">
+            <div class="col" wire:key="image-{{ $key }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
-                        data-bs-target="#modal-image-{{ $file['id'] }}">
+                        data-bs-target="#modal-image-{{ $key }}">
                         <div class="ratio ratio-1x1">
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $file['thumbnail'] }}"
@@ -23,7 +23,7 @@
 
                     <div class="position-absolute top-0 start-0 text-white p-2">
                         <a draggable="false" role="button" data-bs-toggle="modal"
-                            data-bs-target="#modal-image-{{ $file['id'] }}">
+                            data-bs-target="#modal-image-{{ $key }}">
                             <span class="badge rounded-pill text-bg-light">
                                 {{ $key + 1 }}
                             </span>
@@ -58,12 +58,14 @@
                         </span>
                     </a>
                 </div>
+
+                <x-cms.modal.image-google-drive :id="$key" :image="'https://lh3.googleusercontent.com/d/' . $file['id']" />
             </div>
         @else
-            <div class="col" wire:key="image-{{ $row['id'] }}">
+            <div class="col" wire:key="image-{{ $key }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
-                        data-bs-target="#modal-image-{{ $row['id'] }}">
+                        data-bs-target="#modal-image-{{ $key }}">
                         <div class="ratio ratio-1x1">
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $row['thumbnail'] }}"
@@ -73,7 +75,7 @@
 
                     <div class="position-absolute top-0 start-0 text-white p-2">
                         <a draggable="false" role="button" data-bs-toggle="modal"
-                            data-bs-target="#modal-image-{{ $file['id'] }}">
+                            data-bs-target="#modal-image-{{ $key }}">
                             <span class="badge rounded-pill text-bg-light">
                                 {{ $key + 1 }}
                             </span>
@@ -108,16 +110,9 @@
                         </span>
                     </a>
                 </div>
+
+                <x-cms.modal.image-google-drive :id="$key" :image="$row['thumbnail']" />
             </div>
         @endif
     @endforeach
 </div>
-
-@foreach ($selected as $key => $imageId)
-    @php
-        $file = collect($files)->firstWhere('id', $imageId);
-    @endphp
-    @if ($file)
-        <x-cms.modal.image-google-drive :image="$file['id']" />
-    @endif
-@endforeach
