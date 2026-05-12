@@ -246,6 +246,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property twoBedroom()
  * @method static Builder<static>|Property whereBedroom($value)
  *
+ * @property string|null $villa_name
+ *
+ * @method static Builder<static>|Property whereVillaName($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -268,6 +272,7 @@ class Property extends Model
         'visit_date',
         'bedroom',
 
+        'villa_name',
         'google_maps_url',
         'latitude',
         'longitude',
@@ -357,6 +362,7 @@ class Property extends Model
             'visit_date' => 'date',
             'bedroom' => PropertyBedroom::class,
 
+            'villa_name' => 'string',
             'google_maps_url' => 'string',
             'latitude' => 'decimal:7',
             'longitude' => 'decimal:7',

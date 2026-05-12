@@ -50,6 +50,9 @@ class PropertyEditForm extends Form
     #[Validate(['required', 'integer', new Enum(PropertyBedroom::class)])]
     public int $bedroom = PropertyBedroom::OneBedroom->value;
 
+    #[Validate('nullable|string|min:1|max:50')]
+    public ?string $villa_name = '';
+
     #[Validate('nullable|string|min:1|max:65535')]
     public ?string $google_maps_url = '';
 
@@ -240,6 +243,7 @@ class PropertyEditForm extends Form
         $this->availability_date = $property->availability_date?->toDateString();
         $this->visit_date = $property->visit_date?->toDateString();
 
+        $this->villa_name = $property->villa_name;
         $this->google_maps_url = $property->google_maps_url;
         $this->latitude = $property->latitude;
         $this->longitude = $property->longitude;

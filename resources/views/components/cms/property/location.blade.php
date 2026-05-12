@@ -1,25 +1,47 @@
 <div class="row g-3 mb-3">
     <div class="col-sm-6">
-        {{-- <div class="rounded h-100" id="map" wire:ignore></div> --}}
-        <div>
-            <label class="form-label" for="google_maps_url">
-                {{-- {{ trans('validation.attributes.google_maps_url') }} --}}
-                Google Maps URL
-            </label>
-            <div class="input-group">
-                <div class="input-group-text">
-                    <span class="fas fa-globe fa-fw "></span>
+        <div class="d-grid gap-3">
+            <div>
+                <label class="form-label" for="villa_name">
+                    {{ trans('property.villa_name') }}
+                </label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span class="fas fa-font fa-fw "></span>
+                    </div>
+                    <input type="text" class="form-control" id="villa_name" name="villa_name" minlength="1"
+                        maxlength="50" placeholder="{{ trans('index.ex') }} Villa Bali" wire:model="form.villa_name"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
                 </div>
-                <textarea class="form-control" rows="5" id="google_maps_url" name="google_maps_url"
-                    placeholder="{{ trans('index.ex') }} " wire:model="form.google_maps_url" wire:offline.class="disabled"
-                    wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled"></textarea>
+                <div class="form-text">
+                    {{ trans('helper.minlength') }} : 1,
+                    {{ trans('helper.maxlength') }} : 50
+                </div>
+                @error('form.villa_name')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            <div class="form-text">
-                {{ trans('helper.required') }}
+
+            <div>
+                <label class="form-label" for="google_maps_url">
+                    {{ trans('property.google_maps_url') }}
+                </label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span class="fas fa-globe fa-fw "></span>
+                    </div>
+                    <textarea class="form-control" rows="5" id="google_maps_url" name="google_maps_url"
+                        placeholder="{{ trans('index.ex') }} " wire:model="form.google_maps_url" wire:offline.class="disabled"
+                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled"></textarea>
+                </div>
+                <div class="form-text">
+                    {{ trans('helper.required') }}
+                </div>
+                @error('form.google_maps_url')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('form.google_maps_url')
-                <div class="form-text text-danger">{{ $message }}</div>
-            @enderror
         </div>
     </div>
 
@@ -34,7 +56,7 @@
                         <span class="fas fa-globe fa-fw "></span>
                     </div>
                     <input type="text" class="form-control" id="latitude" name="latitude"
-                        placeholder="{{ trans('index.ex') . '. -8.6648246' }}" wire:model="form.latitude"
+                        placeholder="{{ trans('index.ex') }} -8.6648246" wire:model="form.latitude"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>
@@ -55,7 +77,7 @@
                         <span class="fas fa-globe fa-fw "></span>
                     </div>
                     <input type="text" class="form-control" id="longitude" name="longitude"
-                        placeholder="{{ trans('index.ex') . '. -8.6648246' }}" wire:model="form.longitude"
+                        placeholder="{{ trans('index.ex') }} -8.6648246" wire:model="form.longitude"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>
@@ -76,7 +98,7 @@
                         <span class="fas fa-map-location-dot fa-fw "></span>
                     </div>
                     <input type="text" class="form-control" id="address" name="address" minlength="1"
-                        maxlength="100" placeholder="{{ trans('index.ex') . '. Jalan Raya Canggu I No 1' }}"
+                        maxlength="100" placeholder="{{ trans('index.ex') }} Jalan Raya Canggu I No 1"
                         wire:model="form.address" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
@@ -124,9 +146,9 @@
                     <div class="input-group-text">
                         <span class="fas fa-archway fa-fw "></span>
                     </div>
-                    <select class="form-select select2-delete" id="area_id" name="area_id" wire:model.lazy="form.area_id"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
+                    <select class="form-select select2-delete" id="area_id" name="area_id"
+                        wire:model.lazy="form.area_id" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        wire:loading.class="disabled" wire:loading.attr="disabled">
                         <option value="">
                             {{ trans('index.select') }} {{ trans('validation.attributes.area_id') }}
                         </option>

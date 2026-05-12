@@ -49,6 +49,9 @@ class PropertyAddForm extends Form
     #[Validate(['required', 'integer', new Enum(PropertyBedroom::class)])]
     public int $bedroom = PropertyBedroom::OneBedroom->value;
 
+    #[Validate('nullable|string|min:1|max:50')]
+    public string $villa_name = '';
+
     #[Validate('nullable|string|min:1|max:65535')]
     public string $google_maps_url = '';
 

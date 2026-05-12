@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="16">
+            <th align="center" colspan="17">
                 <b>{{ trans('page.property') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="16"></td>
+            <td colspan="17"></td>
         </tr>
         <tr>
-            <th align="center" colspan="16">
+            <th align="center" colspan="17">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="16"></td>
+            <td colspan="17"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -40,6 +40,9 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.bedroom') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.villa_name') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.latitude') }}</b>
@@ -98,6 +101,9 @@
                     {{ $property->bedroom->name }}
                 </td>
                 <td valign="middle">
+                    {{ $property->villa_name }}
+                </td>
+                <td valign="middle">
                     {{ $property->latitude }}
                 </td>
                 <td valign="middle">
@@ -127,7 +133,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="16">
+                <td align="center" colspan="17">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -135,7 +141,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="16"></td>
+            <td colspan="17"></td>
         </tr>
     </tfoot>
 </table>

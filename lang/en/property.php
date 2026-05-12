@@ -20,8 +20,10 @@ return [
     'bedroom' => 'Bedroom',
 
     'location' => 'Location',
+    'villa_name' => 'Villa Name',
+    'google_maps_url' => 'Google Maps Url',
     'gps_coordinates' => 'GPS Coordinates (Lat / Long):',
-    'address' => 'Address (if available)',
+    'address' => 'Address',
     'district_or_area' => 'District / Area ',
 
     'size_and_surfaces' => 'Size & Surfaces',

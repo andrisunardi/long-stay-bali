@@ -550,6 +550,8 @@ namespace App\Models{
  * @method static Builder<static>|Property twoBedroom()
  * @method static Builder<static>|Property whereBedroom($value)
  * @mixin \Eloquent
+ * @property string|null $villa_name
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereVillaName($value)
  */
 	class Property extends \Eloquent {}
 }

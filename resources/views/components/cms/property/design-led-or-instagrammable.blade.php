@@ -34,7 +34,7 @@
         </div>
         <div class="form-text">
             {{ trans('helper.minlength') }} : 1,
-            {{ trans('helper.maxlength') }} : 65.535
+            {{ trans('helper.maxlength') }} : 100
         </div>
         @error('form.usability_limitations')
             <div class="form-text text-danger">{{ $message }}</div>

@@ -41,6 +41,8 @@ class PropertyFactory extends Factory
             'visit_date' => fake()->date(),
             'bedroom' => fake()->randomElement(PropertyBedroom::cases()),
 
+            'villa_name' => fake()->name(),
+            'google_maps_url' => fake()->url(),
             'latitude' => fake()->latitude(),
             'longitude' => fake()->longitude(),
             'address' => fake()->address(),

@@ -25,6 +25,8 @@ return new class extends Migration
             $table->date('visit_date')->nullable();
             $table->unsignedTinyInteger('bedroom')->default(PropertyBedroom::OneBedroom->value);
 
+            $table->string('villa_name', 50)->nullable();
+            $table->text('google_maps_url')->nullable();
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             $table->string('address', 200)->nullable();

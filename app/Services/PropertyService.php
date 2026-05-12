@@ -42,22 +42,23 @@ class PropertyService
                         ->orWhere('description', 'like', "%{$search}%")
                         ->orWhere('description_id', 'like', "%{$search}%")
                         ->orWhere('description_zh', 'like', "%{$search}%")
+                        ->orWhere('villa_name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'phone', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
-            ->when($status, fn($q) => $q->where('status', $status))
-            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
-            ->when($startDate, fn($q) => $q->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn($q) => $q->whereDate('created_at', '<=', $endDate))
-            ->when($random, fn($q) => $q->inRandomOrder())
-            ->when($trash, fn($q) => $q->onlyTrashed())
+            ->when($userId, fn ($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
+            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
+            ->when($status, fn ($q) => $q->where('status', $status))
+            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
+            ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
+            ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -246,7 +247,7 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path') . '/' . $directory;
+        $assetPath = config('constants.assets.path').'/'.$directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
