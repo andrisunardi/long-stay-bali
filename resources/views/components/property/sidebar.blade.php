@@ -1,5 +1,3 @@
-
-
 <div class="sticky-top" style="top: 5rem">
     <div class="card card-body">
         <div class="d-grid gap-2">
