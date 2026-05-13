@@ -7,7 +7,6 @@
         </div>
         <div class="col-8">
             {{ trans('property.chat_for_check_availability_on_whatsapp') }}
-            Chat for check availability on whatsapp
         </div>
     </div>
 
@@ -40,7 +39,7 @@
 
     <div class="row">
         <div class="col-4">
-            Rental Type
+            {{ trans('property.rental_type') }}
         </div>
         <div class="col-8">
             {{ $property->rental_type?->description() }}
@@ -49,7 +48,7 @@
 
     <div class="row">
         <div class="col-4">
-            Minimum Rental Period
+            {{ trans('property.minimum_rental_period') }}
         </div>
         <div class="col-8">
             {{ $property->minimum_rental_duration_months }}
