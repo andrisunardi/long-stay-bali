@@ -349,6 +349,9 @@ class Property extends Model
         'monthly_inclusions',
         'yearly_inclusions',
 
+        'owner_id',
+        'owner_representative_id',
+
         'image_path',
         'status',
         'slug',
@@ -440,6 +443,9 @@ class Property extends Model
             'yearly_price' => 'integer',
             'monthly_inclusions' => 'array',
             'yearly_inclusions' => 'array',
+
+            'owner_id' => 'integer',
+            'owner_representative_id' => 'integer',
 
             'image_path' => 'string',
             'status' => PropertyStatus::class,
@@ -684,6 +690,16 @@ class Property extends Model
     public function area(): BelongsTo
     {
         return $this->belongsTo(Area::class);
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(Contact::class, 'owner_id');
+    }
+
+    public function ownerRepresentative(): BelongsTo
+    {
+        return $this->belongsTo(Contact::class, 'owner_representative_id');
     }
 
     public function image(): HasOne

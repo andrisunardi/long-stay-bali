@@ -3,6 +3,7 @@
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyStatus;
 use App\Models\Area;
+use App\Models\Contact;
 use App\Models\District;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -96,8 +97,8 @@ return new class extends Migration
             $table->json('monthly_inclusions')->nullable();
             $table->json('yearly_inclusions')->nullable();
 
-            $table->foreignIdFor(Contact::class, 'owner')->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(Contact::class, 'owner')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Contact::class, 'owner_id')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Contact::class, 'owner_representative_id')->nullable()->constrained()->nullOnDelete();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);

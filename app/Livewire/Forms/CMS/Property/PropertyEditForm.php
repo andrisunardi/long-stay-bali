@@ -215,10 +215,10 @@ class PropertyEditForm extends Form
     #[Validate('nullable|string|min:0|max:65535')]
     public ?string $operational_risk_comment = '';
 
-    #[Validate('required|integer|min:1|max:100000000000')]
+    #[Validate('required|integer|min:0|max:100000000000')]
     public ?int $monthly_price = 0;
 
-    #[Validate('required|integer|min:1|max:100000000000')]
+    #[Validate('required|integer|min:0|max:100000000000')]
     public ?int $yearly_price = 0;
 
     #[Validate('nullable|array')]
