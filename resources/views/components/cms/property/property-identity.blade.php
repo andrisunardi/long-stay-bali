@@ -59,8 +59,8 @@
                         <span class="fas fa-user fa-fw "></span>
                     </div>
                     @if (Auth::user()->hasRole('Admin'))
-                        <select class="form-select select2" id="user_id" name="user_id" wire:key="form.user_id"
-                            wire:model.lazy="user_id" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        <select class="form-select select2-delete" id="user_id" name="user_id"
+                            wire:model.lazy="form.user_id" wire:offline.class="disabled" wire:offline.attr="disabled"
                             wire:loading.class="disabled" wire:loading.attr="disabled">
                             <option value="">
                                 {{ trans('index.select') }}

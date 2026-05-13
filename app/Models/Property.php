@@ -376,7 +376,7 @@ class Property extends Model
             'outdoor_area_size' => 'integer',
             'pool_size' => 'string',
 
-            'number_of_bathrooms' => 'boolean',
+            'number_of_bathrooms' => 'integer',
             'ensuite_bathrooms' => 'boolean',
             'guest_toilet' => 'boolean',
             'storage' => 'boolean',
