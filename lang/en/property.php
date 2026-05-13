@@ -19,6 +19,13 @@ return [
     'bathrooms' => 'Bathrooms',
     'type_furnish' => 'Type Furnish',
     'non_furnished' => 'Non Furnished',
+    'rental_type' => 'Rental Type',
+    'minimum_rental_period' => 'Minimum Rental Period',
+
+    'what_this_home_offers' => 'What This Home Offers',
+    'monthly' => 'Monthly',
+    'yearly' => 'Yearly',
+    'weeks' => 'Weeks',
 
     'property_identity' => 'Property Identity',
     'internal_property_code' => 'Internal Property Code',

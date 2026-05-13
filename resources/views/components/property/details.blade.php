@@ -15,7 +15,7 @@
             {{ trans('property.bedrooms') }}
         </div>
         <div class="col-8">
-            {{ $property->bedroom->value }}
+            {{ $property->bedroom->value ?? 0 }}
         </div>
     </div>
 
@@ -42,7 +42,7 @@
             {{ trans('property.rental_type') }}
         </div>
         <div class="col-8">
-            {{ $property->rental_type?->description() }}
+            {{ $property->rental_type?->description() ?? '-' }}
         </div>
     </div>
 
@@ -51,7 +51,7 @@
             {{ trans('property.minimum_rental_period') }}
         </div>
         <div class="col-8">
-            {{ $property->minimum_rental_duration_months }}
+            {{ $property->minimum_rental_duration_months ?? 0 }}
             {{ trans('property.months') }}
         </div>
     </div>
