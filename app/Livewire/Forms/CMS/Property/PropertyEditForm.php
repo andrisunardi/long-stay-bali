@@ -222,7 +222,7 @@ class PropertyEditForm extends Form
     public ?int $yearly_price = 0;
 
     #[Validate('nullable|array')]
-    public ?array $monthly_inclusions = [
+    public array $monthly_inclusions = [
         'housekeeper' => false,
         'housekeeper_frequency_per_week' => null,
         'gardener' => false,
@@ -236,7 +236,7 @@ class PropertyEditForm extends Form
     ];
 
     #[Validate('nullable|array')]
-    public ?array $yearly_inclusions = [
+    public array $yearly_inclusions = [
         'housekeeper' => false,
         'housekeeper_frequency_per_week' => null,
         'gardener' => false,
@@ -334,8 +334,32 @@ class PropertyEditForm extends Form
 
         $this->monthly_price = $property->monthly_price;
         $this->yearly_price = $property->yearly_price;
-        $this->monthly_inclusions = $property->monthly_inclusions;
-        $this->yearly_inclusions = $property->yearly_inclusions;
+
+        $this->monthly_inclusions = $property->monthly_inclusions ?? [
+            'housekeeper' => false,
+            'housekeeper_frequency_per_week' => null,
+            'gardener' => false,
+            'pool_guy' => false,
+            'internet' => false,
+            'garbage' => false,
+            'banjar' => false,
+            'security' => false,
+            'electricity' => false,
+            'others' => null,
+        ];
+
+        $this->yearly_inclusions = $property->yearly_inclusions ?? [
+            'housekeeper' => false,
+            'housekeeper_frequency_per_week' => null,
+            'gardener' => false,
+            'pool_guy' => false,
+            'internet' => false,
+            'garbage' => false,
+            'banjar' => false,
+            'security' => false,
+            'electricity' => false,
+            'others' => null,
+        ];
 
         $this->operational_risk = $property->operational_risk?->value;
         $this->operational_risk_comment = $property->operational_risk_comment;
