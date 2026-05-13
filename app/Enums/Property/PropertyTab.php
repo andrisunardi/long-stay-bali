@@ -26,7 +26,9 @@ enum PropertyTab: int
 
     case PriceAndInclusions = 11;
 
-    case Images = 12;
+    case OwnerAndContact = 12;
+
+    case Images = 13;
 
     public function description(): string
     {
@@ -42,6 +44,7 @@ enum PropertyTab: int
             self::DesignLedOrInstagrammable => trans('property.design_led_or_instagrammable'),
             self::TradeOffAndTargetProfile => trans('property.trade_off_and_target_profile'),
             self::PriceAndInclusions => trans('property.price_and_inclusions'),
+            self::OwnerAndContact => trans('property.owner_and_contact'),
             self::Images => trans('property.images'),
         };
     }
@@ -60,6 +63,7 @@ enum PropertyTab: int
             self::DesignLedOrInstagrammable => 'fas fa-icons fa-fw',
             self::TradeOffAndTargetProfile => 'fas fa-user-tag fa-fw',
             self::PriceAndInclusions => 'fas fa-money-bill fa-fw',
+            self::OwnerAndContact => 'fas fa-address-book fa-fw',
             self::Images => 'fas fa-images fa-fw',
         };
     }

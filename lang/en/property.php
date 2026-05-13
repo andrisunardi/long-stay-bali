@@ -93,6 +93,8 @@ return [
     'monthly_price' => 'Monthly Price',
     'yearly_price' => 'Yearly Price',
 
+    'owner_and_contact' => 'Owner And Contact',
+
     'images' => 'Images',
 
     'operational_risk' => 'Operational Risk',
