@@ -96,6 +96,9 @@ return new class extends Migration
             $table->json('monthly_inclusions')->nullable();
             $table->json('yearly_inclusions')->nullable();
 
+            $table->foreignIdFor(Contact::class, 'owner')->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(Contact::class, 'owner')->nullable()->constrained()->nullOnDelete();
+
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);
             $table->string('slug', 50)->unique();

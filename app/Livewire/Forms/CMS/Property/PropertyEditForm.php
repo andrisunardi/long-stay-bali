@@ -222,7 +222,7 @@ class PropertyEditForm extends Form
     public ?int $yearly_price = 0;
 
     #[Validate('nullable|array')]
-    public array $monthly_inclusions = [
+    public ?array $monthly_inclusions = [
         'housekeeper' => false,
         'housekeeper_frequency' => null,
         'gardener' => false,
@@ -236,7 +236,7 @@ class PropertyEditForm extends Form
     ];
 
     #[Validate('nullable|array')]
-    public array $yearly_inclusions = [
+    public ?array $yearly_inclusions = [
         'housekeeper' => false,
         'housekeeper_frequency' => null,
         'gardener' => false,
