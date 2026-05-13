@@ -12,6 +12,14 @@ return [
     'months' => 'months',
     'location_property' => 'Location Property',
 
+    'property_details' => 'Property Details',
+    'availability' => 'Availability',
+    'chat_for_check_availability_on_whatsapp' => 'Chat for check availability on whatsapp',
+    'bedrooms' => 'Bedrooms',
+    'bathrooms' => 'Bathrooms',
+    'type_furnish' => 'Type Furnish',
+    'non_furnished' => 'Non Furnished',
+
     'property_identity' => 'Property Identity',
     'internal_property_code' => 'Internal Property Code',
     'availability_date' => 'Availability Date',

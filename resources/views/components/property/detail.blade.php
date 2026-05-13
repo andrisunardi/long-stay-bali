@@ -1,7 +1,3 @@
-@props([
-    'property' => null,
-])
-
 <section class="py-5">
     <div class="container-md">
         <div class="d-grid gap-4">
@@ -13,73 +9,7 @@
 
                     <hr class="my-4" />
 
-                    <h4 class="mb-3">Property details</h4>
-
-                    <div class="d-grid gap-2">
-                        <div class="row">
-                            <div class="col-4">
-                                Availability
-                            </div>
-                            <div class="col-8">
-                                Chat for check availability on whatsapp
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Bedrooms
-                            </div>
-                            <div class="col-8">
-                                {{ $property->bedroom->value }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Bathrooms
-                            </div>
-                            <div class="col-8">
-                                {{ $property->number_of_bathrooms ?? 0 }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Type Property
-                            </div>
-                            <div class="col-8">
-                                Villa
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Type Furnish
-                            </div>
-                            <div class="col-8">
-                                {{ $property->fully_furnished ? 'Full furnished' : 'Non furnished' }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Rental Type
-                            </div>
-                            <div class="col-8">
-                                {{ $property->rental_type?->description() }}
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-4">
-                                Minimum Rental Period
-                            </div>
-                            <div class="col-8">
-                                {{ $property->minimum_rental_duration_months }}
-                                {{ trans('property.months') }}
-                            </div>
-                        </div>
-                    </div>
+                    <x-property.details :property="$property" />
 
                     <hr class="my-4" />
 
