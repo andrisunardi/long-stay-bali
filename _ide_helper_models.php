@@ -551,11 +551,17 @@ namespace App\Models{
  * @method static Builder<static>|Property whereBedroom($value)
  * @property string|null $villa_name
  * @method static Builder<static>|Property whereVillaName($value)
- * @mixin \Eloquent
  * @property array<array-key, mixed>|null $monthly_inclusions
  * @property array<array-key, mixed>|null $yearly_inclusions
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyInclusions($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyInclusions($value)
+ * @method static Builder<static>|Property whereMonthlyInclusions($value)
+ * @method static Builder<static>|Property whereYearlyInclusions($value)
+ * @mixin \Eloquent
+ * @property int|null $owner_id
+ * @property int|null $owner_representative_id
+ * @property-read \App\Models\Contact|null $owner
+ * @property-read \App\Models\Contact|null $ownerRepresentative
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerRepresentativeId($value)
  */
 	class Property extends \Eloquent {}
 }

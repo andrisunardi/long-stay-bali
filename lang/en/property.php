@@ -74,7 +74,7 @@ return [
     'internet_speedtest' => 'Internet Speedtest (Mbps)',
     'power_backup' => 'Power Backup (Generator / Solar / None)',
     'water_source' => 'Water Source (PDAM, Well, Mixed)',
-    'electricity' => 'Electricity (Standard / Solar / Hybrid)',
+    'electricity' => 'Electricity',
 
     'category_assessment' => 'Category Assessment',
     'eligible_for_upper' => 'Eligible For Upper',
@@ -92,6 +92,15 @@ return [
     'price_and_inclusions' => 'Price And Inclusions',
     'monthly_price' => 'Monthly Price',
     'yearly_price' => 'Yearly Price',
+    'housekeeper' => 'Housekeeper',
+    'frequency_per_week' => 'Frequency Per Week',
+    'gardener' => 'Gardener',
+    'pool_guy' => 'Pool Guy',
+    'internet' => 'Internet',
+    'garbage' => 'Garbage',
+    'banjar' => 'Banjar',
+    'security' => 'Security',
+    'others' => 'Others',
 
     'owner_and_contact' => 'Owner And Contact',
 

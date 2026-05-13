@@ -223,7 +223,7 @@ class PropertyAddForm extends Form
     #[Validate('nullable|array')]
     public array $monthly_inclusions = [
         'housekeeper' => false,
-        'housekeeper_frequency' => null,
+        'housekeeper_frequency_per_week' => null,
         'gardener' => false,
         'pool_guy' => false,
         'internet' => false,
@@ -237,7 +237,7 @@ class PropertyAddForm extends Form
     #[Validate('nullable|array')]
     public array $yearly_inclusions = [
         'housekeeper' => false,
-        'housekeeper_frequency' => null,
+        'housekeeper_frequency_per_week' => null,
         'gardener' => false,
         'pool_guy' => false,
         'internet' => false,

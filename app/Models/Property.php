@@ -256,6 +256,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereMonthlyInclusions($value)
  * @method static Builder<static>|Property whereYearlyInclusions($value)
  *
+ * @property int|null $owner_id
+ * @property int|null $owner_representative_id
+ * @property-read Contact|null $owner
+ * @property-read Contact|null $ownerRepresentative
+ *
+ * @method static Builder<static>|Property whereOwnerId($value)
+ * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
