@@ -250,6 +250,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @method static Builder<static>|Property whereVillaName($value)
  *
+ * @property array<array-key, mixed>|null $monthly_inclusions
+ * @property array<array-key, mixed>|null $yearly_inclusions
+ *
+ * @method static Builder<static>|Property whereMonthlyInclusions($value)
+ * @method static Builder<static>|Property whereYearlyInclusions($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -340,6 +346,8 @@ class Property extends Model
 
         'monthly_price',
         'yearly_price',
+        'monthly_inclusions',
+        'yearly_inclusions',
 
         'image_path',
         'status',
@@ -430,6 +438,8 @@ class Property extends Model
 
             'monthly_price' => 'integer',
             'yearly_price' => 'integer',
+            'monthly_inclusions' => 'array',
+            'yearly_inclusions' => 'array',
 
             'image_path' => 'string',
             'status' => PropertyStatus::class,

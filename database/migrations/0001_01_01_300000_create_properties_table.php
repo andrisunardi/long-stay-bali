@@ -93,6 +93,8 @@ return new class extends Migration
 
             $table->unsignedBigInteger('monthly_price')->default(0);
             $table->unsignedBigInteger('yearly_price')->default(0);
+            $table->json('monthly_inclusions')->nullable();
+            $table->json('yearly_inclusions')->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);

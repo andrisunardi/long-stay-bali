@@ -221,6 +221,34 @@ class PropertyEditForm extends Form
     #[Validate('required|integer|min:1|max:100000000000')]
     public ?int $yearly_price = 0;
 
+    #[Validate('nullable|array')]
+    public array $monthly_inclusions = [
+        'housekeeper' => false,
+        'housekeeper_frequency' => null,
+        'gardener' => false,
+        'pool_guy' => false,
+        'internet' => false,
+        'garbage' => false,
+        'banjar' => false,
+        'security' => false,
+        'electricity' => false,
+        'others' => null,
+    ];
+
+    #[Validate('nullable|array')]
+    public array $yearly_inclusions = [
+        'housekeeper' => false,
+        'housekeeper_frequency' => null,
+        'gardener' => false,
+        'pool_guy' => false,
+        'internet' => false,
+        'garbage' => false,
+        'banjar' => false,
+        'security' => false,
+        'electricity' => false,
+        'others' => null,
+    ];
+
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
 
@@ -306,6 +334,8 @@ class PropertyEditForm extends Form
 
         $this->monthly_price = $property->monthly_price;
         $this->yearly_price = $property->yearly_price;
+        $this->monthly_inclusions = $property->monthly_inclusions;
+        $this->yearly_inclusions = $property->yearly_inclusions;
 
         $this->operational_risk = $property->operational_risk?->value;
         $this->operational_risk_comment = $property->operational_risk_comment;

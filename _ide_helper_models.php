@@ -549,9 +549,13 @@ namespace App\Models{
  * @method static Builder<static>|Property threeedroom()
  * @method static Builder<static>|Property twoBedroom()
  * @method static Builder<static>|Property whereBedroom($value)
- * @mixin \Eloquent
  * @property string|null $villa_name
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereVillaName($value)
+ * @method static Builder<static>|Property whereVillaName($value)
+ * @mixin \Eloquent
+ * @property array<array-key, mixed>|null $monthly_inclusions
+ * @property array<array-key, mixed>|null $yearly_inclusions
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyInclusions($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyInclusions($value)
  */
 	class Property extends \Eloquent {}
 }
