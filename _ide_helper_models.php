@@ -555,13 +555,13 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $yearly_inclusions
  * @method static Builder<static>|Property whereMonthlyInclusions($value)
  * @method static Builder<static>|Property whereYearlyInclusions($value)
- * @mixin \Eloquent
  * @property int|null $owner_id
  * @property int|null $owner_representative_id
- * @property-read \App\Models\Contact|null $owner
- * @property-read \App\Models\Contact|null $ownerRepresentative
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerRepresentativeId($value)
+ * @property-read Contact|null $owner
+ * @property-read Contact|null $ownerRepresentative
+ * @method static Builder<static>|Property whereOwnerId($value)
+ * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
+ * @mixin \Eloquent
  */
 	class Property extends \Eloquent {}
 }

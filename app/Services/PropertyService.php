@@ -9,6 +9,7 @@ use App\Models\PropertyImage;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
@@ -49,16 +50,16 @@ class PropertyService
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn ($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
-            ->when($status, fn ($q) => $q->where('status', $status))
-            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
-            ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
-            ->when($random, fn ($q) => $q->inRandomOrder())
-            ->when($trash, fn ($q) => $q->onlyTrashed())
+            ->when($userId, fn($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
+            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
+            ->when($status, fn($q) => $q->where('status', $status))
+            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
+            ->when($startDate, fn($q) => $q->whereDate('created_at', '>=', $startDate))
+            ->when($endDate, fn($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($random, fn($q) => $q->inRandomOrder())
+            ->when($trash, fn($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -112,22 +113,29 @@ class PropertyService
             // }
 
             if (! empty($data['google_maps_url'])) {
-                $url = urldecode($data['google_maps_url']);
-                preg_match(
-                    '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
-                    $url,
-                    $coordinates,
-                );
+                $response = Http::withOptions([
+                    'allow_redirects' => true,
+                ])->get($data['google_maps_url']);
 
-                $data['latitude'] = $coordinates[1] ?? null;
-                $data['longitude'] = $coordinates[2] ?? null;
+                $finalUrl = $response->effectiveUri()?->__toString();
 
-                preg_match('/place\/([^\/]+)/', $url, $place);
+                if ($finalUrl) {
+                    preg_match(
+                        '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
+                        $finalUrl,
+                        $coordinates,
+                    );
 
-                if (! $data['address']) {
-                    $data['address'] = $data['address'] ?? isset($place[1])
-                        ? str_replace('+', ' ', $place[1])
-                        : null;
+                    $data['latitude'] = $coordinates[1] ?? null;
+                    $data['longitude'] = $coordinates[2] ?? null;
+
+                    preg_match('/place\/([^\/]+)/', $finalUrl, $place);
+
+                    if (! $data['address']) {
+                        $data['address'] = isset($place[1])
+                            ? urldecode(str_replace('+', ' ', $place[1]))
+                            : null;
+                    }
                 }
             }
 
@@ -160,22 +168,29 @@ class PropertyService
             $data['slug'] = Str::slug($data['name']);
 
             if (! empty($data['google_maps_url'])) {
-                $url = urldecode($data['google_maps_url']);
-                preg_match(
-                    '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
-                    $url,
-                    $coordinates,
-                );
+                $response = Http::withOptions([
+                    'allow_redirects' => true,
+                ])->get($data['google_maps_url']);
 
-                $data['latitude'] = $coordinates[1] ?? null;
-                $data['longitude'] = $coordinates[2] ?? null;
+                $finalUrl = $response->effectiveUri()?->__toString();
 
-                preg_match('/place\/([^\/]+)/', $url, $place);
+                if ($finalUrl) {
+                    preg_match(
+                        '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
+                        $finalUrl,
+                        $coordinates,
+                    );
 
-                if (! $data['address']) {
-                    $data['address'] = isset($place[1])
-                        ? str_replace('+', ' ', $place[1])
-                        : null;
+                    $data['latitude'] = $coordinates[1] ?? null;
+                    $data['longitude'] = $coordinates[2] ?? null;
+
+                    preg_match('/place\/([^\/]+)/', $finalUrl, $place);
+
+                    if (! $data['address']) {
+                        $data['address'] = isset($place[1])
+                            ? urldecode(str_replace('+', ' ', $place[1]))
+                            : null;
+                    }
                 }
             }
 
@@ -251,7 +266,7 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path').'/'.$directory;
+        $assetPath = config('constants.assets.path') . '/' . $directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
