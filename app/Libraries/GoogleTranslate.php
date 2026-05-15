@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services;
+namespace App\Libraries;
 
 use Illuminate\Database\Eloquent\Model;
 use Stichoza\GoogleTranslate\GoogleTranslate as Translator;
