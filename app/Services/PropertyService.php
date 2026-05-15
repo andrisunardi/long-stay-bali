@@ -289,7 +289,9 @@ class PropertyService
         $fullUrl = "{$baseUrl}{$assetUrl}";
 
         $imageUrls = collect($images)->pluck('thumbnail');
-        $propertyImages = PropertyImage::whereNotIn('image_url', $imageUrls)->get();
+        $propertyImages = $property->images()
+            ->whereNotIn('image_url', $imageUrls)
+            ->get();
 
         foreach ($propertyImages as $propertyImage) {
             if (file_exists(public_path(
