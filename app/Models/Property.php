@@ -367,6 +367,11 @@ class Property extends Model
         'folder_id',
     ];
 
+    protected array $translatable = [
+        'title',
+        'description',
+    ];
+
     protected $hidden = [];
 
     protected function casts(): array

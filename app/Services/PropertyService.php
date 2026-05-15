@@ -5,13 +5,13 @@ namespace App\Services;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Models\Property;
+use App\Libraries\GoogleTranslate;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
-use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class PropertyService
 {
@@ -51,16 +51,16 @@ class PropertyService
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn ($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
-            ->when($status, fn ($q) => $q->where('status', $status))
-            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
-            ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
-            ->when($random, fn ($q) => $q->inRandomOrder())
-            ->when($trash, fn ($q) => $q->onlyTrashed())
+            ->when($userId, fn($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
+            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
+            ->when($status, fn($q) => $q->where('status', $status))
+            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
+            ->when($startDate, fn($q) => $q->whereDate('created_at', '>=', $startDate))
+            ->when($endDate, fn($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($random, fn($q) => $q->inRandomOrder())
+            ->when($trash, fn($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -145,11 +145,11 @@ class PropertyService
 
             $property = Property::create($data);
 
+            (new GoogleTranslate)->translateModel($property);
+
             if (! empty($images)) {
                 $this->uploadImages(property: $property, images: $images);
             }
-
-            $this->translate(property: $property);
 
             DB::commit();
 
@@ -237,16 +237,13 @@ class PropertyService
             Arr::pull($data, 'images');
             Arr::pull($data, 'internet_speedtest_image');
 
-            if ($property->wasChanged('description')) {
-                $this->translate(property: $property);
-            }
-
             $property->update($data);
-            $property->refresh();
+
+            (new GoogleTranslate)->translateModel($property);
 
             DB::commit();
 
-            return $property;
+            return $property->refresh();
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -270,35 +267,6 @@ class PropertyService
             ->first();
     }
 
-    public function translate(Property $property): void
-    {
-        if (! $property->description) {
-            return;
-        }
-
-        $updates = [];
-        $updates['description_id'] = (new GoogleTranslate('id'))->translate($property->description);
-        $updates['description_fr'] = (new GoogleTranslate('fr'))->translate($property->description);
-
-        $property->update($updates);
-    }
-
-    public function translatex(Property $property): Property
-    {
-        if ($property->description && ! $property->description_id) {
-            $property->description_id = (new GoogleTranslate('id'))->translate($property->description);
-        }
-
-        if ($property->description && ! $property->description_fr) {
-            $property->description_fr = (new GoogleTranslate('fr'))->translate($property->description);
-        }
-
-        $property->save();
-        $property->refresh();
-
-        return $property;
-    }
-
     public function uploadImages(Property $property, array $images = []): Property
     {
         $google = new GoogleDrive;
@@ -306,7 +274,7 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path').'/'.$directory;
+        $assetPath = config('constants.assets.path') . '/' . $directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
