@@ -19,12 +19,9 @@ new #[Lazy] class extends Component {
     public function mount()
     {
         $this->currentFolderId = config('constants.folder_id.property');
-
-        $this->selected = !empty($this->selected)
-            ? $this->selected
-            : ($this->property?->images?->count()
-                ? $this->property->images
-                    ->sortBy('position')
+        $this->selected = empty($this->selected)
+            ? $this->property?->images
+                    ?->sortBy('position')
                     ->map(
                         fn($propertyImage) => [
                             'id' => $propertyImage->google_file_id ?: $propertyImage->id,
@@ -35,8 +32,8 @@ new #[Lazy] class extends Component {
                         ],
                     )
                     ->values()
-                    ->toArray()
-                : []);
+                    ->toArray() ?? []
+            : $this->selected;
 
         $this->loadFiles();
     }
