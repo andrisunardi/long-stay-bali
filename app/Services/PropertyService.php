@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class PropertyService
 {
@@ -112,6 +113,14 @@ class PropertyService
             //     );
             // }
 
+            if ($data['description'] && !$data['description_id']) {
+                $data['description_id'] = (new GoogleTranslate("id"))->translate($data['description']);
+            }
+
+            if ($data['description'] && !$data['description_fr']) {
+                $data['description_fr'] = (new GoogleTranslate("fr"))->translate($data['description']);
+            }
+
             if (! empty($data['google_maps_url'])) {
                 $response = Http::withOptions([
                     'allow_redirects' => true,
@@ -192,6 +201,14 @@ class PropertyService
                             : null;
                     }
                 }
+            }
+
+            if ($data['description'] && !$data['description_id']) {
+                $data['description_id'] = (new GoogleTranslate("id"))->translate($data['description']);
+            }
+
+            if ($data['description'] && !$data['description_fr']) {
+                $data['description_fr'] = (new GoogleTranslate("fr"))->translate($data['description']);
             }
 
             // if ($property->code != $data['code']) {
