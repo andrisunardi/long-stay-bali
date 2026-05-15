@@ -368,7 +368,6 @@ class Property extends Model
     ];
 
     public array $translatable = [
-        'title',
         'description',
     ];
 
