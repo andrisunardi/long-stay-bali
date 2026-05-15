@@ -367,7 +367,7 @@ class Property extends Model
         'folder_id',
     ];
 
-    protected array $translatable = [
+    public array $translatable = [
         'title',
         'description',
     ];

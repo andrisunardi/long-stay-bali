@@ -72,6 +72,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Value withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Value withoutTrashed()
  *
+ * @property string $title_fr
+ * @property string $short_description_fr
+ * @property string $description_fr
+ *
+ * @method static Builder<static>|Value whereDescriptionFr($value)
+ * @method static Builder<static>|Value whereShortDescriptionFr($value)
+ * @method static Builder<static>|Value whereTitleFr($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([ValueObserver::class])]
@@ -87,14 +95,23 @@ class Value extends Model
         'title',
         'title_id',
         'title_zh',
+        'title_fr',
         'short_description',
         'short_description_id',
         'short_description_zh',
+        'short_description_fr',
         'description',
         'description_id',
         'description_zh',
+        'description_fr',
         'icon',
         'is_active',
+    ];
+
+    public array $translatable = [
+        'title',
+        'short_description',
+        'description',
     ];
 
     protected $hidden = [];
@@ -105,12 +122,15 @@ class Value extends Model
             'title' => 'string',
             'title_id' => 'string',
             'title_zh' => 'string',
+            'title_fr' => 'string',
             'short_description' => 'string',
             'short_description_id' => 'string',
             'short_description_zh' => 'string',
+            'short_description_fr' => 'string',
             'description' => 'string',
             'description_id' => 'string',
             'description_zh' => 'string',
+            'description_fr' => 'string',
             'icon' => 'string',
             'is_active' => 'boolean',
         ];
@@ -143,6 +163,7 @@ class Value extends Model
             'en' => $this->title,
             'id' => $this->title_id,
             'zh' => $this->title_zh,
+            'fr' => $this->title_fr,
         ];
 
         return $language[$locale] ?? $this->title;
@@ -155,6 +176,7 @@ class Value extends Model
             'en' => $this->short_description,
             'id' => $this->short_description_id,
             'zh' => $this->short_description_zh,
+            'fr' => $this->short_description_fr,
         ];
 
         return $language[$locale] ?? $this->short_description;
@@ -167,6 +189,7 @@ class Value extends Model
             'en' => $this->description,
             'id' => $this->description_id,
             'zh' => $this->description_zh,
+            'fr' => $this->description_fr,
         ];
 
         return $language[$locale] ?? $this->description;

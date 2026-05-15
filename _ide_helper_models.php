@@ -740,6 +740,12 @@ namespace App\Models{
  * @method static Builder<static>|Value withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Value withoutTrashed()
  * @mixin \Eloquent
+ * @property string $title_fr
+ * @property string $short_description_fr
+ * @property string $description_fr
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereDescriptionFr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereShortDescriptionFr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereTitleFr($value)
  */
 	class Value extends \Eloquent {}
 }

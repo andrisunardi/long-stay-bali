@@ -57,7 +57,7 @@ new #[Title('Add | Value')] class extends Component {
 
             <form wire:submit.prevent="submit" role="form" autocomplete="off">
                 <div class="row g-3">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="title">
                             {{ trans('validation.attributes.title') }}
                             <span class="text-danger">*</span>
@@ -82,7 +82,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="title_id">
                             {{ trans('validation.attributes.title_id') }}
                             <span class="text-danger">*</span>
@@ -107,7 +107,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="title_zh">
                             {{ trans('validation.attributes.title_zh') }}
                             <span class="text-danger">*</span>
@@ -132,7 +132,32 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="title_fr">
+                            {{ trans('validation.attributes.title_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-font fa-fw "></span>
+                            </div>
+                            <input type="text" class="form-control" id="title_fr" name="title_fr" minlength="1"
+                                maxlength="50" placeholder="{{ trans('index.ex') }}. Canggu" required
+                                wire:model="form.title_fr" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 50,
+                            {{ trans('helper.unique') }}
+                        </div>
+                        @error('form.title_fr')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="short_description">
                             {{ trans('validation.attributes.short_description') }}
                             <span class="text-danger">*</span>
@@ -157,7 +182,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="short_description_id">
                             {{ trans('validation.attributes.short_description_id') }}
                             <span class="text-danger">*</span>
@@ -182,7 +207,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="short_description_zh">
                             {{ trans('validation.attributes.short_description_zh') }}
                             <span class="text-danger">*</span>
@@ -207,7 +232,32 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="short_description_fr">
+                            {{ trans('validation.attributes.short_description_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-file-text fa-fw "></span>
+                            </div>
+                            <textarea class="form-control" id="short_description_fr" name="short_description_fr" minlength="1" maxlength="100"
+                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.short_description_fr"
+                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
+                                    </textarea>
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 100,
+                        </div>
+                        @error('form.short_description_fr')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="description">
                             {{ trans('validation.attributes.description') }}
                             <span class="text-danger">*</span>
@@ -232,7 +282,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="description_id">
                             {{ trans('validation.attributes.description_id') }}
                             <span class="text-danger">*</span>
@@ -257,7 +307,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="description_zh">
                             {{ trans('validation.attributes.description_zh') }}
                             <span class="text-danger">*</span>
@@ -282,7 +332,32 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
+                        <label class="form-label" for="description_fr">
+                            {{ trans('validation.attributes.description_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-file-text fa-fw "></span>
+                            </div>
+                            <textarea class="form-control" id="description_fr" name="description_fr" minlength="1" maxlength="100"
+                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.description_fr"
+                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
+                                    </textarea>
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 100,
+                        </div>
+                        @error('form.description_fr')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="icon">
                             {{ trans('validation.attributes.icon') }}
                             <span class="text-danger">*</span>
@@ -306,7 +381,7 @@ new #[Title('Add | Value')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <label class="form-label" for="is_active">
                             {{ trans('validation.attributes.is_active') }}
                             <span class="text-danger">*</span>

@@ -18,6 +18,7 @@ use App\Models\District;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class PropertyFactory extends Factory
 {
@@ -28,14 +29,16 @@ class PropertyFactory extends Factory
         $area = Area::first() ?? Area::factory()->create();
 
         $code = Str::random(10);
+        $description = fake()->unique()->paragraph();
         $slug = Str::slug($code);
 
         return [
             'code' => $code,
             'name' => fake()->name(),
             'description' => fake()->paragraph(),
-            'description_id' => fake()->paragraph(),
-            'description_zh' => fake()->paragraph(),
+            'description_id' => (new GoogleTranslate('id'))->translate($description),
+            'description_zh' => (new GoogleTranslate('zh'))->translate($description),
+            'description_fr' => (new GoogleTranslate('fr'))->translate($description),
             'user_id' => $user->id,
             'availability_date' => fake()->date(),
             'visit_date' => fake()->date(),

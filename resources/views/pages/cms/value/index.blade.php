@@ -208,16 +208,19 @@ new #[Title('Value')] class extends Component {
                                     </a>
                                     <div>{{ $value->title_id }}</div>
                                     <div>{{ $value->title_zh }}</div>
+                                    <div>{{ $value->title_fr }}</div>
                                 </td>
                                 <td>
                                     <div>{{ $value->short_description }}</div>
                                     <div>{{ $value->short_description_id }}</div>
                                     <div>{{ $value->short_description_zh }}</div>
+                                    <div>{{ $value->short_description_fr }}</div>
                                 </td>
                                 <td>
                                     <div>{{ $value->description }}</div>
                                     <div>{{ $value->description_id }}</div>
                                     <div>{{ $value->description_zh }}</div>
+                                    <div>{{ $value->description_fr }}</div>
                                 </td>
                                 <td>
                                     <div>{{ $value->icon }}</div>

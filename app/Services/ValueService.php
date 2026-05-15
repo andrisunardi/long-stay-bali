@@ -2,7 +2,9 @@
 
 namespace App\Services;
 
+use App\Libraries\GoogleTranslate;
 use App\Models\Value;
+use Exception;
 use Illuminate\Support\Facades\DB;
 
 class ValueService
@@ -26,18 +28,21 @@ class ValueService
                     $query->where('title', 'like', "%{$search}%")
                         ->orWhere('title_id', 'like', "%{$search}%")
                         ->orWhere('title_zh', 'like', "%{$search}%")
+                        ->orWhere('title_fr', 'like', "%{$search}%")
                         ->orWhere('short_description', 'like', "%{$search}%")
                         ->orWhere('short_description_id', 'like', "%{$search}%")
                         ->orWhere('short_description_zh', 'like', "%{$search}%")
+                        ->orWhere('short_description_fr', 'like', "%{$search}%")
                         ->orWhere('description', 'like', "%{$search}%")
                         ->orWhere('description_id', 'like', "%{$search}%")
                         ->orWhere('description_zh', 'like', "%{$search}%")
+                        ->orWhere('description_fr', 'like', "%{$search}%")
                         ->orWhere('icon', 'like', "%{$search}%");
                 });
             })
-            ->when($isActive, fn ($q) => $q->whereIn('is_active', $isActive))
-            ->when($random, fn ($q) => $q->inRandomOrder())
-            ->when($trash, fn ($q) => $q->onlyTrashed())
+            ->when($isActive, fn($q) => $q->whereIn('is_active', $isActive))
+            ->when($random, fn($q) => $q->inRandomOrder())
+            ->when($trash, fn($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -65,15 +70,40 @@ class ValueService
         $table = (new Value)->getTable();
         DB::statement("ALTER TABLE `{$table}` AUTO_INCREMENT = 1");
 
-        return Value::create($data);
+        try {
+            DB::beginTransaction();
+
+            $value = Value::create($data);
+
+            (new GoogleTranslate)->translateModel($value);
+
+            DB::commit();
+
+            return $value->refresh();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function update(Value $value, array $data = []): Value
     {
-        $value->update($data);
-        $value->refresh();
+        try {
+            DB::beginTransaction();
 
-        return $value;
+            $value->update($data);
+
+            (new GoogleTranslate)->translateModel($value);
+
+            return $value->refresh();
+
+            DB::commit();
+
+            return $property->refresh();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 
     public function delete(Value $value): bool

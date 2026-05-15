@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="17">
+            <th align="center" colspan="20">
                 <b>{{ trans('page.value') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="17"></td>
+            <td colspan="20"></td>
         </tr>
         <tr>
-            <th align="center" colspan="17">
+            <th align="center" colspan="20">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="17"></td>
+            <td colspan="20"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -33,6 +33,9 @@
                 <b>{{ trans('field.title_zh') }}</b>
             </th>
             <th valign="middle" align="center">
+                <b>{{ trans('field.title_fr') }}</b>
+            </th>
+            <th valign="middle" align="center">
                 <b>{{ trans('field.short_description') }}</b>
             </th>
             <th valign="middle" align="center">
@@ -42,6 +45,9 @@
                 <b>{{ trans('field.short_description_zh') }}</b>
             </th>
             <th valign="middle" align="center">
+                <b>{{ trans('field.short_description_fr') }}</b>
+            </th>
+            <th valign="middle" align="center">
                 <b>{{ trans('field.description') }}</b>
             </th>
             <th valign="middle" align="center">
@@ -49,6 +55,9 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.description_zh') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.description_fr') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.icon') }}</b>
@@ -89,6 +98,9 @@
                     {{ $value->title_zh }}
                 </td>
                 <td valign="middle" align="left">
+                    {{ $value->title_fr }}
+                </td>
+                <td valign="middle" align="left">
                     {{ $value->short_description }}
                 </td>
                 <td valign="middle" align="left">
@@ -98,6 +110,9 @@
                     {{ $value->short_description_zh }}
                 </td>
                 <td valign="middle" align="left">
+                    {{ $value->short_description_fr }}
+                </td>
+                <td valign="middle" align="left">
                     {{ $value->description }}
                 </td>
                 <td valign="middle" align="left">
@@ -105,6 +120,9 @@
                 </td>
                 <td valign="middle" align="left">
                     {{ $value->description_zh }}
+                </td>
+                <td valign="middle" align="left">
+                    {{ $value->description_fr }}
                 </td>
                 <td valign="middle" align="left">
                     {{ $value->icon }}
@@ -127,7 +145,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="17">
+                <td align="center" colspan="20">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -135,7 +153,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="17"></td>
+            <td colspan="20"></td>
         </tr>
     </tfoot>
 </table>
