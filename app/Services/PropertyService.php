@@ -243,7 +243,7 @@ class PropertyService
             //     }
             // }
 
-            if (!empty($images)) {
+            if (!empty($data['images'])) {
                 $this->uploadImages(property: $property, images: $data['images']);
             }
 
