@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Models\Property;
-use App\Models\PropertyImage;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -153,7 +152,9 @@ class PropertyService
 
             $property = Property::create($data);
 
-            $this->uploadImages(property: $property, images: $images);
+            if (!empty($images)) {
+                $this->uploadImages(property: $property, images: $images);
+            }
 
             DB::commit();
 
