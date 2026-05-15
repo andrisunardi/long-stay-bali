@@ -335,7 +335,7 @@ class PropertyEditForm extends Form
 
         $this->trade_off_identified = $property->trade_off_identified;
         $this->trade_off_description = $property->trade_off_description;
-        $this->target_profiles = $property->target_profiles;
+        $this->target_profiles = $property->target_profiles ?? [];
 
         $this->monthly_price = $property->monthly_price;
         $this->yearly_price = $property->yearly_price;
