@@ -35,6 +35,9 @@ class PropertyAddForm extends Form
     public string $description_id = '';
 
     #[Validate('nullable|string|min:1|max:65535')]
+    public string $description_zh = '';
+
+    #[Validate('nullable|string|min:1|max:65535')]
     public string $description_fr = '';
 
     #[Validate('nullable|integer|exists:users,id')]

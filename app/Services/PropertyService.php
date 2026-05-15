@@ -43,6 +43,7 @@ class PropertyService
                         ->orWhere('description', 'like', "%{$search}%")
                         ->orWhere('description_id', 'like', "%{$search}%")
                         ->orWhere('description_zh', 'like', "%{$search}%")
+                        ->orWhere('description_fr', 'like', "%{$search}%")
                         ->orWhere('villa_name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
@@ -50,16 +51,16 @@ class PropertyService
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
-            ->when($status, fn($q) => $q->where('status', $status))
-            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
-            ->when($startDate, fn($q) => $q->whereDate('created_at', '>=', $startDate))
-            ->when($endDate, fn($q) => $q->whereDate('created_at', '<=', $endDate))
-            ->when($random, fn($q) => $q->inRandomOrder())
-            ->when($trash, fn($q) => $q->onlyTrashed())
+            ->when($userId, fn ($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
+            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
+            ->when($status, fn ($q) => $q->where('status', $status))
+            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
+            ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
+            ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -112,14 +113,6 @@ class PropertyService
             //     );
             // }
 
-            if ($data['description'] && !$data['description_id']) {
-                $data['description_id'] = (new GoogleTranslate("id"))->translate($data['description']);
-            }
-
-            if ($data['description'] && !$data['description_fr']) {
-                $data['description_fr'] = (new GoogleTranslate("fr"))->translate($data['description']);
-            }
-
             if (! empty($data['google_maps_url'])) {
                 $response = Http::withOptions([
                     'allow_redirects' => true,
@@ -152,9 +145,11 @@ class PropertyService
 
             $property = Property::create($data);
 
-            if (!empty($images)) {
+            if (! empty($images)) {
                 $this->uploadImages(property: $property, images: $images);
             }
+
+            $this->translate(property: $property);
 
             DB::commit();
 
@@ -204,14 +199,6 @@ class PropertyService
                 }
             }
 
-            if ($data['description'] && !$data['description_id']) {
-                $data['description_id'] = (new GoogleTranslate("id"))->translate($data['description']);
-            }
-
-            if ($data['description'] && !$data['description_fr']) {
-                $data['description_fr'] = (new GoogleTranslate("fr"))->translate($data['description']);
-            }
-
             // if ($property->code != $data['code']) {
             //     $data['folder_id'] = (new GoogleDrive)->renameFolder(
             //         folderId: $property->folder_id,
@@ -243,12 +230,16 @@ class PropertyService
             //     }
             // }
 
-            if (!empty($data['images'])) {
+            if (! empty($data['images'])) {
                 $this->uploadImages(property: $property, images: $data['images']);
             }
 
             Arr::pull($data, 'images');
             Arr::pull($data, 'internet_speedtest_image');
+
+            if ($property->wasChanged('description')) {
+                $this->translate(property: $property);
+            }
 
             $property->update($data);
             $property->refresh();
@@ -279,6 +270,35 @@ class PropertyService
             ->first();
     }
 
+    public function translate(Property $property): void
+    {
+        if (! $property->description) {
+            return;
+        }
+
+        $updates = [];
+        $updates['description_id'] = (new GoogleTranslate('id'))->translate($property->description);
+        $updates['description_fr'] = (new GoogleTranslate('fr'))->translate($property->description);
+
+        $property->update($updates);
+    }
+
+    public function translatex(Property $property): Property
+    {
+        if ($property->description && ! $property->description_id) {
+            $property->description_id = (new GoogleTranslate('id'))->translate($property->description);
+        }
+
+        if ($property->description && ! $property->description_fr) {
+            $property->description_fr = (new GoogleTranslate('fr'))->translate($property->description);
+        }
+
+        $property->save();
+        $property->refresh();
+
+        return $property;
+    }
+
     public function uploadImages(Property $property, array $images = []): Property
     {
         $google = new GoogleDrive;
@@ -286,7 +306,7 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path') . '/' . $directory;
+        $assetPath = config('constants.assets.path').'/'.$directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
