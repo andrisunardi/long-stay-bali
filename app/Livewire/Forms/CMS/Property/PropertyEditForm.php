@@ -270,6 +270,7 @@ class PropertyEditForm extends Form
         $this->user_id = $property->user_id;
         $this->availability_date = $property->availability_date?->toDateString();
         $this->visit_date = $property->visit_date?->toDateString();
+        $this->bedroom = $property->bedroom->value;
 
         $this->villa_name = $property->villa_name;
         $this->google_maps_url = $property->google_maps_url;
