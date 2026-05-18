@@ -789,17 +789,32 @@ new #[Title('Detail | Property')] class extends Component {
                 <br />
 
                 <h5 class="fw-bold text-uppercase border-bottom pb-3">
-                    {{ trans('property.final_decision') }}
+                    {{ trans('property.owner_and_contact') }}
                 </h5>
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('property.status') }}</div>
+                        <div class="fw-bold">{{ trans('property.owner') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        <span class="badge rounded-pill text-bg-{{ $property->status->color() }}">
-                            {{ $property->status->description() }}
-                        </span>
+                        @if ($property->owner)
+                            {{ $property->owner->name }} -
+                            {{ $property->owner->phone }} -
+                            {{ $property->owner->email }}
+                        @endif
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.owner_representative') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        @if ($property->ownerRepresentative)
+                            {{ $property->ownerRepresentative->name }} -
+                            {{ $property->ownerRepresentative->phone }} -
+                            {{ $property->ownerRepresentative->email }}
+                        @endif
                     </div>
                 </div>
 
@@ -827,6 +842,23 @@ new #[Title('Detail | Property')] class extends Component {
                             </div>
                         </div>
                     @endforeach
+                </div>
+
+                <br />
+
+                <h5 class="fw-bold text-uppercase border-bottom pb-3">
+                    {{ trans('property.final_decision') }}
+                </h5>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.status') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        <span class="badge rounded-pill text-bg-{{ $property->status->color() }}">
+                            {{ $property->status->description() }}
+                        </span>
+                    </div>
                 </div>
 
                 <br />

@@ -82,7 +82,7 @@ new #[Title('Property')] class extends Component {
     {
         $service = new PropertyService();
         $properties = $service->index(search: $this->search, userId: $this->user_id, districtId: $this->district_id, areaId: $this->area_id, status: $this->status, startDate: $this->start_date, endDate: $this->end_date, paginate: $paginate);
-        $properties->loadMissing(['user', 'district', 'area', 'image']);
+        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image']);
 
         return $properties;
     }
@@ -93,7 +93,7 @@ new #[Title('Property')] class extends Component {
 
         $service = new PropertyService();
         $properties = $service->index(orderBy: 'id', sortBy: 'asc', paginate: false);
-        $properties->loadMissing(['user', 'district', 'area', 'image', 'createdBy', 'updatedBy']);
+        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image', 'createdBy', 'updatedBy']);
 
         return Excel::download(new PropertyExport(properties: $properties), trans('page.property') . '.xlsx');
     }
@@ -324,6 +324,7 @@ new #[Title('Property')] class extends Component {
                                 {{ trans('field.area_id') }}
                             </th>
                             <th width="1%">{{ trans('field.price') }}</th>
+                            <th width="1%">{{ trans('field.owner') }} / {{ trans('field.representative') }}</th>
                             <th width="1%">{{ trans('field.action') }}</th>
                         </tr>
                     </thead>
@@ -428,6 +429,10 @@ new #[Title('Property')] class extends Component {
                                 <td>
                                     <div>{{ Str::idr($property->monthly_price) }}</div>
                                     <div>{{ Str::idr($property->yearly_price) }}</div>
+                                </td>
+                                <td>
+                                    <div class="fw-bold">{{ $property->owner?->name }} - {{ $property->owner?->phone }}</div>
+                                    <div>{{ $property->ownerRepresentative?->name }} - {{ $property->ownerRepresentative?->phone }}</div>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">

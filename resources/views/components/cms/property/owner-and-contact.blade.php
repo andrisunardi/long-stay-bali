@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row g-3">
     <div class="col-sm-6">
         <div class="d-grid gap-3">
             <div>
