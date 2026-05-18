@@ -49,6 +49,10 @@
     <x-cms.property.price-and-inclusions :property="$property" :form="$form" :type="$type" />
 @endif
 
+@if ($tab == PropertyTab::OwnerAndContact->value)
+    <x-cms.property.owner-and-contact :property="$property" :form="$form" :type="$type" />
+@endif
+
 @if ($tab == PropertyTab::Images->value)
     <livewire:cms.property.images :property="$property" :selected="$form->images ?? []" />
 @endif

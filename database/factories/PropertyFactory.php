@@ -14,6 +14,7 @@ use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyWaterSource;
 use App\Models\Area;
+use App\Models\Contact;
 use App\Models\District;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -27,6 +28,8 @@ class PropertyFactory extends Factory
         $user = User::first() ?? User::factory()->create();
         $district = District::first() ?? District::factory()->create();
         $area = Area::first() ?? Area::factory()->create();
+
+        $contact = Contact::first() ?? Contact::factory()->create();
 
         $code = Str::random(10);
         $description = fake()->unique()->paragraph();
@@ -112,6 +115,9 @@ class PropertyFactory extends Factory
 
             'monthly_price' => fake()->numberBetween(100, 1000),
             'yearly_price' => fake()->numberBetween(100, 1000),
+
+            'owner_id' => $contact->id,
+            'owner_representative_id' => $contact->id,
 
             'image_path' => null,
             'status' => fake()->randomElement(PropertyStatus::cases()),

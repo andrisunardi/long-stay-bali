@@ -251,6 +251,12 @@ class PropertyAddForm extends Form
         'others' => null,
     ];
 
+    #[Validate('nullable|integer|exists:contacts,id')]
+    public ?int $owner_id = null;
+
+    #[Validate('nullable|integer|exists:contacts,id')]
+    public ?int $owner_representative_id = null;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
 

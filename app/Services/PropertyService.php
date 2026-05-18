@@ -267,7 +267,7 @@ class PropertyService
             ->first();
     }
 
-    public function uploadImages(Property $property, array $images = []): Property
+    public function uploadImages(Property $property, array $images = []): void
     {
         $google = new GoogleDrive;
 
@@ -351,7 +351,5 @@ class PropertyService
                 throw $e;
             }
         }
-
-        return $property;
     }
 }

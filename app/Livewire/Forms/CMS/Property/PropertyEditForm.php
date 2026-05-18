@@ -252,6 +252,12 @@ class PropertyEditForm extends Form
         'others' => null,
     ];
 
+    #[Validate('nullable|integer|exists:contacts,id')]
+    public ?int $owner_id = null;
+
+    #[Validate('nullable|integer|exists:contacts,id')]
+    public ?int $owner_representative_id = null;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;
 
@@ -337,6 +343,9 @@ class PropertyEditForm extends Form
         $this->trade_off_description = $property->trade_off_description;
         $this->target_profiles = $property->target_profiles ?? [];
 
+        $this->operational_risk = $property->operational_risk?->value;
+        $this->operational_risk_comment = $property->operational_risk_comment;
+
         $this->monthly_price = $property->monthly_price;
         $this->yearly_price = $property->yearly_price;
 
@@ -366,8 +375,8 @@ class PropertyEditForm extends Form
             'others' => null,
         ];
 
-        $this->operational_risk = $property->operational_risk?->value;
-        $this->operational_risk_comment = $property->operational_risk_comment;
+        $this->owner_id = $property->owner?->id;
+        $this->owner_representative_id = $property->ownerRepresentative?->id;
 
         $this->status = $property->status?->value;
     }

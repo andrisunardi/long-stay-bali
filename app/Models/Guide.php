@@ -76,6 +76,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Guide withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Guide withoutTrashed()
  *
+ * @property string|null $title_fr
+ * @property string $body_fr
+ *
+ * @method static Builder<static>|Guide whereBodyFr($value)
+ * @method static Builder<static>|Guide whereTitleFr($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([GuideObserver::class])]
