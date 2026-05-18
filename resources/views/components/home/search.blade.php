@@ -80,11 +80,10 @@ new class extends Component {
                 <label class="form-label">
                     <span class="fas fa-calendar fa-fw"></span>
                     {{ trans('validation.attributes.when') }}
-                    <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
                     <input type="text" class="form-control" minlength="1" maxlength="50"
-                        placeholder="{{ trans('home.search.when') }}" required wire:model="form.name"
+                        placeholder="{{ trans('home.search.when') }}" wire:model="form.name"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>

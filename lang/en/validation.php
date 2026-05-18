@@ -263,6 +263,7 @@ return [
         'view' => 'View',
         'visit_date' => 'Visit Date',
         'water_source' => 'Water Souce',
+        'when' => 'When',
         'owner_id' => 'Owner',
         'owner_name' => 'Owner Name',
         'owner_phone' => 'Owner Phone',
