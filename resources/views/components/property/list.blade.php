@@ -146,7 +146,7 @@ new #[Lazy] class extends Component {
 
                             <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-bed fa-fw fa-xs text-success"></span>
-                                <span class="text-black small">{{ $property->bedroom->value }}</span>
+                                <span class="text-black small">{{ $property->bedroom?->description() ?? 0 }}</span>
                             </span>
                         </div>
 

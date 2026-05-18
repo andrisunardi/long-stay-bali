@@ -15,7 +15,7 @@
             {{ trans('property.bedrooms') }}
         </div>
         <div class="col-8">
-            {{ $property->bedroom->value ?? 0 }}
+            {{ $property->bedroom?->description() ?? 0 }}
         </div>
     </div>
 

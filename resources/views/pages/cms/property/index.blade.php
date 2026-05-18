@@ -368,7 +368,7 @@ new #[Title('Property')] class extends Component {
 
                                         <span class="badge text-bg-primary rounded-pill">
                                             <span class="fas fa-bed fa-fw"></span>
-                                            {{ $property->bedroom->value }}
+                                            {{ $property->bedroom?->description() ?? 0 }}
                                         </span>
                                     </div>
                                     <div>
