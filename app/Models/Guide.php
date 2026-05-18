@@ -92,9 +92,11 @@ class Guide extends Model
         'title',
         'title_id',
         'title_zh',
+        'title_fr',
         'body',
         'body_id',
         'body_zh',
+        'body_fr',
         'google_file_id',
         'image_url',
         'is_show',
@@ -111,9 +113,11 @@ class Guide extends Model
             'title' => 'string',
             'title_id' => 'string',
             'title_zh' => 'string',
+            'title_fr' => 'string',
             'body' => 'string',
             'body_id' => 'string',
             'body_zh' => 'string',
+            'body_fr' => 'string',
             'google_file_id' => 'string',
             'image_url' => 'string',
             'is_show' => 'boolean',
@@ -121,6 +125,11 @@ class Guide extends Model
             'slug' => 'string',
         ];
     }
+
+    public array $translatable = [
+        'title',
+        'body',
+    ];
 
     public function getActivitylogOptions(): LogOptions
     {
@@ -149,6 +158,7 @@ class Guide extends Model
             'en' => $this->title,
             'id' => $this->title_id,
             'zh' => $this->title_zh,
+            'fr' => $this->title_fr,
         ];
 
         return $language[$locale] ?? $this->title;
@@ -161,6 +171,7 @@ class Guide extends Model
             'en' => $this->body,
             'id' => $this->body_id,
             'zh' => $this->body_zh,
+            'fr' => $this->body_fr,
         ];
 
         return $language[$locale] ?? $this->body;

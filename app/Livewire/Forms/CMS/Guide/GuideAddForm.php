@@ -21,6 +21,9 @@ class GuideAddForm extends Form
     #[Validate('required|string|min:1|max:100|unique:guides,title_zh')]
     public string $title_zh = '';
 
+    #[Validate('required|string|min:1|max:100|unique:guides,title_fr')]
+    public string $title_fr = '';
+
     #[Validate('required|string|min:1|max:65535')]
     public string $body = '';
 
@@ -29,6 +32,9 @@ class GuideAddForm extends Form
 
     #[Validate('required|string|min:1|max:65535')]
     public string $body_zh = '';
+
+    #[Validate('required|string|min:1|max:65535')]
+    public string $body_fr = '';
 
     #[Validate(['required', 'array', 'min:1'])]
     public array $image = [];

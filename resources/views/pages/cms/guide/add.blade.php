@@ -172,6 +172,31 @@ new #[Title('Add | Guide')] class extends Component {
                     </div>
 
                     <div class="col-sm-6">
+                        <label class="form-label" for="title_fr">
+                            {{ trans('validation.attributes.title_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-newspaper fa-fw "></span>
+                            </div>
+                            <input type="text" class="form-control" id="title_fr" name="title_fr" minlength="1"
+                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu" required
+                                wire:model="form.title_fr" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 100,
+                            {{ trans('helper.unique') }}
+                        </div>
+                        @error('form.title_fr')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <label class="form-label" for="body">
                             {{ trans('validation.attributes.body') }}
                             <span class="text-danger">*</span>
@@ -215,6 +240,22 @@ new #[Title('Add | Guide')] class extends Component {
                             {{ trans('helper.maxlength') }} : 65.535,
                         </div>
                         @error('form.body_zh')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label class="form-label" for="body_fr">
+                            {{ trans('validation.attributes.body_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <x-form.trix model="form.body_fr" />
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 65.535,
+                        </div>
+                        @error('form.body_fr')
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
                     </div>

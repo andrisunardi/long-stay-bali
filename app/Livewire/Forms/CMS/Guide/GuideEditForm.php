@@ -20,6 +20,8 @@ class GuideEditForm extends Form
 
     public string $title_zh = '';
 
+    public string $title_fr = '';
+
     #[Validate('required|string|min:1|max:65535')]
     public string $body = '';
 
@@ -28,6 +30,9 @@ class GuideEditForm extends Form
 
     #[Validate('required|string|min:1|max:65535')]
     public string $body_zh = '';
+
+    #[Validate('required|string|min:1|max:65535')]
+    public string $body_fr = '';
 
     #[Validate(['required', 'array', 'min:1'])]
     public array $image = [];
@@ -45,9 +50,11 @@ class GuideEditForm extends Form
         $this->title = $guide->title;
         $this->title_id = $guide->title_id;
         $this->title_zh = $guide->title_zh;
+        $this->title_fr = $guide->title_fr;
         $this->body = $guide->body;
         $this->body_id = $guide->body_id;
         $this->body_zh = $guide->body_zh;
+        $this->body_fr = $guide->body_fr;
         $this->is_show = $guide->is_show;
         $this->is_active = $guide->is_active;
     }

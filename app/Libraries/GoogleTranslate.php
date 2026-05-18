@@ -13,10 +13,8 @@ class GoogleTranslate
         'fr',
     ];
 
-    public function translateModel(
-        Model $model,
-        bool $force = false,
-    ): void {
+    public function translateModel(Model $model, bool $force = false): void
+    {
         if (! property_exists($model, 'translatable')) {
             return;
         }
@@ -41,9 +39,7 @@ class GoogleTranslate
 
             foreach ($this->locales as $locale) {
                 $column = "{$field}_{$locale}";
-
-                $updates[$column] = (new Translator($locale))
-                    ->translate($value);
+                $updates[$column] = (new Translator($locale))->translate($value);
             }
         }
 

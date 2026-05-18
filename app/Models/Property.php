@@ -367,10 +367,6 @@ class Property extends Model
         'folder_id',
     ];
 
-    public array $translatable = [
-        'description',
-    ];
-
     protected $hidden = [];
 
     protected function casts(): array
@@ -467,6 +463,10 @@ class Property extends Model
             'folder_id' => 'string',
         ];
     }
+
+    public array $translatable = [
+        'description',
+    ];
 
     public function getActivitylogOptions(): LogOptions
     {

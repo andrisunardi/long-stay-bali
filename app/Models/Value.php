@@ -108,12 +108,6 @@ class Value extends Model
         'is_active',
     ];
 
-    public array $translatable = [
-        'title',
-        'short_description',
-        'description',
-    ];
-
     protected $hidden = [];
 
     protected function casts(): array
@@ -135,6 +129,12 @@ class Value extends Model
             'is_active' => 'boolean',
         ];
     }
+
+    public array $translatable = [
+        'title',
+        'short_description',
+        'description',
+    ];
 
     public function getActivitylogOptions(): LogOptions
     {

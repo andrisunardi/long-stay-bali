@@ -16,9 +16,11 @@ return new class extends Migration
             $table->string('title', 100)->unique();
             $table->string('title_id', 100)->unique();
             $table->string('title_zh', 100)->unique();
+            $table->string('title_fr', 100)->unique();
             $table->text('body');
             $table->text('body_id');
             $table->text('body_zh');
+            $table->text('body_fr');
             $table->string('google_file_id', 100);
             $table->string('image_url');
             $table->boolean('is_show')->unsigned()->default(true);

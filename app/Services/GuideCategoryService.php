@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Libraries\GoogleTranslate;
 use App\Models\GuideCategory;
 use Illuminate\Support\Facades\DB;
 
@@ -61,15 +62,20 @@ class GuideCategoryService
         $table = (new GuideCategory)->getTable();
         DB::statement("ALTER TABLE {$table} AUTO_INCREMENT = 1");
 
-        return GuideCategory::create($data);
+        $guideCategory = GuideCategory::create($data);
+
+        (new GoogleTranslate)->translateModel($guideCategory);
+
+        return $guideCategory;
     }
 
     public function update(GuideCategory $guideCategory, array $data = []): GuideCategory
     {
         $guideCategory->update($data);
-        $guideCategory->refresh();
 
-        return $guideCategory;
+        (new GoogleTranslate)->translateModel($guideCategory);
+
+        return $guideCategory->refresh();
     }
 
     public function delete(GuideCategory $guideCategory): bool

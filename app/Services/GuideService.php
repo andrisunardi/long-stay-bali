@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Libraries\GoogleDrive;
+use App\Libraries\GoogleTranslate;
 use App\Models\Guide;
 use Exception;
 use Illuminate\Support\Arr;
@@ -32,12 +33,15 @@ class GuideService
                     $query->where('title', 'like', "%{$search}%")
                         ->orWhere('title_id', 'like', "%{$search}%")
                         ->orWhere('title_zh', 'like', "%{$search}%")
+                        ->orWhere('title_fr', 'like', "%{$search}%")
                         ->orWhere('body', 'like', "%{$search}%")
                         ->orWhere('body_id', 'like', "%{$search}%")
                         ->orWhere('body_zh', 'like', "%{$search}%")
+                        ->orWhere('body_fr', 'like', "%{$search}%")
                         ->orWhereRelation('category', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('category', 'name_id', 'like', "%{$search}%")
-                        ->orWhereRelation('category', 'name_zh', 'like', "%{$search}%");
+                        ->orWhereRelation('category', 'name_zh', 'like', "%{$search}%")
+                        ->orWhereRelation('category', 'name_fr', 'like', "%{$search}%");
                 });
             })
             ->when($guideCategoryId, fn ($q) => $q->where('guide_category_id', $guideCategoryId))
@@ -81,6 +85,8 @@ class GuideService
 
             $guide = Guide::create($data);
 
+            (new GoogleTranslate)->translateModel($guide);
+
             $this->uploadImage(guide: $guide, fileId: $image);
 
             DB::commit();
@@ -102,11 +108,12 @@ class GuideService
             Arr::pull($data, 'image');
 
             $guide->update($data);
-            $guide->refresh();
+
+            (new GoogleTranslate)->translateModel($guide);
 
             DB::commit();
 
-            return $guide;
+            return $guide->refresh();
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
@@ -187,11 +194,11 @@ class GuideService
 
             $guide->image_url = "{$fullUrl}/{$directory}/{$fileName}";
             $guide->save();
+
+            return $guide;
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;
         }
-
-        return $guide;
     }
 }

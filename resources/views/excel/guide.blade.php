@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="14">
+            <th align="center" colspan="15">
                 <b>{{ trans('page.guide') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="15"></td>
         </tr>
         <tr>
-            <th align="center" colspan="14">
+            <th align="center" colspan="15">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="15"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -34,6 +34,9 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.title_zh') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.title_fr') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.google_file_id') }}</b>
@@ -112,7 +115,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="14">
+                <td align="center" colspan="15">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -120,7 +123,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="14"></td>
+            <td colspan="15"></td>
         </tr>
     </tfoot>
 </table>
