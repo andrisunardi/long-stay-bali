@@ -118,6 +118,12 @@ return [
     'others' => 'Others',
 
     'owner_and_contact' => 'Owner And Contact',
+    'owner_name' => 'Owner Name',
+    'owner_phone' => 'Owner Phone',
+    'owner_email' => 'Owner Email',
+    'owner_representative_name' => 'Owner Representative Name',
+    'owner_representative_phone' => 'Owner Representative Phone',
+    'owner_representative_email' => 'Owner Representative Email',
 
     'images' => 'Images',
 

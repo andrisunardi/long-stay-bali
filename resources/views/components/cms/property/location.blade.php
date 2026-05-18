@@ -104,7 +104,7 @@
                 </div>
                 <div class="form-text">
                     {{ trans('helper.minlength') }} : 1,
-                    {{ trans('helper.maxlength') }} : 200
+                    {{ trans('helper.maxlength') }} : 100
                 </div>
                 @error('form.address')
                     <div class="form-text text-danger">{{ $message }}</div>

@@ -63,5 +63,6 @@ return [
     'yes' => 'Yes',
     'clear' => 'Clear',
     'overview' => 'Overview',
+    'cancel' => 'Cancel',
 
 ];

@@ -263,6 +263,14 @@ return [
         'view' => 'View',
         'visit_date' => 'Visit Date',
         'water_source' => 'Water Souce',
+        'owner_id' => 'Owner',
+        'owner_name' => 'Owner Name',
+        'owner_phone' => 'Owner Phone',
+        'owner_email' => 'Owner Email',
+        'owner_representative_id' => 'Owner Representative',
+        'owner_representative_name' => 'Owner Representative Name',
+        'owner_representative_phone' => 'Owner Representative Phone',
+        'owner_representative_email' => 'Owner Representative Email',
     ],
 
 ];

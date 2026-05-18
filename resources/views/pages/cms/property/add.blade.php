@@ -13,7 +13,9 @@ use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyWaterSource;
 use App\Livewire\Component;
 use App\Livewire\Forms\CMS\Property\PropertyAddForm;
+use App\Models\Contact;
 use App\Services\AreaService;
+use App\Services\ContactService;
 use App\Services\DistrictService;
 use App\Services\UserService;
 use Illuminate\Support\Str;
@@ -25,6 +27,18 @@ new #[Title('Add | Property')] class extends Component {
     public PropertyAddForm $form;
 
     public int $tab = PropertyTab::PropertyIndentity->value;
+
+    public string $owner_name = '';
+
+    public string $owner_phone = '';
+
+    public string $owner_email = '';
+
+    public string $owner_representative_name = '';
+
+    public string $owner_representative_phone = '';
+
+    public string $owner_representative_email = '';
 
     public function mount(): void
     {
@@ -42,15 +56,89 @@ new #[Title('Add | Property')] class extends Component {
         $this->tab = $tab;
     }
 
-    public function resetForm(): void
+    public function updatedFormOwnerId(): void
     {
-        $this->form->reset();
+        $contact = Contact::find($this->form->owner_id);
+
+        if ($contact) {
+            $this->owner_name = $contact->name;
+            $this->owner_phone = $contact->phone;
+            $this->owner_email = $contact->email;
+        } else {
+            $this->reset(['owner_name', 'owner_phone', 'owner_email']);
+        }
+    }
+
+    public function updatedFormOwnerRepresentativeId(): void
+    {
+        $contact = Contact::find($this->form->owner_representative_id);
+
+        if ($contact) {
+            $this->owner_representative_name = $contact->name;
+            $this->owner_representative_phone = $contact->phone;
+            $this->owner_representative_email = $contact->email;
+        } else {
+            $this->reset(['owner_representative_name', 'owner_representative_phone', 'owner_representative_email']);
+        }
+    }
+
+    public function ownerSubmit(): void
+    {
+        $form = $this->validate([
+            'owner_name' => 'required',
+            'owner_phone' => 'required',
+            'owner_email' => 'required',
+        ]);
+
+        $data = [];
+        $data['name'] = $form['owner_name'];
+        $data['phone'] = $form['owner_phone'];
+        $data['email'] = $form['owner_email'];
+
+        $service = new ContactService();
+        $contact = $service->create($data);
+
+        $this->form->owner_id = $contact->id;
+
+        $this->alertSuccess(
+            title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'),
+            body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'),
+        );
+    }
+
+    public function ownerRepresentativeSubmit(): void
+    {
+        $form = $this->validate([
+            'owner_representative_name' => 'required',
+            'owner_representative_phone' => 'required',
+            'owner_representative_email' => 'required',
+        ]);
+
+        $data = [];
+        $data['name'] = $form['owner_representative_name'];
+        $data['phone'] = $form['owner_representative_phone'];
+        $data['email'] = $form['owner_representative_email'];
+
+        $service = new ContactService();
+        $contact = $service->create($data);
+
+        $this->form->owner_representative_id = $contact->id;
+
+        $this->alertSuccess(
+            title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'),
+            body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'),
+        );
     }
 
     #[On('imagesUpdated')]
     public function setImages($images): void
     {
         $this->form->images = $images;
+    }
+
+    public function resetForm(): void
+    {
+        $this->form->reset();
     }
 
     public function submit(): void
@@ -87,6 +175,12 @@ new #[Title('Add | Property')] class extends Component {
     {
         $service = new AreaService();
         return $service->index(districtId: $this->form->district_id, isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+    }
+
+    public function contacts(): object
+    {
+        $service = new ContactService();
+        return $service->index(orderBy: 'name', sortBy: 'asc', paginate: false);
     }
 
     public function propertyBedrooms(): array
