@@ -286,6 +286,8 @@ namespace App\Models{
  * @property-read Collection<int, Guide> $guides
  * @property-read int|null $guides_count
  * @mixin \Eloquent
+ * @property string|null $name_fr
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|GuideCategory whereNameFr($value)
  */
 	class GuideCategory extends \Eloquent {}
 }
@@ -739,13 +741,13 @@ namespace App\Models{
  * @method static Builder<static>|Value whereUpdatedBy($value)
  * @method static Builder<static>|Value withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Value withoutTrashed()
- * @mixin \Eloquent
  * @property string $title_fr
  * @property string $short_description_fr
  * @property string $description_fr
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereDescriptionFr($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereShortDescriptionFr($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Value whereTitleFr($value)
+ * @method static Builder<static>|Value whereDescriptionFr($value)
+ * @method static Builder<static>|Value whereShortDescriptionFr($value)
+ * @method static Builder<static>|Value whereTitleFr($value)
+ * @mixin \Eloquent
  */
 	class Value extends \Eloquent {}
 }

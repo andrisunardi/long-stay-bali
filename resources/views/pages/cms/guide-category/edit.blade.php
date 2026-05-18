@@ -143,6 +143,31 @@ new #[Title('Edit | Guide Category')] class extends Component {
                     </div>
 
                     <div class="col-sm-6">
+                        <label class="form-label" for="name_fr">
+                            {{ trans('validation.attributes.name_fr') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-tags fa-fw "></span>
+                            </div>
+                            <input type="text" class="form-control" id="name_fr" name="name_fr" minlength="1"
+                                maxlength="50" placeholder="{{ trans('index.ex') }}. News" required
+                                wire:model="form.name_fr" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 50,
+                            {{ trans('helper.unique') }}
+                        </div>
+                        @error('form.name_fr')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-sm-6">
                         <div class="d-flex gap-3">
                             <div>
                                 <label class="form-label" for="is_show">

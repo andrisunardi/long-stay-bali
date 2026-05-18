@@ -213,6 +213,9 @@ return [
         'longitude' => 'Longitude',
         'message' => 'Message',
         'minimum_rental_duration_months' => 'Minimum Rental Duration Months',
+        'name_fr' => 'Name FR',
+        'name_id' => 'Name ID',
+        'name_zh' => 'Name ZH',
         'name' => 'Name',
         'no_festive_venue_nearby' => 'No Festive Venue Nearby',
         'no_ongoing' => 'No Ongoing',
@@ -260,7 +263,6 @@ return [
         'view' => 'View',
         'visit_date' => 'Visit Date',
         'water_source' => 'Water Souce',
-        'when' => 'When',
     ],
 
 ];

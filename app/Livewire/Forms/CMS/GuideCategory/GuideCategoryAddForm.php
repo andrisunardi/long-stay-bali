@@ -18,6 +18,9 @@ class GuideCategoryAddForm extends Form
     #[Validate('required|string|min:1|max:50|unique:guide_categories,name_zh')]
     public string $name_zh = '';
 
+    #[Validate('required|string|min:1|max:50|unique:guide_categories,name_zh')]
+    public string $name_fr = '';
+
     #[Validate('required|boolean')]
     public bool $is_show = true;
 

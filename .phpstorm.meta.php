@@ -4023,7 +4023,8 @@ namespace PHPSTORM_META {
     override(\optional(0), type(0));
 
             registerArgumentsSet('auth', 
-'downloadLogFile','downloadLogFolder','deleteLogFile','deleteLogFolder','viewTelescope',);
+'downloadLogFile','downloadLogFolder','deleteLogFile','deleteLogFolder','viewHorizon',
+'viewTelescope',);
         registerArgumentsSet('configs', 
 'hashing.driver','hashing.bcrypt.rounds','hashing.bcrypt.verify','hashing.bcrypt.limit','hashing.argon.memory',
 'hashing.argon.threads','hashing.argon.time','hashing.argon.verify','hashing.rehash_on_login','concurrency.default',
@@ -4502,18 +4503,18 @@ namespace PHPSTORM_META {
 'validation.attributes.icon','validation.attributes.image','validation.attributes.index','validation.attributes.internet_speedtest_image','validation.attributes.internet_speedtest',
 'validation.attributes.is_active','validation.attributes.is_show','validation.attributes.land_size','validation.attributes.last_name','validation.attributes.latitude',
 'validation.attributes.living_area_has_natural_light','validation.attributes.living_area','validation.attributes.living_style','validation.attributes.longitude','validation.attributes.message',
-'validation.attributes.minimum_rental_duration_months','validation.attributes.name','validation.attributes.no_festive_venue_nearby','validation.attributes.no_ongoing','validation.attributes.noise_source_identified',
-'validation.attributes.not_directly_exposed_to_main_road','validation.attributes.number_of_bathrooms','validation.attributes.number_of_floors','validation.attributes.orientation','validation.attributes.outdoor_area_size',
-'validation.attributes.owner_price_flexibility','validation.attributes.password','validation.attributes.permission_id','validation.attributes.permission_ids','validation.attributes.phone',
-'validation.attributes.pool_size','validation.attributes.power_backup','validation.attributes.price_coherent_with_upper','validation.attributes.price_range','validation.attributes.property_id',
-'validation.attributes.property_type','validation.attributes.quiet_access_road','validation.attributes.refresh_token','validation.attributes.remember_me','validation.attributes.rental_type',
-'validation.attributes.role_id','validation.attributes.role_ids','validation.attributes.scope','validation.attributes.short_description_fr','validation.attributes.short_description_id',
-'validation.attributes.short_description_zh','validation.attributes.short_description','validation.attributes.start_date','validation.attributes.status','validation.attributes.storage',
-'validation.attributes.target_profile','validation.attributes.title_fr','validation.attributes.title_id','validation.attributes.title_zh','validation.attributes.title',
-'validation.attributes.token_type','validation.attributes.trade_off_identified','validation.attributes.usability_limitations','validation.attributes.user_id','validation.attributes.username',
-'validation.attributes.view','validation.attributes.visit_date','validation.attributes.water_source','validation.attributes.when','home.form.title',
-'home.form.button','home.form.area','home.form.when','home.form.bedroom','home.form.type',
-'home.form.price_range','index.index',);
+'validation.attributes.minimum_rental_duration_months','validation.attributes.name_fr','validation.attributes.name_id','validation.attributes.name_zh','validation.attributes.name',
+'validation.attributes.no_festive_venue_nearby','validation.attributes.no_ongoing','validation.attributes.noise_source_identified','validation.attributes.not_directly_exposed_to_main_road','validation.attributes.number_of_bathrooms',
+'validation.attributes.number_of_floors','validation.attributes.orientation','validation.attributes.outdoor_area_size','validation.attributes.owner_price_flexibility','validation.attributes.password',
+'validation.attributes.permission_id','validation.attributes.permission_ids','validation.attributes.phone','validation.attributes.pool_size','validation.attributes.power_backup',
+'validation.attributes.price_coherent_with_upper','validation.attributes.price_range','validation.attributes.property_id','validation.attributes.property_type','validation.attributes.quiet_access_road',
+'validation.attributes.refresh_token','validation.attributes.remember_me','validation.attributes.rental_type','validation.attributes.role_id','validation.attributes.role_ids',
+'validation.attributes.scope','validation.attributes.short_description_fr','validation.attributes.short_description_id','validation.attributes.short_description_zh','validation.attributes.short_description',
+'validation.attributes.start_date','validation.attributes.status','validation.attributes.storage','validation.attributes.target_profile','validation.attributes.title_fr',
+'validation.attributes.title_id','validation.attributes.title_zh','validation.attributes.title','validation.attributes.token_type','validation.attributes.trade_off_identified',
+'validation.attributes.usability_limitations','validation.attributes.user_id','validation.attributes.username','validation.attributes.view','validation.attributes.visit_date',
+'validation.attributes.water_source','home.form.title','home.form.button','home.form.area','home.form.when',
+'home.form.bedroom','home.form.type','home.form.price_range','index.index','validation.attributes.when',);
         registerArgumentsSet('env', 
 'APP_NAME','APP_ENV','APP_KEY','APP_DEBUG','APP_URL',
 'APP_TIMEZONE','APP_LOCALE','APP_FALLBACK_LOCALE','APP_FAKER_LOCALE','APP_MAINTENANCE_DRIVER',

@@ -63,6 +63,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @property-read Collection<int, Guide> $guides
  * @property-read int|null $guides_count
+ * @property string|null $name_fr
+ *
+ * @method static Builder<static>|GuideCategory whereNameFr($value)
  *
  * @mixin \Eloquent
  */
@@ -79,6 +82,7 @@ class GuideCategory extends Model
         'name',
         'name_id',
         'name_zh',
+        'name_fr',
         'is_show',
         'is_active',
     ];
@@ -91,6 +95,7 @@ class GuideCategory extends Model
             'name' => 'string',
             'name_id' => 'string',
             'name_zh' => 'string',
+            'name_fr' => 'string',
             'is_show' => 'boolean',
             'is_active' => 'boolean',
         ];
@@ -123,6 +128,7 @@ class GuideCategory extends Model
             'en' => $this->name,
             'id' => $this->name_id,
             'zh' => $this->name_zh,
+            'fr' => $this->name_fr,
         ];
 
         return $language[$locale] ?? $this->name;

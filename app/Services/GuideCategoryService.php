@@ -26,7 +26,8 @@ class GuideCategoryService
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
                         ->orWhere('name_id', 'like', "%{$search}%")
-                        ->orWhere('name_zh', 'like', "%{$search}%");
+                        ->orWhere('name_zh', 'like', "%{$search}%")
+                        ->orWhere('name_fr', 'like', "%{$search}%");
                 });
             })
             ->when($isShow, fn ($q) => $q->whereIn('is_show', $isShow))

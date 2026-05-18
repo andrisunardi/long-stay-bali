@@ -40,9 +40,9 @@ class ValueService
                         ->orWhere('icon', 'like', "%{$search}%");
                 });
             })
-            ->when($isActive, fn($q) => $q->whereIn('is_active', $isActive))
-            ->when($random, fn($q) => $q->inRandomOrder())
-            ->when($trash, fn($q) => $q->onlyTrashed())
+            ->when($isActive, fn ($q) => $q->whereIn('is_active', $isActive))
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 

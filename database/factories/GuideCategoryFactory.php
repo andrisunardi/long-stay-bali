@@ -12,6 +12,7 @@ class GuideCategoryFactory extends Factory
             'name' => fake()->unique()->name(),
             'name_id' => fake()->unique()->name(),
             'name_zh' => fake()->unique()->name(),
+            'name_fr' => fake()->unique()->name(),
             'is_show' => fake()->boolean(),
             'is_active' => fake()->boolean(),
         ];
