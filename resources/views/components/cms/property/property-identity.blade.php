@@ -144,7 +144,7 @@
                                 wire:offline.attr="disabled" wire:loading.class="disabled"
                                 wire:loading.attr="disabled">
                             <label class="form-check-label" for="bedroom_{{ $propertyBedroom->value }}">
-                                {{ $propertyBedroom->value }}
+                                {{ $propertyBedroom->description() }}
                             </label>
                         </div>
                     @endforeach

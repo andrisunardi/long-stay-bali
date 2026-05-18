@@ -28,7 +28,7 @@
                 <li wire:key="property-bedroom-{{ $propertyBedroom }}">
                     <button type="button" class="dropdown-item"
                         wire:click="changeBedroom({{ $propertyBedroom->value }})">
-                        {{ $propertyBedroom->value }}
+                        {{ $propertyBedroom->description() }}
                     </button>
                 </li>
             @endforeach
