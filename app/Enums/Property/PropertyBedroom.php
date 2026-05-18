@@ -12,6 +12,10 @@ enum PropertyBedroom: int
 
     case FourBedroom = 4;
 
+    case FiveBedroom = 5;
+
+    case SixBedroom = 6;
+
     public function description(): string
     {
         return match ($this) {
@@ -19,16 +23,8 @@ enum PropertyBedroom: int
             self::TwoBedroom => '2',
             self::ThreeBedroom => '3',
             self::FourBedroom => '4',
-        };
-    }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::OneBedroom->value => '1',
-            self::TwoBedroom->value => '2',
-            self::ThreeBedroom->value => '3',
-            self::FourBedroom->value => '4',
+            self::FiveBedroom => '5',
+            self::SixBedroom => '6+',
         };
     }
 }
