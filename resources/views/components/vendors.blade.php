@@ -28,7 +28,7 @@
 
 @include('vendors.swiper')
 
-@include('vendors.tom-select')
+{{-- @include('vendors.tom-select') --}}
 
 @include('vendors.snowflakes')
 

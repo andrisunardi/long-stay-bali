@@ -1,17 +1,17 @@
 <header id="header" class="fixed-top py-3" data-use-banner="{{ Route::is('home') ? '1' : '0' }}">
     <div class="container-md">
-        <div class="row row-cols-2 row-cols-lg-3 align-items-center">
-            <div class="col text-start">
+        <div class="row row-cols-sm-2 row-cols-lg-3 align-items-center">
+            <div class="col-auto col-sm text-start d-flex align-items-center gap-3">
                 <a draggable="false" href="{{ route('home') }}" wire:navigate>
                     <img draggable="false" loading="lazy" decoding="async" class="logo user-select-none pe-none"
                         height="40" src="{{ asset('images/logo.png') }}"
                         alt="{{ trans('index.logo') }} - {{ config('app.name') }}" />
                 </a>
 
-                {{-- <input type="text" id="search_code" name="search_code" wire:model="" /> --}}
+                <livewire:layout.search />
             </div>
 
-            <div class="col text-center d-none d-lg-flex align-items-center gap-lg-3 gap-xl-4">
+            <div class="col-auto col-sm text-center d-none d-lg-flex align-items-center gap-lg-3 gap-xl-4">
                 @foreach (config('navigations') as $navigation)
                     <a draggable="false" href="{{ route($navigation['route']) }}"
                         class="header-color {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}" wire:navigate

@@ -12,6 +12,9 @@ new class extends Component {
     public string $search_area = '';
 
     #[Url(except: null)]
+    public string $when = '';
+
+    #[Url(except: null)]
     public ?int $bedroom = null;
 
     #[Url(except: null)]
@@ -83,7 +86,7 @@ new class extends Component {
                 </label>
                 <div class="input-group">
                     <input type="text" class="form-control" minlength="1" maxlength="50"
-                        placeholder="{{ trans('home.search.when') }}" wire:model="form.name"
+                        placeholder="{{ trans('home.search.when') }}" wire:model="when"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>

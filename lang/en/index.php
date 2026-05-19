@@ -64,5 +64,6 @@ return [
     'clear' => 'Clear',
     'overview' => 'Overview',
     'cancel' => 'Cancel',
+    'property_code' => 'Property Code',
 
 ];
