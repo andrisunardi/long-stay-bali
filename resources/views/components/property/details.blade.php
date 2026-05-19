@@ -7,7 +7,7 @@
         </div>
         <div class="col-8">
             @if ($property->availability_date)
-                {{ $property->availability_date->isoFormat('l, DD MMMM YYYY') }}
+                {{ $property->availability_date->isoFormat('dddd, DD MMMM YYYY') }}
             @else
                 {{ trans('property.chat_for_check_availability_on_whatsapp') }}
             @endif
