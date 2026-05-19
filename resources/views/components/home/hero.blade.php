@@ -26,7 +26,7 @@
                     <div class="lead text-white">{{ $title }}</div>
                     <div class="display-6 fw-bold text-white">{!! $description !!}</div>
                 </div>
-                <div class="col-lg-5 offset-lg-1">
+                <div class="col-lg-6 col-xl-5 offset-xl-1">
                     <livewire:home.search />
                 </div>
             </div>

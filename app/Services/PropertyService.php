@@ -25,6 +25,7 @@ class PropertyService
         array $statuses = [],
         ?string $startDate = null,
         ?string $endDate = null,
+        array $availabilityDates = [],
         bool $random = false,
         bool $trash = false,
         string $orderBy = 'id',
@@ -59,6 +60,7 @@ class PropertyService
             ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             ->when($startDate, fn ($q) => $q->whereDate('created_at', '>=', $startDate))
             ->when($endDate, fn ($q) => $q->whereDate('created_at', '<=', $endDate))
+            ->when($availabilityDates, fn ($q) => $q->whereBetween('availability_date', $availabilityDates))
             ->when($random, fn ($q) => $q->inRandomOrder())
             ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)

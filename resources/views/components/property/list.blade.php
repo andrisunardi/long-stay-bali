@@ -24,8 +24,12 @@ new #[Lazy] class extends Component {
 
     public function properties(): object
     {
+        $availabilityDates = [$this->start_date, $this->end_date];
+
+        $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
+
         $service = new PropertyService();
-        $properties = $service->index(areaId: $this->areaId, statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], bedroom: $this->bedroom, paginate: false);
+        $properties = $service->index(availabilityDates: $availabilityDates, areaId: $this->areaId, statuses: $statuses, bedroom: $this->bedroom, paginate: false);
         $properties->loadMissing(['area.district', 'image']);
 
         return $properties;

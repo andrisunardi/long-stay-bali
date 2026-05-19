@@ -15,6 +15,7 @@ return [
     'property_details' => 'Property Details',
     'availability' => 'Availability',
     'chat_for_check_availability_on_whatsapp' => 'Chat for check availability on whatsapp',
+    'no_description_about_this_property' => 'No Description About This Property',
     'bedrooms' => 'Bedrooms',
     'bathrooms' => 'Bathrooms',
     'type_furnish' => 'Type Furnish',

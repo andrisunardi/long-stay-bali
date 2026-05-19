@@ -19,9 +19,9 @@
     </div>
 
     {{-- <div class="mt-3">
-    <span class="fas fa-location-dot fa-fw"></span>
-    {{ $property->address }}
-</div> --}}
+        <span class="fas fa-location-dot fa-fw"></span>
+        {{ $property->address }}
+    </div> --}}
 
     <hr class="my-4" />
 
@@ -29,8 +29,9 @@
         @if ($property->translate_description)
             {!! $property->translate_description !!}
         @else
-            <span class="fst-italic text-muted">No Description About This Property</span>
+            <span class="fst-italic text-muted">
+                {{ trans('property.no_description_about_this_property') }}
+            </span>
         @endif
     </p>
-
 </div>
