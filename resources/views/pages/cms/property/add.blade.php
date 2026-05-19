@@ -85,9 +85,9 @@ new #[Title('Add | Property')] class extends Component {
     public function ownerSubmit(): void
     {
         $form = $this->validate([
-            'owner_name' => 'required',
-            'owner_phone' => 'required',
-            'owner_email' => 'required',
+            'owner_name' => 'required|string|min:1|max:50',
+            'owner_phone' => 'nullable|required_without:owner_email|string|min:1|max:20|unique:contacts,phone',
+            'owner_email' => 'nullable|required_without:owner_phone|email:rfc,dns|min:1|max:50|unique:contacts,email',
         ]);
 
         $data = [];
@@ -109,9 +109,9 @@ new #[Title('Add | Property')] class extends Component {
     public function ownerRepresentativeSubmit(): void
     {
         $form = $this->validate([
-            'owner_representative_name' => 'required',
-            'owner_representative_phone' => 'required',
-            'owner_representative_email' => 'required',
+            'owner_representative_name' => 'required|string|min:1|max:50',
+            'owner_representative_phone' => 'nullable|required_without:owner_email|string|min:1|max:20|unique:contacts,phone',
+            'owner_representative_email' => 'nullable|required_without:owner_phone|email:rfc,dns|min:1|max:50|unique:contacts,email',
         ]);
 
         $data = [];

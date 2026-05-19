@@ -39,8 +39,9 @@
                     </div>
                     <input type="text" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_name"
                         name="owner_name" minlength="1" maxlength="50" placeholder="{{ trans('index.ex') }} John Doe"
-                        {{ $form->owner_id ? 'disabled' : '' }} wire:model="owner_name" wire:offline.class="disabled"
-                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                        required {{ $form->owner_id ? 'disabled' : '' }} wire:model="owner_name"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
                     {{ trans('helper.required') }},
@@ -55,7 +56,9 @@
             <div>
                 <label class="form-label" for="owner_phone">
                     {{ trans('property.owner_phone') }}
-                    <span class="text-danger">*</span>
+                    @if (!$this->owner_email)
+                        <span class="text-danger">*</span>
+                    @endif
                 </label>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -63,12 +66,15 @@
                     </div>
                     <input type="tel" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_phone"
                         name="owner_phone" minlength="1" maxlength="20"
-                        placeholder="{{ trans('index.ex') }} 62821234567890" {{ $form->owner_id ? 'disabled' : '' }}
-                        wire:model="owner_phone" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        placeholder="{{ trans('index.ex') }} 62821234567890"
+                        {{ !$this->owner_email ? 'required' : '' }} {{ $form->owner_id ? 'disabled' : '' }}
+                        wire:model.lazy="owner_phone" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
+                    @if (!$this->owner_email)
+                        {{ trans('helper.required') }},
+                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 20
                 </div>
@@ -80,7 +86,9 @@
             <div>
                 <label class="form-label" for="owner_email">
                     {{ trans('property.owner_email') }}
-                    <span class="text-danger">*</span>
+                    @if (!$this->owner_phone)
+                        <span class="text-danger">*</span>
+                    @endif
                 </label>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -88,14 +96,17 @@
                     </div>
                     <input type="email" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_email"
                         name="owner_email" minlength="1" maxlength="50"
-                        placeholder="{{ trans('index.ex') }} solivingbali@gmail.com"
-                        {{ $form->owner_id ? 'disabled' : '' }} wire:model="owner_email" wire:offline.class="disabled"
-                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                        placeholder="{{ trans('index.ex') }} info@solivingbali.com"
+                        {{ !$this->owner_phone ? 'required' : '' }} {{ $form->owner_id ? 'disabled' : '' }}
+                        wire:model.lazy="owner_email" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
+                    @if (!$this->owner_phone)
+                        {{ trans('helper.required') }},
+                    @endif
                     {{ trans('helper.minlength') }} : 1,
-                    {{ trans('helper.maxlength') }} : 20
+                    {{ trans('helper.maxlength') }} : 50
                 </div>
                 @error('form.owner_email')
                     <div class="form-text text-danger">{{ $message }}</div>
@@ -103,7 +114,7 @@
             </div>
 
             @if (!$form->owner_id)
-                <button type="button" class="btn btn-primary w-100" wire:click="ownerSubmit"
+                <button type="button" class="btn btn-primary w-100" wire:click.prevent="ownerSubmit"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="ownerSubmit">
@@ -160,7 +171,7 @@
                     </div>
                     <input type="text" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_name" name="owner_representative_name" minlength="1"
-                        maxlength="50" placeholder="{{ trans('index.ex') }} John Doe"
+                        maxlength="50" placeholder="{{ trans('index.ex') }} John Doe" required
                         {{ $form->owner_representative_id ? 'disabled' : '' }} wire:model="owner_representative_name"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
@@ -178,7 +189,9 @@
             <div>
                 <label class="form-label" for="owner_representative_phone">
                     {{ trans('property.owner_representative_phone') }}
-                    <span class="text-danger">*</span>
+                    @if (!$this->owner_representative_email)
+                        <span class="text-danger">*</span>
+                    @endif
                 </label>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -187,12 +200,15 @@
                     <input type="tel" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_phone" name="owner_representative_phone" minlength="1"
                         maxlength="20" placeholder="{{ trans('index.ex') }} 62821234567890"
-                        {{ $form->owner_representative_id ? 'disabled' : '' }} wire:model="owner_representative_phone"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
+                        {{ !$this->owner_representative_email ? 'required' : '' }}
+                        {{ $form->owner_representative_id ? 'disabled' : '' }}
+                        wire:model.debounce="owner_representative_phone" wire:offline.class="disabled"
+                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
+                    @if (!$this->owner_representative_email)
+                        {{ trans('helper.required') }},
+                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 20
                 </div>
@@ -204,7 +220,9 @@
             <div>
                 <label class="form-label" for="owner_representative_email">
                     {{ trans('property.owner_representative_email') }}
-                    <span class="text-danger">*</span>
+                    @if (!$this->owner_representative_phone)
+                        <span class="text-danger">*</span>
+                    @endif
                 </label>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -212,15 +230,18 @@
                     </div>
                     <input type="email" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_email" name="owner_representative_email" minlength="1"
-                        maxlength="50" placeholder="{{ trans('index.ex') }} solivingbali@gmail.com"
-                        {{ $form->owner_representative_id ? 'disabled' : '' }} wire:model="owner_representative_email"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
+                        maxlength="50" placeholder="{{ trans('index.ex') }} info@solivingbali.com"
+                        {{ !$this->owner_representative_phone ? 'required' : '' }}
+                        {{ $form->owner_representative_id ? 'disabled' : '' }}
+                        wire:model.lazy="owner_representative_email" wire:offline.class="disabled"
+                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
+                    @if (!$this->owner_representative_phone)
+                        {{ trans('helper.required') }},
+                    @endif
                     {{ trans('helper.minlength') }} : 1,
-                    {{ trans('helper.maxlength') }} : 20
+                    {{ trans('helper.maxlength') }} : 50
                 </div>
                 @error('form.owner_representative_email')
                     <div class="form-text text-danger">{{ $message }}</div>
@@ -228,14 +249,14 @@
             </div>
 
             @if (!$form->owner_representative_id)
-                <button type="button" class="btn btn-primary w-100" wire:click="ownerSubmit"
+                <button type="button" class="btn btn-primary w-100" wire:click.prevent="ownerRepresentativeSubmit"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
-                    <span wire:loading.remove wire:target="ownerSubmit">
+                    <span wire:loading.remove wire:target="ownerRepresentativeSubmit">
                         <span class="fas fa-save fa-fw"></span>
                         {{ trans('index.save') }}
                     </span>
-                    <span wire:loading wire:target="ownerSubmit" class="w-100">
+                    <span wire:loading wire:target="ownerRepresentativeSubmit" class="w-100">
                         <span class="spinner-border spinner-border-sm"></span>
                         {{ trans('index.save') }}
                     </span>
