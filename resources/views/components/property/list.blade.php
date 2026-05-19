@@ -30,7 +30,7 @@ new #[Lazy] class extends Component {
 
     public function properties(): object
     {
-        $availabilityDates = $this->start_date && $this->end_date ? [$this->start_date, $this->end_date] : null;
+        $availabilityDates = $this->start_date && $this->end_date ? [$this->start_date, $this->end_date] : [];
 
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
