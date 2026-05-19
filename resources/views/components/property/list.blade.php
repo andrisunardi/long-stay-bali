@@ -14,6 +14,12 @@ new #[Lazy] class extends Component {
     public string $areaName = '';
 
     #[Reactive]
+    public ?string $start_date = null;
+
+    #[Reactive]
+    public ?string $end_date = null;
+
+    #[Reactive]
     public ?int $bedroom = null;
 
     #[Reactive]

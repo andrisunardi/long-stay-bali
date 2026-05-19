@@ -12,6 +12,12 @@ new #[Title('Property')] class extends Component {
     public string $area_name = '';
 
     #[Url(except: null)]
+    public ?string $start_date = null;
+
+    #[Url(except: null)]
+    public ?string $end_date = null;
+
+    #[Url(except: null)]
     public ?int $bedroom = null;
 
     #[Url(except: null)]
@@ -46,6 +52,8 @@ new #[Title('Property')] class extends Component {
     <livewire:property.list
     :area-id="$area_id"
     :area-name="$area_name"
+    :start-date="$start_date"
+    :end-date="$end_date"
     :bedroom="$bedroom"
     :min-price="$min_price"
     :max-price="$max_price"
