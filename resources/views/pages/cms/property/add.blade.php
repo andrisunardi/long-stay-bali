@@ -110,8 +110,8 @@ new #[Title('Add | Property')] class extends Component {
     {
         $form = $this->validate([
             'owner_representative_name' => 'required|string|min:1|max:50',
-            'owner_representative_phone' => 'nullable|required_without:owner_email|string|min:1|max:20|unique:contacts,phone',
-            'owner_representative_email' => 'nullable|required_without:owner_phone|email:rfc,dns|min:1|max:50|unique:contacts,email',
+            'owner_representative_phone' => 'nullable|required_without:owner_representative_email|string|min:1|max:20|unique:contacts,phone',
+            'owner_representative_email' => 'nullable|required_without:owner_representative_phone|email:rfc,dns|min:1|max:50|unique:contacts,email',
         ]);
 
         $data = [];
