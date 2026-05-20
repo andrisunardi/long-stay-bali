@@ -202,7 +202,7 @@
                         maxlength="20" placeholder="{{ trans('index.ex') }} 62821234567890"
                         {{ !$this->owner_representative_email ? 'required' : '' }}
                         {{ $form->owner_representative_id ? 'disabled' : '' }}
-                        wire:model.debounce="owner_representative_phone" wire:offline.class="disabled"
+                        wire:model.lazy="owner_representative_phone" wire:offline.class="disabled"
                         wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
