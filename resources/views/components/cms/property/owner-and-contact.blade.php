@@ -31,7 +31,6 @@
             <div>
                 <label class="form-label" for="owner_name">
                     {{ trans('property.owner_name') }}
-                    <span class="text-danger">*</span>
                 </label>
                 <div class="input-group">
                     <div class="input-group-text">
@@ -39,12 +38,10 @@
                     </div>
                     <input type="text" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_name"
                         name="owner_name" minlength="1" maxlength="50" placeholder="{{ trans('index.ex') }} John Doe"
-                        required {{ $form->owner_id ? 'disabled' : '' }} wire:model="owner_name"
-                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                        wire:loading.attr="disabled">
+                        {{ $form->owner_id ? 'disabled' : '' }} wire:model="owner_name" wire:offline.class="disabled"
+                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 50
                 </div>
@@ -66,15 +63,11 @@
                     </div>
                     <input type="tel" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_phone"
                         name="owner_phone" minlength="1" maxlength="20"
-                        placeholder="{{ trans('index.ex') }} 62821234567890"
-                        {{ !$this->owner_email ? 'required' : '' }} {{ $form->owner_id ? 'disabled' : '' }}
+                        placeholder="{{ trans('index.ex') }} 62821234567890" {{ $form->owner_id ? 'disabled' : '' }}
                         wire:model.lazy="owner_phone" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    @if (!$this->owner_email)
-                        {{ trans('helper.required') }},
-                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 20
                 </div>
@@ -97,14 +90,11 @@
                     <input type="email" class="form-control {{ $form->owner_id ? 'disabled' : '' }}" id="owner_email"
                         name="owner_email" minlength="1" maxlength="50"
                         placeholder="{{ trans('index.ex') }} info@solivingbali.com"
-                        {{ !$this->owner_phone ? 'required' : '' }} {{ $form->owner_id ? 'disabled' : '' }}
-                        wire:model.lazy="owner_email" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
+                        {{ $form->owner_id ? 'disabled' : '' }} wire:model.lazy="owner_email"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    @if (!$this->owner_phone)
-                        {{ trans('helper.required') }},
-                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 50
                 </div>
@@ -171,13 +161,12 @@
                     </div>
                     <input type="text" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_name" name="owner_representative_name" minlength="1"
-                        maxlength="50" placeholder="{{ trans('index.ex') }} John Doe" required
+                        maxlength="50" placeholder="{{ trans('index.ex') }} John Doe"
                         {{ $form->owner_representative_id ? 'disabled' : '' }} wire:model="owner_representative_name"
                         wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                         wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 50
                 </div>
@@ -200,15 +189,11 @@
                     <input type="tel" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_phone" name="owner_representative_phone" minlength="1"
                         maxlength="20" placeholder="{{ trans('index.ex') }} 62821234567890"
-                        {{ !$this->owner_representative_email ? 'required' : '' }}
                         {{ $form->owner_representative_id ? 'disabled' : '' }}
                         wire:model.lazy="owner_representative_phone" wire:offline.class="disabled"
                         wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    @if (!$this->owner_representative_email)
-                        {{ trans('helper.required') }},
-                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 20
                 </div>
@@ -231,15 +216,11 @@
                     <input type="email" class="form-control {{ $form->owner_representative_id ? 'disabled' : '' }}"
                         id="owner_representative_email" name="owner_representative_email" minlength="1"
                         maxlength="50" placeholder="{{ trans('index.ex') }} info@solivingbali.com"
-                        {{ !$this->owner_representative_phone ? 'required' : '' }}
                         {{ $form->owner_representative_id ? 'disabled' : '' }}
                         wire:model.lazy="owner_representative_email" wire:offline.class="disabled"
                         wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
-                    @if (!$this->owner_representative_phone)
-                        {{ trans('helper.required') }},
-                    @endif
                     {{ trans('helper.minlength') }} : 1,
                     {{ trans('helper.maxlength') }} : 50
                 </div>
