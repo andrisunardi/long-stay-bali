@@ -76,6 +76,9 @@
 
     <script src="{{ asset('js/app.js') }}"></script>
 
+    <script src="https://link.msgsndr.com/js/external-tracking.js" data-tracking-id="tk_84ae764411934cd285ecfc500c5b1762">
+    </script>
+
     @stack('script')
 
     @livewireScripts
