@@ -9,7 +9,7 @@ class GoHighLevelController extends Controller
 {
     public function oauth(Request $request)
     {
-        (new GoHighLevel())->oauth(code: $request->query('code'));
+        (new GoHighLevel)->oauth(code: $request->query('code'));
 
         session()->flash('success', [
             'title' => trans('index.connect').' '.trans('index.success'),
@@ -21,7 +21,7 @@ class GoHighLevelController extends Controller
 
     public function refresh()
     {
-        (new GoHighLevel())->refresh();
+        (new GoHighLevel)->refresh();
 
         session()->flash('success', [
             'title' => trans('index.refresh').' '.trans('index.success'),

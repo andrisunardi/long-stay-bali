@@ -118,24 +118,30 @@ class GoHighLevel
             'user_type' => config('constants.ghl.user_type'),
         ]);
 
+        if (! $response->successful()) {
+            throw new Exception('Failed Refresh Token');
+        }
+
         $data = $response->json();
 
         if (isset($data['error'])) {
-            abort(400);
+            throw new Exception($data['error']);
         }
 
         $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
-        $oauth->refresh_token = $data['refresh_token'];
-        $oauth->access_token = $data['access_token'];
-        $oauth->token_type = $data['token_type'];
-        $oauth->expires_in = $data['expires_in'];
-        $oauth->scope = $data['scope'];
-        $oauth->save();
 
-        return $oauth;
+        $oauth->update([
+            'refresh_token' => $data['refresh_token'],
+            'access_token' => $data['access_token'],
+            'token_type' => $data['token_type'],
+            'expires_in' => $data['expires_in'],
+            'scope' => $data['scope'],
+        ]);
+
+        return $oauth->fresh();
     }
 
-    public function refresh( ): Oauth
+    public function refresh(): Oauth
     {
         $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
 
@@ -148,20 +154,24 @@ class GoHighLevel
             'redirect_uri' => config('constants.ghl.redirect_uri'),
         ]);
 
+        if (! $response->successful()) {
+            throw new Exception('Failed Refresh Token');
+        }
+
         $data = $response->json();
 
         if (isset($data['error'])) {
-            abort(400);
+            throw new Exception($data['error']);
         }
 
-        $oauth = Oauth::where('code', 'GOHIGHLEVEL')->firstOrFail();
-        $oauth->refresh_token = $data['refresh_token'];
-        $oauth->access_token = $data['access_token'];
-        $oauth->token_type = $data['token_type'];
-        $oauth->expires_in = $data['expires_in'];
-        $oauth->scope = $data['scope'];
-        $oauth->save();
+        $oauth->update([
+            'refresh_token' => $data['refresh_token'],
+            'access_token' => $data['access_token'],
+            'token_type' => $data['token_type'],
+            'expires_in' => $data['expires_in'],
+            'scope' => $data['scope'],
+        ]);
 
-        return $oauth;
+        return $oauth->fresh();
     }
 }
