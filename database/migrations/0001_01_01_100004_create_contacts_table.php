@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('first_name', 25);
             $table->string('last_name', 25)->nullable();
             $table->string('company', 50)->nullable();
-            $table->string('email', 50)->unique();
-            $table->string('phone', 20)->unique();
+            $table->string('email', 50)->nullable();
+            $table->string('phone', 20)->nullable();
             $table->unsignedTinyInteger('bedroom')->nullable();
             $table->unsignedTinyInteger('rental_type')->nullable();
             $table->string('message', 1000)->nullable();
