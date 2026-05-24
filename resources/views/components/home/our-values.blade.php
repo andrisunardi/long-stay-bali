@@ -66,19 +66,31 @@ new #[Lazy] class extends Component {
             <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
                 @foreach ($values as $value)
                     <div class="col" wire:key="value-{{ $value->id }}">
-                        <div class="card card-body h-100">
-                            <div class="mb-4">
-                                <img draggable="false" loading="lazy" decoding="async"
-                                    class="user-select-none pe-none" height="100"
-                                    src="{{ asset('images/value/' . Str::slug($value->title) . '.png') }}"
-                                    alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
-                                {{-- <span class="fa-stack fa-xl">
-                                    <i class="fas fa-circle fa-stack-2x fa-inverse text-light"></i>
-                                    <i class="{{ $value->icon }} fa-stack-1x text-success"></i>
-                                </span> --}}
+                        <div class="card card-body border-0 h-100 p-0">
+                            <div class="row">
+                                <div class="col-sm-6 p-4">
+                                    <div class="mb-4">
+                                        <img draggable="false" loading="lazy" decoding="async"
+                                            class="user-select-none pe-none" height="100"
+                                            src="{{ asset('images/value/icon/' . Str::slug($value->title) . '.png') }}"
+                                            alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
+                                    </div>
+                                    <h5 class="card-title">{{ $value->translate_title }}</h5>
+                                    <p class="card-text">{{ $value->translate_short_description }}</p>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <div class="h-100">
+
+                                        <img draggable="false" loading="lazy" decoding="async"
+                                            class="user-select-none pe-none w-100 h-100 object-fit-cover rounded"
+                                            src="{{ asset('images/value/' . Str::slug($value->title) . '.png') }}"
+                                            alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
+
+                                    </div>
+
+                                </div>
                             </div>
-                            <h5 class="card-title">{{ $value->translate_title }}</h5>
-                            <p class="card-text">{{ $value->translate_short_description }}</p>
                         </div>
                     </div>
                 @endforeach
