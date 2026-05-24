@@ -82,16 +82,16 @@ new #[Lazy] class extends Component {
                 @foreach ($services as $service)
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
+                            <img draggable="false"
+                                src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                class="card-img-top" alt="Service - {{ $service['name'] }}">
                             <div class="card-body">
-                                <div class="mb-4">
+                                <div style="margin-top: -20rem"
+                                    class="bg-white rounded-circle shadow-sm d-inline-flex align-items-center justify-content-center p-3 mb-4">
                                     <img draggable="false" loading="lazy" decoding="async"
-                                        class="user-select-none pe-none" height="100"
-                                        src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                        class="user-select-none pe-none img-fluid" width="50"
+                                        src="{{ asset('images/service/icon/' . Str::slug($service['name']) . '.png') }}"
                                         alt="{{ trans('index.service') }} - {{ $service['name'] }} - {{ config('constants.meta.title') }}">
-                                    {{-- <span class="fa-stack fa-xl">
-                                        <i class="fas fa-circle fa-stack-2x fa-inverse text-light"></i>
-                                        <i class="{{ $service['icon'] }} fa-stack-1x text-success"></i>
-                                    </span> --}}
                                 </div>
                                 <h5 class="card-title">{{ $service['name'] }}</h5>
                                 <p class="card-text">{{ $service['description'] }}</p>
