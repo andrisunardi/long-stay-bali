@@ -24,7 +24,7 @@ class ContactAddForm extends Form
     #[Validate('nullable|string|min:1|max:25')]
     public string $last_name = '';
 
-    #[Validate('required|string|min:1|max:50')]
+    #[Validate('nullable|string|min:1|max:50')]
     public string $company = '';
 
     #[Validate('required|email:rfc,dns|min:1|max:50|unique:contacts,email')]

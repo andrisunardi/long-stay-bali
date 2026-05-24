@@ -192,7 +192,6 @@ new #[Title('Add | Contact')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="company">
                             {{ trans('validation.attributes.company') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
@@ -200,12 +199,10 @@ new #[Title('Add | Contact')] class extends Component {
                             </div>
                             <input type="text" class="form-control" id="company" name="company" minlength="1"
                                 maxlength="50" placeholder="{{ trans('index.ex') . '. PT. Bali Real Estate' }}"
-                                required wire:model="form.company" wire:offline.class="disabled"
-                                wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
+                                wire:model="form.company" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 50
                         </div>
@@ -223,7 +220,7 @@ new #[Title('Add | Contact')] class extends Component {
                             <div class="input-group-text">
                                 <span class="fas fa-envelope fa-fw "></span>
                             </div>
-                            <input type="phone" class="form-control" id="email" name="email" minlength="1"
+                            <input type="email" class="form-control" id="email" name="email" minlength="1"
                                 maxlength="50" placeholder="{{ trans('index.ex') . '. johndoe@gmail.com' }}" required
                                 wire:model="form.email" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
