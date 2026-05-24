@@ -102,6 +102,32 @@ new #[Title('Edit | Contact')] class extends Component {
 
             <form wire:submit.prevent="submit" role="form" autocomplete="off">
                 <div class="row g-3 mb-3">
+                    <div class="col-12">
+                        <label class="form-label" for="code">
+                            {{ trans('validation.attributes.code') }}
+                        </label>
+                        <div class="input-group">
+                            <div class="input-group-text">
+                                <span class="fas fa-code fa-fw "></span>
+                            </div>
+                            <input type="text" class="form-control" id="code" name="code" minlength="20"
+                                maxlength="20" placeholder="{{ trans('index.ex') }} ABCDEFGHIJKLMNOPQRST"
+                                wire:model="form.code" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.minlength') }} : 20,
+                            {{ trans('helper.maxlength') }} : 20,
+                            {{ trans('helper.unique') }}
+                        </div>
+                        <div class="form-text">
+                            {{ trans('helper.contact.code.add') }}
+                        </div>
+                        @error('form.code')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <div class="col-sm-6">
                         <label class="form-label" for="name">
                             {{ trans('validation.attributes.name') }}
@@ -112,7 +138,7 @@ new #[Title('Edit | Contact')] class extends Component {
                                 <span class="fas fa-user fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="name" name="name" minlength="1"
-                                maxlength="50" placeholder="{{ trans('index.ex') . '. John Doe' }}" required
+                                maxlength="50" placeholder="{{ trans('index.ex') }} John Doe" required
                                 wire:model="form.name" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
@@ -129,19 +155,17 @@ new #[Title('Edit | Contact')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="first_name">
                             {{ trans('validation.attributes.first_name') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-user fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="first_name" name="first_name" minlength="1"
-                                maxlength="25" placeholder="{{ trans('index.ex') . '. John Doe' }}" required
-                                wire:model="form.first_name" wire:offline.class="disabled" wire:offline.attr="disabled"
-                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                                maxlength="25" placeholder="{{ trans('index.ex') }} John" wire:model="form.first_name"
+                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 25
                         </div>
@@ -159,9 +183,9 @@ new #[Title('Edit | Contact')] class extends Component {
                                 <span class="fas fa-user fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="last_name" name="last_name" minlength="1"
-                                maxlength="25" placeholder="{{ trans('index.ex') . '. John Doe' }}"
-                                wire:model="form.last_name" wire:offline.class="disabled" wire:offline.attr="disabled"
-                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                                maxlength="25" placeholder="{{ trans('index.ex') }} Doe" wire:model="form.last_name"
+                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
                             {{ trans('helper.required') }},
@@ -182,7 +206,7 @@ new #[Title('Edit | Contact')] class extends Component {
                                 <span class="fas fa-building fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="company" name="company" minlength="1"
-                                maxlength="50" placeholder="{{ trans('index.ex') . '. PT. Bali Real Estate' }}"
+                                maxlength="50" placeholder="{{ trans('index.ex') }} PT. Bali Real Estate"
                                 wire:model="form.company" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
@@ -198,19 +222,17 @@ new #[Title('Edit | Contact')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="email">
                             {{ trans('validation.attributes.email') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope fa-fw "></span>
                             </div>
                             <input type="email" class="form-control" id="email" name="email" minlength="1"
-                                maxlength="50" placeholder="{{ trans('index.ex') . '. johndoe@gmail.com' }}" required
+                                maxlength="50" placeholder="{{ trans('index.ex') }} johndoe@gmail.com"
                                 wire:model="form.email" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 50
                         </div>
@@ -228,7 +250,7 @@ new #[Title('Edit | Contact')] class extends Component {
                                 <span class="fas fa-phone fa-fw "></span>
                             </div>
                             <input type="tel" class="form-control" id="phone" name="phone" minlength="1"
-                                maxlength="20" placeholder="{{ trans('index.ex') . '. 6281234567890' }}"
+                                maxlength="20" placeholder="{{ trans('index.ex') }} 6281234567890"
                                 wire:model="form.phone" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
