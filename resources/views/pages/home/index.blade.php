@@ -9,24 +9,20 @@ new #[Title('Home')] class extends Component {};
 @section('title', trans('page.home'))
 
 <div>
-    @if (request()->getHost() == 'solivingbali.com')
-        <x-home.coming-soon />
-    @else
-        <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/hero/home.png')" />
+    <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/hero/home.png')" />
 
-        <livewire:home.our-values lazy />
+    <livewire:home.our-values lazy />
 
-        <livewire:home.select-locations lazy />
+    <livewire:home.select-locations lazy />
 
-        <livewire:home.our-services lazy />
+    <livewire:home.our-services lazy />
 
-        <livewire:home.guides lazy />
+    <livewire:home.guides lazy />
 
-        {{-- prettier-ignore --}}
+    {{-- prettier-ignore --}}
         <x-home.cta
-        :image="asset('images/banner/home.png')"
-        :button-name="trans('home.cta.button')"
-        :button-link="route('contact')"
-        />
-    @endif
+    :image="asset('images/banner/home.png')"
+    :button-name="trans('home.cta.button')"
+    :button-link="route('contact')"
+    />
 </div>

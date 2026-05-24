@@ -30,9 +30,7 @@
                 <x-cms.layout.header />
             @endauth
         @else
-            @if (request()->getHost() != 'solivingbali.com')
-                <x-layout.header />
-            @endif
+            <x-layout.header />
         @endif
     @endif
 
@@ -60,9 +58,7 @@
                 <x-cms.layout.footer />
             @endauth
         @else
-            @if (request()->getHost() != 'solivingbali.com')
-                <x-layout.footer />
-            @endif
+            <x-layout.footer />
         @endif
     @endif
 
