@@ -222,19 +222,17 @@ new #[Title('Edit | Contact')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="phone">
                             {{ trans('validation.attributes.phone') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-phone fa-fw "></span>
                             </div>
                             <input type="tel" class="form-control" id="phone" name="phone" minlength="1"
-                                maxlength="20" placeholder="{{ trans('index.ex') . '. 6281234567890' }}" required
+                                maxlength="20" placeholder="{{ trans('index.ex') . '. 6281234567890' }}"
                                 wire:model="form.phone" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 20
                         </div>
