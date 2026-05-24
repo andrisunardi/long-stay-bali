@@ -10,25 +10,25 @@ class PropertyObserver
 {
     public function creating(Property $property): void
     {
-        $property->slug = Str::slug($property->name);
+        $property->slug = Str::slug($property->code.'-'.$property->name);
         $property->created_by = Auth::user()->id ?? null;
     }
 
     public function created(Property $property): void
     {
-        $property->slug = Str::slug($property->name);
+        $property->slug = Str::slug($property->code.'-'.$property->name);
         $property->created_by = Auth::user()->id ?? null;
     }
 
     public function updating(Property $property): void
     {
-        $property->slug = Str::slug($property->name);
+        $property->slug = Str::slug($property->code.'-'.$property->name);
         $property->updated_by = Auth::user()->id ?? null;
     }
 
     public function updated(Property $property): void
     {
-        $property->slug = Str::slug($property->name);
+        $property->slug = Str::slug($property->code.'-'.$property->name);
         $property->updated_by = Auth::user()->id ?? null;
     }
 

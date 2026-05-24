@@ -34,7 +34,7 @@ return [
     'list_permission' => 'List Permission',
     'list_role' => 'List Role',
     'list_user' => 'List User',
-    'list_your_properties' => 'List Your Properties',
+    'list_your_property' => 'List Your Property',
     'login' => 'Login',
     'logo' => 'Logo',
     'logout' => 'Logout',

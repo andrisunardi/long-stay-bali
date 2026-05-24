@@ -354,4 +354,58 @@ class PropertyService
             }
         }
     }
+
+    public function list(array $data = []): Property
+    {
+        $form = [];
+        $form['name'] = $data['name'];
+        $form['email'] = $data['email'];
+        $form['phone'] = $data['phone'];
+
+        $contact = (new ContactService)->create(data: $form);
+
+        $id = Property::max('id') + 1;
+        $name = $data['name'];
+
+        $data = [];
+        $data['code'] = "LYP{$id}";
+        $data['name'] = "Property {$name}";
+        $data['owner_id'] = $contact->id;
+        $data['images'] = [];
+        $data['availability_date'] = null;
+        $data['visit_date'] = null;
+        $data['latitude'] = null;
+        $data['longitude'] = null;
+
+        if (! empty($data['google_maps_url'])) {
+            $response = Http::withOptions([
+                'allow_redirects' => true,
+            ])->get($data['google_maps_url']);
+
+            $finalUrl = $response->effectiveUri()?->__toString();
+
+            if ($finalUrl) {
+                preg_match(
+                    '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
+                    $finalUrl,
+                    $coordinates,
+                );
+
+                $data['latitude'] = $coordinates[1] ?? null;
+                $data['longitude'] = $coordinates[2] ?? null;
+
+                preg_match('/place\/([^\/]+)/', $finalUrl, $place);
+
+                if (! $data['address']) {
+                    $data['address'] = isset($place[1])
+                        ? urldecode(str_replace('+', ' ', $place[1]))
+                        : null;
+                }
+            }
+        }
+
+        $property = (new PropertyService)->create(data: $data);
+
+        return $property;
+    }
 }

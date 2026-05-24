@@ -83,12 +83,7 @@
                             <span class="fas fa-pen-to-square fa-fw"></span>
                         </a>
 
-                        <a draggable="false"
-                            class="btn btn-success btn-sm rounded-pill d-none d-xl-inline-flex align-items-center gap-2"
-                            href="{{ route('home') }}" wire:navigate>
-                            <span class="fas fa-pen-to-square"></span>
-                            <span>{{ trans('index.list_your_properties') }}</span>
-                        </a>
+                        <livewire:modal.list-your-property />
                     </div>
                 </div>
             </div>
@@ -184,7 +179,7 @@
                         <a draggable="false" class="btn btn-success rounded-5 fw-bold w-100"
                             href="{{ route('home') }}" wire:navigate>
                             <span class="fas fa-pen-to-square fa-fw"></span>
-                            {{ trans('index.list_your_properties') }}
+                            {{ trans('index.list_your_property') }}
                         </a>
                     </div>
                 </div>

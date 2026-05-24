@@ -730,7 +730,7 @@ new #[Title('Detail | Property')] class extends Component {
                         <div class="fw-bold">{{ trans('property.target_profiles') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @foreach ($property->target_profiles as $targetProfile)
+                        @foreach ($property->target_profiles ?? [] as $targetProfile)
                             <span class="badge rounded-pill text-bg-primary">
                                 {{ PropertyTargetProfile::From($targetProfile)->description() }}
                             </span>

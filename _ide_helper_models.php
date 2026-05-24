@@ -72,60 +72,61 @@ namespace App\Models{
  * @property string|null $company
  * @property string $email
  * @property string $phone
- * @property \App\Enums\Property\PropertyBedroom|null $bedroom
- * @property \App\Enums\Property\PropertyRentalType|null $rental_type
+ * @property PropertyBedroom|null $bedroom
+ * @property PropertyRentalType|null $rental_type
  * @property string|null $message
  * @property int|null $area_id
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activities
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection<int, Activity> $activities
  * @property-read int|null $activities_count
- * @property-read \App\Models\Area|null $area
- * @property-read \App\Models\User|null $createdBy
- * @property-read \App\Models\User|null $deletedBy
- * @property-read \App\Models\District|null $district
+ * @property-read Area|null $area
+ * @property-read User|null $createdBy
+ * @property-read User|null $deletedBy
+ * @property-read District|null $district
  * @property-read mixed $properties
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $ownerRepresentatives
+ * @property-read Collection<int, Property> $ownerRepresentatives
  * @property-read int|null $owner_representatives_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $owners
+ * @property-read Collection<int, Property> $owners
  * @property-read int|null $owners_count
- * @property-read \App\Models\User|null $updatedBy
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact both()
+ * @property-read User|null $updatedBy
+ * @method static Builder<static>|Contact both()
  * @method static \Database\Factories\ContactFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact fourBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact monthly()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact oneBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact threeBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact twoBedroom()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereAreaId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereBedroom($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereCompany($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereFirstName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereLastName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereMessage($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact wherePhone($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereRentalType($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact withoutTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Contact yearly()
+ * @method static Builder<static>|Contact fourBedroom()
+ * @method static Builder<static>|Contact monthly()
+ * @method static Builder<static>|Contact newModelQuery()
+ * @method static Builder<static>|Contact newQuery()
+ * @method static Builder<static>|Contact oneBedroom()
+ * @method static Builder<static>|Contact onlyTrashed()
+ * @method static Builder<static>|Contact query()
+ * @method static Builder<static>|Contact threeBedroom()
+ * @method static Builder<static>|Contact twoBedroom()
+ * @method static Builder<static>|Contact whereAreaId($value)
+ * @method static Builder<static>|Contact whereBedroom($value)
+ * @method static Builder<static>|Contact whereCode($value)
+ * @method static Builder<static>|Contact whereCompany($value)
+ * @method static Builder<static>|Contact whereCreatedAt($value)
+ * @method static Builder<static>|Contact whereCreatedBy($value)
+ * @method static Builder<static>|Contact whereDeletedAt($value)
+ * @method static Builder<static>|Contact whereDeletedBy($value)
+ * @method static Builder<static>|Contact whereEmail($value)
+ * @method static Builder<static>|Contact whereFirstName($value)
+ * @method static Builder<static>|Contact whereId($value)
+ * @method static Builder<static>|Contact whereLastName($value)
+ * @method static Builder<static>|Contact whereMessage($value)
+ * @method static Builder<static>|Contact whereName($value)
+ * @method static Builder<static>|Contact wherePhone($value)
+ * @method static Builder<static>|Contact whereRentalType($value)
+ * @method static Builder<static>|Contact whereUpdatedAt($value)
+ * @method static Builder<static>|Contact whereUpdatedBy($value)
+ * @method static Builder<static>|Contact withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Contact withoutTrashed()
+ * @method static Builder<static>|Contact yearly()
+ * @mixin \Eloquent
  */
 	class Contact extends \Eloquent {}
 }
