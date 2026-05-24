@@ -16,23 +16,23 @@ class ContactEditForm extends Form
 
     public string $code = '';
 
-    #[Validate('required|string|min:1|max:50')]
+    #[Validate('required|required_without:first_name,last_name|string|min:1|max:50')]
     public string $name = '';
 
-    #[Validate('required|string|min:1|max:25')]
+    #[Validate('nullable|required_without:name|string|min:1|max:25')]
     public string $first_name = '';
 
-    #[Validate('nullable|string|min:1|max:25')]
+    #[Validate('nullable|required_without:name|string|min:1|max:25')]
     public ?string $last_name = '';
 
     #[Validate('nullable|string|min:1|max:50')]
-    public string $company = '';
+    public ?string $company = '';
 
-    #[Validate('required|email:rfc,dns|min:1|max:50')]
-    public string $email = '';
+    #[Validate('nullable|required_without:phone|email:rfc,dns|min:1|max:50')]
+    public ?string $email = '';
 
-    #[Validate('required|string|min:1|max:20')]
-    public string $phone = '';
+    #[Validate('nullable|required_without:email|string|min:1|max:20')]
+    public ?string $phone = '';
 
     #[Validate('nullable|integer|exists:areas,id')]
     public ?string $area_id = '';
