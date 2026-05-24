@@ -798,9 +798,11 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
                         @if ($property->owner)
-                            {{ $property->owner->name }} -
-                            {{ $property->owner->phone }} -
-                            {{ $property->owner->email }}
+                            <a draggable="false" class="fw-bold"
+                                href="{{ route('cms.contact.detail', ['contact' => $property->owner]) }}"
+                                wire:navigate>
+                                {{ $property->owner->name }} - {{ $property->owner->phone }}
+                            </a>
                         @endif
                     </div>
                 </div>
@@ -811,9 +813,12 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
                         @if ($property->ownerRepresentative)
-                            {{ $property->ownerRepresentative->name }} -
-                            {{ $property->ownerRepresentative->phone }} -
-                            {{ $property->ownerRepresentative->email }}
+                            <a draggable="false"
+                                href="{{ route('cms.contact.detail', ['contact' => $property->ownerRepresentative]) }}"
+                                wire:navigate>
+                                {{ $property->ownerRepresentative->name }} -
+                                {{ $property->ownerRepresentative->phone }}
+                            </a>
                         @endif
                     </div>
                 </div>

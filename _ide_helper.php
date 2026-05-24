@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 12.58.0.
+ * Generated for Laravel 12.60.2.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14154,7 +14154,6 @@ namespace Illuminate\Support\Facades {
 
             }
     /**
-     * @method static \BackedEnum|(\BackedEnum|null enum(string $key, string $enumClass, \BackedEnum|null $default = null)
      * @see \Illuminate\Http\Request
      */
     class Request {
@@ -28523,7 +28522,7 @@ namespace  {
          * @param string $pageName
          * @param int|null $page
          * @param \Closure|int|null $total
-         * @return \Illuminate\Pagination\LengthAwarePaginator
+         * @return \Illuminate\Pagination\LengthAwarePaginator<int, TModel>
          * @throws \InvalidArgumentException
          * @static
          */
@@ -28540,7 +28539,7 @@ namespace  {
          * @param array|string $columns
          * @param string $pageName
          * @param int|null $page
-         * @return \Illuminate\Contracts\Pagination\Paginator
+         * @return \Illuminate\Pagination\Paginator<int, TModel>
          * @static
          */
         public static function simplePaginate($perPage = null, $columns = [], $pageName = 'page', $page = null)
@@ -28556,7 +28555,7 @@ namespace  {
          * @param array|string $columns
          * @param string $cursorName
          * @param \Illuminate\Pagination\Cursor|string|null $cursor
-         * @return \Illuminate\Contracts\Pagination\CursorPaginator
+         * @return \Illuminate\Pagination\CursorPaginator<int, TModel>
          * @static
          */
         public static function cursorPaginate($perPage = null, $columns = [], $cursorName = 'cursor', $cursor = null)

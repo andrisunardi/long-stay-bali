@@ -431,8 +431,25 @@ new #[Title('Property')] class extends Component {
                                     <div>{{ Str::idr($property->yearly_price) }}</div>
                                 </td>
                                 <td>
-                                    <div class="fw-bold">{{ $property->owner?->name }} - {{ $property->owner?->phone }}</div>
-                                    <div>{{ $property->ownerRepresentative?->name }} - {{ $property->ownerRepresentative?->phone }}</div>
+                                    @if ($property->owner)
+                                        <div>
+                                            <a draggable="false" class="fw-bold"
+                                                href="{{ route('cms.contact.detail', ['contact' => $property->owner]) }}"
+                                                wire:navigate>
+                                                {{ $property->owner->name }} - {{ $property->owner->phone }}
+                                            </a>
+                                        </div>
+                                    @endif
+                                    @if ($property->ownerRepresentative)
+                                        <div>
+                                            <a draggable="false"
+                                                href="{{ route('cms.contact.detail', ['contact' => $property->ownerRepresentative]) }}"
+                                                wire:navigate>
+                                                {{ $property->ownerRepresentative->name }} -
+                                                {{ $property->ownerRepresentative->phone }}
+                                            </a>
+                                        </div>
+                                    @endif
                                 </td>
                                 <td>
                                     <div class="d-flex gap-2">

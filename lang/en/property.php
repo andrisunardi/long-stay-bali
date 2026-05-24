@@ -11,6 +11,7 @@ return [
     'inquiry_availability' => 'Inquiry Availability',
     'months' => 'months',
     'location_property' => 'Location Property',
+    'description' => 'Description',
 
     'property_details' => 'Property Details',
     'availability' => 'Availability',
@@ -67,7 +68,7 @@ return [
     'slf' => 'SLF (Certificate of Functionality)',
 
     'fully_furnished' => 'Fully Furnished (no semi-furnished)',
-    'rental_type_accepted' => 'Rental Type Accepted (Monthly / Yearly / Both)',
+    'rental_type_accepted' => 'Rental Type Accepted',
     'minimum_rental_duration' => 'Minimum Rental Duration (months)',
     'owner_price_flexibility' => 'Owner Price Flexibility (Fixed / Negotiable)',
     'price_coherent_with_upper_or_premium_positioning' => 'Price Coherent With Upper / Premium Positioning',

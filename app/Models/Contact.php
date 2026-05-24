@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -23,7 +24,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string $code
  * @property string $name
  * @property string $first_name
- * @property string $last_name
+ * @property string|null $last_name
  * @property string|null $company
  * @property string $email
  * @property string $phone
@@ -43,6 +44,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read User|null $createdBy
  * @property-read User|null $deletedBy
  * @property-read District|null $district
+ * @property-read mixed $properties
+ * @property-read Collection<int, Property> $ownerRepresentatives
+ * @property-read int|null $owner_representatives_count
+ * @property-read Collection<int, Property> $owners
+ * @property-read int|null $owners_count
  * @property-read User|null $updatedBy
  *
  * @method static Builder<static>|Contact both()
@@ -200,5 +206,23 @@ class Contact extends Model
     public function district(): HasOne
     {
         return $this->hasOne(District::class, Area::class);
+    }
+
+    public function owners(): HasMany
+    {
+        return $this->hasMany(Property::class, 'owner_id');
+    }
+
+    public function ownerRepresentatives(): HasMany
+    {
+        return $this->hasMany(Property::class, 'owner_representative_id');
+    }
+
+    public function getPropertiesAttribute()
+    {
+        return $this->owners
+            ->merge($this->ownerRepresentatives)
+            ->unique('id')
+            ->values();
     }
 }

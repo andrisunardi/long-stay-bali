@@ -92,7 +92,7 @@ new #[Title('Contact')] class extends Component {
     {
         $service = new ContactService();
         $contacts = $service->index(search: $this->search, districtId: $this->district_id, areaId: $this->area_id, bedroom: $this->bedroom, rentalType: $this->rental_type, startDate: $this->start_date, endDate: $this->end_date, paginate: $paginate);
-        $contacts->loadMissing(['area.district']);
+        $contacts->loadMissing(['owners', 'ownerRepresentatives']);
 
         return $contacts;
     }
@@ -103,7 +103,7 @@ new #[Title('Contact')] class extends Component {
 
         $service = new ContactService();
         $contacts = $service->index(startDate: $this->start_date, endDate: $this->end_date, orderBy: 'id', sortBy: 'asc', paginate: false);
-        $contacts->loadMissing(['area.district', 'createdBy', 'updatedBy']);
+        $contacts->loadMissing(['owners', 'ownerRepresentatives', 'createdBy', 'updatedBy']);
 
         return Excel::download(new ContactExport(contacts: $contacts), trans('page.contact') . '.xlsx');
     }
@@ -318,10 +318,10 @@ new #[Title('Contact')] class extends Component {
                             <th width="1%">{{ trans('field.id') }}</th>
                             <th width="1%">{{ trans('field.code') }}</th>
                             <th>{{ trans('field.name') }}</th>
-                            <th>{{ trans('field.email') }} / {{ trans('field.phone') }}</th>
-                            <th>{{ trans('field.district_id') }} / {{ trans('field.area_id') }}</th>
-                            <th width="1%">{{ trans('field.attribute') }}</th>
+                            <th>{{ trans('field.email') }}</th>
+                            <th>{{ trans('field.phone') }}</th>
                             <th width="1%">{{ trans('field.message') }}</th>
+                            <th width="1%">{{ trans('page.property') }}</th>
                             <th width="1%">{{ trans('field.created_at') }}</th>
                             <th width="1%">{{ trans('field.action') }}</th>
                         </tr>
@@ -346,63 +346,18 @@ new #[Title('Contact')] class extends Component {
                                         {{ $contact->code }}
                                     </a>
                                 </td>
+                                <td>{{ $contact->name }}</td>
                                 <td>
-                                    <div class="fw-bold">
-                                        {{ $contact->name }}
-                                        ({{ $contact->first_name }}, {{ $contact->last_name }})
-                                    </div>
-                                    <div>{{ $contact->company }}</div>
+                                    <a draggable="false" href="mailto:{{ $contact->email }}">
+                                        {{ $contact->email }}
+                                    </a>
                                 </td>
                                 <td>
-                                    <div>
-                                        <a draggable="false" href="mailto:{{ $contact->email }}">
-                                            {{ $contact->email }}
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a draggable="false"
-                                            href="https://api.whatsapp.com/send/?phone={{ $contact->phone }}"
-                                            target="_blank">
-                                            {{ $contact->phone }}
-                                        </a>
-                                    </div>
-                                </td>
-                                <td>
-                                    @if ($contact->area)
-                                        @if ($contact->area->district)
-                                            <div>
-                                                <a draggable="false"
-                                                    href="{{ route('cms.district.detail', ['district' => $contact->area->district]) }}"
-                                                    wire:navigate>
-                                                    {{ $contact->area->district->name }}
-                                                </a>
-                                            </div>
-                                        @endif
-
-                                        <div>
-                                            <a draggable="false"
-                                                href="{{ route('cms.area.detail', ['area' => $contact->area]) }}"
-                                                wire:navigate>
-                                                {{ $contact->area->name }}
-                                            </a>
-                                        </div>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if ($contact->bedroom)
-                                        <div>
-                                            <span class="badge text-bg-primary rounded-pill">
-                                                {{ $contact->bedroom->description() }}
-                                            </span>
-                                        </div>
-                                    @endif
-                                    @if ($contact->rental_type)
-                                        <div>
-                                            <span class="badge text-bg-primary rounded-pill">
-                                                {{ $contact->rental_type->description() }}
-                                            </span>
-                                        </div>
-                                    @endif
+                                    <a draggable="false"
+                                        href="https://api.whatsapp.com/send/?phone={{ $contact->phone }}"
+                                        target="_blank">
+                                        {{ $contact->phone }}
+                                    </a>
                                 </td>
                                 <td>
                                     @if ($contact->message)
@@ -439,6 +394,18 @@ new #[Title('Contact')] class extends Component {
                                             </div>
                                         </div>
                                     @endif
+                                </td>
+                                <td>
+                                    @foreach ($contact->properties as $property)
+                                        <div wire:key="property-{{ $property->id }}">
+                                            <a draggable="false"
+                                                href="{{ route('cms.property.detail', ['property' => $property]) }}"
+                                                wire:navigate>
+                                                {{ $loop->iteration }}.
+                                                {{ $property->code }} - {{ $property->name }}
+                                            </a>
+                                        </div>
+                                    @endforeach
                                 </td>
                                 <td>{{ $contact->created_at->isoFormat('HH:mm - ddd, DD MMM YYYY') }}</td>
                                 <td>
