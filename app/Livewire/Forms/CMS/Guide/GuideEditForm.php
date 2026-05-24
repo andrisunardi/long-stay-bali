@@ -25,13 +25,13 @@ class GuideEditForm extends Form
     #[Validate('required|string|min:1|max:65535')]
     public string $body = '';
 
-    #[Validate('required|string|min:1|max:65535')]
+    #[Validate('nullable|string|min:1|max:65535')]
     public string $body_id = '';
 
-    #[Validate('required|string|min:1|max:65535')]
+    #[Validate('nullable|string|min:1|max:65535')]
     public string $body_zh = '';
 
-    #[Validate('required|string|min:1|max:65535')]
+    #[Validate('nullable|string|min:1|max:65535')]
     public string $body_fr = '';
 
     #[Validate(['required', 'array', 'min:1'])]
@@ -63,8 +63,9 @@ class GuideEditForm extends Form
     {
         return [
             'title' => "required|string|min:1|max:50|unique:guides,title,{$this->guide->id}",
-            'title_id' => "required|string|min:1|max:50|unique:guides,title_id,{$this->guide->id}",
-            'title_zh' => "required|string|min:1|max:50|unique:guides,title_zh,{$this->guide->id}",
+            'title_id' => "nullable|string|min:1|max:50|unique:guides,title_id,{$this->guide->id}",
+            'title_zh' => "nullable|string|min:1|max:50|unique:guides,title_zh,{$this->guide->id}",
+            'title_fr' => "nullable|string|min:1|max:50|unique:guides,title_fr,{$this->guide->id}",
         ];
     }
 

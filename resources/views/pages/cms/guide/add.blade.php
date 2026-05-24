@@ -5,9 +5,16 @@ use App\Livewire\Forms\CMS\Guide\GuideAddForm;
 use App\Services\GuideCategoryService;
 use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\On;
 
 new #[Title('Add | Guide')] class extends Component {
     public GuideAddForm $form;
+
+    #[On('imageUpdated')]
+    public function setImage($image): void
+    {
+        $this->form->image = $image;
+    }
 
     public function resetForm(): void
     {
@@ -124,19 +131,17 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="title_id">
                             {{ trans('validation.attributes.title_id') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title_id" name="title_id" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu" required
+                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_id" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 100,
                             {{ trans('helper.unique') }}
@@ -149,19 +154,17 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="title_zh">
                             {{ trans('validation.attributes.title_zh') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title_zh" name="title_zh" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu" required
+                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_zh" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 100,
                             {{ trans('helper.unique') }}
@@ -174,19 +177,17 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="title_fr">
                             {{ trans('validation.attributes.title_fr') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="input-group">
                             <div class="input-group-text">
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
-                            <input type="text" class="form-control" id="title_fr" name="title_fr" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu" required
+                            <input type="text" class="form-control" id="title_fr" name="title_fr"
+                                minlength="1" maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_fr" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 100,
                             {{ trans('helper.unique') }}
@@ -215,11 +216,9 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="body_id">
                             {{ trans('validation.attributes.body_id') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <x-form.trix model="form.body_id" />
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
                         </div>
@@ -231,11 +230,9 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="body_zh">
                             {{ trans('validation.attributes.body_zh') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <x-form.trix model="form.body_zh" />
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
                         </div>
@@ -247,11 +244,9 @@ new #[Title('Add | Guide')] class extends Component {
                     <div class="col-sm-6">
                         <label class="form-label" for="body_fr">
                             {{ trans('validation.attributes.body_fr') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <x-form.trix model="form.body_fr" />
                         <div class="form-text">
-                            {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,
                         </div>
@@ -326,6 +321,10 @@ new #[Title('Add | Guide')] class extends Component {
                         </div>
                     </div>
                 </div>
+
+                <hr />
+
+                <livewire:cms.form.guide.image />
 
                 <hr />
 

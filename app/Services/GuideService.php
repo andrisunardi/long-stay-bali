@@ -164,7 +164,7 @@ class GuideService
         return Guide::where('slug', $slug)->show()->active()->first();
     }
 
-    public function uploadImage(Guide $guide, string $fileId): Guide
+    public function uploadImage(Guide $guide, array $fileId): Guide
     {
         $google = new GoogleDrive;
 
@@ -176,7 +176,7 @@ class GuideService
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
 
-        $content = $google->download($fileId);
+        $content = $google->download($fileId[0]['id']);
 
         try {
             $image = Image::make($content);
@@ -192,6 +192,7 @@ class GuideService
             $encoded = (string) $image->encode('webp', 70);
             file_put_contents($fullPath, $encoded);
 
+            $guide->google_file_id = $fileId[0]['id'];
             $guide->image_url = "{$fullUrl}/{$directory}/{$fileName}";
             $guide->save();
 
