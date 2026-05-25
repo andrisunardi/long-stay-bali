@@ -13,16 +13,16 @@ return new class extends Migration
         Schema::create('guides', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(GuideCategory::class)->constrained()->cascadeOnDelete();
-            $table->string('title', 100)->unique();
-            $table->string('title_id', 100)->unique();
-            $table->string('title_zh', 100)->unique();
-            $table->string('title_fr', 100)->unique();
+            $table->string('title', 200)->unique();
+            $table->string('title_id', 200)->unique();
+            $table->string('title_zh', 200)->unique();
+            $table->string('title_fr', 200)->unique();
             $table->text('body');
             $table->text('body_id');
             $table->text('body_zh');
             $table->text('body_fr');
-            $table->string('google_file_id', 100);
-            $table->string('image_url');
+            $table->string('google_file_id', 100)->nullable();
+            $table->string('image_url')->nullable();
             $table->boolean('is_show')->unsigned()->default(true);
             $table->boolean('is_active')->unsigned()->default(true);
             $table->string('slug', 100)->unique();

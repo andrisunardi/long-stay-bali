@@ -62,10 +62,10 @@ class GuideEditForm extends Form
     public function rules(): array
     {
         return [
-            'title' => "required|string|min:1|max:50|unique:guides,title,{$this->guide->id}",
-            'title_id' => "nullable|string|min:1|max:50|unique:guides,title_id,{$this->guide->id}",
-            'title_zh' => "nullable|string|min:1|max:50|unique:guides,title_zh,{$this->guide->id}",
-            'title_fr' => "nullable|string|min:1|max:50|unique:guides,title_fr,{$this->guide->id}",
+            'title' => "required|string|min:1|max:200|unique:guides,title,{$this->guide->id}",
+            'title_id' => "nullable|string|min:1|max:200|unique:guides,title_id,{$this->guide->id}",
+            'title_zh' => "nullable|string|min:1|max:200|unique:guides,title_zh,{$this->guide->id}",
+            'title_fr' => "nullable|string|min:1|max:200|unique:guides,title_fr,{$this->guide->id}",
         ];
     }
 

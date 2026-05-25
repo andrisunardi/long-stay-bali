@@ -12,16 +12,16 @@ class GuideAddForm extends Form
     #[Validate('required|integer|exists:guide_categories,id')]
     public ?int $guide_category_id = null;
 
-    #[Validate('required|string|min:1|max:100|unique:guides,title')]
+    #[Validate('required|string|min:1|max:200|unique:guides,title')]
     public string $title = '';
 
-    #[Validate('nullable|string|min:1|max:100|unique:guides,title_id')]
+    #[Validate('nullable|string|min:1|max:200|unique:guides,title_id')]
     public string $title_id = '';
 
-    #[Validate('nullable|string|min:1|max:100|unique:guides,title_zh')]
+    #[Validate('nullable|string|min:1|max:200|unique:guides,title_zh')]
     public string $title_zh = '';
 
-    #[Validate('nullable|string|min:1|max:100|unique:guides,title_fr')]
+    #[Validate('nullable|string|min:1|max:200|unique:guides,title_fr')]
     public string $title_fr = '';
 
     #[Validate('required|string|min:1|max:65535')]
