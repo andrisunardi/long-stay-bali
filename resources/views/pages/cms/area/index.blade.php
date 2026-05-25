@@ -18,6 +18,9 @@ new #[Title('Area')] class extends Component {
     public string $district_id = '';
 
     #[Url(except: [])]
+    public array $is_promoted = [];
+
+    #[Url(except: [])]
     public array $is_show = [];
 
     #[Url(except: [])]
@@ -32,7 +35,15 @@ new #[Title('Area')] class extends Component {
     {
         $this->resetPage();
 
-        $this->reset(['search', 'district_id', 'is_show', 'is_active']);
+        $this->reset(['search', 'district_id', 'is_promoted', 'is_show', 'is_active']);
+    }
+
+    public function changePromoted(Area $area): void
+    {
+        $service = new AreaService();
+        $service->promoted(area: $area);
+
+        $this->alertSuccess(title: trans('index.change_promoted') . ' ' . trans('index.success'), body: trans('page.area') . ' ' . trans('message.has_been_successfully_changed'));
     }
 
     public function changeShow(Area $area): void
@@ -68,7 +79,7 @@ new #[Title('Area')] class extends Component {
     public function areas(bool $paginate = true): object
     {
         $service = new AreaService();
-        $areas = $service->index(search: $this->search, districtId: $this->district_id, isActive: $this->is_active, paginate: $paginate);
+        $areas = $service->index(search: $this->search, districtId: $this->district_id, isPromoted: $this->is_promoted, isShow: $this->is_show, isActive: $this->is_active, paginate: $paginate);
         $areas->loadMissing(['district']);
         $areas->loadCount(['contacts', 'properties']);
 
@@ -149,6 +160,32 @@ new #[Title('Area')] class extends Component {
                                     </option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+
+                    <div class="col-auto">
+                        <label class="form-label" for="is_promoted">
+                            {{ trans('field.is_promoted') }}
+                        </label>
+                        <div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="is_promoted_1" name="is_promoted"
+                                    value="1" wire:model.lazy="is_promoted" wire:offline.class="disabled"
+                                    wire:offline.attr="disabled" wire:loading.class="disabled"
+                                    wire:loading.attr="disabled">
+                                <label class="form-check-label" for="is_promoted_1">
+                                    {{ trans('index.yes') }}
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="is_promoted_0" name="is_promoted"
+                                    value="0" wire:model.lazy="is_promoted" wire:offline.class="disabled"
+                                    wire:offline.attr="disabled" wire:loading.class="disabled"
+                                    wire:loading.attr="disabled">
+                                <label class="form-check-label" for="is_promoted_0">
+                                    {{ trans('no') }}
+                                </label>
+                            </div>
                         </div>
                     </div>
 
@@ -258,6 +295,7 @@ new #[Title('Area')] class extends Component {
                             <th width="1%">{{ trans('index.total') }} {{ trans('page.contact') }}</th>
                             <th width="1%">{{ trans('index.total') }} {{ trans('page.property') }}</th>
                             <th width="1%">{{ trans('field.created_at') }}</th>
+                            <th width="1%">{{ trans('field.promoted') }}</th>
                             <th width="1%">{{ trans('field.show') }}</th>
                             <th width="1%">{{ trans('field.active') }}</th>
                             <th width="1%">{{ trans('field.action') }}</th>
@@ -305,6 +343,28 @@ new #[Title('Area')] class extends Component {
                                     </a>
                                 </td>
                                 <td>{{ $area->created_at?->isoFormat('HH:mm - ddd, DD MMM YYYY') }}</td>
+                                <td>
+                                    @can('area.edit')
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch"
+                                                id="is_promoted_{{ $area->id }}" name="is_promoted" value="1"
+                                                {{ $area->is_promoted ? 'checked' : '' }}
+                                                wire:click="changePromoted({{ $area->id }})"
+                                                wire:offline.class="disabled" wire:offline.attr="disabled"
+                                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                                            <label
+                                                class="form-check-label text-{{ Str::successDanger($area->is_promoted) }}"
+                                                for="is_promoted_{{ $area->id }}">
+                                                {{ Str::yesNo($area->is_promoted) }}
+                                            </label>
+                                        </div>
+                                    @else
+                                        <span
+                                            class="badge rounded-pill text-bg-{{ Str::successDanger($area->is_promoted) }}">
+                                            {{ Str::yesNo($area->is_promoted) }}
+                                        </span>
+                                    @endcan
+                                </td>
                                 <td>
                                     @can('area.edit')
                                         <div class="form-check form-switch">

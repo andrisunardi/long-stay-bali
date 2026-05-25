@@ -20,6 +20,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int $id
  * @property int $district_id
  * @property string $name
+ * @property bool $is_promoted
  * @property bool $is_show
  * @property bool $is_active
  * @property int|null $created_by
@@ -38,15 +39,16 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read Collection<int, Property> $properties
  * @property-read int|null $properties_count
  * @property-read User|null $updatedBy
- * @property-read User|null $user
  *
  * @method static Builder<static>|Area active()
  * @method static \Database\Factories\AreaFactory factory($count = null, $state = [])
  * @method static Builder<static>|Area inactive()
  * @method static Builder<static>|Area newModelQuery()
  * @method static Builder<static>|Area newQuery()
+ * @method static Builder<static>|Area notPromoted()
  * @method static Builder<static>|Area notShown()
  * @method static Builder<static>|Area onlyTrashed()
+ * @method static Builder<static>|Area promoted()
  * @method static Builder<static>|Area query()
  * @method static Builder<static>|Area show()
  * @method static Builder<static>|Area whereCreatedAt($value)
@@ -56,6 +58,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Area whereDistrictId($value)
  * @method static Builder<static>|Area whereId($value)
  * @method static Builder<static>|Area whereIsActive($value)
+ * @method static Builder<static>|Area whereIsPromoted($value)
  * @method static Builder<static>|Area whereIsShow($value)
  * @method static Builder<static>|Area whereName($value)
  * @method static Builder<static>|Area whereUpdatedAt($value)
@@ -77,6 +80,7 @@ class Area extends Model
     protected $fillable = [
         'district_id',
         'name',
+        'is_promoted',
         'is_show',
         'is_active',
     ];
@@ -88,6 +92,7 @@ class Area extends Model
         return [
             'district_id' => 'integer',
             'name' => 'string',
+            'is_promoted' => 'boolean',
             'is_show' => 'boolean',
             'is_active' => 'boolean',
         ];
@@ -111,6 +116,16 @@ class Area extends Model
     public function getUpdatedAtAttribute(string $value): Carbon
     {
         return Carbon::parse($value)->setTimezone(config('app.timezone'));
+    }
+
+    public function scopePromoted(Builder $query): void
+    {
+        $query->where('is_promoted', true);
+    }
+
+    public function scopeNotPromoted(Builder $query): void
+    {
+        $query->where('is_promoted', false);
     }
 
     public function scopeShow(Builder $query): void

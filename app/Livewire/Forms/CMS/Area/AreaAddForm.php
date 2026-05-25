@@ -16,6 +16,9 @@ class AreaAddForm extends Form
     public string $name = '';
 
     #[Validate('required|boolean')]
+    public bool $is_promoted = true;
+
+    #[Validate('required|boolean')]
     public bool $is_show = true;
 
     #[Validate('required|boolean')]

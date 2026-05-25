@@ -65,5 +65,6 @@ return [
     'overview' => 'Overview',
     'cancel' => 'Cancel',
     'property_code' => 'Property Code',
+    'change_promoted' => 'Change Promoted',
 
 ];

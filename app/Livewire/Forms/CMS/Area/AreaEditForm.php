@@ -17,6 +17,9 @@ class AreaEditForm extends Form
     public string $name = '';
 
     #[Validate('required|boolean')]
+    public bool $is_promoted = true;
+
+    #[Validate('required|boolean')]
     public bool $is_show = true;
 
     #[Validate('required|boolean')]
@@ -27,6 +30,7 @@ class AreaEditForm extends Form
         $this->area = $area;
         $this->district_id = $area->district_id;
         $this->name = $area->name;
+        $this->is_promoted = $area->is_promoted;
         $this->is_show = $area->is_show;
         $this->is_active = $area->is_active;
     }

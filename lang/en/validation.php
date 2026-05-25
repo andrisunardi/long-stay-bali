@@ -272,6 +272,7 @@ return [
         'owner_representative_name' => 'Owner Representative Name',
         'owner_representative_phone' => 'Owner Representative Phone',
         'owner_representative_email' => 'Owner Representative Email',
+        'is_promoted' => 'Promoted',
     ],
 
 ];

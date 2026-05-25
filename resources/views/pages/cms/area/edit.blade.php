@@ -131,6 +131,38 @@ new #[Title('Edit | Area')] class extends Component {
                     <div class="col-sm-6">
                         <div class="d-flex gap-3">
                             <div>
+                                <label class="form-label" for="is_promoted">
+                                    {{ trans('validation.attributes.is_promoted') }}
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="is_promoted_1"
+                                            name="is_promoted" value="1" required wire:key="is_promoted"
+                                            wire:model.lazy="form.is_promoted" wire:offline.class="disabled"
+                                            wire:offline.attr="disabled" wire:loading.class="disabled"
+                                            wire:loading.attr="disabled">
+                                        <label class="form-check-label" for="is_promoted_1">
+                                            {{ trans('index.yes') }}
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" class="form-check-input" id="is_promoted_0"
+                                            name="is_promoted" value="0" required wire:key="is_promoted"
+                                            wire:model.lazy="form.is_promoted" wire:offline.class="disabled"
+                                            wire:offline.attr="disabled" wire:loading.class="disabled"
+                                            wire:loading.attr="disabled">
+                                        <label class="form-check-label" for="is_promoted_0">
+                                            {{ trans('index.no') }}
+                                        </label>
+                                    </div>
+                                </div>
+                                @error('form.is_promoted')
+                                    <div class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div>
                                 <label class="form-label" for="is_show">
                                     {{ trans('validation.attributes.is_show') }}
                                     <span class="text-danger">*</span>
@@ -167,8 +199,8 @@ new #[Title('Edit | Area')] class extends Component {
                                 </label>
                                 <div>
                                     <div class="form-check form-check-inline">
-                                        <input type="radio" class="form-check-input" id="is_active_1" name="is_active"
-                                            value="1" required wire:key="is_active"
+                                        <input type="radio" class="form-check-input" id="is_active_1"
+                                            name="is_active" value="1" required wire:key="is_active"
                                             wire:model.lazy="form.is_active" wire:offline.class="disabled"
                                             wire:offline.attr="disabled" wire:loading.class="disabled"
                                             wire:loading.attr="disabled">

@@ -103,6 +103,31 @@ new #[Title('Detail | Area')] class extends Component {
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('field.promoted') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        @can('area.edit')
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="is_promoted_{{ $area->id }}" name="is_promoted" value="1"
+                                    {{ $area->is_promoted ? 'checked' : '' }} wire:click="changeShow({{ $area->id }})"
+                                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                    wire:loading.attr="disabled">
+                                <label class="form-check-label text-{{ Str::successDanger($area->is_promoted) }}"
+                                    for="is_promoted_{{ $area->id }}">
+                                    {{ Str::yesNo($area->is_promoted) }}
+                                </label>
+                            </div>
+                        @else
+                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($area->is_promoted) }}">
+                                {{ Str::yesNo($area->is_promoted) }}
+                            </span>
+                        @endcan
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
                         <div class="fw-bold">{{ trans('field.show') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">

@@ -14,9 +14,20 @@ class AreaFactory extends Factory
         return [
             'district_id' => $district->id,
             'name' => fake()->unique()->name(),
+            'is_promoted' => fake()->boolean(),
             'is_show' => fake()->boolean(),
             'is_active' => fake()->boolean(),
         ];
+    }
+
+    public function promoted(): static
+    {
+        return $this->state(fn () => ['is_promoted' => true]);
+    }
+
+    public function notPromoted(): static
+    {
+        return $this->state(fn () => ['is_promoted' => false]);
     }
 
     public function show(): static

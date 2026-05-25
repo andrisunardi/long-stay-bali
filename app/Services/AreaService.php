@@ -11,6 +11,7 @@ class AreaService
     public function index(
         ?string $search = null,
         string|int|null $districtId = null,
+        array $isPromoted = [],
         array $isShow = [],
         array $isActive = [],
         bool $random = false,
@@ -31,6 +32,7 @@ class AreaService
                 });
             })
             ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
+            ->when($isPromoted, fn ($q) => $q->whereIn('is_promoted', $isPromoted))
             ->when($isShow, fn ($q) => $q->whereIn('is_show', $isShow))
             ->when($isActive, fn ($q) => $q->whereIn('is_active', $isActive))
             ->when($random, fn ($q) => $q->inRandomOrder())
@@ -107,6 +109,15 @@ class AreaService
             DB::rollBack();
             throw $e;
         }
+    }
+
+    public function promoted(Area $area): Area
+    {
+        $area->is_promoted = ! $area->is_promoted;
+        $area->save();
+        $area->refresh();
+
+        return $area;
     }
 
     public function show(Area $area): Area

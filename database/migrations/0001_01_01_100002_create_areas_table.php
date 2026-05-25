@@ -14,6 +14,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(District::class)->constrained()->cascadeOnDelete();
             $table->string('name', 50)->unique();
+            $table->boolean('is_promoted')->unsigned()->default(true);
             $table->boolean('is_show')->unsigned()->default(true);
             $table->boolean('is_active')->unsigned()->default(true);
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users')->nullOnDelete();
