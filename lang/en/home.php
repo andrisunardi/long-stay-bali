@@ -35,7 +35,7 @@ return [
 
     'select_locations' => [
         'title' => 'Explore New Listings, Now Available',
-        'description' => 'We begin with a limited number of homes, chosen for how people actually live',
+        'description' => 'Each home selected for the way people truly live.',
         'property' => 'Property',
     ],
 

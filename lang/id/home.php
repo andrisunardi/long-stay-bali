@@ -7,25 +7,35 @@ return [
         'description' => 'Mulai pengalaman hidup bulanan dan tahunan Anda bersama kami.',
     ],
 
-    'form' => [
+    'search' => [
         'title' => 'Cari rumah jangka panjang',
-        'button' => 'Temukan rumah',
-        'area' => 'Pilih area yang diinginkan',
+
+        'area' => 'Area',
+        'area_title' => 'Destinasi yang Disarankan',
+        'area_placeholder' => 'Pilih area yang diinginkan',
+
+        'bedroom' => 'Kamar Tidur',
+        'bedroom_placeholder' => 'Jumlah kamar tidur',
+
         'when' => 'Rencana pindah',
-        'bedroom' => 'Jumlah kamar tidur',
         'type' => 'Semua tipe',
-        'price_range' => 'Rentang anggaran',
+
+        'price' => 'Rentang anggaran',
+        'minimum_price' => 'Harga Minimum',
+        'maximum_price' => 'Harga Maksimum',
+
+        'button' => 'Cari rumah',
     ],
 
     'our_values' => [
         'sub_title' => 'Nilai-Nilai Kami',
         'title' => 'Ruang yang Dirancang untuk Hidup, Lebih dari Sekadar Menginap Singkat',
-        'description' => 'Untuk tinggal lebih lama, dirancang untuk sesuai dengan kehidupan sehari-hari Anda di Bali. Di mana hidup terasa tenang dengan ritme Anda sendiri.',
+        'description' => 'Untuk tinggal lebih lama, dirancang untuk sesuai dengan kehidupan sehari-hari Anda di Bali. Di mana hidup terasa nyaman dengan ritme Anda sendiri.',
     ],
 
     'select_locations' => [
-        'title' => 'Jelajahi Daftar Properti Baru, Kini Tersedia',
-        'description' => 'Kami mulai dengan jumlah rumah terbatas, dipilih berdasarkan cara orang benar-benar hidup',
+        'title' => 'Jelajahi Listing Baru, Sekarang Tersedia',
+        'description' => 'Setiap rumah dipilih berdasarkan cara orang benar-benar hidup.',
         'property' => 'Properti',
     ],
 
@@ -48,7 +58,7 @@ return [
 
     'cta' => [
         'title' => 'Bicarakan dengan kami tentang kepindahan Anda',
-        'description' => 'Kami akan membantu Anda menemukan rumah yang tepat dan mendukung Anda di setiap langkah.',
+        'description' => "Kami akan membantu Anda menemukan rumah yang tepat dan mendukung Anda di setiap langkah.",
         'button' => 'Hubungi Kami',
     ],
 

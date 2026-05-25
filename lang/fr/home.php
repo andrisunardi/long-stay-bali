@@ -7,14 +7,24 @@ return [
         'description' => 'Commencez votre expérience de vie mensuelle et annuelle avec nous.',
     ],
 
-    'form' => [
+    'search' => [
         'title' => 'Rechercher des logements à long terme',
-        'button' => 'Trouver un logement',
-        'area' => 'Choisir la zone préférée',
+
+        'area' => 'Zone',
+        'area_title' => 'Destinations Suggérées',
+        'area_placeholder' => 'Choisir la zone préférée',
+
+        'bedroom' => 'Chambre',
+        'bedroom_placeholder' => 'Nombre de chambres',
+
         'when' => 'Emménagement prévu',
-        'bedroom' => 'Nombre de chambres',
         'type' => 'Tous types',
-        'price_range' => 'Gamme de budget',
+
+        'price' => 'Gamme de budget',
+        'minimum_price' => 'Prix Minimum',
+        'maximum_price' => 'Prix Maximum',
+
+        'button' => 'Trouver un logement',
     ],
 
     'our_values' => [
@@ -24,8 +34,8 @@ return [
     ],
 
     'select_locations' => [
-        'title' => 'Découvrez les nouvelles annonces, maintenant disponibles',
-        'description' => 'Nous commençons avec un nombre limité de logements, choisis selon la façon dont les gens vivent réellement',
+        'title' => 'Explorez les Nouvelles Annonces, Maintenant Disponibles',
+        'description' => 'Chaque maison sélectionnée pour la façon dont les gens vivent vraiment.',
         'property' => 'Propriété',
     ],
 
@@ -48,7 +58,7 @@ return [
 
     'cta' => [
         'title' => 'Parlez-nous de votre déménagement',
-        'description' => 'Nous vous aiderons à trouver le bon logement et vous soutiendrons à chaque étape.',
+        'description' => "Nous vous aiderons à trouver le bon logement et vous soutiendrons à chaque étape.",
         'button' => 'Nous Contacter',
     ],
 
