@@ -9,7 +9,7 @@ new #[Title('Home')] class extends Component {};
 @section('title', trans('page.home'))
 
 <div>
-    <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/hero/home.png')" />
+    <x-home.hero :title="trans('home.hero.title')" :description="trans('home.hero.description')" :image="asset('images/hero/home.webp')" />
 
     <livewire:home.our-values lazy />
 
