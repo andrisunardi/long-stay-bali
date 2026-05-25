@@ -42,6 +42,15 @@ new class extends Component {
         }
     }
 
+    public function suggestedDestinations(): object
+    {
+        $service = new AreaService();
+        $areas = $service->index(isPromoted: [true], isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+        $areas->loadMissing(['district']);
+
+        return $areas;
+    }
+
     public function areas(): object
     {
         $service = new AreaService();
@@ -86,6 +95,7 @@ new class extends Component {
                 <x-home.search.area
                 :area-id="$area_id"
                 :search-area="$search_area"
+                :suggested-destinations="$this->suggestedDestinations()"
                 :areas="$this->areas()"
                 />
             </div>

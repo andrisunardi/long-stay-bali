@@ -1,6 +1,7 @@
 @props([
     'areaId' => null,
     'searchArea' => null,
+    'suggestedDestinations' => collect(),
     'areas' => collect(),
 ])
 
@@ -32,27 +33,43 @@
                     wire:model.live.debounce.500ms="search_area" wire:offline.class="disabled"
                     wire:offline.attr="disabled">
 
-                <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-3">
-                    <li>
-                        <small class="dropdown-header text-muted">
-                            {{ trans('home.search.area_title') }}
-                        </small>
-                    </li>
-                    @forelse ($areas as $area)
-                        <li class="border-top border-bottom py-1" wire:key="area-{{ $area->id }}">
-                            <button type="button" class="dropdown-item text-wrap icon-link"
-                                wire:click="changeArea({{ $area->id }})">
-                                <span class="fas fa-location-dot fa-fw"></span>
-                                {{ $area->name }}, {{ $area->district?->name ?? '-' }}
-                            </button>
-                        </li>
-                    @empty
+                <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-3 py-0">
+                    @if ($searchArea)
+                        @forelse ($areas as $area)
+                            <li class="border-top border-bottom py-1" wire:key="area-{{ $area->id }}">
+                                <button type="button" class="dropdown-item text-wrap icon-link"
+                                    wire:click="changeArea({{ $area->id }})">
+                                    <span class="fas fa-location-dot fa-fw"></span>
+                                    {{ $area->name }}, {{ $area->district?->name ?? '-' }}
+                                </button>
+                            </li>
+                        @empty
+                            <li>
+                                <h6 class="dropdown-header">
+                                    {{ trans('message.no_data_available') }}
+                                </h6>
+                            </li>
+                        @endforelse
+                    @else
                         <li>
-                            <h6 class="dropdown-header">
-                                {{ trans('message.no_data_available') }}
-                            </h6>
+                            <small class="dropdown-header text-muted">
+                                {{ trans('home.search.area_title') }}
+                                {{ $this->search_area }}
+                            </small>
                         </li>
-                    @endforelse
+
+                        @foreach ($suggestedDestinations as $suggestedDestination)
+                            <li class="border-top border-bottom py-1"
+                                wire:key="suggested-destination-{{ $suggestedDestination->id }}">
+                                <button type="button" class="dropdown-item text-wrap icon-link"
+                                    wire:click="changeArea({{ $suggestedDestination->id }})">
+                                    <span class="fas fa-location-dot fa-fw"></span>
+                                    {{ $suggestedDestination->name }},
+                                    {{ $suggestedDestination->district?->name ?? '-' }}
+                                </button>
+                            </li>
+                        @endforeach
+                    @endif
                 </ul>
             </div>
         @endif
