@@ -137,13 +137,13 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title_id" name="title_id" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
+                                maxlength="200" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_id" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
                             {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
+                            {{ trans('helper.maxlength') }} : 200,
                             {{ trans('helper.unique') }}
                         </div>
                         @error('form.title_id')
@@ -160,13 +160,13 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title_zh" name="title_zh" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
+                                maxlength="200" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_zh" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
                             {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
+                            {{ trans('helper.maxlength') }} : 200,
                             {{ trans('helper.unique') }}
                         </div>
                         @error('form.title_zh')
@@ -183,13 +183,13 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title_fr" name="title_fr"
-                                minlength="1" maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu"
+                                minlength="1" maxlength="200" placeholder="{{ trans('index.ex') }}. Canggu"
                                 wire:model="form.title_fr" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
                             {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
+                            {{ trans('helper.maxlength') }} : 200,
                             {{ trans('helper.unique') }}
                         </div>
                         @error('form.title_fr')
