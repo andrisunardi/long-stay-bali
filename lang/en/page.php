@@ -3,6 +3,7 @@
 return [
 
     'home' => 'Home',
+    'properties' => 'Properties',
     'service' => 'Service',
     'about' => 'About',
 

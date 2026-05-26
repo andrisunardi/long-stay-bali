@@ -10,6 +10,11 @@ return [
     ],
     [
         'id' => $id++,
+        'name' => 'page.properties',
+        'route' => 'property.index',
+    ],
+    [
+        'id' => $id++,
         'name' => 'page.service',
         'route' => 'service',
     ],
