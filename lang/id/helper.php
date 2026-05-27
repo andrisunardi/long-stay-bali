@@ -11,11 +11,11 @@ return [
     'max_size' => 'Ukuran Maksimum',
     'length' => 'Panjang',
     'characters' => 'Karakter',
-    'required' => 'Wajib Diisi',
+    'required' => 'Wajib',
     'unique' => 'Unik',
-    'default' => 'Bawaan',
+    'default' => 'Default',
 
     'contact.code.add' => 'Biarkan kosong untuk membuat kontak di GHL.',
-    'contact.code.edit' => 'Mengubah kode ini akan memengaruhi sinkronisasi dengan GHL.',
+    'contact.code.edit' => 'Mengubah kode ini akan mempengaruhi cara sinkronisasi dengan GHL.',
 
 ];

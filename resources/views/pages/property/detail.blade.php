@@ -8,6 +8,10 @@ use Livewire\Attributes\Title;
 new #[Title('Property Detail')] class extends Component {
     public ?Property $property = null;
 
+    public bool $monthlyHasInclusions = false;
+
+    public bool $yearlyHasInclusions = false;
+
     public function mount(string $slug): void
     {
         $service = new PropertyService();
@@ -18,6 +22,16 @@ new #[Title('Property Detail')] class extends Component {
         }
 
         $this->property->loadMissing(['area.district', 'image']);
+
+        $this->monthlyHasInclusions = collect($this->property->monthly_inclusions ?? [])
+            ->only(['housekeeper', 'gardener', 'pool_guy', 'internet', 'garbage', 'banjar', 'security', 'electricity', 'others'])
+            ->filter()
+            ->isNotEmpty();
+
+        $this->yearlyHasInclusions = collect($this->property->yearly_inclusions ?? [])
+            ->only(['housekeeper', 'gardener', 'pool_guy', 'internet', 'garbage', 'banjar', 'security', 'electricity', 'others'])
+            ->filter()
+            ->isNotEmpty();
     }
 };
 ?>
@@ -40,7 +54,12 @@ new #[Title('Property Detail')] class extends Component {
 
                         <hr class="my-4" />
 
-                        <x-property.inclusions :property="$property" />
+                        {{-- prettier-ignore --}}
+                        <x-property.inclusions
+                        :property="$property"
+                        :monthly-has-inclusions="$monthlyHasInclusions"
+                        :yearly-has-inclusions="$yearlyHasInclusions"
+                        />
                     </div>
 
                     <div class="offset-xl-2 col-xl-3">

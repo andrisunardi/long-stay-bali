@@ -3,6 +3,7 @@
 return [
 
     'home' => 'Beranda',
+    'properties' => 'Properti',
     'service' => 'Layanan',
     'about' => 'Tentang',
 
@@ -23,7 +24,7 @@ return [
     'master' => 'Master',
     'value' => 'Nilai',
     'area' => 'Area',
-    'district' => 'Distrik',
+    'district' => 'Kecamatan',
 
     'oauth' => 'Oauth',
     'permission' => 'Izin',

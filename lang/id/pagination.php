@@ -3,10 +3,10 @@
 return [
 
     'previous' => 'Sebelumnya',
-    'next' => 'Selanjutnya',
+    'next' => 'Berikutnya',
     'showing' => 'Menampilkan',
     'results' => 'hasil',
     'of' => 'dari',
-    'to' => 'ke',
+    'to' => 'hingga',
 
 ];

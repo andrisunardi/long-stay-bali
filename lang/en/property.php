@@ -12,6 +12,7 @@ return [
     'months' => 'months',
     'location_property' => 'Location Property',
     'description' => 'Description',
+    'property_only' => 'Property Only',
 
     'property_details' => 'Property Details',
     'availability' => 'Availability',
@@ -67,7 +68,7 @@ return [
     'pbg' => 'PBG (Building Construction Approval)',
     'slf' => 'SLF (Certificate of Functionality)',
 
-    'fully_furnished' => 'Fully Furnished (no semi-furnished)',
+    'fully_furnished' => 'Fully Furnished',
     'rental_type_accepted' => 'Rental Type Accepted',
     'minimum_rental_duration' => 'Minimum Rental Duration (months)',
     'owner_price_flexibility' => 'Owner Price Flexibility (Fixed / Negotiable)',
@@ -136,4 +137,5 @@ return [
     'comments_if_medium_or_high' => 'Comments if Medium or High',
     'final_decision' => 'Final Decision',
     'status' => 'Status',
+    'property_only' => 'Property Only',
 ];

@@ -2,7 +2,7 @@
 
 return [
 
-    'description' => 'Mulai pengalaman hidup bulanan dan tahunan Anda bersama kami.',
+    'description' => 'Mulai pengalaman tinggal bulanan dan tahunan bersama kami.',
     'contact_us' => 'Hubungi kami',
     'our_social_media' => 'Media sosial kami',
 

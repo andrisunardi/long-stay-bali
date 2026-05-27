@@ -3,6 +3,7 @@
 return [
 
     'home' => 'Accueil',
+    'properties' => 'Propriétés',
     'service' => 'Service',
     'about' => 'À propos',
 
@@ -16,7 +17,7 @@ return [
 
     'contact' => 'Contact',
     'property' => 'Propriété',
-    'property_image' => 'Image de propriété',
+    'property_image' => 'Image de la propriété',
     'guide' => 'Guide',
     'guide_category' => 'Catégorie de guide',
 

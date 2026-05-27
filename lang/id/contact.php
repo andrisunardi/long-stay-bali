@@ -3,17 +3,17 @@
 return [
 
     'info' => [
-        'title' => 'Mari Hubungi Kami',
-        'description' => 'Bagikan beberapa detail tentang apa yang Anda cari, dan tim kami akan menghubungi Anda kembali dengan pilihan yang sesuai.',
+        'title' => "Mari Hubungi Kami",
+        'description' => "Bagikan beberapa detail tentang apa yang kamu cari, dan tim kami akan menghubungi kamu dengan pilihan yang sesuai.",
         'contact' => 'Lebih suka pendekatan langsung?',
     ],
     'form' => [
         'success' => [
             'title' => 'Terima kasih telah menghubungi kami',
-            'body' => 'Kami akan menghubungi Anda kembali sesegera mungkin.',
+            'body' => "Kami akan menghubungi kamu sesegera mungkin.",
         ],
         'failed' => [
-            'title' => 'Gagal mengirim pesan Anda. Silakan coba lagi nanti.',
+            'title' => 'Gagal mengirim pesan. Silakan coba lagi nanti.',
         ],
         'label' => [
             'name' => 'Nama Lengkap',
@@ -21,18 +21,18 @@ return [
             'last_name' => 'Nama belakang',
             'email' => 'Email',
             'phone' => 'Nomor Whatsapp',
-            'district' => 'Pilih kabupaten',
+            'district' => 'Pilih kecamatan',
             'area' => 'Pilih area',
             'bedroom' => 'Pilih jumlah kamar tidur',
             'rental_type' => 'Pilih periode',
             'message' => 'Pesan',
         ],
         'placeholder' => [
-            'name' => 'Masukkan nama lengkap Anda',
-            'first_name' => 'Masukkan nama depan Anda',
-            'last_name' => 'Masukkan nama belakang Anda',
-            'email' => 'Masukkan email Anda',
-            'phone' => 'Masukkan nomor whatsapp Anda',
+            'name' => 'Masukkan nama lengkap kamu',
+            'first_name' => 'Masukkan nama depan kamu',
+            'last_name' => 'Masukkan nama belakang kamu',
+            'email' => 'Masukkan email kamu',
+            'phone' => 'Masukkan nomor whatsapp kamu',
             'bedroom' => 'Jumlah kamar tidur',
             'rental_type' => 'Periode sewa',
             'message' => 'Masukkan pesan',
