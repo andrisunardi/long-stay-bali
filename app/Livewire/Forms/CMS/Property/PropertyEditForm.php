@@ -26,7 +26,7 @@ class PropertyEditForm extends Form
 
     public string $code = '';
 
-    #[Validate('required|string|min:1|max:50')]
+    #[Validate('required|string|min:1|max:100')]
     public string $name = '';
 
     #[Validate('nullable|string|min:1|max:65535')]

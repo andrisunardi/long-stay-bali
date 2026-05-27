@@ -36,14 +36,14 @@
                         <span class="fas fa-building fa-fw "></span>
                     </div>
                     <input type="text" class="form-control" id="name" name="name" minlength="1"
-                        maxlength="50" placeholder="{{ trans('index.ex') . '. Canggu Villa' }}" required
+                        maxlength="100" placeholder="{{ trans('index.ex') . '. Canggu Villa' }}" required
                         wire:model="form.name" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
                     {{ trans('helper.required') }},
                     {{ trans('helper.minlength') }} : 1,
-                    {{ trans('helper.maxlength') }} : 50
+                    {{ trans('helper.maxlength') }} : 100
                 </div>
                 @error('form.name')
                     <div class="form-text text-danger">{{ $message }}</div>

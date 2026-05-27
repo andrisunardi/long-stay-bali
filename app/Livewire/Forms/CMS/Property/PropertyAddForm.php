@@ -25,7 +25,7 @@ class PropertyAddForm extends Form
     #[Validate('required|string|min:1|max:10|unique:properties,code')]
     public string $code = '';
 
-    #[Validate('required|string|min:1|max:50')]
+    #[Validate('required|string|min:1|max:100')]
     public string $name = '';
 
     #[Validate('nullable|string|min:1|max:65535')]
