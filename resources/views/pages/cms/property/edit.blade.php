@@ -106,10 +106,7 @@ new #[Title('Edit | Property')] class extends Component {
 
         $this->form->owner_id = $contact->id;
 
-        $this->alertSuccess(
-            title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'),
-            body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'),
-        );
+        $this->alertSuccess(title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'), body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'));
     }
 
     public function ownerRepresentativeSubmit(): void
@@ -130,10 +127,7 @@ new #[Title('Edit | Property')] class extends Component {
 
         $this->form->owner_representative_id = $contact->id;
 
-        $this->alertSuccess(
-            title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'),
-            body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'),
-        );
+        $this->alertSuccess(title: trans('index.add') . ' ' . trans('page.contact') . ' ' . trans('index.success'), body: trans('page.contact') . ' ' . trans('message.has_been_successfully_added'));
     }
 
     #[On('imagesUpdated')]
@@ -265,7 +259,7 @@ new #[Title('Edit | Property')] class extends Component {
                 </div>
             </div>
 
-            <hr />
+            <hr class="mb-0" />
 
             <x-alert-error />
 

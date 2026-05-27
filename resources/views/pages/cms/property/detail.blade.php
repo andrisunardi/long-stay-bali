@@ -44,6 +44,33 @@ new #[Title('Detail | Property')] class extends Component {
                         {{ trans('index.back') }}
                     </a>
                 </div>
+
+                @can('property.edit')
+                    <div class="col-auto">
+                        <a draggable="false" class="btn btn-success w-100"
+                            href="{{ route('cms.property.edit', ['property' => $property]) }}" wire:navigate>
+                            <span class="fas fa-edit fa-fw"></span>
+                            {{ trans('index.edit') }}
+                        </a>
+                    </div>
+                @endcan
+
+                @can('property.delete')
+                    <div class="col-auto">
+                        <button type="button" class="btn btn-danger w-100" wire:click="delete"
+                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                            wire:loading.attr="disabled">
+                            <span wire:loading.remove wire:target="delete">
+                                <span class="fas fa-trash fa-fw"></span>
+                                {{ trans('index.delete') }}
+                            </span>
+                            <span wire:loading wire:target="delete" class="w-100">
+                                <span class="spinner-border spinner-border-sm"></span>
+                                {{ trans('index.delete') }}
+                            </span>
+                        </button>
+                    </div>
+                @endcan
             </div>
 
             <hr />
@@ -911,37 +938,6 @@ new #[Title('Detail | Property')] class extends Component {
                         @endif
                     </div>
                 </div>
-            </div>
-
-            <hr />
-
-            <div class="row g-3">
-                @can('property.edit')
-                    <div class="col-auto">
-                        <a draggable="false" class="btn btn-success w-100"
-                            href="{{ route('cms.property.edit', ['property' => $property]) }}" wire:navigate>
-                            <span class="fas fa-edit fa-fw"></span>
-                            {{ trans('index.edit') }}
-                        </a>
-                    </div>
-                @endcan
-
-                @can('property.delete')
-                    <div class="col-auto">
-                        <button type="button" class="btn btn-danger w-100" wire:click="delete"
-                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                            wire:loading.attr="disabled">
-                            <span wire:loading.remove wire:target="delete">
-                                <span class="fas fa-trash fa-fw"></span>
-                                {{ trans('index.delete') }}
-                            </span>
-                            <span wire:loading wire:target="delete" class="w-100">
-                                <span class="spinner-border spinner-border-sm"></span>
-                                {{ trans('index.delete') }}
-                            </span>
-                        </button>
-                    </div>
-                @endcan
             </div>
         </div>
     </div>
