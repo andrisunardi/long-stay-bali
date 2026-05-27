@@ -133,7 +133,12 @@ new #[Lazy] class extends Component {
 
                         <div class="mt-3">
                             <span class="fas fa-location-dot fa-fw"></span>
-                            {{ $property->area->name ?? 'Bali' }}
+                            @if ($property->area)
+                                {{ $property->area->name }}
+                                @if ($property->area->district)
+                                    / {{ $property->area->district->name }}
+                                @endif
+                            @endif
                         </div>
 
                         <h1 class="h6 text-truncate mt-3">
@@ -151,7 +156,11 @@ new #[Lazy] class extends Component {
 
                             <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-city fa-fw fa-xs text-success"></span>
-                                <span class="text-black small">{{ $property->area?->district?->name ?? 'Bali' }}</span>
+                                <span class="text-black small">
+                                    @if ($property->area?->district)
+                                        {{ $property->area->district->name }}
+                                    @endif
+                                </span>
                             </span>
 
                             <span class="px-2 py-1 small rounded bg-sand">
@@ -161,14 +170,18 @@ new #[Lazy] class extends Component {
                         </div>
 
                         <div class="mt-3 d-grid gap-2">
-                            <div class="d-flex justify-content-between">
-                                <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
-                                <span class="text-secondary">{{ trans('property.per_month') }}</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
-                                <span class="text-secondary">{{ trans('property.per_year') }}</span>
-                            </div>
+                            @if ($property->monthly_price)
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                                    <span class="text-secondary">{{ trans('property.per_month') }}</span>
+                                </div>
+                            @endif
+                            @if ($property->yearly_price)
+                                <div class="d-flex justify-content-between">
+                                    <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                                    <span class="text-secondary">{{ trans('property.per_year') }}</span>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 @endforeach

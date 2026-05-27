@@ -1,14 +1,18 @@
 <div class="sticky-top" style="top: 5rem">
     <div class="card card-body">
         <div class="d-grid gap-2">
-            <div class="d-flex justify-content-between">
-                <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
-                <span class="text-secondary">{{ trans('property.per_month') }}</span>
-            </div>
-            <div class="d-flex justify-content-between">
-                <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
-                <span class="text-secondary">{{ trans('property.per_year') }}</span>
-            </div>
+            @if ($property->monthly_price)
+                <div class="d-flex justify-content-between">
+                    <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                    <span class="text-secondary">{{ trans('property.per_month') }}</span>
+                </div>
+            @endif
+            @if ($property->yearly_price)
+                <div class="d-flex justify-content-between">
+                    <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                    <span class="text-secondary">{{ trans('property.per_year') }}</span>
+                </div>
+            @endif
         </div>
 
         <hr />
