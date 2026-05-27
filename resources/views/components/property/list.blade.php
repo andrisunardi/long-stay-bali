@@ -14,10 +14,10 @@ new #[Lazy] class extends Component {
     public string $areaName = '';
 
     #[Reactive]
-    public ?string $start_date = null;
+    public ?string $startDate = null;
 
     #[Reactive]
-    public ?string $end_date = null;
+    public ?string $endDate = null;
 
     #[Reactive]
     public ?int $bedroom = null;
@@ -30,12 +30,12 @@ new #[Lazy] class extends Component {
 
     public function properties(): object
     {
-        $availabilityDates = $this->start_date && $this->end_date ? [$this->start_date, $this->end_date] : [];
+        // $availabilityDates = $this->startDate && $this->endDate ? [$this->startDate, $this->endDate] : [];
 
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
         $service = new PropertyService();
-        $properties = $service->index(availabilityDates: $availabilityDates, areaId: $this->areaId, statuses: $statuses, bedroom: $this->bedroom, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, statuses: $statuses, bedroom: $this->bedroom, paginate: false);
         $properties->loadMissing(['area.district', 'image']);
 
         return $properties;

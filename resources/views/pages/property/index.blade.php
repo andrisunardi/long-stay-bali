@@ -26,6 +26,12 @@ new #[Title('Property')] class extends Component {
     #[Url(except: null)]
     public int $max_price = 100000000000;
 
+    public function mount(): void
+    {
+        $this->start_date = $this->start_date ?? today()->toDateString();
+        $this->end_date = $this->end_date ?? today()->toDateString();
+    }
+
     #[On('area-changed')]
     public function changeArea(?int $id = null, string $name = ''): void
     {
