@@ -69,11 +69,11 @@ class PropertyService
                 }
             )
             ->when(
-                $startDate != today()->toDateString(),
+                $startDate && $startDate != today()->toDateString(),
                 fn($query) => $query->whereDate('availability_date', '>=', $startDate)
             )
             ->when(
-                $endDate != today()->toDateString(),
+                $endDate && $endDate != today()->toDateString(),
                 fn($query) => $query->whereDate('availability_date', '<=', $endDate)
             )
             ->when($random, fn($q) => $q->inRandomOrder())
