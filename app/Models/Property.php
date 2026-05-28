@@ -718,12 +718,12 @@ class Property extends Model
 
     public function image(): HasOne
     {
-        return $this->hasOne(PropertyImage::class);
+        return $this->hasOne(PropertyImage::class)->orderBy('position');
     }
 
     public function images(): HasMany
     {
-        return $this->hasMany(PropertyImage::class);
+        return $this->hasMany(PropertyImage::class)->orderBy('position');
     }
 
     public function createdBy(): BelongsTo
