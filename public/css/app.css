@@ -9,6 +9,10 @@
     color: #f4ede3 !important;
 }
 
+#map {
+    height: 20rem;
+}
+
 .rounded-top-start {
     border-top-left-radius: var(--bs-border-radius);
 }

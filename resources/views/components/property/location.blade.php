@@ -4,7 +4,7 @@
 
 <div class="d-grid gap-3">
     <h5 class="fw-bold">{{ trans('property.location_property') }}</h5>
-    <div id="map" class="w-100 rounded-5" style="height: 300px"></div>
+    <div id="map" class="w-100 rounded-5"></div>
 </div>
 
 @script
