@@ -324,7 +324,7 @@ new #[Title('Detail | Property')] class extends Component {
                         <div class="fw-bold">{{ trans('property.living_style') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $property->living_style?->description() ?? '-' }}
+                        {{ $property->living_style?->name ?? '-' }}
                     </div>
                 </div>
 
