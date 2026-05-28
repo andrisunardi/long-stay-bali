@@ -69,7 +69,7 @@ new #[Lazy] class extends Component {
                         <div class="card card-body border-0 h-100 p-0">
                             <div class="row align-items-center">
                                 <div class="col-sm-8 col-lg-9 col-xl-6">
-                                    <div class="row align-items-center mb-4">
+                                    <div class="row align-items-center g-4">
                                         <div class="col-auto col-xl-12">
                                             <div
                                                 class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center p-3">
