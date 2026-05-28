@@ -41,7 +41,7 @@ new #[Lazy] class extends Component {
 
         $service = new PropertyService();
         $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, statuses: $statuses, paginate: false);
-        $properties->loadMissing(['area.district', 'image']);
+        $properties->loadMissing(['area', 'district', 'image']);
 
         return $properties;
     }
@@ -150,32 +150,29 @@ new #[Lazy] class extends Component {
 
                         <div class="mt-3">
                             <span class="fas fa-location-dot fa-fw"></span>
-                            @if ($property->area)
-                                {{ $property->area->name }}
-                                @if ($property->area->district)
-                                    / {{ $property->area->district->name }}
-                                @endif
+                            @if ($property->area || $property->district)
+                                {{ $property->area?->name ?? $property->district?->name }}
                             @endif
                         </div>
 
-                        <h1 class="h6 text-truncate mt-3">
+                        <h1 class="h6 mt-3">
                             <a draggable="false" class="text-body"
                                 href="{{ route('property.detail', ['slug' => $property->slug]) }}" wire:navigate>
                                 {{ $property->name }}
                             </a>
                         </h1>
 
-                        <div class="d-flex gap-3">
+                        <div class="d-flex text-nowrap gap-2">
                             <span class="px-2 py-1 small rounded bg-sand">
                                 <span class="fas fa-code fa-fw fa-xs text-success"></span>
                                 <span class="text-black small">{{ $property->code }}</span>
                             </span>
 
                             <span class="px-2 py-1 small rounded bg-sand">
-                                <span class="fas fa-city fa-fw fa-xs text-success"></span>
+                                <span class="fas fa-location-dot fa-fw fa-xs text-success"></span>
                                 <span class="text-black small">
-                                    @if ($property->area?->district)
-                                        {{ $property->area->district->name }}
+                                    @if ($property->area || $property->district)
+                                        {{ $property->area?->name ?? $property->district?->name }}
                                     @endif
                                 </span>
                             </span>

@@ -14,6 +14,8 @@ return [
     'description' => 'Description',
     'property_only' => 'Property Only',
     'more_images' => 'More Images',
+    'whatsapp' => 'Whatsapp',
+    'email' => 'Email',
 
     'property_details' => 'Property Details',
     'availability' => 'Availability',

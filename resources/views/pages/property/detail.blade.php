@@ -45,7 +45,7 @@ new #[Title('Property Detail')] class extends Component {
                 <x-property.images :property="$property" />
 
                 <div class="row">
-                    <div class="col-xl-7">
+                    <div class="col-12">
                         <x-property.information :property="$property" />
 
                         <hr class="my-4" />
@@ -60,10 +60,6 @@ new #[Title('Property Detail')] class extends Component {
                         :monthly-has-inclusions="$monthlyHasInclusions"
                         :yearly-has-inclusions="$yearlyHasInclusions"
                         />
-                    </div>
-
-                    <div class="offset-xl-2 col-xl-3">
-                        <x-property.sidebar :property="$property" />
                     </div>
                 </div>
 
