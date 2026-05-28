@@ -17,7 +17,7 @@
                             data-bs-target="#property-images"
                             onclick="setTimeout(() => document.getElementById('property-image-{{ $i }}')?.scrollIntoView({ behavior: 'smooth' }), 300)">
 
-                            <img draggable="false" class="img-fluid w-100 rounded user-select-none pe-none"
+                            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
                                 src="{{ $property->images[$i]->image_url ?? asset('images/placeholder.png') }}"
                                 alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
 
@@ -33,7 +33,7 @@
 
                         </a>
                     @else
-                        <img draggable="false" class="img-fluid w-100 rounded user-select-none pe-none"
+                        <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
                             src="{{ asset('images/placeholder.png') }}"
                             alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
                     @endisset

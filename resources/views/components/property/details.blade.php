@@ -54,13 +54,15 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-4">
-            {{ trans('property.minimum_rental_period') }}
+    @if ($property->minimum_rental_duration_months > 1)
+        <div class="row">
+            <div class="col-4">
+                {{ trans('property.minimum_rental_period') }}
+            </div>
+            <div class="col-8">
+                {{ $property->minimum_rental_duration_months }}
+                {{ trans('property.months') }}
+            </div>
         </div>
-        <div class="col-8">
-            {{ $property->minimum_rental_duration_months ?? 0 }}
-            {{ trans('property.months') }}
-        </div>
-    </div>
+    @endif
 </div>
