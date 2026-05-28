@@ -17,6 +17,9 @@ return [
         'bedroom' => 'Kamar Tidur',
         'bedroom_placeholder' => 'Jumlah kamar tidur',
 
+        'living_style' => 'Gaya Ruang Tamu',
+        'living_style_placeholder' => 'Pilih gaya ruang tamu',
+
         'when' => 'Rencana pindah masuk',
         'type' => 'Semua jenis',
 

@@ -56,7 +56,10 @@ return [
     'ensuite_bathrooms' => 'Ensuite Bathrooms (YES / NO)',
     'guest_toilet' => 'Guest Toilet (YES / NO)',
     'storage_or_staff_area' => 'Storage / Staff Area (YES / NO)',
-    'living_style' => 'Living Style (Open / Closed / Mixed)',
+    'living_style' => 'Living Style',
+    'living_style_open' => 'Open',
+    'living_style_closed' => 'Closed',
+    'living_style_mixed' => 'Mixed',
 
     'legal_and_basic_eligibility' => 'Legal & Basic Eligibility',
     'full_legal_documentation_available' => 'Full Legal Documentation Available',
@@ -137,5 +140,4 @@ return [
     'comments_if_medium_or_high' => 'Comments if Medium or High',
     'final_decision' => 'Final Decision',
     'status' => 'Status',
-    'property_only' => 'Property Only',
 ];

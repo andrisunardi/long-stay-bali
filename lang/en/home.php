@@ -17,6 +17,9 @@ return [
         'bedroom' => 'Bedroom',
         'bedroom_placeholder' => 'Number of bedrooms',
 
+        'living_style' => 'Living Style',
+        'living_style_placeholder' => 'Select living style',
+
         'when' => 'Planned move-in',
         'type' => 'All type',
 

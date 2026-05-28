@@ -17,6 +17,9 @@ return [
         'bedroom' => 'Chambre',
         'bedroom_placeholder' => 'Nombre de chambres',
 
+        'living_style' => 'Style de vie',
+        'living_style_placeholder' => 'Sélectionner le style de vie',
+
         'when' => 'Emménagement prévu',
         'type' => 'Tous les types',
 

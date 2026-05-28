@@ -18,10 +18,11 @@ class PropertyService
     public function index(
         ?string $search = null,
         ?string $userId = null,
-        ?string $bedroom = null,
-        array $bedrooms = [],
         ?string $districtId = null,
         ?string $areaId = null,
+        ?string $bedroom = null,
+        array $bedrooms = [],
+        ?string $livingStyle = null,
         ?string $status = null,
         array $statuses = [],
         ?string $startDate = null,
@@ -54,10 +55,11 @@ class PropertyService
                 });
             })
             ->when($userId, fn ($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
-            ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
             ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
+            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
+            ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
+            ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
             ->when($status, fn ($q) => $q->where('status', $status))
             ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             // ->when($startDate, fn($q) => $q->whereDate('availability_date', '>=', $startDate))

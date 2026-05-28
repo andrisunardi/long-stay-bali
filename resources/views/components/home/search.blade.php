@@ -20,6 +20,9 @@ new class extends Component {
     public array $bedrooms = [];
 
     #[Url(except: null)]
+    public ?int $living_style = null;
+
+    #[Url(except: null)]
     public int $min_price = 0;
 
     #[Url(except: null)]
@@ -82,6 +85,11 @@ new class extends Component {
 
         $this->bedrooms = in_array($value, $this->bedrooms) ? array_values(array_diff($this->bedrooms, [$value])) : [...$this->bedrooms, $value];
     }
+
+    public function changeLivingStyle(?int $livingStyle = null): void
+    {
+        $this->living_style = $livingStyle;
+    }
 };
 ?>
 
@@ -100,7 +108,7 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-sm-9 col-lg-8">
+            <div class="col-12">
                 <div wire:ignore>
                     <label class="form-label">
                         <span class="fas fa-calendar fa-fw"></span>
@@ -110,8 +118,12 @@ new class extends Component {
                 </div>
             </div>
 
-            <div class="col-sm-3 col-lg-4">
-                <x-search.bedroom :bedrooms="$bedrooms" />
+            <div class="col-6">
+                <x-search.bedrooms :bedrooms="$bedrooms" />
+            </div>
+
+            <div class="col-6">
+                <x-search.living-style :living-style="$living_style" />
             </div>
 
             <div class="col-12">

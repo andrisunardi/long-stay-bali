@@ -13,6 +13,9 @@ new class extends Component {
     #[Url(except: [])]
     public array $bedrooms = [];
 
+    #[Url(except: null)]
+    public ?int $living_style = null;
+
     public function mount(): void
     {
         if ($this->areaId) {
@@ -50,6 +53,11 @@ new class extends Component {
         $this->dispatch('bedrooms-changed', bedrooms: $this->bedrooms);
     }
 
+    public function changeLivingStyle(?int $livingStyle = null): void
+    {
+        $this->living_style = $livingStyle;
+    }
+
     public function areas(): object
     {
         $service = new AreaService();
@@ -73,8 +81,12 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-sm-6 col-xl">
-                <x-search.bedroom :bedrooms="$bedrooms" />
+            <div class="col-sm-6 col-xl-2">
+                <x-search.bedrooms :bedrooms="$bedrooms" />
+            </div>
+
+            <div class="col-sm-6 col-xl-2">
+                <x-search.living-style :living-style="$living_style" />
             </div>
         </div>
     </div>

@@ -55,7 +55,10 @@ return [
     'ensuite_bathrooms' => 'Salles de bain attenantes (OUI / NON)',
     'guest_toilet' => 'Toilettes invités (OUI / NON)',
     'storage_or_staff_area' => 'Zone de stockage / personnel (OUI / NON)',
-    'living_style' => 'Style de vie (Ouvert / Fermé / Mixte)',
+    'living_style' => 'Style de vie',
+    'living_style_open' => 'Ouvert',
+    'living_style_closed' => 'Fermé',
+    'living_style_mixed' => 'Mixte',
 
     'legal_and_basic_eligibility' => 'Légalité & Éligibilité de base',
     'full_legal_documentation_available' => 'Documentation juridique complète disponible',

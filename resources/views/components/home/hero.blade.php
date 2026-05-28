@@ -20,7 +20,7 @@
     <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
 
     <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center">
-        <div class="container-md mt-5 pt-5 pt-md-0">
+        <div class="container-md">
             <div class="row g-4">
                 <div class="col-lg-6">
                     <div class="lead text-white">{{ $title }}</div>

@@ -10,21 +10,12 @@ enum PropertyLivingStyle: int
 
     case Mixed = 3;
 
-    public function description(): string
+    public function translate(): string
     {
         return match ($this) {
-            self::Open => 'Open',
-            self::Closed => 'Closed',
-            self::Mixed => 'Mixed',
-        };
-    }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Open->value => 'Open',
-            self::Closed->value => 'Closed',
-            self::Mixed->value => 'Mixed',
+            self::Open => trans('property.living_style_open'),
+            self::Closed => trans('property.living_style_closed'),
+            self::Mixed => trans('property.living_style_mixed'),
         };
     }
 }
