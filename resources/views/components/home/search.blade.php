@@ -20,6 +20,9 @@ new class extends Component {
     #[Url(except: null)]
     public ?int $bedroom = null;
 
+    #[Url(except: [])]
+    public array $bedrooms = [];
+
     #[Url(except: null)]
     public int $min_price = 0;
 
@@ -78,6 +81,22 @@ new class extends Component {
         $this->bedroom = $value;
     }
 
+    public function changeBedrooms(?int $value = null): void
+    {
+        if (!$value) {
+            $this->reset(['bedrooms']);
+            return;
+        }
+
+        if (in_array($value, $this->bedrooms)) {
+            $this->bedrooms = array_values(array_filter($this->bedrooms, fn($item) => $item !== $value));
+
+            return;
+        }
+
+        $this->bedrooms[] = $value;
+    }
+
     public function propertyBedrooms(): array
     {
         return PropertyBedroom::cases();
@@ -113,8 +132,9 @@ new class extends Component {
             <div class="col-sm-3 col-lg-4">
                 {{-- prettier-ignore --}}
                 <x-home.search.bedroom
-                :bedroom="$bedroom"
                 :property-bedrooms="$this->propertyBedrooms()"
+                :bedroom="$bedroom"
+                :bedrooms="$bedrooms"
                 />
             </div>
 

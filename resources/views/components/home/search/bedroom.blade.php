@@ -1,9 +1,10 @@
 @props([
     'propertyBedrooms' => collect(),
     'bedroom' => null,
+    'bedrooms' => [],
 ])
 
-<div>
+<div class="bedroomss">
     <label class="form-label">
         <span class="fas fa-bed fa-fw"></span>
         {{ trans('home.search.bedroom') }}
@@ -20,18 +21,27 @@
 
         <ul class="dropdown-menu w-100 mt-3">
             <li wire:key="bedroom">
-                <button type="button" class="dropdown-item" wire:click="changeBedroom">
+                <button type="button" class="dropdown-item" wire:click="changeBedrooms">
                     {{ trans('index.all') }}
                 </button>
             </li>
             @foreach ($propertyBedrooms as $propertyBedroom)
                 <li wire:key="property-bedroom-{{ $propertyBedroom }}">
-                    <button type="button" class="dropdown-item"
-                        wire:click="changeBedroom({{ $propertyBedroom->value }})">
+                    <button type="button" class="dropdown-item d-flex justify-content-between"
+                        wire:click="changeBedrooms({{ $propertyBedroom->value }})">
                         {{ $propertyBedroom->description() }}
+                        @if (in_array($propertyBedroom->value, $bedrooms))
+                            <span class="fas fa-check fa-fw text-success"></span>
+                        @endif
                     </button>
                 </li>
             @endforeach
         </ul>
     </div>
 </div>
+
+<script>
+    $(document).on('click', '.bedroomss .dropdown-menu', function(e) {
+        e.stopPropagation();
+    });
+</script>
