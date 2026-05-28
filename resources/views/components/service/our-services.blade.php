@@ -69,35 +69,32 @@ new #[Lazy] class extends Component {
     </section>
 @endplaceholder
 
-<section class="py-5 bg-light">
+<section class="py-5">
     <div class="container-md">
         <div class="d-grid gap-4">
             <div class="text-center">
-                <div class="row justify-content-center">
-                    <div class="col-lg-11 col-xl-8">
-                        <h1 class="display-6 fw-medium">{{ trans('service.our_services.title') }}</h1>
-                        <p class="text-muted">{{ trans('service.our_services.description') }}</p>
-                    </div>
-                </div>
+                <p class="lead mb-0">{{ trans('home.our_services.sub_title') }}</p>
+                <h1 class="display-6 fw-medium">{{ trans('home.our_services.title') }}</h1>
+                <p class="small text-muted">{{ trans('home.our_services.description') }}</p>
             </div>
 
             <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
                 @foreach ($services as $service)
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
+                            <img draggable="false"
+                                src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                class="card-img-top" alt="Service - {{ $service['name'] }}">
                             <div class="card-body">
-                                <div class="mb-4">
-                                    {{-- <span class="fa-stack fa-xl">
-                                        <i class="fas fa-circle fa-stack-2x fa-inverse text-light"></i>
-                                        <i class="{{ $service['icon'] }} fa-stack-1x text-success"></i>
-                                    </span> --}}
+                                <div style="margin-top: -20rem"
+                                    class="bg-white rounded-circle shadow-sm d-inline-flex align-items-center justify-content-center p-3 mb-4">
                                     <img draggable="false" loading="lazy" decoding="async"
-                                        class="user-select-none pe-none" height="100"
-                                        src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                        class="user-select-none pe-none img-fluid" width="50"
+                                        src="{{ asset('images/service/icon/' . Str::slug($service['name']) . '.png') }}"
                                         alt="{{ trans('index.service') }} - {{ $service['name'] }} - {{ config('constants.meta.title') }}">
                                 </div>
-                                <h5 class="scard-title">{{ $service['name'] }}</h5>
-                                <p class="scard-text">{{ $service['description'] }}</p>
+                                <h5 class="card-title">{{ $service['name'] }}</h5>
+                                <p class="card-text">{{ $service['description'] }}</p>
                                 <ul>
                                     @foreach ($service['inclusions'] as $key => $inclusion)
                                         <li wire:key="inclusion-{{ $key }}">
@@ -117,6 +114,13 @@ new #[Lazy] class extends Component {
                         </div>
                     </div>
                 @endforeach
+            </div>
+
+            <div class="text-center mt-4">
+                <a draggable="false" class="btn btn-success" href="{{ route('service') }}" wire:navigate>
+                    {{ trans('home.our_services.view_more') }}
+                    <span class="fas fa-chevron-right fa-fw"></span>
+                </a>
             </div>
         </div>
     </div>
