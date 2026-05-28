@@ -67,7 +67,7 @@ new #[Lazy] class extends Component {
                 @foreach ($values as $value)
                     <div class="col" wire:key="value-{{ $value->id }}">
                         <div class="card card-body border-0 h-100 p-0">
-                            <div class="row align-items-center">
+                            <div class="row align-items-center g-4">
                                 <div class="col-sm-8 col-lg-9 col-xl-6">
                                     <div class="row align-items-center g-4">
                                         <div class="col-auto col-xl-12">
