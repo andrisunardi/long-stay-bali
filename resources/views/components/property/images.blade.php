@@ -34,8 +34,8 @@
                         </div>
                     @else
                         <div class="ratio ratio-16x9">
-                            <a draggable="false" role="button" data-bs-toggle="modal"
-                                data-bs-target="#property-images">
+                            <a draggable="false" role="button" data-bs-toggle="modal" data-bs-target="#property-images"
+                                onclick="setTimeout(() => document.getElementById('property-image-{{ $propertyImage->id }}')?.scrollIntoView({ behavior: 'smooth' }), 300)">
                                 <img draggable="false"
                                     class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
                                     src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
@@ -88,11 +88,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
-                <div class="modal-body">
-                    <div class="d-grid gap-3">
+                <div class="modal-body" style="scroll-behavior:smooth;">
+                    <div class="d-grid gap-4">
                         @foreach ($property->images as $propertyImage)
-                            <img draggable="false"
-                                class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
+                            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
                                 id="property-image-{{ $propertyImage->id }}"
                                 src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
                                 alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />
