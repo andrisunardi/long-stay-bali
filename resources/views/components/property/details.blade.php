@@ -6,10 +6,14 @@
             {{ trans('property.availability') }}
         </div>
         <div class="col-8">
+            {{-- {{ trans('property.chat_for_check_availability_on_whatsapp') }} --}}
             @if ($property->availability_date)
-                {{ $property->availability_date->isoFormat('dddd, DD MMMM YYYY') }}
-            @else
-                {{ trans('property.chat_for_check_availability_on_whatsapp') }}
+                @if ($property->availability_date->isToday() || $property->availability_date->isPast())
+                    {{ trans('index.now') }}
+                @else
+                    {{ $property->availability_date->isoFormat('dddd, DD MMMM YYYY') }}
+                @endif
+
             @endif
         </div>
     </div>
