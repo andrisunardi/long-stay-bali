@@ -11,7 +11,7 @@ new #[Lazy] class extends Component {
     {
         $service = new PropertyService();
         $this->properties = $service->index(statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], limit: 4, paginate: false);
-        $this->properties->loadMissing(['area', 'image']);
+        $this->properties->loadMissing(['area', 'district', 'image']);
     }
 };
 ?>
@@ -65,10 +65,10 @@ new #[Lazy] class extends Component {
                                     alt="{{ trans('home.select_locations.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
                                     onerror="this.onerror=null; this.src='/images/placeholder.png';" />
 
-                                @if ($property->area)
+                                @if ($property->area || $property->district)
                                     <div class="position-absolute top-0 start-0 w-100 p-3">
                                         <span class="badge rounded-pill text-bg-success">
-                                            {{ $property->area->name }}
+                                            {{ $property->area?->name ?? $property->district?->name }}
                                         </span>
                                     </div>
                                 @endif
