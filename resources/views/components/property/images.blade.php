@@ -10,6 +10,8 @@
     </div>
     <div class="col-sm-6">
         <div class="row g-3">
+            @php($remainingImages = $property->images->count() - 5)
+
             @for ($i = 1; $i <= 4; $i++)
                 <div class="col-6" wire:key="property-image-{{ $i }}">
                     <div class="ratio ratio-16x9">
@@ -21,6 +23,19 @@
                                     src="{{ $property->images[$i]->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
                             </a>
+
+                            @if ($i === 4 && $remainingImages > 0)
+                                <a draggable="false" role="button" data-bs-toggle="modal" data-bs-target="#property-images"
+                                    onclick="setTimeout(() => document.getElementById('property-image-{{ $i }}')?.scrollIntoView({ behavior: 'smooth' }), 300)">
+                                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50 rounded">
+                                    </div>
+                                    <div
+                                        class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white text-center">
+                                        <div class="fw-bold">+{{ $remainingImages }}</div>
+                                        <div class="small">{{ trans('property.more_images') }}</div>
+                                    </div>
+                                </a>
+                            @endif
                         @else
                             <img draggable="false"
                                 class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"

@@ -140,4 +140,5 @@ return [
     'final_decision' => 'Décision finale',
     'status' => 'Statut',
     'property_only' => 'Propriété Seulement',
+    'more_images' => 'Plus d\'images',
 ];

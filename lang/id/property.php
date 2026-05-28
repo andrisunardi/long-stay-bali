@@ -140,4 +140,5 @@ return [
     'final_decision' => 'Keputusan Akhir',
     'status' => 'Status',
     'property_only' => 'Properti Saja',
+    'more_images' => 'Lebih Banyak Gambar',
 ];

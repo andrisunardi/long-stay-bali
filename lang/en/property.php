@@ -13,6 +13,7 @@ return [
     'location_property' => 'Location Property',
     'description' => 'Description',
     'property_only' => 'Property Only',
+    'more_images' => 'More Images',
 
     'property_details' => 'Property Details',
     'availability' => 'Availability',
