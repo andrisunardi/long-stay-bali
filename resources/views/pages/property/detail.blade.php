@@ -63,45 +63,9 @@ new #[Title('Property Detail')] class extends Component {
                     </div>
                 </div>
 
-                {{-- <hr />
-
-                <div class="d-grid gap-3">
-                    <div>
-                        <h5 class="fw-bold">{{ trans('property.location_property') }}</h5>
-                        <h6>
-                            <a draggable="false" class="text-secondary"
-                                href="{{ config('constants.contact.google_maps') }}" target="_blank">
-                                {{ $property->address }}
-                            </a>
-                        </h6>
-                    </div>
-
-                    <iframe class="w-100 rounded-5" height="300"
-                        src="{{ config('constants.contact.google_maps_iframe') }}"></iframe>
-                </div> --}}
-
                 <hr />
 
-                <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-                <div id="map" class="w-100 rounded" style="height: 300px"></div>
-
-                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-                <script>
-                    const map = L.map('map').setView([{{ $property->latitude }}, {{ $property->longitude }}], 15);
-
-                    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 19,
-                    }).addTo(map);
-
-                    L.circle([{{ $property->latitude }}, {{ $property->longitude }}], {
-                        color: '#0d6efd',
-                        fillColor: '#0d6efd',
-                        fillOpacity: 0.5,
-                        radius: 500
-                    }).addTo(map);
-                </script>
+                <x-property.location :property="$property" />
             </div>
         </div>
     </section>
