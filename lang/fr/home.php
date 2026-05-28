@@ -58,7 +58,7 @@ return [
 
     'cta' => [
         'title' => 'Parlez-nous de votre déménagement',
-        'description' => "Nous vous aiderons à trouver le bon logement et vous soutiendrons à chaque étape.",
+        'description' => 'Nous vous aiderons à trouver le bon logement et vous soutiendrons à chaque étape.',
         'button' => 'Contactez-nous',
     ],
 

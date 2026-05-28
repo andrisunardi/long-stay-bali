@@ -1,6 +1,6 @@
 @props([
     'id_area' => $areaId,
-    'bedroom' => $bedroom,
+    'bedrooms' => $bedrooms,
     'min_price' => $minPrice,
     'max_price' => $maxPrice,
 ])
@@ -8,7 +8,7 @@
 <a draggable="false"
     href="{{ route('property.index', [
         'area_id' => $areaId,
-        'bedroom' => $bedroom,
+        'bedrooms' => $bedrooms,
         'min_price' => $minPrice,
         'max_price' => $maxPrice,
     ]) }}"

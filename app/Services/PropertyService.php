@@ -19,6 +19,7 @@ class PropertyService
         ?string $search = null,
         ?string $userId = null,
         ?string $bedroom = null,
+        array $bedrooms = [],
         ?string $districtId = null,
         ?string $areaId = null,
         ?string $status = null,
@@ -52,12 +53,13 @@ class PropertyService
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
                 });
             })
-            ->when($userId, fn($q) => $q->where('user_id', $userId))
-            ->when($bedroom, fn($q) => $q->where('bedroom', $bedroom))
-            ->when($districtId, fn($q) => $q->where('district_id', $districtId))
-            ->when($areaId, fn($q) => $q->where('area_id', $areaId))
-            ->when($status, fn($q) => $q->where('status', $status))
-            ->when($statuses, fn($q) => $q->whereIn('status', $statuses))
+            ->when($userId, fn ($q) => $q->where('user_id', $userId))
+            ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
+            ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
+            ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
+            ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
+            ->when($status, fn ($q) => $q->where('status', $status))
+            ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             // ->when($startDate, fn($q) => $q->whereDate('availability_date', '>=', $startDate))
             // ->when($endDate, fn($q) => $q->whereDate('availability_date', '<=', $endDate))
             // ->when($availabilityDates, fn($q) => $q->whereBetween('availability_date', $availabilityDates))
@@ -70,14 +72,14 @@ class PropertyService
             )
             ->when(
                 $startDate && $startDate != today()->toDateString(),
-                fn($query) => $query->whereDate('availability_date', '>=', $startDate)
+                fn ($query) => $query->whereDate('availability_date', '>=', $startDate)
             )
             ->when(
                 $endDate && $endDate != today()->toDateString(),
-                fn($query) => $query->whereDate('availability_date', '<=', $endDate)
+                fn ($query) => $query->whereDate('availability_date', '<=', $endDate)
             )
-            ->when($random, fn($q) => $q->inRandomOrder())
-            ->when($trash, fn($q) => $q->onlyTrashed())
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -291,7 +293,7 @@ class PropertyService
         $directory = 'images/property';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path') . '/' . $directory;
+        $assetPath = config('constants.assets.path').'/'.$directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";

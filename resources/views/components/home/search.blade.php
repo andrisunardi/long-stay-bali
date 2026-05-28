@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
 use Livewire\Attributes\Url;
@@ -16,9 +15,6 @@ new class extends Component {
 
     #[Url(except: null)]
     public ?string $end_date = null;
-
-    #[Url(except: null)]
-    public ?int $bedroom = null;
 
     #[Url(except: [])]
     public array $bedrooms = [];
@@ -76,30 +72,15 @@ new class extends Component {
         $this->reset(['area_id', 'search_area']);
     }
 
-    public function changeBedroom(?int $value = null): void
-    {
-        $this->bedroom = $value;
-    }
-
     public function changeBedrooms(?int $value = null): void
     {
         if (!$value) {
-            $this->reset(['bedrooms']);
-            return;
-        }
-
-        if (in_array($value, $this->bedrooms)) {
-            $this->bedrooms = array_values(array_filter($this->bedrooms, fn($item) => $item !== $value));
+            $this->reset('bedrooms');
 
             return;
         }
 
-        $this->bedrooms[] = $value;
-    }
-
-    public function propertyBedrooms(): array
-    {
-        return PropertyBedroom::cases();
+        $this->bedrooms = in_array($value, $this->bedrooms) ? array_values(array_diff($this->bedrooms, [$value])) : [...$this->bedrooms, $value];
     }
 };
 ?>
@@ -130,12 +111,7 @@ new class extends Component {
             </div>
 
             <div class="col-sm-3 col-lg-4">
-                {{-- prettier-ignore --}}
-                <x-home.search.bedroom
-                :property-bedrooms="$this->propertyBedrooms()"
-                :bedroom="$bedroom"
-                :bedrooms="$bedrooms"
-                />
+                <x-home.search.bedroom :bedrooms="$bedrooms" />
             </div>
 
             <div class="col-12">
@@ -150,7 +126,7 @@ new class extends Component {
                 {{-- prettier-ignore --}}
                 <x-home.search.button
                 :area-id="$area_id"
-                :bedroom="$bedroom"
+                :bedrooms="$bedrooms"
                 :min-price="$min_price"
                 :max-price="$max_price"
                 />

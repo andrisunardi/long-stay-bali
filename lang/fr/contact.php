@@ -3,14 +3,14 @@
 return [
 
     'info' => [
-        'title' => "Prenons Contact",
-        'description' => "Partagez quelques détails sur ce que vous recherchez, et notre équipe vous répondra avec des options adaptées.",
+        'title' => 'Prenons Contact',
+        'description' => 'Partagez quelques détails sur ce que vous recherchez, et notre équipe vous répondra avec des options adaptées.',
         'contact' => 'Vous préférez une approche directe ?',
     ],
     'form' => [
         'success' => [
             'title' => 'Merci de nous avoir contactés',
-            'body' => "Nous vous répondrons dans les plus brefs délais.",
+            'body' => 'Nous vous répondrons dans les plus brefs délais.',
         ],
         'failed' => [
             'title' => 'Échec de l\'envoi de votre message. Veuillez réessayer plus tard.',

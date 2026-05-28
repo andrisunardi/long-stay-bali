@@ -17,7 +17,7 @@ return [
 
     'cta' => [
         'title' => 'Vous pensez à vivre à Bali ?',
-        'description' => "Partagez ce que vous recherchez, et nous vous aiderons à trouver une maison qui correspond à votre façon de vivre",
+        'description' => 'Partagez ce que vous recherchez, et nous vous aiderons à trouver une maison qui correspond à votre façon de vivre',
         'button_name' => 'Chattez avec nous sur Whatsapp',
     ],
 

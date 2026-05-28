@@ -1,6 +1,4 @@
 @props([
-    'propertyBedrooms' => collect(),
-    'bedroom' => null,
     'bedrooms' => [],
 ])
 
@@ -12,8 +10,8 @@
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown">
-            @if ($bedroom)
-                {{ PropertyBedroom::from($bedroom)->value }}
+            @if ($bedrooms)
+                {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
             @else
                 {{ trans('index.all') }}
             @endif
@@ -25,7 +23,7 @@
                     {{ trans('index.all') }}
                 </button>
             </li>
-            @foreach ($propertyBedrooms as $propertyBedroom)
+            @foreach (PropertyBedroom::cases() as $propertyBedroom)
                 <li wire:key="property-bedroom-{{ $propertyBedroom }}">
                     <button type="button" class="dropdown-item d-flex justify-content-between"
                         wire:click="changeBedrooms({{ $propertyBedroom->value }})">
@@ -39,9 +37,3 @@
         </ul>
     </div>
 </div>
-
-<script>
-    $(document).on('click', '.bedroomss .dropdown-menu', function(e) {
-        e.stopPropagation();
-    });
-</script>

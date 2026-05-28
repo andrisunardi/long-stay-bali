@@ -7,7 +7,7 @@ return [
 
     'our_services' => [
         'title' => 'Bantuan Hidup di Bali',
-        'description' => "Dukungan kami tidak berhenti saat kamu mendapatkan kunci. Kami hadir untuk membuat kehidupan di Bali terasa mudah. Berlanjut setelah serah terima. Membantu kamu menetap, tetap nyaman, dan benar-benar menikmati hidupmu di sini.",
+        'description' => 'Dukungan kami tidak berhenti saat kamu mendapatkan kunci. Kami hadir untuk membuat kehidupan di Bali terasa mudah. Berlanjut setelah serah terima. Membantu kamu menetap, tetap nyaman, dan benar-benar menikmati hidupmu di sini.',
     ],
 
     'our_standard' => [
@@ -17,7 +17,7 @@ return [
 
     'cta' => [
         'title' => 'Sedang memikirkan untuk tinggal di Bali?',
-        'description' => "Ceritakan apa yang kamu cari, dan kami akan membantu menemukan rumah yang sesuai dengan cara hidupmu",
+        'description' => 'Ceritakan apa yang kamu cari, dan kami akan membantu menemukan rumah yang sesuai dengan cara hidupmu',
         'button_name' => 'Chat dengan kami di Whatsapp',
     ],
 

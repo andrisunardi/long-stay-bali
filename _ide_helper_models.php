@@ -22,44 +22,45 @@ namespace App\Models{
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activities
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon|null $deleted_at
+ * @property-read Collection<int, Activity> $activities
  * @property-read int|null $activities_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Contact> $contacts
+ * @property-read Collection<int, Contact> $contacts
  * @property-read int|null $contacts_count
- * @property-read \App\Models\User|null $createdBy
- * @property-read \App\Models\User|null $deletedBy
- * @property-read \App\Models\District|null $district
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Property> $properties
+ * @property-read User|null $createdBy
+ * @property-read User|null $deletedBy
+ * @property-read District|null $district
+ * @property-read Collection<int, Property> $properties
  * @property-read int|null $properties_count
- * @property-read \App\Models\User|null $updatedBy
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area active()
+ * @property-read User|null $updatedBy
+ * @method static Builder<static>|Area active()
  * @method static \Database\Factories\AreaFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area inactive()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area notPromoted()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area notShown()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area onlyTrashed()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area promoted()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area show()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereCreatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereDeletedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereDistrictId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereIsActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereIsPromoted($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereIsShow($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area whereUpdatedBy($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area withTrashed(bool $withTrashed = true)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Area withoutTrashed()
+ * @method static Builder<static>|Area inactive()
+ * @method static Builder<static>|Area newModelQuery()
+ * @method static Builder<static>|Area newQuery()
+ * @method static Builder<static>|Area notPromoted()
+ * @method static Builder<static>|Area notShown()
+ * @method static Builder<static>|Area onlyTrashed()
+ * @method static Builder<static>|Area promoted()
+ * @method static Builder<static>|Area query()
+ * @method static Builder<static>|Area show()
+ * @method static Builder<static>|Area whereCreatedAt($value)
+ * @method static Builder<static>|Area whereCreatedBy($value)
+ * @method static Builder<static>|Area whereDeletedAt($value)
+ * @method static Builder<static>|Area whereDeletedBy($value)
+ * @method static Builder<static>|Area whereDistrictId($value)
+ * @method static Builder<static>|Area whereId($value)
+ * @method static Builder<static>|Area whereIsActive($value)
+ * @method static Builder<static>|Area whereIsPromoted($value)
+ * @method static Builder<static>|Area whereIsShow($value)
+ * @method static Builder<static>|Area whereName($value)
+ * @method static Builder<static>|Area whereUpdatedAt($value)
+ * @method static Builder<static>|Area whereUpdatedBy($value)
+ * @method static Builder<static>|Area withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Area withoutTrashed()
+ * @mixin \Eloquent
  */
 	class Area extends \Eloquent {}
 }

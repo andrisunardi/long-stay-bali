@@ -58,7 +58,7 @@ return [
 
     'cta' => [
         'title' => 'Bicarakan kepindahanmu dengan kami',
-        'description' => "Kami akan membantu kamu menemukan rumah yang tepat dan mendukungmu di setiap langkah.",
+        'description' => 'Kami akan membantu kamu menemukan rumah yang tepat dan mendukungmu di setiap langkah.',
         'button' => 'Hubungi Kami',
     ],
 

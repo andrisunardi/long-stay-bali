@@ -3,14 +3,14 @@
 return [
 
     'info' => [
-        'title' => "Mari Hubungi Kami",
-        'description' => "Bagikan beberapa detail tentang apa yang kamu cari, dan tim kami akan menghubungi kamu dengan pilihan yang sesuai.",
+        'title' => 'Mari Hubungi Kami',
+        'description' => 'Bagikan beberapa detail tentang apa yang kamu cari, dan tim kami akan menghubungi kamu dengan pilihan yang sesuai.',
         'contact' => 'Lebih suka pendekatan langsung?',
     ],
     'form' => [
         'success' => [
             'title' => 'Terima kasih telah menghubungi kami',
-            'body' => "Kami akan menghubungi kamu sesegera mungkin.",
+            'body' => 'Kami akan menghubungi kamu sesegera mungkin.',
         ],
         'failed' => [
             'title' => 'Gagal mengirim pesan. Silakan coba lagi nanti.',
