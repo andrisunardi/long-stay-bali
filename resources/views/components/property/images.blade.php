@@ -1,9 +1,11 @@
 <div class="row g-3">
     <div class="col-sm-6">
         <div class="ratio ratio-16x9 h-100">
-            <img draggable="false" class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
-                src="{{ $property->image?->image_url ?? asset('images/placeholder.png') }}"
-                alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.title') }}" />
+            <a draggable="false" role="button" data-bs-toggle="modal" data-bs-target="#property-images">
+                <img draggable="false" class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
+                    src="{{ $property->image?->image_url ?? asset('images/placeholder.png') }}"
+                    alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.title') }}" />
+            </a>
         </div>
     </div>
     <div class="col-sm-6">
@@ -32,10 +34,13 @@
                         </div>
                     @else
                         <div class="ratio ratio-16x9">
-                            <img draggable="false"
-                                class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
-                                src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
-                                alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
+                            <a draggable="false" role="button" data-bs-toggle="modal"
+                                data-bs-target="#property-images">
+                                <img draggable="false"
+                                    class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
+                                    src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
+                                    alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
+                            </a>
                         </div>
                     @endif
                 </div>
@@ -71,3 +76,32 @@
         </div>
     </div>
 </div>
+
+@teleport('body')
+    <div class="modal fade" id="property-images" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">
+                        {{ $property->code }} - {{ $property->name }}
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        @foreach ($property->images as $propertyImage)
+                            <img draggable="false"
+                                class="img-fluid w-100 h-100 rounded object-fit-cover user-select-none pe-none"
+                                id="property-image-{{ $propertyImage->id }}"
+                                src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
+                                alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endteleport
+
+<script></script>
