@@ -111,7 +111,7 @@ new class extends Component {
             </div>
 
             <div class="col-sm-3 col-lg-4">
-                <x-home.search.bedroom :bedrooms="$bedrooms" />
+                <x-search.bedroom :bedrooms="$bedrooms" />
             </div>
 
             <div class="col-12">

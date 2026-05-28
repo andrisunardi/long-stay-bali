@@ -3,13 +3,15 @@
 use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
+use Livewire\Attributes\Url;
 
 new class extends Component {
     public ?int $areaId = null;
 
     public string $search_area = '';
 
-    public ?int $bedroom = null;
+    #[Url(except: [])]
+    public array $bedrooms = [];
 
     public function mount(): void
     {
@@ -35,10 +37,17 @@ new class extends Component {
         $this->dispatch('area-changed', id: null, name: '');
     }
 
-    public function changeBedroom(?int $value = null): void
+    public function changeBedrooms(?int $value = null): void
     {
-        $this->bedroom = $value;
-        $this->dispatch('bedroom-changed', value: $value);
+        if (!$value) {
+            $this->reset('bedrooms');
+            $this->dispatch('bedrooms-changed', bedrooms: []);
+
+            return;
+        }
+
+        $this->bedrooms = in_array($value, $this->bedrooms) ? array_values(array_diff($this->bedrooms, [$value])) : [...$this->bedrooms, $value];
+        $this->dispatch('bedrooms-changed', bedrooms: $this->bedrooms);
     }
 
     public function areas(): object
@@ -48,11 +57,6 @@ new class extends Component {
         $areas->loadMissing(['district']);
 
         return $areas;
-    }
-
-    public function propertyBedrooms(): array
-    {
-        return PropertyBedroom::cases();
     }
 };
 ?>
@@ -70,11 +74,7 @@ new class extends Component {
             </div>
 
             <div class="col-sm-6 col-xl">
-                {{-- prettier-ignore --}}
-                <x-property.search.bedroom
-                :bedroom="$bedroom"
-                :property-bedrooms="$this->propertyBedrooms()"
-                />
+                <x-search.bedroom :bedrooms="$bedrooms" />
             </div>
         </div>
     </div>

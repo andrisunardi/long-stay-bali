@@ -5,6 +5,8 @@ use App\Livewire\Component;
 use App\Services\PropertyService;
 use Livewire\Attributes\Lazy;
 use Livewire\Attributes\Reactive;
+use Livewire\Attributes\On;
+use Livewire\Attributes\Url;
 
 new #[Lazy] class extends Component {
     #[Reactive]
@@ -19,8 +21,8 @@ new #[Lazy] class extends Component {
     #[Reactive]
     public ?string $endDate = null;
 
-    #[Reactive]
-    public ?int $bedroom = null;
+    #[Url(except: [])]
+    public array $bedrooms = [];
 
     #[Reactive]
     public int $minPrice = 0;
@@ -35,10 +37,16 @@ new #[Lazy] class extends Component {
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
         $service = new PropertyService();
-        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, statuses: $statuses, bedroom: $this->bedroom, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, statuses: $statuses, bedrooms: $this->bedrooms, paginate: false);
         $properties->loadMissing(['area.district', 'image']);
 
         return $properties;
+    }
+
+    #[On('bedrooms-changed')]
+    public function handleBedroomsChanged(array $bedrooms = []): void
+    {
+        $this->bedrooms = $bedrooms;
     }
 };
 ?>

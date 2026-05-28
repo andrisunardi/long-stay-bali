@@ -2,7 +2,7 @@
     'bedrooms' => [],
 ])
 
-<div class="bedroomss">
+<div>
     <label class="form-label">
         <span class="fas fa-bed fa-fw"></span>
         {{ trans('home.search.bedroom') }}
@@ -10,8 +10,8 @@
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown">
-            @if ($bedroom)
-                {{ PropertyBedroom::from($bedroom)->value }}
+            @if ($bedrooms)
+                {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
             @else
                 {{ trans('index.all') }}
             @endif

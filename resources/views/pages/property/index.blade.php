@@ -18,9 +18,6 @@ new #[Title('Property')] class extends Component {
     public ?string $end_date = null;
 
     #[Url(except: null)]
-    public ?int $bedroom = null;
-
-    #[Url(except: null)]
     public int $min_price = 0;
 
     #[Url(except: null)]
@@ -38,19 +35,13 @@ new #[Title('Property')] class extends Component {
         $this->area_id = $id;
         $this->area_name = $name;
     }
-
-    #[On('bedroom-changed')]
-    public function changeBedroom(?int $value = null): void
-    {
-        $this->bedroom = $value;
-    }
 };
 ?>
 
 @section('title', trans('page.property'))
 
 <div>
-    <livewire:property.search :area-id="$area_id" :bedroom="$bedroom" />
+    <livewire:property.search :area-id="$area_id" />
 
     <hr />
 
@@ -60,7 +51,6 @@ new #[Title('Property')] class extends Component {
     :area-name="$area_name"
     :start-date="$start_date"
     :end-date="$end_date"
-    :bedroom="$bedroom"
     :min-price="$min_price"
     :max-price="$max_price"
     lazy />
