@@ -3,13 +3,18 @@
 ])
 
 <div class="d-grid gap-3">
-    <h5 class="fw-bold">{{ trans('property.location_property') }}</h5>
-    <div id="map" class="w-100 rounded-5"></div>
+    {{-- <h5 class="fw-bold">{{ trans('property.location_property') }}</h5> --}}
+    <div id="map" class="w-100 rounded-5 h-100 ratio ratio-4x3 z-0"></div>
 </div>
 
 @script
     <script>
-        const map = L.map('map').setView([{{ $property->latitude }}, {{ $property->longitude }}], 15);
+        const map = L.map('map', {
+            scrollWheelZoom: false,
+            touchZoom: true,
+            dragging: true,
+            doubleClickZoom: true,
+        }).setView([{{ $property->latitude }}, {{ $property->longitude }}], 15);
 
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,

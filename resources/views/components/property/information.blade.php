@@ -1,6 +1,6 @@
 <div>
-    <div class="row g-3">
-        <div class="col-lg-8 col-xl-9">
+    <div class="row g-4">
+        <div class="col-lg-8">
             <h1>{{ $property->name }}</h1>
 
             <div class="d-flex gap-2">
@@ -24,20 +24,27 @@
                 </span>
             </div>
         </div>
-        <div class="col-lg-4 col-xl-3">
+        <div class="col-lg-4 col-xl-3 offset-xl-1">
             <x-property.sidebar :property="$property" />
         </div>
     </div>
 
     <hr class="my-4" />
 
-    <p class="mb-0">
-        @if ($property->translate_description)
-            {!! $property->translate_description !!}
-        @else
-            <span class="fst-italic text-muted">
-                {{ trans('property.no_description_about_this_property') }}
-            </span>
-        @endif
-    </p>
+    <div class="row">
+        <div class="col-lg-6">
+            <p class="mb-0">
+                @if ($property->translate_description)
+                    {!! $property->translate_description !!}
+                @else
+                    <span class="fst-italic text-muted">
+                        {{ trans('property.no_description_about_this_property') }}
+                    </span>
+                @endif
+            </p>
+        </div>
+        <div class="col-lg-6 col-xl-5 offset-xl-1">
+            <x-property.location :property="$property" />
+        </div>
+    </div>
 </div>

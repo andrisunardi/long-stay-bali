@@ -50,22 +50,21 @@ new #[Title('Property Detail')] class extends Component {
 
                         <hr class="my-4" />
 
-                        <x-property.details :property="$property" />
-
-                        <hr class="my-4" />
-
-                        {{-- prettier-ignore --}}
-                        <x-property.inclusions
-                        :property="$property"
-                        :monthly-has-inclusions="$monthlyHasInclusions"
-                        :yearly-has-inclusions="$yearlyHasInclusions"
-                        />
+                        <div class="row g-4">
+                            <div class="col-lg-6">
+                                <x-property.details :property="$property" />
+                            </div>
+                            <div class="col-lg-6">
+                                {{-- prettier-ignore --}}
+                                <x-property.inclusions
+                                :property="$property"
+                                :monthly-has-inclusions="$monthlyHasInclusions"
+                                :yearly-has-inclusions="$yearlyHasInclusions"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <hr />
-
-                <x-property.location :property="$property" />
             </div>
         </div>
     </section>
