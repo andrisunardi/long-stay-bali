@@ -168,6 +168,10 @@ class GoogleDrive
             'q' => "'{$folderId}' in parents and (mimeType contains 'image/' or mimeType = 'application/vnd.google-apps.folder')",
             'pageSize' => $isPaginate ? $pageSize : null,
             'fields' => 'nextPageToken, files(id, name, mimeType, thumbnailLink, size)',
+            // 'orderBy' => 'name_natural',
+            'supportsAllDrives' => true,
+            'includeItemsFromAllDrives' => true,
+            'corpora' => 'allDrives',
         ];
 
         if ($pageToken) {
