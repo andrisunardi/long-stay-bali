@@ -4,7 +4,7 @@ return [
 
     'hero' => [
         'title' => 'Hidup Lebih Baik Tinggal Lebih Lama',
-        'description' => 'Mulai pengalaman tinggal bulanan dan tahunan bersama kami.',
+        'description' => 'Mulai pengalaman tinggal bulanan dan tahunan bersama kami',
     ],
 
     'search' => [

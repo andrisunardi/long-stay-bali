@@ -4,7 +4,7 @@ return [
 
     'hero' => [
         'title' => 'Vivez Mieux Restez Plus Longtemps',
-        'description' => 'Commencez votre expérience de vie mensuelle et annuelle avec nous.',
+        'description' => 'Commencez votre expérience de vie mensuelle et annuelle avec nous',
     ],
 
     'search' => [

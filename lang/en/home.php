@@ -4,7 +4,7 @@ return [
 
     'hero' => [
         'title' => 'Live Better Stay Longer',
-        'description' => 'Start your monthly and yearly living experience with us.',
+        'description' => 'Start your monthly and yearly living experience with us',
     ],
 
     'search' => [
