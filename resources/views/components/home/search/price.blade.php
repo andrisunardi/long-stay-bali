@@ -40,14 +40,22 @@
             @else
                 {{ trans('index.all') }}
             @endif --}}
-            @isset($prices['budget_type'])
-                {{ trans('index.all') }}
+            @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
+                {{ trans('index.monthly') }}
+                {{ isset($prices['monthly']['min']) ? Str::abbreviate($prices['monthly']['min']) : 0 }}
+                -
+                {{ isset($prices['monthly']['max']) ? Str::abbreviate($prices['monthly']['max']) : 0 }}
+            @elseif (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Yearly->value)
+                {{ trans('index.yearly') }}
+                {{ isset($prices['yearly']['min']) ? Str::abbreviate($prices['yearly']['min']) : 0 }}
+                -
+                {{ isset($prices['yearly']['max']) ? Str::abbreviate($prices['yearly']['max']) : 0 }}
             @else
                 {{ trans('index.all') }}
-            @endisset
+            @endif
         </button>
 
-        <div class="dropdown-menu mt-2 p-3" wire:ignore.self>
+        <div class="dropdown-menu w-100 mt-2 p-3" wire:ignore.self>
             <div class="d-flex justify-content-between">
                 <div>
                     <h5>{{ trans('home.search.price_title') }}</h5>
@@ -84,33 +92,65 @@
 
             <hr />
 
-            <div class="row">
-                <div class="col-6">
-                    <label class="form-label" for="min_price">
-                        {{ trans('home.search.minimum_price') }}
-                    </label>
-                    <input type="range" class="form-range" id="min_price" name="min_price" min="0"
-                        max="{{ $monthlyMin }}"
-                        value="{{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}"
-                        step="1000000" wire:model.live.debounce.500ms="prices.monthly.min">
-                    <output for="min_price">
-                        {{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}
-                    </output>
-                </div>
+            @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" for="min_price">
+                            {{ trans('home.search.minimum_price') }}
+                        </label>
+                        <input type="range" class="form-range" id="min_price" name="min_price" min="0"
+                            max="{{ $monthlyMin }}"
+                            value="{{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}"
+                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.min">
+                        <output for="min_price">
+                            {{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}
+                        </output>
+                    </div>
 
-                <div class="col-6">
-                    <label class="form-label" for="max_price">
-                        {{ trans('home.search.maximum_price') }}
-                    </label>
-                    <input type="range" class="form-range" id="max_price" name="max_price" min="0"
-                        max="{{ $monthlyMax }}"
-                        value="{{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}"
-                        step="1000000" wire:model.live.debounce.500ms="prices.monthly.max">
-                    <output for="max_price">
-                        {{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}
-                    </output>
+                    <div class="col-6">
+                        <label class="form-label" for="max_price">
+                            {{ trans('home.search.maximum_price') }}
+                        </label>
+                        <input type="range" class="form-range" id="max_price" name="max_price" min="0"
+                            max="{{ $monthlyMax }}"
+                            value="{{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}"
+                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.max">
+                        <output for="max_price">
+                            {{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}
+                        </output>
+                    </div>
                 </div>
-            </div>
+            @endif
+
+            @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Yearly->value)
+                <div class="row">
+                    <div class="col-6">
+                        <label class="form-label" for="min_price">
+                            {{ trans('home.search.minimum_price') }}
+                        </label>
+                        <input type="range" class="form-range" id="min_price" name="min_price" min="0"
+                            max="{{ $yearlyMin }}"
+                            value="{{ isset($prices['yearly']['min']) ? Str::idr($prices['yearly']['min']) : 0 }}"
+                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.min">
+                        <output for="min_price">
+                            {{ isset($prices['yearly']['min']) ? Str::idr($prices['yearly']['min']) : 0 }}
+                        </output>
+                    </div>
+
+                    <div class="col-6">
+                        <label class="form-label" for="max_price">
+                            {{ trans('home.search.maximum_price') }}
+                        </label>
+                        <input type="range" class="form-range" id="max_price" name="max_price" min="0"
+                            max="{{ $yearlyMax }}"
+                            value="{{ isset($prices['yearly']['max']) ? Str::idr($prices['yearly']['max']) : 0 }}"
+                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.max">
+                        <output for="max_price">
+                            {{ isset($prices['yearly']['max']) ? Str::idr($prices['yearly']['max']) : 0 }}
+                        </output>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>
