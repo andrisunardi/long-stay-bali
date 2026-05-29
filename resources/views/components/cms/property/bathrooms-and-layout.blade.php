@@ -96,7 +96,7 @@
                         wire:loading.attr="disabled">
                     <label class="form-check-label"
                         for="living_style_{{ $propertyLivingStyle->value }}">
-                        {{ $propertyLivingStyle->description() }}
+                        {{ $propertyLivingStyle->name }}
                     </label>
                 </div>
             @endforeach
