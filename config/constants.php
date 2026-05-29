@@ -59,4 +59,10 @@ return [
         'tiktok' => env('SOCIAL_MEDIA_TIKTOK'),
         'linkedin' => env('SOCIAL_MEDIA_LINKEDIN'),
     ],
+
+    // FACEBOOK
+    'facebook_id' => env('FACEBOOK_ID'),
+
+    // GOOGLE
+    'google_analytics_id' => env('GOOGLE_ANALYTICS_ID'),
 ];
