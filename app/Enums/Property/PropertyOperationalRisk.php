@@ -18,13 +18,4 @@ enum PropertyOperationalRisk: int
             self::High => 'High',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Low->value => 'Low',
-            self::Medium->value => 'Medium',
-            self::High->value => 'High',
-        };
-    }
 }

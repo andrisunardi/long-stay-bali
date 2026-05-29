@@ -21,14 +21,4 @@ enum PropertyTargetProfile: int
             self::DesignLover => 'Design Lover',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Family->value => 'Family',
-            self::Couple->value => 'Couple',
-            self::RemoteWorker->value => 'Remote Worker',
-            self::DesignLover->value => 'Design Lover',
-        };
-    }
 }

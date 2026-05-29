@@ -18,13 +18,4 @@ enum PropertyElectricity: int
             self::Hybrid => 'Hybrid',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Standard->value => 'Standard',
-            self::Solar->value => 'Solar',
-            self::Hybrid->value => 'Hybrid',
-        };
-    }
 }

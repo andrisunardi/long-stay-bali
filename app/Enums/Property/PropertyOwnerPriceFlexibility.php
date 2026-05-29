@@ -15,12 +15,4 @@ enum PropertyOwnerPriceFlexibility: int
             self::Negotiable => 'Negotiable',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Fixed->value => 'Fixed',
-            self::Negotiable->value => 'Negotiable',
-        };
-    }
 }

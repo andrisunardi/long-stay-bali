@@ -35,26 +35,4 @@ enum PropertyStatus: int
             self::Escalate => 'info',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Pending->value => 'Pending',
-            self::AcceptUpper->value => 'Accep tUpper',
-            self::AcceptPremium->value => 'Accept Premium',
-            self::Reject->value => 'Reject',
-            self::Escalate->value => 'Escalate For Arbitration',
-        };
-    }
-
-    public static function getColor(int $value): string
-    {
-        return match ($value) {
-            self::Pending->value => 'warning',
-            self::AcceptUpper->value => 'success',
-            self::AcceptPremium->value => 'primary',
-            self::Reject->value => 'danger',
-            self::Escalate->value => 'info',
-        };
-    }
 }

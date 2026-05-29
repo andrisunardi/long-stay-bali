@@ -18,13 +18,4 @@ enum PropertyPowerBackup: int
             self::None => 'None',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Generator->value => 'Generator',
-            self::Solar->value => 'Solar',
-            self::None->value => 'None',
-        };
-    }
 }

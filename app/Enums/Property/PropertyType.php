@@ -12,11 +12,4 @@ enum PropertyType: int
             self::Villa => 'Villa',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Villa->value => 'Villa',
-        };
-    }
 }

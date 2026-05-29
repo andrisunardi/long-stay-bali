@@ -18,13 +18,4 @@ enum PropertyOrientation: int
             self::MixedSun => 'Mixed Sun',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Morning->value => 'Morning',
-            self::Afternoon->value => 'Afternoon',
-            self::MixedSun->value => 'Mixed Sun',
-        };
-    }
 }

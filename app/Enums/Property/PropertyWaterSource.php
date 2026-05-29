@@ -18,13 +18,4 @@ enum PropertyWaterSource: int
             self::Mixed => 'Mixed',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::PDAM->value => 'PDAM',
-            self::Well->value => 'Well',
-            self::Mixed->value => 'Mixed',
-        };
-    }
 }

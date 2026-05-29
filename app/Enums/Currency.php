@@ -24,15 +24,4 @@ enum Currency: string
             self::GBP => 'fas fa-sterling-sign',
         };
     }
-
-    public static function getIcon(int $value): string
-    {
-        return match ($value) {
-            self::USD->value => 'fas fa-dollar-sign',
-            self::AUD->value => 'fas fa-dollar-sign',
-            self::EUR->value => 'fas fa-euro-sign',
-            self::IDR->value => 'fas fa-rupiah-sign',
-            self::GBP->value => 'fas fa-sterling-sign',
-        };
-    }
 }

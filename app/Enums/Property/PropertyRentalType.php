@@ -18,13 +18,4 @@ enum PropertyRentalType: int
             self::Both => 'Both',
         };
     }
-
-    public static function getDescription(int $value): string
-    {
-        return match ($value) {
-            self::Monthly->value => 'Monthly',
-            self::Yearly->value => 'Yearly',
-            self::Both->value => 'Both',
-        };
-    }
 }
