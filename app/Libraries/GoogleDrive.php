@@ -165,7 +165,7 @@ class GoogleDrive
         ?string $pageToken = null
     ): array {
         $params = [
-            'q' => "'{$folderId}' in parents and (mimeType contains 'image/' or mimeType = 'application/vnd.google-apps.folder')",
+            'q' => "'{$folderId}' in parents and trashed = false and (mimeType contains 'image/' or mimeType = 'application/vnd.google-apps.folder')",
             'pageSize' => $isPaginate ? $pageSize : null,
             'fields' => 'nextPageToken, files(id, name, mimeType, thumbnailLink, size)',
             // 'orderBy' => 'name_natural',
