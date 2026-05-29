@@ -134,7 +134,7 @@ new #[Lazy] class extends Component {
                         <div class="ratio ratio-16x9 overflow-hidden">
                             <a draggable="false" href="{{ route('property.detail', ['slug' => $property['slug']]) }}"
                                 wire:navigate>
-                                <img draggable="false" loading="lazy" decoding="async"
+                                <img draggable="false" loading="lazy" decoding="async" fetchpriority="low"
                                     class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
                                     src="{{ $property->image->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
