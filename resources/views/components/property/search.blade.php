@@ -71,8 +71,8 @@ new class extends Component {
 
 <section class="pt-5">
     <div class="container-md">
-        <div class="row">
-            <div class="col-sm-6 col-xl">
+        <div class="row g-4">
+            <div class="col-xl">
                 {{-- prettier-ignore --}}
                 <x-property.search.area
                 :area-id="$areaId"
@@ -81,11 +81,11 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-sm-6 col-xl-2">
+            <div class="col-6 col-xl-2">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
 
-            <div class="col-sm-6 col-xl-2">
+            <div class="col-6 col-xl-2">
                 <x-search.living-style :living-style="$living_style" />
             </div>
         </div>
