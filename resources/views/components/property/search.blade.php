@@ -6,9 +6,16 @@ use App\Services\AreaService;
 use Livewire\Attributes\Url;
 
 new class extends Component {
+    #[Url(except: null)]
     public ?int $areaId = null;
 
     public string $search_area = '';
+
+    #[Url(except: null)]
+    public ?string $start_date = null;
+
+    #[Url(except: null)]
+    public ?string $end_date = null;
 
     #[Url(except: [])]
     public array $bedrooms = [];
@@ -21,6 +28,14 @@ new class extends Component {
         if ($this->areaId) {
             $area = $this->areas()->firstWhere('id', $this->areaId);
             $this->search_area = "{$area->name}, {$area->district?->name}";
+        }
+
+        if (!$this->start_date) {
+            $this->start_date = now()->toDateString();
+        }
+
+        if (!$this->end_date) {
+            $this->end_date = now()->toDateString();
         }
     }
 
@@ -81,6 +96,16 @@ new class extends Component {
                 />
             </div>
 
+            <div class="col-xl">
+                <div wire:ignore>
+                    <label class="form-label">
+                        <span class="fas fa-calendar fa-fw"></span>
+                        {{ trans('validation.attributes.when') }}
+                    </label>
+                    <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
+                </div>
+            </div>
+
             <div class="col-6 col-xl-2">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
@@ -91,3 +116,41 @@ new class extends Component {
         </div>
     </div>
 </section>
+
+
+@push('css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
+@endpush
+
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+
+    <script>
+        document.addEventListener('livewire:init', () => {
+            const isMobile = window.innerWidth < 576
+
+            new Litepicker({
+                element: document.getElementById('daterange'),
+                singleMode: false,
+                numberOfMonths: isMobile ? 1 : 2,
+                numberOfColumns: isMobile ? 1 : 2,
+                minDate: new Date(),
+                format: 'DD MMM YYYY',
+                startDate: '{{ $start_date }}',
+                endDate: '{{ $end_date }}',
+                setup: (picker) => {
+                    picker.on('selected', (start, end) => {
+                        @this.set(
+                            'start_date',
+                            start ? start.format('YYYY-MM-DD') : null
+                        )
+                        @this.set(
+                            'end_date',
+                            end ? end.format('YYYY-MM-DD') : null
+                        )
+                    })
+                }
+            })
+        })
+    </script>
+@endpush

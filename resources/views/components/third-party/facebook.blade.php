@@ -21,7 +21,3 @@
     fbq('init', '{{ config('constants.facebook_id') }}');
     fbq('track', 'PageView');
 </script>
-
-<noscript>
-    <img src="https://www.facebook.com/tr?id={{ config('constants.facebook_id') }}&ev=PageView&noscript=1" />
-</noscript>
