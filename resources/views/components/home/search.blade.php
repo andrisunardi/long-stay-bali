@@ -108,16 +108,6 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-12">
-                <div wire:ignore>
-                    <label class="form-label">
-                        <span class="fas fa-calendar fa-fw"></span>
-                        {{ trans('validation.attributes.when') }}
-                    </label>
-                    <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
-                </div>
-            </div>
-
             <div class="col-6">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
