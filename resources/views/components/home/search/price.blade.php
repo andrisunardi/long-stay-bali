@@ -1,7 +1,27 @@
 @props([
-    'minPrice' => 0,
-    'maxPrice' => 0,
+    'prices' => [],
+    'monthlyMin' => 0,
+    'monthlyMax' => 0,
+    'yearlyMin' => 0,
+    'yearlyMax' => 0,
 ])
+
+{{-- @php
+    $budget_type = $prices['budget_type'] ?? null;
+    $price = match ($budget_type) {
+        1 => $prices['monthly'] ?? [],
+        2 => $prices['yearly'] ?? [],
+        default => [],
+    };
+
+    $hasPrice = filled($price['min'] ?? null) || filled($price['max'] ?? null);
+
+    $label = match ($budget_type) {
+        1 => trans('index.monthly'),
+        2 => trans('index.yearly'),
+        default => null,
+    };
+@endphp --}}
 
 <div>
     <label class="form-label">
@@ -10,20 +30,72 @@
     </label>
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-            data-bs-toggle="dropdown">
-            {{ Str::idr($minPrice) }} - {{ Str::idr($maxPrice) }}
+            data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            {{-- {{ Str::abbreviate($minPrice) }} - {{ Str::abbreviate($maxPrice) }} --}}
+            {{-- @if ($hasPrice)
+                {{ $label }}
+                {{ Str::abbreviate($price['min'] ?? 0) }}
+                -
+                {{ Str::abbreviate($price['max'] ?? 0) }}
+            @else
+                {{ trans('index.all') }}
+            @endif --}}
+            @isset($prices['budget_type'])
+                {{ trans('index.all') }}
+            @else
+                {{ trans('index.all') }}
+            @endisset
         </button>
 
-        <div class="dropdown-menu w-100 mt-2 p-4" wire:ignore.self>
-            <div class="row g-3">
+        <div class="dropdown-menu mt-2 p-3" wire:ignore.self>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5>{{ trans('home.search.price_title') }}</h5>
+                    <p>{{ trans('home.search.price_description') }}</p>
+                </div>
+                <div>
+                    <a draggable="false" role="button" wire:click="clearAllPrice">
+                        {{ trans('home.search.clear_all') }}
+                    </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4 col-sm-3">
+                    <button type="button"
+                        class="btn btn-outline-success btn-sm w-100 rounded-pill {{ !isset($prices['budget_type']) ? 'active' : '' }}"
+                        wire:click="changeBudgetType" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        wire:loading.class="disabled" wire:loading.attr="disabled">
+                        {{ trans('index.all') }}
+                    </button>
+                </div>
+
+                @foreach (BudgetType::cases() as $budgetType)
+                    <div class="col-4 col-sm-3">
+                        <button type="button"
+                            class="btn btn-outline-success btn-sm w-100 rounded-pill {{ isset($prices['budget_type']) && $budgetType->value == $prices['budget_type'] ? 'active' : '' }}"
+                            wire:click="changeBudgetType({{ $budgetType->value }})" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                            {{ $budgetType->translate() }}
+                        </button>
+                    </div>
+                @endforeach
+            </div>
+
+            <hr />
+
+            <div class="row">
                 <div class="col-6">
                     <label class="form-label" for="min_price">
                         {{ trans('home.search.minimum_price') }}
                     </label>
                     <input type="range" class="form-range" id="min_price" name="min_price" min="0"
-                        max="100000000000" value="{{ $minPrice }}" step="1000000"
-                        wire:model.live.debounce.500ms="min_price">
-                    <output for="min_price">{{ Str::idr($minPrice) }}</output>
+                        max="{{ $monthlyMin }}"
+                        value="{{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}"
+                        step="1000000" wire:model.live.debounce.500ms="prices.monthly.min">
+                    <output for="min_price">
+                        {{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}
+                    </output>
                 </div>
 
                 <div class="col-6">
@@ -31,9 +103,12 @@
                         {{ trans('home.search.maximum_price') }}
                     </label>
                     <input type="range" class="form-range" id="max_price" name="max_price" min="0"
-                        max="100000000000" value="{{ $maxPrice }}" step="1000000"
-                        wire:model.live.debounce.500ms="max_price">
-                    <output for="max_price">{{ Str::idr($maxPrice) }}</output>
+                        max="{{ $monthlyMax }}"
+                        value="{{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}"
+                        step="1000000" wire:model.live.debounce.500ms="prices.monthly.max">
+                    <output for="max_price">
+                        {{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}
+                    </output>
                 </div>
             </div>
         </div>

@@ -7,6 +7,9 @@ use Livewire\Attributes\Url;
 
 new class extends Component {
     #[Url(except: null)]
+    public ?int $area_id = null;
+
+    #[Url(except: null)]
     public ?int $areaId = null;
 
     public string $search_area = '';

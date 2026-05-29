@@ -23,6 +23,9 @@ return [
         'when' => 'Planned move-in',
         'type' => 'All type',
 
+        'price_title' => 'Price Range',
+        'price_description' => 'Choose total cost period',
+        'clear_all' => 'Clear all',
         'price' => 'Budget range',
         'minimum_price' => 'Minimum Price',
         'maximum_price' => 'Maximum Price',

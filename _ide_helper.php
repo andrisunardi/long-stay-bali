@@ -27595,6 +27595,16 @@ namespace Illuminate\Support {
          * @param mixed $value
          * @static
          */
+        public static function abbreviate($value)
+        {
+            return \Illuminate\Support\Str::abbreviate($value);
+        }
+
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param mixed $value
+         * @static
+         */
         public static function successDanger($value)
         {
             return \Illuminate\Support\Str::successDanger($value);

@@ -1,16 +1,16 @@
 @props([
-    'id_area' => $areaId,
+    'areaId' => $areaId,
     'bedrooms' => $bedrooms,
-    'min_price' => $minPrice,
-    'max_price' => $maxPrice,
+    'livingStyle' => $livingStyle,
+    'prices' => $prices,
 ])
 
 <a draggable="false"
     href="{{ route('property.index', [
         'area_id' => $areaId,
         'bedrooms' => $bedrooms,
-        'min_price' => $minPrice,
-        'max_price' => $maxPrice,
+        'living_style' => $livingStyle,
+        'prices' => $prices,
     ]) }}"
     class="btn btn-success w-100 rounded-5" wire:navigate>
     <span class="fas fa-search fa-fw"></span>

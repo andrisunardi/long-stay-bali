@@ -16,11 +16,29 @@ new class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
-    #[Url(except: null)]
-    public int $min_price = 0;
+    #[Url(except: [])]
+    public array $prices = [
+        'type' => null,
+        'monthly' => [
+            'min' => null,
+            'max' => null,
+        ],
+        'yearly' => [
+            'min' => null,
+            'max' => null,
+        ],
+    ];
 
     #[Url(except: null)]
-    public int $max_price = 100000000000;
+    public ?int $price = null;
+
+    public int $monthly_min = 40000000;
+
+    public int $monthly_max = 250000000;
+
+    public int $yearly_min = 350000000;
+
+    public int $yearly_max = 2500000000;
 
     public function mount(): void
     {
@@ -76,6 +94,16 @@ new class extends Component {
     {
         $this->living_style = $livingStyle;
     }
+
+    public function clearAllPrice(): void
+    {
+        $this->reset(['prices']);
+    }
+
+    public function changeBudgetType(?int $value = null): void
+    {
+        $this->prices['budget_type'] = $value;
+    }
 };
 ?>
 
@@ -105,8 +133,11 @@ new class extends Component {
             <div class="col-12">
                 {{-- prettier-ignore --}}
                 <x-home.search.price
-                :min-price="$min_price"
-                :max-price="$max_price"
+                :prices="$prices"
+                :monthly-min="$monthly_min"
+                :monthly-max="$monthly_max"
+                :yearly-min="$yearly_min"
+                :yearly-max="$yearly_max"
                 />
             </div>
 
@@ -115,8 +146,8 @@ new class extends Component {
                 <x-home.search.button
                 :area-id="$area_id"
                 :bedrooms="$bedrooms"
-                :min-price="$min_price"
-                :max-price="$max_price"
+                :living-style="$living_style"
+                :prices="$prices"
                 />
             </div>
         </div>

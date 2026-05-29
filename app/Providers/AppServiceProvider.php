@@ -46,6 +46,20 @@ class AppServiceProvider extends ServiceProvider
             return 'IDR. '.number_format($value, 0, ',', '.');
         });
 
+        Str::macro('abbreviate', function ($value) {
+            $value = Str::replace('_', '', $value);
+            $number = (int) $value;
+
+            if ($number >= 1000) {
+                $thousands = $number / 1000;
+                $formatted = number_format($thousands, 0, ',', '.');
+
+                return 'IDR. '.$formatted.'K';
+            }
+
+            return 'IDR. '.number_format($number, 0, ',', '.');
+        });
+
         Str::macro('successDanger', function ($value) {
             return $value == 1 ? 'success' : 'danger';
         });
