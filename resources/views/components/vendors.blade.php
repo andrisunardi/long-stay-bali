@@ -18,6 +18,8 @@
 
 @include('vendors.lozad')
 
+@include('vendors.nouislider')
+
 @include('vendors.pace')
 
 @include('vendors.panzoom')

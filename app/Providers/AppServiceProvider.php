@@ -54,10 +54,10 @@ class AppServiceProvider extends ServiceProvider
                 $thousands = $number / 1000;
                 $formatted = number_format($thousands, 0, ',', '.');
 
-                return 'IDR. '.$formatted.'K';
+                return $formatted.'K';
             }
 
-            return 'IDR. '.number_format($number, 0, ',', '.');
+            return number_format($number, 0, ',', '.');
         });
 
         Str::macro('successDanger', function ($value) {

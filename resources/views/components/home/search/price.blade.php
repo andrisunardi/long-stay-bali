@@ -16,12 +16,12 @@
             data-bs-toggle="dropdown" data-bs-auto-close="outside">
             @isset($prices['budget_type'])
                 @if ($prices['budget_type'] == BudgetType::Monthly->value)
-                    {{ trans('index.monthly') }}
+                    {{ trans('index.monthly') }} :
                     {{ isset($prices['monthly']['min']) ? Str::abbreviate($prices['monthly']['min']) : 0 }}
                     -
                     {{ isset($prices['monthly']['max']) ? Str::abbreviate($prices['monthly']['max']) : 0 }}
                 @elseif ($prices['budget_type'] == BudgetType::Yearly->value)
-                    {{ trans('index.yearly') }}
+                    {{ trans('index.yearly') }} :
                     {{ isset($prices['yearly']['min']) ? Str::abbreviate($prices['yearly']['min']) : 0 }}
                     -
                     {{ isset($prices['yearly']['max']) ? Str::abbreviate($prices['yearly']['max']) : 0 }}
@@ -38,7 +38,7 @@
                     <p>{{ trans('home.search.price_description') }}</p>
                 </div>
                 <div>
-                    <a draggable="false" role="button" wire:click="clearAllPrice">
+                    <a draggable="false" class="text-muted" role="button" wire:click="clearAllPrice">
                         {{ trans('home.search.clear_all') }}
                     </a>
                 </div>
@@ -66,74 +66,121 @@
                 @endforeach
             </div>
 
-            @isset($prices['budget_type'])
-                <hr />
-            @endisset
-
             @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
-                <div class="row g-3">
+                <div wire:ignore class="px-2 mt-4">
+                    <div id="monthly-slider"></div>
+                </div>
+
+                <div class="row g-3 mt-2">
                     <div class="col-6">
-                        <label class="form-label" for="min_price">
+                        <label class="form-label" for="monthly_min">
                             {{ trans('home.search.minimum_price') }}
                         </label>
-                        <input type="range" class="form-range" min="0" max="{{ $monthlyMin }}"
-                            value="{{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.min">
 
-                        <input type="number" class="form-control" id="min_price" name="min_price" min="0"
-                            max="{{ $monthlyMin }}"
-                            value="{{ isset($prices['monthly']['min']) ? Str::idr($prices['monthly']['min']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.min">
+                        <input type="number" class="form-control" id="monthly_min" name="monthly_min" min="0"
+                            max="{{ $monthlyMin }}" value="{{ $prices['monthly']['min'] ?? 0 }}" step="1000000"
+                            wire:model.live.debounce.500ms="prices.monthly.min">
                     </div>
 
                     <div class="col-6">
-                        <label class="form-label" for="max_price">
+                        <label class="form-label" for="monthly_max">
                             {{ trans('home.search.maximum_price') }}
                         </label>
-                        <input type="range" class="form-range" min="0" max="{{ $monthlyMax }}"
-                            value="{{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.max">
 
-                        <input type="number" class="form-control" id="max_price" name="max_price" min="0"
-                            max="{{ $monthlyMin }}"
-                            value="{{ isset($prices['monthly']['max']) ? Str::idr($prices['monthly']['max']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.monthly.max">
+                        <input type="number" class="form-control" id="monthly_max" name="monthly_max" min="0"
+                            max="{{ $monthlyMax }}" value="{{ $prices['monthly']['max'] ?? 0 }}" step="1000000"
+                            wire:model.live.debounce.500ms="prices.monthly.max">
                     </div>
                 </div>
             @endif
 
             @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Yearly->value)
-                <div class="row">
+                <div wire:ignore class="px-2 mt-4">
+                    <div id="yearly-slider"></div>
+                </div>
+
+                <div class="row g-3 mt-2">
                     <div class="col-6">
-                        <label class="form-label" for="min_price">
+                        <label class="form-label" for="yearly_min">
                             {{ trans('home.search.minimum_price') }}
                         </label>
-                        <input type="range" class="form-range" min="0" max="{{ $yearlyMin }}"
-                            value="{{ isset($prices['yearly']['min']) ? Str::idr($prices['yearly']['min']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.min">
 
-                        <input type="number" class="form-control" id="min_price" name="min_price" min="0"
-                            max="{{ $yearlyMin }}"
-                            value="{{ isset($prices['yearly']['min']) ? Str::idr($prices['yearly']['min']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.min">
+                        <input type="number" class="form-control" id="yearly_min" name="yearly_min" min="0"
+                            max="{{ $yearlyMin }}" value="{{ $prices['yearly']['min'] ?? 0 }}" step="1000000"
+                            wire:model.live.debounce.500ms="prices.yearly.min">
                     </div>
 
                     <div class="col-6">
-                        <label class="form-label" for="max_price">
+                        <label class="form-label" for="yearly_max">
                             {{ trans('home.search.maximum_price') }}
                         </label>
-                        <input type="range" class="form-range" id="max_price" name="max_price" min="0"
-                            max="{{ $yearlyMax }}"
-                            value="{{ isset($prices['yearly']['max']) ? Str::idr($prices['yearly']['max']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.max">
 
-                        <input type="number" class="form-control" id="max_price" name="max_price" min="0"
-                            max="{{ $yearlyMin }}"
-                            value="{{ isset($prices['yearly']['max']) ? Str::idr($prices['yearly']['max']) : 0 }}"
-                            step="1000000" wire:model.live.debounce.500ms="prices.yearly.max">
+                        <input type="number" class="form-control" id="yearly_max" name="yearly_max" min="0"
+                            max="{{ $yearlyMax }}" value="{{ $prices['yearly']['max'] ?? 0 }}" step="1000000"
+                            wire:model.live.debounce.500ms="prices.yearly.max">
                     </div>
                 </div>
             @endif
         </div>
     </div>
 </div>
+
+@script
+    <script>
+        function priceSlider() {
+            const monthlySlider = document.getElementById('monthly-slider');
+
+            if (monthlySlider && !monthlySlider.noUiSlider) {
+                noUiSlider.create(monthlySlider, {
+                    start: [
+                        @js($prices['monthly']['min'] ?? 0),
+                        @js($prices['monthly']['max'] ?? $monthlyMax),
+                    ],
+                    connect: true,
+                    step: 1000000,
+                    range: {
+                        min: {{ $monthlyMin }},
+                        max: {{ $monthlyMax }},
+                    },
+                    tooltips: [false, false],
+                });
+
+                monthlySlider.noUiSlider.on('change', (values) => {
+                    $wire.set('prices.monthly.min', parseInt(values[0]));
+                    $wire.set('prices.monthly.max', parseInt(values[1]));
+                });
+            }
+
+            const yearlySlider = document.getElementById('yearly-slider');
+
+            if (yearlySlider && !yearlySlider.noUiSlider) {
+                noUiSlider.create(yearlySlider, {
+                    start: [
+                        @js($prices['yearly']['min'] ?? 0),
+                        @js($prices['yearly']['max'] ?? $yearlyMax),
+                    ],
+                    connect: true,
+                    step: 1000000,
+                    range: {
+                        min: {{ $yearlyMin }},
+                        max: {{ $yearlyMax }},
+                    },
+                    tooltips: [false, false],
+                });
+
+                yearlySlider.noUiSlider.on('change', (values) => {
+                    $wire.set('prices.yearly.min', parseInt(values[0]));
+                    $wire.set('prices.yearly.max', parseInt(values[1]));
+                });
+            }
+        }
+
+        priceSlider();
+
+        window.addEventListener('price-slider', () => {
+            queueMicrotask(() => {
+                priceSlider();
+            });
+        });
+    </script>
+@endscript

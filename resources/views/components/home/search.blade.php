@@ -125,6 +125,8 @@ new class extends Component {
             $this->prices['yearly']['min'] = $this->yearly_min;
             $this->prices['yearly']['max'] = $this->yearly_max;
         }
+
+        $this->dispatch('price-slider');
     }
 };
 ?>
