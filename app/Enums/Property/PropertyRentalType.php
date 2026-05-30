@@ -18,4 +18,13 @@ enum PropertyRentalType: int
             self::Both => 'Both',
         };
     }
+
+    public function translate(): string
+    {
+        return match ($this) {
+            self::Monthly => trans('index.monthly'),
+            self::Yearly => trans('index.yearly'),
+            self::Both => trans('index.both'),
+        };
+    }
 }

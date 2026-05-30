@@ -69,5 +69,6 @@ return [
     'visit' => 'Visit',
     'yearly' => 'Yearly',
     'yes' => 'Yes',
+    'both' => 'Both',
 
 ];

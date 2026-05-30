@@ -9,7 +9,7 @@
             </label>
             <div class="input-group">
                 <div class="input-group-text">
-                    <span class="fas fa-building fa-fw "></span>
+                    <span class="fas fa-user fa-fw "></span>
                 </div>
                 <input type="text" class="form-control" id="name" name="name" minlength="1" maxlength="50"
                     placeholder="{{ trans('index.ex') }} John Doe" required wire:model="form.name"
@@ -80,7 +80,7 @@
                 <span class="text-danger">*</span>
             </label>
             <div>
-                @foreach ($this->propertyRentalTypes() as $propertyRentalType)
+                @foreach (PropertyRentalType::cases() as $propertyRentalType)
                     <div class="form-check form-check-inline" wire:key="rental-type-{{ $propertyRentalType->value }}">
                         <input class="form-check-input" type="radio"
                             id="rental_type_{{ $propertyRentalType->value }}" name="rental_type"
@@ -89,7 +89,7 @@
                             wire:model="form.rental_type" wire:offline.class="disabled" wire:offline.attr="disabled"
                             wire:loading.class="disabled" wire:loading.attr="disabled">
                         <label class="form-check-label" for="rental_type_{{ $propertyRentalType->value }}">
-                            {{ $propertyRentalType->description() }}
+                            {{ $propertyRentalType->translate() }}
                         </label>
                     </div>
                 @endforeach
@@ -148,7 +148,7 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-primary w-100" wire:offline.class="disabled"
+        <button type="submit" class="btn btn-success w-100" wire:offline.class="disabled"
             wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
             <span wire:loading.remove wire:target="submit">
                 <span class="fas fa-paper-plane fa-fw"></span>

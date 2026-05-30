@@ -1,10 +1,11 @@
 <?php
 
-use App\Enums\Property\PropertyRentalType;
 use App\Livewire\Component;
 use App\Livewire\Forms\Property\ListYourPropertyForm;
 
 new class extends Component {
+    public bool $mobile = false;
+
     public ListYourPropertyForm $form;
 
     public function listYourProperty(): void
@@ -31,20 +32,15 @@ new class extends Component {
             $this->alertError(title: trans('index.add') . ' ' . trans('index.failed'), body: $errors);
         }
     }
-
-    public function propertyRentalTypes(): array
-    {
-        return PropertyRentalType::cases();
-    }
 };
 ?>
 
 <div>
-    <button type="button" class="btn btn-success btn-sm rounded-pill d-none d-xl-inline-flex align-items-center gap-2"
+    <button type="button" class="btn btn-success rounded-pill {{ $mobile ? 'fw-bold w-100' : 'btn-sm' }}"
         wire:click="listYourProperty" wire:offline.class="disabled" wire:offline.attr="disabled"
         wire:loading.class="disabled" wire:loading.attr="disabled">
         <span wire:loading.remove wire:target="listYourProperty">
-            <span class="fas fa-pen-to-square"></span>
+            <span class="fas fa-pen-to-square fa-fw"></span>
             <span>{{ trans('index.list_your_property') }}</span>
         </span>
         <span wire:loading wire:target="listYourProperty" class="w-100">

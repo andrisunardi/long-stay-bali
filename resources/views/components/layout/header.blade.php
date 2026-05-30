@@ -73,10 +73,6 @@
                     </div>
 
                     <div class="col-lg-auto">
-                        <a draggable="false" class="header-color d-xl-none" href="{{ route('home') }}" wire:navigate>
-                            <span class="fas fa-pen-to-square fa-fw"></span>
-                        </a>
-
                         <livewire:modal.list-your-property />
                     </div>
                 </div>
@@ -164,11 +160,7 @@
                             </div>
                         </div>
 
-                        <a draggable="false" class="btn btn-success rounded-5 fw-bold w-100"
-                            href="{{ route('home') }}" wire:navigate>
-                            <span class="fas fa-pen-to-square fa-fw"></span>
-                            {{ trans('index.list_your_property') }}
-                        </a>
+                        <livewire:modal.list-your-property :mobile="true" />
                     </div>
                 </div>
             </div>
