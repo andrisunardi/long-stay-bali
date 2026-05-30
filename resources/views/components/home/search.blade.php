@@ -30,9 +30,6 @@ new class extends Component {
         ],
     ];
 
-    #[Url(except: null)]
-    public ?int $price = null;
-
     public int $monthly_min = 40000000;
 
     public int $monthly_max = 250000000;
@@ -48,14 +45,16 @@ new class extends Component {
             $this->search_area = "{$area->name}, {$area->district?->name}";
         }
 
-        if (isset($this->prices['budget_type']) && $this->prices['budget_type'] == BudgetType::Monthly->value) {
-            $this->prices['monthly']['min'] = $this->monthly_min;
-            $this->prices['monthly']['max'] = $this->monthly_max;
-        }
+        if (isset($this->prices['budget_type'])) {
+            if ($this->prices['budget_type'] == BudgetType::Monthly->value) {
+                $this->prices['monthly']['min'] = $this->prices['monthly']['min'] ?? $this->monthly_min;
+                $this->prices['monthly']['max'] = $this->prices['monthly']['max'] ?? $this->monthly_max;
+            }
 
-        if (isset($this->prices['budget_type']) && $this->prices['budget_type'] == BudgetType::Yearly->value) {
-            $this->prices['yearly']['min'] = $this->yearly_min;
-            $this->prices['yearly']['max'] = $this->yearly_max;
+            if ($this->prices['budget_type'] == BudgetType::Yearly->value) {
+                $this->prices['yearly']['min'] = $this->prices['yearly']['min'] ?? $this->yearly_min;
+                $this->prices['yearly']['max'] = $this->prices['yearly']['max'] ?? $this->yearly_max;
+            }
         }
     }
 
@@ -156,7 +155,7 @@ new class extends Component {
 
             <div class="col-12">
                 {{-- prettier-ignore --}}
-                <x-home.search.price
+                <x-search.price
                 :prices="$prices"
                 :monthly-min="$monthly_min"
                 :monthly-max="$monthly_max"

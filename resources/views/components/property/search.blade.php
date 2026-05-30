@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BudgetType;
 use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
@@ -26,6 +27,27 @@ new class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
+    #[Url(except: [])]
+    public array $prices = [
+        'type' => null,
+        'monthly' => [
+            'min' => null,
+            'max' => null,
+        ],
+        'yearly' => [
+            'min' => null,
+            'max' => null,
+        ],
+    ];
+
+    public int $monthly_min = 40000000;
+
+    public int $monthly_max = 250000000;
+
+    public int $yearly_min = 350000000;
+
+    public int $yearly_max = 2500000000;
+
     public function mount(): void
     {
         if ($this->areaId) {
@@ -39,6 +61,18 @@ new class extends Component {
 
         if (!$this->end_date) {
             $this->end_date = now()->toDateString();
+        }
+
+        if (isset($this->prices['budget_type'])) {
+            if ($this->prices['budget_type'] == BudgetType::Monthly->value) {
+                $this->prices['monthly']['min'] = $this->prices['monthly']['min'] ?? $this->monthly_min;
+                $this->prices['monthly']['max'] = $this->prices['monthly']['max'] ?? $this->monthly_max;
+            }
+
+            if ($this->prices['budget_type'] == BudgetType::Yearly->value) {
+                $this->prices['yearly']['min'] = $this->prices['yearly']['min'] ?? $this->yearly_min;
+                $this->prices['yearly']['max'] = $this->prices['yearly']['max'] ?? $this->yearly_max;
+            }
         }
     }
 
@@ -84,13 +118,36 @@ new class extends Component {
 
         return $areas;
     }
+
+    public function clearAllPrice(): void
+    {
+        $this->reset(['prices']);
+    }
+
+    public function changeBudgetType(?int $value = null): void
+    {
+        $this->reset(['prices']);
+        $this->prices['budget_type'] = $value;
+
+        if ($value == BudgetType::Monthly->value) {
+            $this->prices['monthly']['min'] = $this->monthly_min;
+            $this->prices['monthly']['max'] = $this->monthly_max;
+        }
+
+        if ($value == BudgetType::Yearly->value) {
+            $this->prices['yearly']['min'] = $this->yearly_min;
+            $this->prices['yearly']['max'] = $this->yearly_max;
+        }
+
+        $this->dispatch('price-slider');
+    }
 };
 ?>
 
 <section class="pt-5">
     <div class="container-md">
         <div class="row g-4">
-            <div class="col-xl">
+            <div class="col-lg-3">
                 {{-- prettier-ignore --}}
                 <x-property.search.area
                 :area-id="$areaId"
@@ -99,7 +156,7 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-xl">
+            <div class="col-lg-3">
                 <div wire:ignore>
                     <label class="form-label">
                         <span class="fas fa-calendar fa-fw"></span>
@@ -109,12 +166,23 @@ new class extends Component {
                 </div>
             </div>
 
-            <div class="col-6 col-xl-2">
+            <div class="col-6 col-lg-2 col-xl-auto">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
 
-            <div class="col-6 col-xl-2">
+            <div class="col-6 col-lg-2 col-xl-auto">
                 <x-search.living-style :living-style="$living_style" />
+            </div>
+
+            <div class="col-lg-4 col-xl-3">
+                {{-- prettier-ignore --}}
+                <x-search.price
+                :prices="$prices"
+                :monthly-min="$monthly_min"
+                :monthly-max="$monthly_max"
+                :yearly-min="$yearly_min"
+                :yearly-max="$yearly_max"
+                />
             </div>
         </div>
     </div>

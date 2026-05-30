@@ -12,6 +12,10 @@ return [
     'months' => 'bulan',
     'location_property' => 'Lokasi Properti',
     'description' => 'Deskripsi',
+    'property_only' => 'Properti Saja',
+    'more_images' => 'Lebih Banyak Gambar',
+    'whatsapp' => 'Whatsapp',
+    'email' => 'Email',
 
     'property_details' => 'Detail Properti',
     'availability' => 'Ketersediaan',
@@ -139,6 +143,4 @@ return [
     'comments_if_medium_or_high' => 'Komentar jika Sedang atau Tinggi',
     'final_decision' => 'Keputusan Akhir',
     'status' => 'Status',
-    'property_only' => 'Properti Saja',
-    'more_images' => 'Lebih Banyak Gambar',
 ];

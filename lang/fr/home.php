@@ -23,7 +23,12 @@ return [
         'when' => 'Emménagement prévu',
         'type' => 'Tous les types',
 
+        'price_title' => 'Fourchette de prix',
+        'price_description' => 'Choisir le coût total de la période',
+        'clear_all' => 'Tout effacer',
         'price' => 'Fourchette de budget',
+        'from' => 'De',
+        'to' => 'À',
         'minimum_price' => 'Prix minimum',
         'maximum_price' => 'Prix maximum',
 
@@ -33,7 +38,7 @@ return [
     'our_values' => [
         'sub_title' => 'Nos Valeurs',
         'title' => 'Des Espaces Conçus pour Vivre, Au-delà des Courts Séjours',
-        'description' => 'Pour des séjours plus longs, conçus pour s\'adapter à votre vie quotidienne à Bali. Où vivre se sent établi à votre propre rythme.',
+        'description' => "Pour des séjours plus longs, conçus pour s'adapter à votre vie quotidienne à Bali. Où vivre se sent établi à votre propre rythme.",
     ],
 
     'select_locations' => [
@@ -45,7 +50,7 @@ return [
     'our_services' => [
         'sub_title' => 'Nos Services',
         'title' => 'Un soutien qui rend la vie sans effort',
-        'description' => 'De l\'emménagement à la vie quotidienne, nous fournissons un soutien fiable pour que vous puissiez vivre confortablement à Bali',
+        'description' => "De l'emménagement à la vie quotidienne, nous fournissons un soutien fiable pour que vous puissiez vivre confortablement à Bali",
         'request_a_service' => 'Demander un service',
         'view_more' => 'Voir plus',
     ],

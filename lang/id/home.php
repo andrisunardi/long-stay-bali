@@ -23,7 +23,12 @@ return [
         'when' => 'Rencana pindah masuk',
         'type' => 'Semua jenis',
 
+        'price_title' => 'Kisaran Harga',
+        'price_description' => 'Pilih total biaya periode',
+        'clear_all' => 'Hapus semua',
         'price' => 'Kisaran anggaran',
+        'from' => 'Dari',
+        'to' => 'Hingga',
         'minimum_price' => 'Harga Minimum',
         'maximum_price' => 'Harga Maksimum',
 

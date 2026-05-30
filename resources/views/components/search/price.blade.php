@@ -38,14 +38,14 @@
                     <p>{{ trans('home.search.price_description') }}</p>
                 </div>
                 <div>
-                    <a draggable="false" class="text-muted" role="button" wire:click="clearAllPrice">
+                    <a draggable="false" class="text-muted text-nowrap" role="button" wire:click="clearAllPrice">
                         {{ trans('home.search.clear_all') }}
                     </a>
                 </div>
             </div>
 
             <div class="row g-3">
-                <div class="col-4 col-sm-3">
+                <div class="col-4">
                     <button type="button"
                         class="btn btn-outline-success btn-sm w-100 rounded-pill {{ !isset($prices['budget_type']) ? 'active' : '' }}"
                         wire:click="changeBudgetType" wire:offline.class="disabled" wire:offline.attr="disabled"
@@ -55,7 +55,7 @@
                 </div>
 
                 @foreach (BudgetType::cases() as $budgetType)
-                    <div class="col-4 col-sm-3">
+                    <div class="col-4">
                         <button type="button"
                             class="btn btn-outline-success btn-sm w-100 rounded-pill {{ isset($prices['budget_type']) && $budgetType->value == $prices['budget_type'] ? 'active' : '' }}"
                             wire:click="changeBudgetType({{ $budgetType->value }})" wire:offline.class="disabled"
@@ -74,7 +74,7 @@
                 <div class="row g-3 mt-2">
                     <div class="col-6">
                         <label class="form-label" for="monthly_min">
-                            {{ trans('home.search.minimum_price') }}
+                            {{ trans('home.search.from') }}
                         </label>
 
                         <input type="number" class="form-control" id="monthly_min" name="monthly_min" min="0"
@@ -84,7 +84,7 @@
 
                     <div class="col-6">
                         <label class="form-label" for="monthly_max">
-                            {{ trans('home.search.maximum_price') }}
+                            {{ trans('home.search.to') }}
                         </label>
 
                         <input type="number" class="form-control" id="monthly_max" name="monthly_max" min="0"
@@ -102,7 +102,7 @@
                 <div class="row g-3 mt-2">
                     <div class="col-6">
                         <label class="form-label" for="yearly_min">
-                            {{ trans('home.search.minimum_price') }}
+                            {{ trans('home.search.from') }}
                         </label>
 
                         <input type="number" class="form-control" id="yearly_min" name="yearly_min" min="0"
@@ -112,7 +112,7 @@
 
                     <div class="col-6">
                         <label class="form-label" for="yearly_max">
-                            {{ trans('home.search.maximum_price') }}
+                            {{ trans('home.search.to') }}
                         </label>
 
                         <input type="number" class="form-control" id="yearly_max" name="yearly_max" min="0"

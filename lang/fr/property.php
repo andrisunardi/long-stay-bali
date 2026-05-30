@@ -12,6 +12,10 @@ return [
     'months' => 'mois',
     'location_property' => 'Emplacement de la propriété',
     'description' => 'Description',
+    'property_only' => 'Propriété Seulement',
+    'more_images' => "Plus d'images",
+    'whatsapp' => 'Whatsapp',
+    'email' => 'Email',
 
     'property_details' => 'Détails de la propriété',
     'availability' => 'Disponibilité',
@@ -19,7 +23,7 @@ return [
     'no_description_about_this_property' => 'Aucune description sur cette propriété',
     'bedrooms' => 'Chambres',
     'bathrooms' => 'Salles de bain',
-    'type_furnish' => 'Type d\'ameublement',
+    'type_furnish' => "Type d'ameublement",
     'non_furnished' => 'Non meublé',
     'rental_type' => 'Type de location',
     'minimum_rental_period' => 'Période de location minimale',
@@ -32,7 +36,7 @@ return [
     'property_identity' => 'Identité de la propriété',
     'internal_property_code' => 'Code de propriété interne',
     'availability_date' => 'Date de disponibilité',
-    'agent_name' => 'Nom de l\'agent',
+    'agent_name' => "Nom de l'agent",
     'date_of_visit' => 'Date de visite',
     'bedroom' => 'Chambre',
 
@@ -46,8 +50,8 @@ return [
     'size_and_surfaces' => 'Taille & Surfaces',
     'land_size' => 'Superficie du terrain (m²)',
     'building_size' => 'Superficie du bâtiment (m²)',
-    'number_of_floors' => 'Nombre d\'étages',
-    'outdoor_area_size' => 'Superficie de l\'espace extérieur (m², optionnel)',
+    'number_of_floors' => "Nombre d'étages",
+    'outdoor_area_size' => "Superficie de l'espace extérieur (m², optionnel)",
     'pool_size' => 'Taille de la piscine (L x l, si applicable)',
 
     'bathrooms_and_layout' => 'Salles de bain & Agencement',
@@ -65,7 +69,7 @@ return [
     'signed_listing_agreement' => 'Accord de listing signé',
     'lease_agreement' => 'Contrat de bail',
     'land_certificate' => 'Certificat foncier',
-    'owners_id' => 'Pièce d\'identité du propriétaire',
+    'owners_id' => "Pièce d'identité du propriétaire",
     'imb' => 'IMB (Permis de construction)',
     'pbg' => 'PBG (Approbation de construction)',
     'slf' => 'SLF (Certificat de fonctionnalité)',
@@ -80,7 +84,7 @@ return [
     'not_directly_exposed_to_main_road' => 'Non directement exposé à la route principale',
     'no_festive_venue_nearby' => 'Pas de lieu festif à proximité',
     'no_ongoing_or_imminent_construction' => 'Pas de construction en cours ou imminente',
-    'quiet_access_road_or_gang' => 'Route d\'accès ou ruelle calme',
+    'quiet_access_road_or_gang' => "Route d'accès ou ruelle calme",
     'orientation' => 'Orientation (Soleil matin / après-midi / mixte)',
     'view' => 'Vue (texte libre)',
 
@@ -93,7 +97,7 @@ return [
     'utilities_and_technical' => 'Services & Technique',
     'internet_speedtest' => 'Test de vitesse Internet (Mbps)',
     'power_backup' => 'Alimentation de secours (Générateur / Solaire / Aucun)',
-    'water_source' => 'Source d\'eau (PDAM, Puits, Mixte)',
+    'water_source' => "Source d'eau (PDAM, Puits, Mixte)",
     'electricity' => 'Électricité',
 
     'category_assessment' => 'Évaluation de catégorie',
@@ -102,7 +106,7 @@ return [
 
     'design_led_or_instagrammable' => 'Design attractif / Instagrammable',
     'design_driven_property' => 'Propriété axée sur le design (OUI / NON)',
-    'usability_limitations_identified' => 'Limitations d\'utilisation identifiées',
+    'usability_limitations_identified' => "Limitations d'utilisation identifiées",
 
     'trade_off_and_target_profile' => 'Compromis & Profil cible',
     'trade_off_identified' => 'Compromis identifié',
@@ -139,6 +143,4 @@ return [
     'comments_if_medium_or_high' => 'Commentaires si Moyen ou Élevé',
     'final_decision' => 'Décision finale',
     'status' => 'Statut',
-    'property_only' => 'Propriété Seulement',
-    'more_images' => 'Plus d\'images',
 ];

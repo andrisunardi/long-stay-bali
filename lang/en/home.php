@@ -27,6 +27,8 @@ return [
         'price_description' => 'Choose total cost period',
         'clear_all' => 'Clear all',
         'price' => 'Budget range',
+        'from' => 'From',
+        'to' => 'To',
         'minimum_price' => 'Minimum Price',
         'maximum_price' => 'Maximum Price',
 
