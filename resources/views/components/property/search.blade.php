@@ -147,7 +147,7 @@ new class extends Component {
 <section class="pt-5">
     <div class="container-md">
         <div class="row g-4">
-            <div class="col-lg-3">
+            <div class="col-lg-6 col-xl">
                 {{-- prettier-ignore --}}
                 <x-property.search.area
                 :area-id="$areaId"
@@ -156,7 +156,7 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-lg-3">
+            <div class="col-lg-6 col-xl">
                 <div wire:ignore>
                     <label class="form-label">
                         <span class="fas fa-calendar fa-fw"></span>
@@ -166,15 +166,15 @@ new class extends Component {
                 </div>
             </div>
 
-            <div class="col-6 col-lg-2 col-xl-auto">
+            <div class="col-6 col-lg-3 col-xl-auto">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
 
-            <div class="col-6 col-lg-2 col-xl-auto">
+            <div class="col-6 col-lg-3 col-xl-auto">
                 <x-search.living-style :living-style="$living_style" />
             </div>
 
-            <div class="col-lg-4 col-xl-3">
+            <div class="col-lg-6 col-xl">
                 {{-- prettier-ignore --}}
                 <x-search.price
                 :prices="$prices"
