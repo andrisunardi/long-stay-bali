@@ -8,6 +8,8 @@
 
 {{-- @include('vendors.clarity-microsoft-tag') --}}
 
+@include('vendors.flag-icons')
+
 @include('vendors.flatpickr')
 
 @include('vendors.font-awesome')

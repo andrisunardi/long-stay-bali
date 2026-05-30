@@ -28,10 +28,7 @@
                             <div class="dropdown">
                                 <a draggable="false" role="button" class="header-color dropdown-toggle icon-link"
                                     data-bs-toggle="dropdown">
-                                    <img draggable="false" loading="lazy" decoding="async"
-                                        class="user-select-none pe-none" width="20"
-                                        src="{{ asset('images/flag/' . app()->getLocale() . '.svg') }}"
-                                        alt="{{ trans('index.flag') }} - {{ app()->getLocale() }} - {{ config('app.name') }}" />
+                                    <span class="{{ Language::from(app()->getLocale())->flag() }}"></span>
                                     <span class="d-lg-none d-xl-block text-uppercase">
                                         {{ app()->getLocale() }}
                                     </span>
@@ -41,10 +38,7 @@
                                         <li wire:key="language-{{ $language->value }}">
                                             <a draggable="false" class="dropdown-item icon-link"
                                                 href="{{ route('locale', ['locale' => $language->value]) }}">
-                                                <img draggable="false" loading="lazy" decoding="async"
-                                                    class="user-select-none pe-none" width="20"
-                                                    src="{{ asset("images/flag/{$language->value}.svg") }}"
-                                                    alt="{{ trans('index.flag') }} {{ $language->value }} - {{ config('app.name') }}" />
+                                                <span class="{{ $language->flag() }}"></span>
                                                 <span>{{ $language->name }}</span>
                                             </a>
                                         </li>
@@ -127,10 +121,7 @@
                                 <div class="dropdown">
                                     <a draggable="false" role="button" class="text-body dropdown-toggle icon-link"
                                         data-bs-toggle="dropdown">
-                                        <img draggable="false" loading="lazy" decoding="async"
-                                            class="user-select-none pe-none" width="25"
-                                            src="{{ asset('images/flag/' . app()->getLocale() . '.svg') }}"
-                                            alt="{{ trans('index.flag') }} - {{ app()->getLocale() }} - {{ config('app.name') }}" />
+                                        <span class="{{ Language::from(app()->getLocale())->flag() }}"></span>
                                         <span class="fw-bold text-uppercase">{{ app()->getLocale() }}</span>
                                     </a>
                                     <ul class="dropdown-menu mt-2">
@@ -138,10 +129,7 @@
                                             <li wire:key="language-{{ $language->value }}">
                                                 <a draggable="false" class="dropdown-item icon-link"
                                                     href="{{ route('locale', ['locale' => $language->value]) }}">
-                                                    <img draggable="false" loading="lazy" decoding="async"
-                                                        class="user-select-none pe-none" width="25"
-                                                        src="{{ asset("images/flag/{$language->value}.svg") }}"
-                                                        alt="{{ trans('index.flag') }} {{ $language->value }} - {{ config('app.name') }}" />
+                                                    <span class="{{ $language->flag() }}"></span>
                                                     <span>{{ $language->name }}</span>
                                                 </a>
                                             </li>
