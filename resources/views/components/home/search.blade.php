@@ -47,6 +47,16 @@ new class extends Component {
             $area = $this->areas()->firstWhere('id', $this->area_id);
             $this->search_area = "{$area->name}, {$area->district?->name}";
         }
+
+        if (isset($this->prices['budget_type']) && $this->prices['budget_type'] == BudgetType::Monthly->value) {
+            $this->prices['monthly']['min'] = $this->monthly_min;
+            $this->prices['monthly']['max'] = $this->monthly_max;
+        }
+
+        if (isset($this->prices['budget_type']) && $this->prices['budget_type'] == BudgetType::Yearly->value) {
+            $this->prices['yearly']['min'] = $this->yearly_min;
+            $this->prices['yearly']['max'] = $this->yearly_max;
+        }
     }
 
     public function suggestedDestinations(): object
@@ -106,14 +116,14 @@ new class extends Component {
         $this->reset(['prices']);
         $this->prices['budget_type'] = $value;
 
-        if ($value == BudgetType::Monthly) {
+        if ($value == BudgetType::Monthly->value) {
             $this->prices['monthly']['min'] = $this->monthly_min;
-            $this->prices['monthly']['max'] = $value;
+            $this->prices['monthly']['max'] = $this->monthly_max;
         }
 
-        if ($value == BudgetType::Yearly) {
+        if ($value == BudgetType::Yearly->value) {
             $this->prices['yearly']['min'] = $this->yearly_min;
-            $this->prices['yearly']['max'] = $value;
+            $this->prices['yearly']['max'] = $this->yearly_max;
         }
     }
 };
