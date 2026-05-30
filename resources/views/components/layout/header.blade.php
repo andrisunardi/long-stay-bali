@@ -1,29 +1,33 @@
 <header id="header" class="fixed-top py-3" data-use-banner="{{ Route::is('home') ? '1' : '0' }}">
     <div class="container-md">
-        <div class="row row-cols-sm-2 row-cols-lg-3 align-items-center">
-            <div class="col-auto col-sm text-start d-flex align-items-center gap-3">
-                <a draggable="false" href="{{ route('home') }}" wire:navigate>
-                    <img draggable="false" loading="lazy" decoding="async" class="logo user-select-none pe-none"
-                        height="40" src="{{ asset('images/logo.png') }}"
-                        alt="{{ trans('index.logo') }} - {{ config('app.name') }}" />
-                </a>
-
-                <livewire:layout.search />
-            </div>
-
-            <div class="col-auto col-sm text-center d-none d-lg-flex align-items-center gap-lg-3 gap-xl-4">
-                @foreach (config('navigations') as $navigation)
-                    <a draggable="false" href="{{ route($navigation['route']) }}"
-                        class="header-color {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}" wire:navigate
-                        wire:key="navigation-{{ $navigation['id'] }}" wire:navigate>
-                        {{ trans($navigation['name']) }}
+        <div class="row justify-content-between align-items-center">
+            <div class="col-auto">
+                <div class="d-flex align-items-center gap-3">
+                    <a draggable="false" href="{{ route('home') }}" wire:navigate>
+                        <img draggable="false" loading="lazy" decoding="async" class="logo user-select-none pe-none"
+                            height="40" src="{{ asset('images/logo.png') }}"
+                            alt="{{ trans('index.logo') }} - {{ config('app.name') }}" />
                     </a>
-                @endforeach
+
+                    <livewire:layout.search />
+                </div>
             </div>
 
-            <div class="col text-end d-none d-lg-block">
-                <div class="row align-items-center justify-content-end">
-                    <div class="col-lg-auto">
+            <div class="col-auto col-sm">
+                <div class="d-none d-lg-flex justify-content-center align-items-center gap-lg-3 gap-xl-4">
+                    @foreach (config('navigations') as $navigation)
+                        <a draggable="false" href="{{ route($navigation['route']) }}"
+                            class="header-color {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}" wire:navigate
+                            wire:key="navigation-{{ $navigation['id'] }}" wire:navigate>
+                            {{ trans($navigation['name']) }}
+                        </a>
+                    @endforeach
+                </div>
+            </div>
+
+            <div class="col-auto d-none d-lg-block">
+                <div class="row align-items-center">
+                    <div class="col-auto">
                         <div>
                             <div class="dropdown">
                                 <a draggable="false" role="button" class="header-color dropdown-toggle icon-link"
@@ -48,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-auto">
+                    <div class="col-auto">
                         <div class="dropdown">
                             <a draggable="false" role="button" class="header-color dropdown-toggle icon-link"
                                 data-bs-toggle="dropdown">
@@ -72,13 +76,13 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-auto">
+                    <div class="col-auto">
                         <livewire:modal.list-your-property />
                     </div>
                 </div>
             </div>
 
-            <div class="col text-end d-lg-none">
+            <div class="col-auto text-end d-lg-none">
                 <a draggable="false" href="javascript:;" data-bs-toggle="offcanvas" data-bs-target="#navigation">
                     <span class="fas fa-bars header-color text-black"></span>
                 </a>
@@ -160,7 +164,7 @@
                             </div>
                         </div>
 
-                        <livewire:modal.list-your-property :mobile="true" />
+                        <livewire:modal.list-your-property :sidebar="true" />
                     </div>
                 </div>
             </div>

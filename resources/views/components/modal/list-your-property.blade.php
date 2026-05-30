@@ -4,7 +4,7 @@ use App\Livewire\Component;
 use App\Livewire\Forms\Property\ListYourPropertyForm;
 
 new class extends Component {
-    public bool $mobile = false;
+    public bool $sidebar = false;
 
     public ListYourPropertyForm $form;
 
@@ -36,7 +36,12 @@ new class extends Component {
 ?>
 
 <div>
-    <button type="button" class="btn btn-success rounded-pill {{ $mobile ? 'fw-bold w-100' : 'btn-sm' }}"
+    <a draggable="false" class="header-color d-xl-none" role="button" wire:click="listYourProperty">
+        <span class="fas fa-pen-to-square fa-fw"></span>
+    </a>
+
+    <button type="button"
+        class="btn btn-success rounded-pill d-none d-xl-block {{ $sidebar ? 'fw-bold w-100' : 'btn-sm' }}"
         wire:click="listYourProperty" wire:offline.class="disabled" wire:offline.attr="disabled"
         wire:loading.class="disabled" wire:loading.attr="disabled">
         <span wire:loading.remove wire:target="listYourProperty">
