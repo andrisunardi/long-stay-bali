@@ -18,8 +18,8 @@ git pull origin main
 echo ""
 
 echo "COMPOSER"
-composer install --ignore-platform-reqs
-composer dump-autoload
+php composer.phar install --ignore-platform-reqs
+php composer.phar dump-autoload
 echo ""
 
 echo "MIGRATION"
