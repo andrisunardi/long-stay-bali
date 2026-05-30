@@ -6,23 +6,6 @@
     'yearlyMax' => 0,
 ])
 
-{{-- @php
-    $budget_type = $prices['budget_type'] ?? null;
-    $price = match ($budget_type) {
-        1 => $prices['monthly'] ?? [],
-        2 => $prices['yearly'] ?? [],
-        default => [],
-    };
-
-    $hasPrice = filled($price['min'] ?? null) || filled($price['max'] ?? null);
-
-    $label = match ($budget_type) {
-        1 => trans('index.monthly'),
-        2 => trans('index.yearly'),
-        default => null,
-    };
-@endphp --}}
-
 <div>
     <label class="form-label">
         <span class="fas fa-tags fa-fw"></span>
@@ -31,31 +14,24 @@
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown" data-bs-auto-close="outside">
-            {{-- {{ Str::abbreviate($minPrice) }} - {{ Str::abbreviate($maxPrice) }} --}}
-            {{-- @if ($hasPrice)
-                {{ $label }}
-                {{ Str::abbreviate($price['min'] ?? 0) }}
-                -
-                {{ Str::abbreviate($price['max'] ?? 0) }}
+            @isset($prices['budget_type'])
+                @if ($prices['budget_type'] == BudgetType::Monthly->value)
+                    {{ trans('index.monthly') }}
+                    {{ isset($prices['monthly']['min']) ? Str::abbreviate($prices['monthly']['min']) : 0 }}
+                    -
+                    {{ isset($prices['monthly']['max']) ? Str::abbreviate($prices['monthly']['max']) : 0 }}
+                @elseif ($prices['budget_type'] == BudgetType::Yearly->value)
+                    {{ trans('index.yearly') }}
+                    {{ isset($prices['yearly']['min']) ? Str::abbreviate($prices['yearly']['min']) : 0 }}
+                    -
+                    {{ isset($prices['yearly']['max']) ? Str::abbreviate($prices['yearly']['max']) : 0 }}
+                @endif
             @else
                 {{ trans('index.all') }}
-            @endif --}}
-            @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
-                {{ trans('index.monthly') }}
-                {{ isset($prices['monthly']['min']) ? Str::abbreviate($prices['monthly']['min']) : 0 }}
-                -
-                {{ isset($prices['monthly']['max']) ? Str::abbreviate($prices['monthly']['max']) : 0 }}
-            @elseif (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Yearly->value)
-                {{ trans('index.yearly') }}
-                {{ isset($prices['yearly']['min']) ? Str::abbreviate($prices['yearly']['min']) : 0 }}
-                -
-                {{ isset($prices['yearly']['max']) ? Str::abbreviate($prices['yearly']['max']) : 0 }}
-            @else
-                {{ trans('index.all') }}
-            @endif
+            @endisset
         </button>
 
-        <div class="dropdown-menu w-100 mt-2 p-3" wire:ignore.self>
+        <div class="dropdown-menu w-100 my-2 p-3" wire:ignore.self>
             <div class="d-flex justify-content-between">
                 <div>
                     <h5>{{ trans('home.search.price_title') }}</h5>
@@ -68,7 +44,7 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row g-3">
                 <div class="col-4 col-sm-3">
                     <button type="button"
                         class="btn btn-outline-success btn-sm w-100 rounded-pill {{ !isset($prices['budget_type']) ? 'active' : '' }}"
@@ -90,10 +66,12 @@
                 @endforeach
             </div>
 
-            <hr />
+            @isset($prices['budget_type'])
+                <hr />
+            @endisset
 
             @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
-                <div class="row">
+                <div class="row g-3">
                     <div class="col-6">
                         <label class="form-label" for="min_price">
                             {{ trans('home.search.minimum_price') }}

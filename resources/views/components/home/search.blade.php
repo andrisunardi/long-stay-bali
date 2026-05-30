@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BudgetType;
 use App\Livewire\Component;
 use App\Services\AreaService;
 use Livewire\Attributes\Url;
@@ -102,7 +103,18 @@ new class extends Component {
 
     public function changeBudgetType(?int $value = null): void
     {
+        $this->reset(['prices']);
         $this->prices['budget_type'] = $value;
+
+        if ($value == BudgetType::Monthly) {
+            $this->prices['monthly']['min'] = $this->monthly_min;
+            $this->prices['monthly']['max'] = $value;
+        }
+
+        if ($value == BudgetType::Yearly) {
+            $this->prices['yearly']['min'] = $this->yearly_min;
+            $this->prices['yearly']['max'] = $value;
+        }
     }
 };
 ?>
