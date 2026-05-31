@@ -26,7 +26,7 @@ return [
         'price_title' => 'Price Range',
         'price_description' => 'Choose total cost period',
         'clear_all' => 'Clear all',
-        'price' => 'Budget range',
+        'price' => 'Price range',
         'from' => 'From',
         'to' => 'To',
         'minimum_price' => 'Minimum Price',
