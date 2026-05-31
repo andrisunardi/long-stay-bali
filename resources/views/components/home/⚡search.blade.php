@@ -74,6 +74,18 @@ new class extends Component {
         $this->areas = $areaIds;
     }
 
+    public function updatedAreas(array $values = []): void
+    {
+        $districtIds = $this->districts()
+            ->filter(function ($district) use ($values) {
+                return $district->areas->pluck('id')->intersect($values)->isNotEmpty();
+            })
+            ->pluck('id')
+            ->all();
+
+        $this->districts = $districtIds;
+    }
+
     public function districts(): object
     {
         $service = new DistrictService();

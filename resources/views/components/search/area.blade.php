@@ -49,7 +49,7 @@
                         <div class="form-check ms-4">
                             <input class="form-check-input" type="checkbox" value="{{ $listArea->id }}"
                                 id="area-{{ $listArea->id }}" name="areas" @checked(in_array($listArea->id, $areas))
-                                wire:model="areas" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:model.lazy="areas" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                             <label class="form-check-label" for="area-{{ $listArea->id }}">
                                 {{ $listArea->name }}
