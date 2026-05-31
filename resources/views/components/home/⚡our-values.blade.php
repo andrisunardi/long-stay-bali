@@ -91,7 +91,7 @@ new #[Lazy] class extends Component {
                                     <div class="ratio ratio-4x3">
                                         <img draggable="false" loading="lazy" decoding="async"
                                             class="user-select-none pe-none w-100 h-100 object-fit-cover rounded"
-                                            src="{{ asset('images/value/' . Str::slug($value->title) . '.png') }}"
+                                            src="{{ asset('images/value/' . Str::slug($value->title) . '.webp') }}"
                                             alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
                                     </div>
                                 </div>

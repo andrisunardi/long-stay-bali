@@ -1,7 +1,7 @@
 <div class="row g-3">
     <div class="col-sm-6">
         <a draggable="false" role="button" data-bs-toggle="modal" data-bs-target="#property-images">
-            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
+            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none"
                 src="{{ $property->image?->image_url ?? asset('images/placeholder.png') }}"
                 alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.title') }}" />
         </a>

@@ -83,7 +83,7 @@ new #[Lazy] class extends Component {
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
                             <img draggable="false"
-                                src="{{ asset('images/service/' . Str::slug($service['name']) . '.png') }}"
+                                src="{{ asset('images/service/' . Str::slug($service['name']) . '.webp') }}"
                                 class="card-img-top" alt="Service - {{ $service['name'] }}">
                             <div class="card-body">
                                 <div style="margin-top: -20rem"
