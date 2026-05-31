@@ -14,7 +14,7 @@ return [
         'area_title' => 'Suggested Destinations',
         'area_placeholder' => 'Choose preferred area',
 
-        'bedroom' => 'Bedroom',
+        'bedroom' => 'Bedrooms',
         'bedroom_placeholder' => 'Number of bedrooms',
 
         'living_style' => 'Living Style',

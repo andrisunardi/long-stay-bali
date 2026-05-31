@@ -17,12 +17,9 @@ new #[Lazy] class extends Component {
 
 @placeholder
     <section class="py-5">
-        <div class="container-md">
+        <div class="container-md py-5">
             <div class="d-grid gap-4">
                 <div class="text-center">
-                    <div class="placeholder-glow">
-                        <span class="placeholder col-4 col-sm-2 col-xl-1"></span>
-                    </div>
                     <div class="placeholder-glow">
                         <h1 class="display-6 placeholder rounded col-10 col-lg-9 col-xl-7"></h1>
                     </div>
@@ -31,7 +28,7 @@ new #[Lazy] class extends Component {
                     </div>
                 </div>
 
-                <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
+                <div class="row row-cols-1 row-cols-lg-3 justify-content-end g-4">
                     @for ($i = 0; $i < 3; $i++)
                         <div class="col" wire:key="service-{{ $i }}">
                             <div class="card h-100 placeholder-glow">
@@ -58,27 +55,22 @@ new #[Lazy] class extends Component {
                         </div>
                     @endfor
                 </div>
-
-                <div class="text-center mt-4">
-                    <div class="placeholder-glow">
-                        <span class="btn placeholder col-3 col-sm-2 col-xl-1"></span>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
 @endplaceholder
 
 <section class="py-5">
-    <div class="container-md">
-        <div class="d-grid gap-4">
-            <div class="text-center">
-                <p class="lead mb-0">{{ trans('home.our_services.sub_title') }}</p>
-                <h1 class="display-6 fw-medium">{{ trans('home.our_services.title') }}</h1>
-                <p class="small text-muted">{{ trans('home.our_services.description') }}</p>
+    <div class="container-md py-5">
+        <div class="d-flex flex-column gap-4">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-10 col-xl-7">
+                    <h1 class="display-6 fw-medium">{{ trans('service.our_services.title') }}</h1>
+                    <p class="small text-muted">{{ trans('service.our_services.description') }}</p>
+                </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
+            <div class="row row-cols-1 row-cols-lg-3 justify-content-end g-4">
                 @foreach ($services as $service)
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
@@ -108,19 +100,12 @@ new #[Lazy] class extends Component {
                                     href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from our services on {{ $service['name'] }}"
                                     target="_blank">
                                     <span class="fab fa-whatsapp fa-fw"></span>
-                                    {{ trans('home.our_services.request_a_service') }}
+                                    {{ trans('service.our_services.request_a_service') }}
                                 </a>
                             </div>
                         </div>
                     </div>
                 @endforeach
-            </div>
-
-            <div class="text-center mt-4">
-                <a draggable="false" class="btn btn-success" href="{{ route('service') }}" wire:navigate>
-                    {{ trans('home.our_services.view_more') }}
-                    <span class="fas fa-chevron-right fa-fw"></span>
-                </a>
             </div>
         </div>
     </div>

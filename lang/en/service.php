@@ -8,11 +8,12 @@ return [
     'our_services' => [
         'title' => 'Bali Living Assistance',
         'description' => "Our support doesn't stop when you get the key. We're here to make life in Bali feel effortless. Continues beyond the handover. Helping you settle in, stay comfortable, and truly enjoy your life here.",
+        'request_a_service' => 'Request a Service',
     ],
 
     'our_standard' => [
         'title' => 'Our Standard',
-        'description' => 'A consistent standard behind every home and every experience. Defined by clarity, quality, and a more thoughtful way of living in Bali.',
+        'description' => 'A consistent standard behind every home and every experience. Defined by clarity, quality, and a more thoughtful way of living in Bali.',
     ],
 
     'cta' => [

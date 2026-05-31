@@ -26,7 +26,7 @@ return [
         'price_title' => 'Fourchette de prix',
         'price_description' => 'Choisir le coût total de la période',
         'clear_all' => 'Tout effacer',
-        'price' => 'Fourchette de budget',
+        'price' => 'Fourchette de prix',
         'from' => 'De',
         'to' => 'À',
         'minimum_price' => 'Prix minimum',

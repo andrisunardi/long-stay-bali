@@ -37,7 +37,7 @@ new #[Lazy] class extends Component {
 
 @placeholder
     <section class="py-5 bg-light">
-        <div class="container-md">
+        <div class="container-md py-5">
             <div class="d-flex flex-column gap-4">
                 <div class="text-start">
                     <div class="placeholder-glow">
@@ -88,7 +88,7 @@ new #[Lazy] class extends Component {
 @endplaceholder
 
 <section class="py-5 bg-light">
-    <div class="container-md">
+    <div class="container-md py-5">
         <div class="d-flex flex-column gap-4">
             <div class="text-start">
                 <h1 class="display-6 fw-medium">{{ trans('home.guides.another_guide') }}</h1>
@@ -106,7 +106,7 @@ new #[Lazy] class extends Component {
                                     class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
                                     src="{{ $guide->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('home.guides.guide') }} - {{ $guide->translate_title }} - {{ config('constants.meta.title') }}"
-                                    onerror="this.onerror=null; this.src='/images/placeholder.png';" />
+                                    onerror="this.onerror=null; this.src='{{ asset('images/placeholder.png') }}';" />
                             </a>
                         </div>
 
@@ -125,7 +125,7 @@ new #[Lazy] class extends Component {
                             {{ Str::limit(strip_tags($guide->translate_body), 100) }}
                         </p>
 
-                        <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
+                        <a draggable="false" class="text-success" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
                             wire:navigate>
                             {{ trans('home.guides.read_more') }}
                             <span class="fas fa-chevron-right fa-fw fa-xs"></span>

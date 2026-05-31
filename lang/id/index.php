@@ -69,6 +69,8 @@ return [
     'visit' => 'Kunjungi',
     'yearly' => 'Tahunan',
     'yes' => 'Ya',
-    'both' => 'Keduanya',
+    'hybrid' => 'Hibrida',
+    'solar' => 'Solar',
+    'standard' => 'Standar',
 
 ];

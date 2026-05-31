@@ -17,7 +17,7 @@ new #[Lazy] class extends Component {
 
 @placeholder
     <section class="py-5 bg-light">
-        <div class="container-md">
+        <div class="container-md py-5">
             <div class="d-grid gap-4">
                 <div class="row">
                     <div class="col-lg-9 col-xl-7">
@@ -52,7 +52,7 @@ new #[Lazy] class extends Component {
 @endplaceholder
 
 <section class="py-5 bg-light">
-    <div class="container-md">
+    <div class="container-md py-5">
         <div class="d-grid gap-4">
             <div class="row">
                 <div class="col-lg-9 col-xl-7">

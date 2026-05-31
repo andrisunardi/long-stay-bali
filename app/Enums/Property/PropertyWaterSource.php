@@ -18,4 +18,13 @@ enum PropertyWaterSource: int
             self::Mixed => 'Mixed',
         };
     }
+
+    public function translate(): string
+    {
+        return match ($this) {
+            self::PDAM => trans('index.pdam'),
+            self::Well => trans('index.well'),
+            self::Mixed => trans('index.mixed'),
+        };
+    }
 }

@@ -69,6 +69,8 @@ return [
     'visit' => 'Visiter',
     'yearly' => 'Annuel',
     'yes' => 'Oui',
-    'both' => 'Les deux',
+    'hybrid' => 'Hybride',
+    'solar' => 'Solaire',
+    'standard' => 'Standard',
 
 ];

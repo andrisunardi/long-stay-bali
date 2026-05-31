@@ -18,4 +18,13 @@ enum PropertyElectricity: int
             self::Hybrid => 'Hybrid',
         };
     }
+
+    public function translate(): string
+    {
+        return match ($this) {
+            self::Standard => trans('index.standard'),
+            self::Solar => trans('index.solar'),
+            self::Hybrid => trans('index.hybrid'),
+        };
+    }
 }

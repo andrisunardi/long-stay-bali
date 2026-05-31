@@ -3,7 +3,7 @@
 ])
 
 <section class="py-5">
-    <div class="container-md">
+    <div class="container-md py-5">
         <div class="d-grid gap-4">
             <div>
                 <span class="small border px-3 py-2 rounded-5 text-body">

@@ -1,5 +1,5 @@
 <section class="py-5">
-    <div class="container-md">
+    <div class="container-md py-5">
         <div class="row justify-content-center text-center">
             <div class="col-lg-9 col-xl-7">
                 <h1>{{ trans('about.header.title') }}</h1>

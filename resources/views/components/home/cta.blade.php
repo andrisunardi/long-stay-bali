@@ -29,7 +29,7 @@
                         <a draggable="false" class="btn btn-success rounded-pill px-4" href="{{ $buttonLink }}"
                             wire:navigate>
                             {{ $buttonName }}
-                            <span class="fas fa-arrow-right fa-fw"></span>
+                            <span class="fas fa-chevron-right fa-fw"></span>
                         </a>
                     </div>
                 </div>

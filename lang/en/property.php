@@ -65,6 +65,7 @@ return [
     'living_style_mixed' => 'Mixed',
 
     'legal_and_basic_eligibility' => 'Legal & Basic Eligibility',
+    'legal_documentation' => 'Legal Documentation',
     'full_legal_documentation_available' => 'Full Legal Documentation Available',
     'signed_listing_agreement' => 'Signed Listing Agreement',
     'lease_agreement' => 'Lease Agreement',
@@ -97,7 +98,7 @@ return [
     'utilities_and_technical' => 'Utilitied & Technical',
     'internet_speedtest' => 'Internet Speedtest (Mbps)',
     'power_backup' => 'Power Backup (Generator / Solar / None)',
-    'water_source' => 'Water Source (PDAM, Well, Mixed)',
+    'water_source' => 'Water Source',
     'electricity' => 'Electricity',
 
     'category_assessment' => 'Category Assessment',
@@ -143,4 +144,8 @@ return [
     'comments_if_medium_or_high' => 'Comments if Medium or High',
     'final_decision' => 'Final Decision',
     'status' => 'Status',
+
+    'carpot' => 'Carpot',
+    'floors' => 'Floors',
+    'eletricity' => 'Eletricity',
 ];

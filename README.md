@@ -2,7 +2,16 @@
 
 SO Living Bali
 
-Whatsapp AI Agent
+## Concept
+
+- Whatsapp AI Agent
+
+## Tasks
+
+- Panzoom
+- Guides Text Editor
+- Check Order Position Images Property
+- Mobile Property Page Filter Popup Modal
 
 Status Property Pending
 Will Notify And Need To Approve
@@ -29,8 +38,6 @@ https://www.odoo.com/industries/estate-management?utm_source=google&utm_medium=c
 https://www.softaculous.com/apps/cms/Open_Real_Estate
 
 https://tailux.piniastudio.com/tables/advanced-tables
-
-•⁠ ⁠Link of gmaps instead of the latitude and longitude? Possible?
 
 •⁠ ⁠Full Legal Documentation Available : Pls insert a dropdown with multiple choice instead of YES/NO. You will find below the list to use
 •⁠ ⁠Target profil : pls autorize multiple choice

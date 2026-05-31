@@ -1,5 +1,5 @@
 <section class="py-5">
-    <div class="container-md">
+    <div class="container-md py-5">
         <div class="row align-items-center g-4">
             <div class="col-sm-6 col-lg-5">
                 <h1>{{ trans('service.title') }}</h1>

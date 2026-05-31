@@ -26,7 +26,7 @@ return [
         'price_title' => 'Kisaran Harga',
         'price_description' => 'Pilih total biaya periode',
         'clear_all' => 'Hapus semua',
-        'price' => 'Kisaran anggaran',
+        'price' => 'Kisaran harga',
         'from' => 'Dari',
         'to' => 'Hingga',
         'minimum_price' => 'Harga Minimum',
