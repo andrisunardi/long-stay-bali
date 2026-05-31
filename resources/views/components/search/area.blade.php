@@ -1,8 +1,8 @@
 @props([
-    'areaId' => null,
-    'searchArea' => null,
-    'suggestedDestinations' => collect(),
-    'areas' => collect(),
+    'area' => '',
+    'districts' => [],
+    'areas' => [],
+    'districts' => collect(),
 ])
 
 <div>
@@ -11,67 +11,53 @@
         {{ trans('home.search.area') }}
     </label>
     <div class="input-group">
-        @if ($areaId)
-            <div class="form-control bg-secondary-subtle">
-                {{ $searchArea }}
+        <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
+            data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            @if ($area)
+                {{ $area }}
+            @else
+                {{ trans('index.all') }}
+            @endif
+        </button>
+
+        <div class="dropdown-menu w-100 my-2 p-3" wire:ignore.self>
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5>{{ trans('home.search.area_title') }}</h5>
+                    <p>{{ trans('home.search.area_description') }}</p>
+                </div>
+                <div>
+                    <a draggable="false" class="text-muted text-nowrap" role="button" wire:click="clearAllArea">
+                        {{ trans('home.search.clear_all') }}
+                    </a>
+                </div>
             </div>
 
-            <button type="button" class="btn border" wire:key="removeArea" wire:click="removeArea"
-                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                wire:loading.attr="disabled">
-                <span wire:loading.remove wire:target="removeArea">
-                    <span class="fas fa-times fa-fw"></span>
-                </span>
-                <span wire:loading wire:target="removeArea" class="w-100">
-                    <span class="spinner-border spinner-border-sm"></span>
-                </span>
-            </button>
-        @else
-            <div class="{{ $areaId ? '' : 'position-relative w-100' }}">
-                <input type="text" id="search_area" name="search_area" class="form-control" minlength="1"
-                    maxlength="50" placeholder="{{ trans('home.search.area_placeholder') }}" data-bs-toggle="dropdown"
-                    wire:model.live.debounce.500ms="search_area" wire:offline.class="disabled"
-                    wire:offline.attr="disabled">
+            <div>
+                @foreach ($listDistricts as $listDistrict)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="{{ $listDistrict->id }}"
+                            id="district-{{ $listDistrict->id }}" name="districts" @checked(in_array($listDistrict->id, $districts))
+                            wire:model.lazy="districts" wire:offline.class="disabled" wire:offline.attr="disabled"
+                            wire:loading.class="disabled" wire:loading.attr="disabled">
+                        <label class="form-check-label" for="district-{{ $listDistrict->id }}">
+                            {{ $listDistrict->name }}
+                        </label>
+                    </div>
 
-                <ul class="dropdown-menu {{ $searchArea ? 'show' : '' }} w-100 mt-3 py-0">
-                    @if ($searchArea)
-                        @forelse ($areas as $area)
-                            <li class="border-top border-bottom py-1" wire:key="area-{{ $area->id }}">
-                                <button type="button" class="dropdown-item text-wrap icon-link"
-                                    wire:click="changeArea({{ $area->id }})">
-                                    <span class="fas fa-location-dot fa-fw"></span>
-                                    {{ $area->name }}, {{ $area->district?->name ?? '-' }}
-                                </button>
-                            </li>
-                        @empty
-                            <li>
-                                <h6 class="dropdown-header">
-                                    {{ trans('message.no_data_available') }}
-                                </h6>
-                            </li>
-                        @endforelse
-                    @else
-                        <li>
-                            <small class="dropdown-header text-muted">
-                                {{ trans('home.search.area_title') }}
-                                {{ $this->search_area }}
-                            </small>
-                        </li>
-
-                        @foreach ($suggestedDestinations as $suggestedDestination)
-                            <li class="border-top border-bottom py-1"
-                                wire:key="suggested-destination-{{ $suggestedDestination->id }}">
-                                <button type="button" class="dropdown-item text-wrap icon-link"
-                                    wire:click="changeArea({{ $suggestedDestination->id }})">
-                                    <span class="fas fa-location-dot fa-fw"></span>
-                                    {{ $suggestedDestination->name }},
-                                    {{ $suggestedDestination->district?->name ?? '-' }}
-                                </button>
-                            </li>
-                        @endforeach
-                    @endif
-                </ul>
+                    @foreach ($listDistrict->areas as $listArea)
+                        <div class="form-check ms-4">
+                            <input class="form-check-input" type="checkbox" value="{{ $listArea->id }}"
+                                id="area-{{ $listArea->id }}" name="areas" @checked(in_array($listArea->id, $areas))
+                                wire:model="areas" wire:offline.class="disabled" wire:offline.attr="disabled"
+                                wire:loading.class="disabled" wire:loading.attr="disabled">
+                            <label class="form-check-label" for="area-{{ $listArea->id }}">
+                                {{ $listArea->name }}
+                            </label>
+                        </div>
+                    @endforeach
+                @endforeach
             </div>
-        @endif
+        </div>
     </div>
 </div>

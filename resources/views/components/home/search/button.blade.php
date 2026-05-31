@@ -1,5 +1,6 @@
 @props([
-    'areaId' => $areaId,
+    'districts' => $districts,
+    'areas' => $areas,
     'bedrooms' => $bedrooms,
     'livingStyle' => $livingStyle,
     'prices' => $prices,
@@ -7,7 +8,8 @@
 
 <a draggable="false"
     href="{{ route('property.index', [
-        'area_id' => $areaId,
+        'districts' => $districts,
+        'areas' => $areas,
         'bedrooms' => $bedrooms,
         'living_style' => $livingStyle,
         'prices' => $prices,

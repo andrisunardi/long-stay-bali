@@ -11,8 +11,8 @@ return [
         'title' => 'Search long-term homes',
 
         'area' => 'Area',
-        'area_title' => 'Suggested Destinations',
-        'area_placeholder' => 'Choose preferred area',
+        'area_title' => 'Select location',
+        'area_description' => 'Choose preferred area',
 
         'bedroom' => 'Bedrooms',
         'bedroom_placeholder' => 'Number of bedrooms',

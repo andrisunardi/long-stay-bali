@@ -4468,7 +4468,7 @@ namespace PHPSTORM_META {
 'helper.minlength','helper.maxlength','helper.min_size','helper.max_size','helper.length',
 'helper.characters','helper.required','helper.unique','helper.default','helper.contact.code.add',
 'helper.contact.code.edit','home.hero.title','home.hero.description','home.search.title','home.search.area',
-'home.search.area_title','home.search.area_placeholder','home.search.bedroom','home.search.bedroom_placeholder','home.search.living_style',
+'home.search.area_title','home.search.area_description','home.search.bedroom','home.search.bedroom_placeholder','home.search.living_style',
 'home.search.living_style_placeholder','home.search.when','home.search.type','home.search.price_title','home.search.price_description',
 'home.search.clear_all','home.search.price','home.search.from','home.search.to','home.search.minimum_price',
 'home.search.maximum_price','home.search.button','home.our_values.sub_title','home.our_values.title','home.our_values.description',
@@ -4550,7 +4550,7 @@ namespace PHPSTORM_META {
 'validation.attributes.trade_off_identified','validation.attributes.usability_limitations','validation.attributes.user_id','validation.attributes.username','validation.attributes.view',
 'validation.attributes.visit_date','validation.attributes.water_source','validation.attributes.when','validation.attributes.owner_id','validation.attributes.owner_name',
 'validation.attributes.owner_phone','validation.attributes.owner_email','validation.attributes.owner_representative_id','validation.attributes.owner_representative_name','validation.attributes.owner_representative_phone',
-'validation.attributes.owner_representative_email','validation.attributes.is_promoted',);
+'validation.attributes.owner_representative_email','validation.attributes.is_promoted','home.search.area_placeholder',);
         registerArgumentsSet('env', 
 'APP_NAME','APP_ENV','APP_KEY','APP_DEBUG','APP_URL',
 'APP_TIMEZONE','APP_LOCALE','APP_FALLBACK_LOCALE','APP_FAKER_LOCALE','APP_MAINTENANCE_DRIVER',
