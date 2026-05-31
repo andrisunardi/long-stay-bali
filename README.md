@@ -8,7 +8,7 @@ SO Living Bali
 
 ## Tasks
 
-- Panzoom
+- Property Details Images Add Panzoom
 - Guides Text Editor
 - Check Order Position Images Property
 - Mobile Property Page Filter Popup Modal
