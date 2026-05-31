@@ -130,10 +130,14 @@
         function priceSlider() {
             const monthlySlider = document.getElementById('monthly-slider');
 
-            if (monthlySlider && !monthlySlider.noUiSlider) {
+            if (monthlySlider) {
+                if (monthlySlider.noUiSlider) {
+                    monthlySlider.noUiSlider.destroy();
+                }
+
                 noUiSlider.create(monthlySlider, {
                     start: [
-                        @js($prices['monthly']['min'] ?? 0),
+                        @js($prices['monthly']['min'] ?? $monthlyMin),
                         @js($prices['monthly']['max'] ?? $monthlyMax),
                     ],
                     connect: true,
@@ -153,10 +157,14 @@
 
             const yearlySlider = document.getElementById('yearly-slider');
 
-            if (yearlySlider && !yearlySlider.noUiSlider) {
+            if (yearlySlider) {
+                if (yearlySlider.noUiSlider) {
+                    yearlySlider.noUiSlider.destroy();
+                }
+
                 noUiSlider.create(yearlySlider, {
                     start: [
-                        @js($prices['yearly']['min'] ?? 0),
+                        @js($prices['yearly']['min'] ?? $yearlyMin),
                         @js($prices['yearly']['max'] ?? $yearlyMax),
                     ],
                     connect: true,
@@ -176,6 +184,12 @@
         }
 
         priceSlider();
+
+        document.addEventListener('livewire:navigated', () => {
+            queueMicrotask(() => {
+                priceSlider();
+            });
+        });
 
         window.addEventListener('price-slider', () => {
             queueMicrotask(() => {
