@@ -282,8 +282,10 @@ class PropertyService
 
     public function detail(string $slug): ?Property
     {
+        $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
+
         return Property::query()
-            ->whereIn('status', [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value])
+            ->whereIn('status', $statuses)
             ->where('slug', $slug)
             ->first();
     }

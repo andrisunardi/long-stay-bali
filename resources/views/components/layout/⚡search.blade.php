@@ -15,9 +15,12 @@ new class extends Component {
 
     public function properties(): object
     {
-        $service = new PropertyService();
+        $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
-        return $service->index(statuses: [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value], orderBy: 'id', sortBy: 'asc', paginate: false)->filter(function ($property) {
+        $service = new PropertyService();
+        $properties = $service->index(statuses: $statuses, orderBy: 'code', sortBy: 'asc', paginate: false);
+
+        return $properties->filter(function ($property) {
             return str_contains(strtolower($property->code), strtolower($this->search));
         });
     }
@@ -43,7 +46,7 @@ new class extends Component {
                     <li wire:key="property-{{ $property->id }}">
                         <a draggable="false" href="{{ route('property.detail', ['slug' => $property->slug]) }}"
                             class="dropdown-item text-wrap icon-link" wire:click="changeArea({{ $property->id }})">
-                            <span class="fas fa-code fa-fw"></span>
+                            <span class="fas fa-caret-right fa-fw"></span>
                             {{ $property->code }}
                         </a>
                     </li>
