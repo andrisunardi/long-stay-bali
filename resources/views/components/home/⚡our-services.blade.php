@@ -31,7 +31,7 @@ new #[Lazy] class extends Component {
                     </div>
                 </div>
 
-                <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
+                <div class="row row-cols-1 row-cols-lg-3 justify-content-end g-4">
                     @for ($i = 0; $i < 3; $i++)
                         <div class="col" wire:key="service-{{ $i }}">
                             <div class="card h-100 placeholder-glow">
@@ -78,7 +78,7 @@ new #[Lazy] class extends Component {
                 <p class="small text-muted">{{ trans('home.our_services.description') }}</p>
             </div>
 
-            <div class="row row-cols-1 row-cols-sm-3 justify-content-end g-4">
+            <div class="row row-cols-1 row-cols-lg-3 justify-content-end g-4">
                 @foreach ($services as $service)
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
