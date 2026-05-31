@@ -55,7 +55,7 @@ new #[Lazy] class extends Component {
 @endplaceholder
 
 <section class="py-5">
-    <div class="container-fluid">
+    <div class="container-md">
         <div class="d-grid gap-4">
             <div class="text-center">
                 <p class="lead mb-0">{{ trans('home.our_values.sub_title') }}</p>
@@ -63,31 +63,30 @@ new #[Lazy] class extends Component {
                 <p class="small px-sm-5">{{ trans('home.our_values.description') }}</p>
             </div>
 
-            <div class="row row-cols-1 row-cols-xl-3 justify-content-end g-4">
+            <div class="row row-cols-1 row-cols-lg-3 justify-content-end g-3">
                 @foreach ($values as $value)
                     <div class="col" wire:key="value-{{ $value->id }}">
                         <div class="card card-body border-0 h-100 p-0">
-                            <div class="row align-items-center g-4">
-                                <div class="col-sm-8 col-lg-9 col-xl-6">
-                                    <div class="row align-items-center g-4">
+                            <div class="row align-items-center g-3">
+                                <div class="col-sm-8 col-lg-12 col-xl-6">
+                                    <div class="row align-items-center g-2">
                                         <div class="col-auto col-xl-12">
                                             <div
                                                 class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center p-3">
                                                 <img draggable="false" loading="lazy" decoding="async"
-                                                    class="user-select-none pe-none img-fluid" width="50"
-                                                    height="50"
+                                                    class="user-select-none pe-none" width="30" height="30"
                                                     src="{{ asset('images/value/icon/' . Str::slug($value->title) . '.png') }}"
                                                     alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
                                             </div>
                                         </div>
                                         <div class="col col-xl-12">
-                                            <h5 class="card-title">{{ $value->translate_title }}</h5>
-                                            <hr class="w-25" />
-                                            <p class="card-text">{{ $value->translate_short_description }}</p>
+                                            <h5 class="card-title h6">{{ $value->translate_title }}</h5>
+                                            <hr class="w-50 my-2" />
+                                            <p class="card-text small">{{ $value->translate_short_description }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 col-lg-3 col-xl-6">
+                                <div class="col-sm-4 col-lg-12 col-xl-6">
                                     <div class="ratio ratio-4x3">
                                         <img draggable="false" loading="lazy" decoding="async"
                                             class="user-select-none pe-none w-100 h-100 object-fit-cover rounded"

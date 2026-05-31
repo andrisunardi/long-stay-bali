@@ -1,7 +1,7 @@
 <header id="header" class="fixed-top py-3" data-use-banner="{{ Route::is('home') ? '1' : '0' }}">
     <div class="container-md">
         <div class="row justify-content-between align-items-center">
-            <div class="col-auto">
+            <div class="col col-xl-3">
                 <div class="d-flex align-items-center gap-3">
                     <a draggable="false" href="{{ route('home') }}" wire:navigate>
                         <img draggable="false" loading="lazy" decoding="async" class="logo user-select-none pe-none"
@@ -13,8 +13,8 @@
                 </div>
             </div>
 
-            <div class="col-auto col-sm">
-                <div class="d-none d-lg-flex justify-content-center align-items-center gap-lg-3 gap-xl-4">
+            <div class="col-auto col-xl-5">
+                <div class="d-none d-lg-flex justify-content-end align-items-center gap-lg-3 gap-xl-4">
                     @foreach (config('navigations') as $navigation)
                         <a draggable="false" href="{{ route($navigation['route']) }}"
                             class="header-color {{ Route::is($navigation['route']) ? 'fw-bold' : '' }}" wire:navigate
@@ -25,8 +25,8 @@
                 </div>
             </div>
 
-            <div class="col-auto d-none d-lg-block">
-                <div class="row align-items-center">
+            <div class="col col-xl-4 d-none d-lg-block">
+                <div class="row justify-content-end align-items-center">
                     <div class="col-auto">
                         <div>
                             <div class="dropdown">
