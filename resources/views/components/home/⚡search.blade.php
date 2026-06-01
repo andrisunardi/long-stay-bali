@@ -90,7 +90,7 @@ new class extends Component {
     {
         $service = new DistrictService();
         $districts = $service->index(isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
-        $districts->loadMissing(['areas']);
+        $districts->loadMissing(['areas' => fn($q) => $q->show()->active()]);
 
         return $districts;
     }
