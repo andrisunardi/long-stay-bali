@@ -32,7 +32,7 @@
     <hr class="my-4" />
 
     <div class="row">
-        <div class="col-lg-6">
+        <div class="{{ $property->latitude && $property->longitude ? 'col-lg-6' : 'col-12' }}">
             <p class="mb-0">
                 @if ($property->translate_description)
                     {!! $property->translate_description !!}
@@ -43,8 +43,10 @@
                 @endif
             </p>
         </div>
-        <div class="col-lg-6 col-xl-5 offset-xl-1">
-            <x-property.location :property="$property" />
-        </div>
+        @if ($property->latitude && $property->longitude)
+            <div class="col-lg-6 col-xl-5 offset-xl-1">
+                <x-property.location :property="$property" />
+            </div>
+        @endif
     </div>
 </div>
