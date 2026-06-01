@@ -10,9 +10,9 @@
                         <div>
                             <span class="fas fa-broom fa-fw"></span>
                             {{ trans('property.housekeeper') }}
-                            {{ $property->monthly_inclusions['housekeeper_frequency_per_week'] }}
+                            {{-- {{ $property->monthly_inclusions['housekeeper_frequency_per_week'] }}
                             /
-                            {{ trans('property.weeks') }}
+                            {{ trans('property.weeks') }} --}}
                         </div>
                     @endif
 
@@ -89,9 +89,9 @@
                         <div>
                             <span class="fas fa-broom fa-fw"></span>
                             {{ trans('property.housekeeper') }}
-                            {{ $property->yearly_inclusions['housekeeper_frequency_per_week'] }}
+                            {{-- {{ $property->yearly_inclusions['housekeeper_frequency_per_week'] }}
                             /
-                            {{ trans('property.weeks') }}
+                            {{ trans('property.weeks') }} --}}
                         </div>
                     @endif
 
