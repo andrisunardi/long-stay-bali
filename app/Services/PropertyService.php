@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
+use App\Libraries\GoogleMapsUrlParser;
 use App\Libraries\GoogleTranslate;
 use App\Models\Property;
 use Exception;
@@ -149,31 +150,13 @@ class PropertyService
             //     );
             // }
 
-            if (! empty($data['google_maps_url'])) {
-                $response = Http::withOptions([
-                    'allow_redirects' => true,
-                ])->get($data['google_maps_url']);
+            $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
 
-                $finalUrl = $response->effectiveUri()?->__toString();
+            $data['latitude'] = $result['latitude'];
+            $data['longitude'] = $result['longitude'];
 
-                if ($finalUrl) {
-                    preg_match(
-                        '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
-                        $finalUrl,
-                        $coordinates,
-                    );
-
-                    $data['latitude'] = $coordinates[1] ?? null;
-                    $data['longitude'] = $coordinates[2] ?? null;
-
-                    preg_match('/place\/([^\/]+)/', $finalUrl, $place);
-
-                    if (! $data['address']) {
-                        $data['address'] = isset($place[1])
-                            ? urldecode(str_replace('+', ' ', $place[1]))
-                            : null;
-                    }
-                }
+            if (blank($data['address'])) {
+                $data['address'] = $result['address'];
             }
 
             Arr::pull($data, 'images');
@@ -208,31 +191,13 @@ class PropertyService
 
             $data['slug'] = Str::slug($data['name']);
 
-            if (! empty($data['google_maps_url'])) {
-                $response = Http::withOptions([
-                    'allow_redirects' => true,
-                ])->get($data['google_maps_url']);
+            $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
 
-                $finalUrl = $response->effectiveUri()?->__toString();
+            $data['latitude'] = $result['latitude'];
+            $data['longitude'] = $result['longitude'];
 
-                if ($finalUrl) {
-                    preg_match(
-                        '/@(-?\d+\.\d+),(-?\d+\.\d+)/',
-                        $finalUrl,
-                        $coordinates,
-                    );
-
-                    $data['latitude'] = $coordinates[1] ?? null;
-                    $data['longitude'] = $coordinates[2] ?? null;
-
-                    preg_match('/place\/([^\/]+)/', $finalUrl, $place);
-
-                    if (! $data['address']) {
-                        $data['address'] = isset($place[1])
-                            ? urldecode(str_replace('+', ' ', $place[1]))
-                            : null;
-                    }
-                }
+            if (blank($data['address'])) {
+                $data['address'] = $result['address'];
             }
 
             // if ($property->code != $data['code']) {
