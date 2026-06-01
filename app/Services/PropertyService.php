@@ -92,7 +92,7 @@ class PropertyService
                 isset($prices['yearly']['min']) && isset($prices['yearly']['max']),
                 fn ($q) => $q->whereBetween('yearly_price', [
                     $prices['yearly']['min'],
-                    $prices['yearly']['max'],
+                    (string) $prices['yearly']['max'],
                 ])
             )
             ->when($random, fn ($q) => $q->inRandomOrder())
