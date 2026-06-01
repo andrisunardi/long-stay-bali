@@ -79,7 +79,7 @@
 
                         <input type="number" class="form-control" id="monthly_min" name="monthly_min" min="0"
                             max="{{ $monthlyMin }}" value="{{ $prices['monthly']['min'] ?? 0 }}" step="1000000"
-                            wire:model.live.debounce.500ms="prices.monthly.min">
+                            wire:model.live.debounce.1s="prices.monthly.min">
                     </div>
 
                     <div class="col-6">
@@ -89,7 +89,7 @@
 
                         <input type="number" class="form-control" id="monthly_max" name="monthly_max" min="0"
                             max="{{ $monthlyMax }}" value="{{ $prices['monthly']['max'] ?? 0 }}" step="1000000"
-                            wire:model.live.debounce.500ms="prices.monthly.max">
+                            wire:model.live.debounce.1s="prices.monthly.max">
                     </div>
                 </div>
             @endif
@@ -107,7 +107,7 @@
 
                         <input type="number" class="form-control" id="yearly_min" name="yearly_min" min="0"
                             max="{{ $yearlyMin }}" value="{{ $prices['yearly']['min'] ?? 0 }}" step="1000000"
-                            wire:model.live.debounce.500ms="prices.yearly.min">
+                            wire:model.live.debounce.1s="prices.yearly.min">
                     </div>
 
                     <div class="col-6">
@@ -117,7 +117,7 @@
 
                         <input type="number" class="form-control" id="yearly_max" name="yearly_max" min="0"
                             max="{{ $yearlyMax }}" value="{{ $prices['yearly']['max'] ?? 0 }}" step="1000000"
-                            wire:model.live.debounce.500ms="prices.yearly.max">
+                            wire:model.live.debounce.1s="prices.yearly.max">
                     </div>
                 </div>
             @endif
