@@ -27,18 +27,15 @@ new #[Lazy] class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
-    #[Reactive]
-    public int $minPrice = 0;
-
-    #[Reactive]
-    public int $maxPrice = 100000000000;
+    #[Url(except: [])]
+    public array $prices = [];
 
     public function properties(): object
     {
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
         $service = new PropertyService();
-        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, statuses: $statuses, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, prices: $this->prices, statuses: $statuses, paginate: false);
         $properties->loadMissing(['area', 'district', 'image']);
 
         return $properties;
@@ -54,6 +51,12 @@ new #[Lazy] class extends Component {
     public function handleLivingStyleChanged(?int $livingStyle = null): void
     {
         $this->living_style = $livingStyle;
+    }
+
+    #[On('prices-changed')]
+    public function handlePricesChanged(array $prices = []): void
+    {
+        $this->prices = $prices;
     }
 };
 ?>

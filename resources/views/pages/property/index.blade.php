@@ -17,12 +17,6 @@ new #[Title('Property')] class extends Component {
     #[Url(except: null)]
     public ?string $end_date = null;
 
-    #[Url(except: null)]
-    public int $min_price = 0;
-
-    #[Url(except: null)]
-    public int $max_price = 100000000000;
-
     public function mount(): void
     {
         $this->start_date = $this->start_date ?? today()->toDateString();
@@ -51,7 +45,5 @@ new #[Title('Property')] class extends Component {
     :area-name="$area_name"
     :start-date="$start_date"
     :end-date="$end_date"
-    :min-price="$min_price"
-    :max-price="$max_price"
     lazy />
 </div>

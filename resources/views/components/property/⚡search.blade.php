@@ -122,6 +122,7 @@ new class extends Component {
     public function clearAllPrice(): void
     {
         $this->reset(['prices']);
+        $this->dispatch('prices-changed', prices: $this->prices);
     }
 
     public function changeBudgetType(?int $value = null): void
@@ -140,6 +141,31 @@ new class extends Component {
         }
 
         $this->dispatch('price-slider');
+        $this->dispatch('prices-changed', prices: $this->prices);
+    }
+
+    public function updatedPricesMonthlyMin(int $price): void
+    {
+        $this->prices['monthly']['min'] = $price;
+        $this->dispatch('prices-changed', prices: $this->prices);
+    }
+
+    public function updatedPricesMonthlyMax(int $price): void
+    {
+        $this->prices['monthly']['max'] = $price;
+        $this->dispatch('prices-changed', prices: $this->prices);
+    }
+
+    public function updatedPricesYearlyMin(int $price): void
+    {
+        $this->prices['yearly']['min'] = $price;
+        $this->dispatch('prices-changed', prices: $this->prices);
+    }
+
+    public function updatedPricesYearlyMax(int $price): void
+    {
+        $this->prices['yearly']['max'] = $price;
+        $this->dispatch('prices-changed', prices: $this->prices);
     }
 };
 ?>

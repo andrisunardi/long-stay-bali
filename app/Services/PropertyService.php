@@ -28,6 +28,7 @@ class PropertyService
         ?string $startDate = null,
         ?string $endDate = null,
         // array $availabilityDates = [],
+        array $prices = [],
         bool $random = false,
         bool $trash = false,
         string $orderBy = 'id',
@@ -79,6 +80,20 @@ class PropertyService
             ->when(
                 $endDate && $endDate != today()->toDateString(),
                 fn ($query) => $query->whereDate('availability_date', '<=', $endDate)
+            )
+            ->when(
+                isset($prices['monthly']['min']) && isset($prices['monthly']['max']),
+                fn ($q) => $q->whereBetween('monthly_price', [
+                    $prices['monthly']['min'],
+                    $prices['monthly']['max'],
+                ])
+            )
+            ->when(
+                isset($prices['yearly']['min']) && isset($prices['yearly']['max']),
+                fn ($q) => $q->whereBetween('yearly_price', [
+                    $prices['yearly']['min'],
+                    $prices['yearly']['max'],
+                ])
             )
             ->when($random, fn ($q) => $q->inRandomOrder())
             ->when($trash, fn ($q) => $q->onlyTrashed())
