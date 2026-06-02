@@ -57,10 +57,12 @@
                 <div class="modal-body" style="scroll-behavior:smooth;">
                     <div class="d-grid gap-4">
                         @foreach ($property->images as $key => $propertyImage)
-                            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
-                                id="property-image-{{ $key }}"
-                                src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
-                                alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />
+                            <div class="zoom">
+                                <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
+                                    id="property-image-{{ $key }}"
+                                    src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
+                                    alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />
+                            </div>
                         @endforeach
                     </div>
                 </div>
