@@ -23,6 +23,7 @@ new #[Title('Add | Guide')] class extends Component {
 
     public function submit(): void
     {
+        dd($this->form->body);
         try {
             $this->form->submit();
 
@@ -81,9 +82,8 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-tags fa-fw "></span>
                             </div>
                             <select class="form-select select2" id="guide_category_id" name="guide_category_id" required
-                                wire:model.lazy="form.guide_category_id"
-                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
+                                wire:model.lazy="form.guide_category_id" wire:offline.class="disabled"
+                                wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
                                 <option value="">{{ trans('index.select') }} {{ trans('page.guide_category') }}
                                 </option>
                                 @foreach ($this->guideCategories() as $guideCategory)
@@ -197,12 +197,12 @@ new #[Title('Add | Guide')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-12">
                         <label class="form-label" for="body">
                             {{ trans('validation.attributes.body') }}
                             <span class="text-danger">*</span>
                         </label>
-                        <x-form.trix model="form.body" />
+                        <x-forms.tinymce-editor :id="'body'" :value="$form->body" />
                         <div class="form-text">
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
