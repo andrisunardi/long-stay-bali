@@ -14,14 +14,14 @@ enum Currency: string
 
     case GBP = 'gbp';
 
-    public function icon(): string
-    {
-        return match ($this) {
-            self::IDR => 'fas fa-rupiah-sign',
-            self::USD => 'fas fa-dollar-sign',
-            self::AUD => 'fas fa-dollar-sign',
-            self::EUR => 'fas fa-euro-sign',
-            self::GBP => 'fas fa-sterling-sign',
-        };
-    }
+    // public function icon(): string
+    // {
+    //     return match ($this) {
+    //         self::IDR => 'fas fa-rupiah-sign',
+    //         self::USD => 'fas fa-dollar-sign',
+    //         self::AUD => 'fas fa-dollar-sign',
+    //         self::EUR => 'fas fa-euro-sign',
+    //         self::GBP => 'fas fa-sterling-sign',
+    //     };
+    // }
 }
