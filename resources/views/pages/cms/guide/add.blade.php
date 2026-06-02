@@ -81,7 +81,7 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-tags fa-fw "></span>
                             </div>
                             <select class="form-select select2" id="guide_category_id" name="guide_category_id" required
-                                wire:key="form.guide_category_id" wire:model.lazy="guide_category_id"
+                                wire:model.lazy="form.guide_category_id"
                                 wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                                 wire:loading.attr="disabled">
                                 <option value="">{{ trans('index.select') }} {{ trans('page.guide_category') }}
