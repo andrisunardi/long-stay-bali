@@ -68,9 +68,9 @@ new #[Lazy] class extends Component {
                     <div class="col" wire:key="value-{{ $value->id }}">
                         <div class="card card-body border-0 h-100 p-0">
                             <div class="row align-items-center g-3">
-                                <div class="col-sm-8 col-lg-12 col-xl-6">
+                                <div class="col-sm-8 col-lg-6 col-xl-6">
                                     <div class="row align-items-center g-2">
-                                        <div class="col-auto col-xl-12">
+                                        <div class="col-12 col-xl-12 text-center">
                                             <div
                                                 class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center p-3">
                                                 <img draggable="false" loading="lazy" decoding="async"
@@ -79,20 +79,18 @@ new #[Lazy] class extends Component {
                                                     alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
                                             </div>
                                         </div>
-                                        <div class="col col-xl-12">
+                                        <div class="col-12 col-xl-12 text-center">
                                             <h5 class="card-title h6">{{ $value->translate_title }}</h5>
-                                            <hr class="w-50 my-2" />
+                                            <hr class="w-50 my-2 mx-auto" />
                                             <p class="card-text small">{{ $value->translate_short_description }}</p>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4 col-lg-12 col-xl-6">
-                                    <div class="ratio ratio-4x3">
-                                        <img draggable="false" loading="lazy" decoding="async"
-                                            class="user-select-none pe-none w-100 h-100 object-fit-cover rounded"
-                                            src="{{ asset('images/value/' . Str::slug($value->title) . '.webp') }}"
-                                            alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
-                                    </div>
+                                <div class="col-sm-4 col-lg-6 col-xl-6">
+                                    <img draggable="false" loading="lazy" decoding="async"
+                                        class="user-select-none pe-none w-100 h-100 object-fit-cover rounded"
+                                        src="{{ asset('images/value/' . Str::slug($value->title) . '.webp') }}"
+                                        alt="{{ trans('index.value') }} - {{ $value->translate_title }} - {{ config('constants.meta.title') }}">
                                 </div>
                             </div>
                         </div>
