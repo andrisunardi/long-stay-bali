@@ -1,6 +1,6 @@
 <div>
     <div class="row g-4">
-        <div class="col-lg-8">
+        <div class="col-md-6 col-lg-8">
             <h1>{{ $property->name }}</h1>
 
             <div class="d-flex gap-2">
@@ -24,7 +24,7 @@
                 </span>
             </div>
         </div>
-        <div class="col-lg-4 col-xl-3 offset-xl-1">
+        <div class="col-md-6 col-lg-4">
             <x-property.sidebar :property="$property" />
         </div>
     </div>
