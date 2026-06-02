@@ -58,7 +58,7 @@
                     <div class="d-grid gap-4">
                         @foreach ($property->images as $key => $propertyImage)
                             <div class="zoom">
-                                <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
+                                <img draggable="false" class="img-fluid w-100 h-100 rounded"
                                     id="property-image-{{ $key }}"
                                     src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />
