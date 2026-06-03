@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Libraries\GoogleMapsUrlParser;
@@ -24,6 +25,7 @@ class PropertyService
         ?string $bedroom = null,
         array $bedrooms = [],
         ?string $livingStyle = null,
+        ?string $rentalType = null,
         ?string $status = null,
         array $statuses = [],
         ?string $startDate = null,
@@ -62,6 +64,7 @@ class PropertyService
             ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
+            ->when($rentalType, fn ($q) => $q->where('rental_type', $rentalType))
             ->when($status, fn ($q) => $q->where('status', $status))
             ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             // ->when($startDate, fn($q) => $q->whereDate('availability_date', '>=', $startDate))
@@ -83,17 +86,19 @@ class PropertyService
                 fn ($query) => $query->whereDate('availability_date', '<=', $endDate)
             )
             ->when(
-                isset($prices['monthly']['min']) && isset($prices['monthly']['max']),
+                $rentalType == PropertyRentalType::Monthly->value &&
+                    isset($prices['min']) && isset($prices['max']),
                 fn ($q) => $q->whereBetween('monthly_price', [
-                    $prices['monthly']['min'],
-                    $prices['monthly']['max'],
+                    $prices['min'],
+                    $prices['max'],
                 ])
             )
             ->when(
-                isset($prices['yearly']['min']) && isset($prices['yearly']['max']),
+                $rentalType == PropertyRentalType::Yearly->value &&
+                    isset($prices['min']) && isset($prices['max']),
                 fn ($q) => $q->whereBetween('yearly_price', [
-                    $prices['yearly']['min'],
-                    (string) $prices['yearly']['max'],
+                    $prices['min'],
+                    (string) $prices['max'],
                 ])
             )
             ->when($random, fn ($q) => $q->inRandomOrder())

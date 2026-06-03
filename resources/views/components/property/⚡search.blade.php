@@ -137,6 +137,7 @@ new class extends Component {
     public function changeLivingStyle(?int $livingStyle = null): void
     {
         $this->living_style = $livingStyle;
+        $this->dispatch('living-style-changed', livingStyle: $this->living_style);
     }
 
     public function areas(): object
@@ -176,12 +177,14 @@ new class extends Component {
 
         $this->dispatch('price-slider');
         $this->dispatch('prices-changed', prices: $this->prices);
+        $this->dispatch('rental-type-changed', rentalType: $this->rental_type);
     }
 
     public function clearAllPrice(): void
     {
         $this->reset(['rental_type', 'prices']);
         $this->dispatch('prices-changed', prices: $this->prices);
+        $this->dispatch('rental-type-changed', rentalType: null);
     }
 
     public function updatedPricesMin(int $price): void
@@ -201,7 +204,7 @@ new class extends Component {
 <section class="pt-5">
     <div class="container-md">
         <div class="row g-4">
-            <div class="col-lg-6 col-xl">
+            <div class="col-sm-6 col-lg-4">
                 {{-- prettier-ignore --}}
                 <x-search.area
                 :area="$area"
@@ -211,7 +214,7 @@ new class extends Component {
                 />
             </div>
 
-            <div class="col-lg-6 col-xl">
+            <div class="col-sm-6 col-lg-4">
                 <div wire:ignore>
                     <label class="form-label">
                         <span class="fas fa-calendar fa-fw"></span>
@@ -221,22 +224,29 @@ new class extends Component {
                 </div>
             </div>
 
-            <div class="col-6 col-lg-3 col-xl-auto">
+            <div class="col-6 col-lg-2">
                 <x-search.bedrooms :bedrooms="$bedrooms" />
             </div>
 
-            <div class="col-6 col-lg-3 col-xl-auto">
+            <div class="col-6 col-lg-2">
                 <x-search.living-style :living-style="$living_style" />
             </div>
 
-            <div class="col-lg-6 col-xl">
-                {{-- prettier-ignore --}}
-                <x-search.price
-                :prices="$prices"
-                :price-min="$price_min"
-                :price-max="$price_max"
-                />
+            <div class="col-sm-6 col-lg-6">
+                <label class="form-label">Rental Type</label>
+                <x-search.rental-type :rental-type="$rental_type" />
             </div>
+
+            @if ($rental_type)
+                <div class="col-sm-6 col-lg-6">
+                    {{-- prettier-ignore --}}
+                <x-search.price
+                    :prices="$prices"
+                    :price-min="$price_min"
+                    :price-max="$price_max"
+                    />
+                </div>
+            @endif
         </div>
     </div>
 </section>

@@ -27,6 +27,9 @@ new #[Lazy] class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
+    #[Url(except: null)]
+    public ?int $rental_type = null;
+
     #[Url(except: [])]
     public array $prices = [];
 
@@ -35,7 +38,7 @@ new #[Lazy] class extends Component {
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
         $service = new PropertyService();
-        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, statuses: $statuses, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, rentalType: $this->rental_type, prices: $this->prices, statuses: $statuses, paginate: false);
         $properties->loadMissing(['area', 'district', 'image']);
 
         return $properties;
@@ -51,6 +54,12 @@ new #[Lazy] class extends Component {
     public function handleLivingStyleChanged(?int $livingStyle = null): void
     {
         $this->living_style = $livingStyle;
+    }
+
+    #[On('rental-type-changed')]
+    public function handleRentalTypeChanged(?int $rentalType = null): void
+    {
+        $this->rental_type = $rentalType;
     }
 
     #[On('prices-changed')]
