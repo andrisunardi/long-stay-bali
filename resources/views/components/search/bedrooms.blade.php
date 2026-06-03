@@ -8,7 +8,8 @@
         {{ trans('home.search.bedroom') }}
     </label>
     <div class="input-group">
-        <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
+        <button type="button" id="bedroom-dropdown"
+            class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown" data-bs-auto-close="outside">
             @if ($bedrooms)
                 {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
@@ -17,7 +18,7 @@
             @endif
         </button>
 
-        <ul class="dropdown-menu w-100 mt-3" wire:ignore.self>
+        <ul class="dropdown-menu w-100 mt-3">
             <li wire:key="bedroom">
                 <button type="button" class="dropdown-item" wire:click="changeBedrooms">
                     {{ trans('index.all') }}
@@ -37,3 +38,14 @@
         </ul>
     </div>
 </div>
+
+<script>
+    document.addEventListener('livewire:init', () => {
+        Livewire.on('keep-bedroom-dropdown-open', () => {
+            const button = document.getElementById('bedroom-dropdown');
+            bootstrap.Dropdown
+                .getOrCreateInstance(button)
+                .show();
+        });
+    });
+</script>

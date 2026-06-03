@@ -117,6 +117,8 @@ new class extends Component {
 
     public function changeBedrooms(?int $value = null): void
     {
+        $this->dispatch('keep-bedroom-dropdown-open');
+
         if (!$value) {
             $this->reset('bedrooms');
             $this->dispatch('bedrooms-changed', bedrooms: []);
