@@ -22,6 +22,9 @@ new class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
+    #[Url(except: null)]
+    public ?int $rental_type = null;
+
     #[Url(except: [])]
     public array $prices = [
         'type' => null,
@@ -118,6 +121,11 @@ new class extends Component {
         $this->living_style = $livingStyle;
     }
 
+    public function changePropertyRentalType(?int $rentalType = null): void
+    {
+        $this->rental_type = $rentalType;
+    }
+
     public function clearAllPrice(): void
     {
         $this->reset(['prices']);
@@ -164,6 +172,10 @@ new class extends Component {
 
             <div class="col-6">
                 <x-search.living-style :living-style="$living_style" />
+            </div>
+
+            <div class="col-12">
+                <x-search.rental-type :rental-type="$rental_type" />
             </div>
 
             <div class="col-12">
