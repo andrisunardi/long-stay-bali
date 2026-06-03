@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\BudgetType;
 use App\Enums\Currency;
 use App\Enums\Language;
 use App\Enums\Property\PropertyBedroom;
@@ -59,7 +58,6 @@ return [
     ],
 
     'aliases' => Facade::defaultAliases()->merge([
-        'BudgetType' => BudgetType::class,
         'Currency' => Currency::class,
         'Language' => Language::class,
         'PropertyBedroom' => PropertyBedroom::class,

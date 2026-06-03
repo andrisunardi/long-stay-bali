@@ -27585,6 +27585,16 @@ namespace Illuminate\Support {
          * @param mixed $value
          * @static
          */
+        public static function thousand($value)
+        {
+            return \Illuminate\Support\Str::thousand($value);
+        }
+
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param mixed $value
+         * @static
+         */
         public static function idr($value)
         {
             return \Illuminate\Support\Str::idr($value);
@@ -32986,7 +32996,6 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
     class View extends \Illuminate\Support\Facades\View {}
     class Vite extends \Illuminate\Support\Facades\Vite {}
-    class BudgetType extends \App\Enums\BudgetType {}
     class Currency extends \App\Enums\Currency {}
     class Language extends \App\Enums\Language {}
     class PropertyBedroom extends \App\Enums\Property\PropertyBedroom {}

@@ -29,18 +29,18 @@ new class extends Component {
     #[Url(except: null)]
     public ?int $living_style = null;
 
+    #[Url(except: null)]
+    public ?int $rental_type = null;
+
     #[Url(except: [])]
     public array $prices = [
-        'type' => null,
-        'monthly' => [
-            'min' => null,
-            'max' => null,
-        ],
-        'yearly' => [
-            'min' => null,
-            'max' => null,
-        ],
+        'min' => null,
+        'max' => null,
     ];
+
+    public int $price_min = 0;
+
+    public int $price_max = 0;
 
     public int $monthly_min = 40000000;
 
@@ -67,16 +67,25 @@ new class extends Component {
             $this->end_date = now()->toDateString();
         }
 
-        if (isset($this->prices['budget_type'])) {
-            if ($this->prices['budget_type'] == BudgetType::Monthly->value) {
-                $this->prices['monthly']['min'] = $this->prices['monthly']['min'] ?? $this->monthly_min;
-                $this->prices['monthly']['max'] = $this->prices['monthly']['max'] ?? $this->monthly_max;
-            }
+        if ($this->rental_type == PropertyRentalType::Monthly->value) {
+            $this->prices['min'] = $this->prices['min'] ?? $this->monthly_min;
+            $this->prices['max'] = $this->prices['max'] ?? $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
+        }
 
-            if ($this->prices['budget_type'] == BudgetType::Yearly->value) {
-                $this->prices['yearly']['min'] = $this->prices['yearly']['min'] ?? $this->yearly_min;
-                $this->prices['yearly']['max'] = $this->prices['yearly']['max'] ?? $this->yearly_max;
-            }
+        if ($this->rental_type == PropertyRentalType::Yearly->value) {
+            $this->prices['min'] = $this->prices['min'] ?? $this->yearly_min;
+            $this->prices['max'] = $this->prices['max'] ?? $this->yearly_max;
+            $this->price_min = $this->yearly_min;
+            $this->price_max = $this->yearly_max;
+        }
+
+        if ($this->rental_type == PropertyRentalType::Both->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
         }
     }
 
@@ -110,11 +119,6 @@ new class extends Component {
         return $districts;
     }
 
-    public function clearAllArea(): void
-    {
-        $this->reset(['area', 'districts', 'areas']);
-    }
-
     public function changeBedrooms(?int $value = null): void
     {
         $this->dispatch('keep-bedroom-dropdown-open');
@@ -144,52 +148,51 @@ new class extends Component {
         return $areas;
     }
 
-    public function clearAllPrice(): void
+    public function changePropertyRentalType(?int $rentalType = null): void
     {
         $this->reset(['prices']);
-        $this->dispatch('prices-changed', prices: $this->prices);
-    }
+        $this->rental_type = $rentalType;
 
-    public function changeBudgetType(?int $value = null): void
-    {
-        $this->reset(['prices']);
-        $this->prices['budget_type'] = $value;
-
-        if ($value == BudgetType::Monthly->value) {
-            $this->prices['monthly']['min'] = $this->monthly_min;
-            $this->prices['monthly']['max'] = $this->monthly_max;
+        if ($rentalType == PropertyRentalType::Monthly->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
         }
 
-        if ($value == BudgetType::Yearly->value) {
-            $this->prices['yearly']['min'] = $this->yearly_min;
-            $this->prices['yearly']['max'] = $this->yearly_max;
+        if ($rentalType == PropertyRentalType::Yearly->value) {
+            $this->prices['min'] = $this->yearly_min;
+            $this->prices['max'] = $this->yearly_max;
+            $this->price_min = $this->yearly_min;
+            $this->price_max = $this->yearly_max;
+        }
+
+        if ($rentalType == PropertyRentalType::Both->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
         }
 
         $this->dispatch('price-slider');
         $this->dispatch('prices-changed', prices: $this->prices);
     }
 
-    public function updatedPricesMonthlyMin(int $price): void
+    public function clearAllPrice(): void
     {
-        $this->prices['monthly']['min'] = $price;
+        $this->reset(['rental_type', 'prices']);
         $this->dispatch('prices-changed', prices: $this->prices);
     }
 
-    public function updatedPricesMonthlyMax(int $price): void
+    public function updatedPricesMin(int $price): void
     {
-        $this->prices['monthly']['max'] = $price;
+        $this->prices['min'] = $price;
         $this->dispatch('prices-changed', prices: $this->prices);
     }
 
-    public function updatedPricesYearlyMin(int $price): void
+    public function updatedPricesMax(int $price): void
     {
-        $this->prices['yearly']['min'] = $price;
-        $this->dispatch('prices-changed', prices: $this->prices);
-    }
-
-    public function updatedPricesYearlyMax(int $price): void
-    {
-        $this->prices['yearly']['max'] = $price;
+        $this->prices['max'] = $price;
         $this->dispatch('prices-changed', prices: $this->prices);
     }
 };
@@ -230,10 +233,8 @@ new class extends Component {
                 {{-- prettier-ignore --}}
                 <x-search.price
                 :prices="$prices"
-                :monthly-min="$monthly_min"
-                :monthly-max="$monthly_max"
-                :yearly-min="$yearly_min"
-                :yearly-max="$yearly_max"
+                :price-min="$price_min"
+                :price-max="$price_max"
                 />
             </div>
         </div>

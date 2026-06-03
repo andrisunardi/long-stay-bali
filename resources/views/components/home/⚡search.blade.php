@@ -1,6 +1,6 @@
 <?php
 
-use App\Enums\BudgetType;
+use App\Enums\Property\PropertyRentalType;
 use App\Livewire\Component;
 use App\Services\AreaService;
 use App\Services\DistrictService;
@@ -27,16 +27,13 @@ new class extends Component {
 
     #[Url(except: [])]
     public array $prices = [
-        'type' => null,
-        'monthly' => [
-            'min' => null,
-            'max' => null,
-        ],
-        'yearly' => [
-            'min' => null,
-            'max' => null,
-        ],
+        'min' => null,
+        'max' => null,
     ];
+
+    public int $price_min = 0;
+
+    public int $price_max = 0;
 
     public int $monthly_min = 40000000;
 
@@ -55,16 +52,25 @@ new class extends Component {
             $this->area = $districts->pluck('name')->join(', ');
         }
 
-        if (isset($this->prices['budget_type'])) {
-            if ($this->prices['budget_type'] == BudgetType::Monthly->value) {
-                $this->prices['monthly']['min'] = $this->prices['monthly']['min'] ?? $this->monthly_min;
-                $this->prices['monthly']['max'] = $this->prices['monthly']['max'] ?? $this->monthly_max;
-            }
+        if ($this->rental_type == PropertyRentalType::Monthly->value) {
+            $this->prices['min'] = $this->prices['min'] ?? $this->monthly_min;
+            $this->prices['max'] = $this->prices['max'] ?? $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
+        }
 
-            if ($this->prices['budget_type'] == BudgetType::Yearly->value) {
-                $this->prices['yearly']['min'] = $this->prices['yearly']['min'] ?? $this->yearly_min;
-                $this->prices['yearly']['max'] = $this->prices['yearly']['max'] ?? $this->yearly_max;
-            }
+        if ($this->rental_type == PropertyRentalType::Yearly->value) {
+            $this->prices['min'] = $this->prices['min'] ?? $this->yearly_min;
+            $this->prices['max'] = $this->prices['max'] ?? $this->yearly_max;
+            $this->price_min = $this->yearly_min;
+            $this->price_max = $this->yearly_max;
+        }
+
+        if ($this->rental_type == PropertyRentalType::Both->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
         }
     }
 
@@ -123,30 +129,36 @@ new class extends Component {
 
     public function changePropertyRentalType(?int $rentalType = null): void
     {
+        $this->reset(['prices']);
         $this->rental_type = $rentalType;
+
+        if ($rentalType == PropertyRentalType::Monthly->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
+        }
+
+        if ($rentalType == PropertyRentalType::Yearly->value) {
+            $this->prices['min'] = $this->yearly_min;
+            $this->prices['max'] = $this->yearly_max;
+            $this->price_min = $this->yearly_min;
+            $this->price_max = $this->yearly_max;
+        }
+
+        if ($rentalType == PropertyRentalType::Both->value) {
+            $this->prices['min'] = $this->monthly_min;
+            $this->prices['max'] = $this->monthly_max;
+            $this->price_min = $this->monthly_min;
+            $this->price_max = $this->monthly_max;
+        }
+
+        $this->dispatch('price-slider');
     }
 
     public function clearAllPrice(): void
     {
-        $this->reset(['prices']);
-    }
-
-    public function changeBudgetType(?int $value = null): void
-    {
-        $this->reset(['prices']);
-        $this->prices['budget_type'] = $value;
-
-        if ($value == BudgetType::Monthly->value) {
-            $this->prices['monthly']['min'] = $this->monthly_min;
-            $this->prices['monthly']['max'] = $this->monthly_max;
-        }
-
-        if ($value == BudgetType::Yearly->value) {
-            $this->prices['yearly']['min'] = $this->yearly_min;
-            $this->prices['yearly']['max'] = $this->yearly_max;
-        }
-
-        $this->dispatch('price-slider');
+        $this->reset(['rental_type', 'prices']);
     }
 };
 ?>
@@ -178,16 +190,16 @@ new class extends Component {
                 <x-search.rental-type :rental-type="$rental_type" />
             </div>
 
-            <div class="col-12">
-                {{-- prettier-ignore --}}
+            @if ($rental_type)
+                <div class="col-12">
+                    {{-- prettier-ignore --}}
                 <x-search.price
-                :prices="$prices"
-                :monthly-min="$monthly_min"
-                :monthly-max="$monthly_max"
-                :yearly-min="$yearly_min"
-                :yearly-max="$yearly_max"
-                />
-            </div>
+                    :prices="$prices"
+                    :price-min="$price_min"
+                    :price-max="$price_max"
+                    />
+                </div>
+            @endif
 
             <div class="col-12">
                 {{-- prettier-ignore --}}

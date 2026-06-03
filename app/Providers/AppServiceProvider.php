@@ -42,6 +42,10 @@ class AppServiceProvider extends ServiceProvider
             return $user->hasRole('Admin');
         });
 
+        Str::macro('thousand', function ($value) {
+            return number_format($value, 0, ',', '.');
+        });
+
         Str::macro('idr', function ($value) {
             return 'IDR. '.number_format($value, 0, ',', '.');
         });
