@@ -56,22 +56,24 @@ new #[Lazy] class extends Component {
             <div class="row row-cols-1 row-cols-sm-2 justify-content-end g-4">
                 @foreach ($properties as $property)
                     <div class="col" wire:key="property-{{ $property->id }}">
-                        <a draggable="false" class="position-relative d-block"
-                            href="{{ route('property.detail', ['slug' => $property['slug']]) }}" wire:navigate>
-                            <img draggable="false" loading="lazy" decoding="async"
-                                class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
-                                src="{{ $property->image->image_url ?? asset('images/placeholder.png') }}"
-                                alt="{{ trans('home.select_locations.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
-                                onerror="this.onerror=null; this.src='/images/placeholder.png';" />
+                        <div class="ratio ratio-16x9 overflow-hidden">
+                            <a draggable="false" href="{{ route('property.detail', ['slug' => $property['slug']]) }}"
+                                wire:navigate>
+                                <img draggable="false" loading="lazy" decoding="async"
+                                    class="img-fluid w-100 h-100 object-fit-cover rounded user-select-none pe-none"
+                                    src="{{ $property->image->image_url ?? asset('images/placeholder.png') }}"
+                                    alt="{{ trans('home.select_locations.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
+                                    onerror="this.onerror=null; this.src='/images/placeholder.png';" />
 
-                            @if ($property->area || $property->district)
-                                <div class="position-absolute top-0 start-0 w-100 p-3">
-                                    <span class="badge rounded-pill text-bg-success">
-                                        {{ $property->area?->name ?? $property->district?->name }}
-                                    </span>
-                                </div>
-                            @endif
-                        </a>
+                                @if ($property->area || $property->district)
+                                    <div class="position-absolute top-0 start-0 w-100 p-3">
+                                        <span class="badge rounded-pill text-bg-success">
+                                            {{ $property->area?->name ?? $property->district?->name }}
+                                        </span>
+                                    </div>
+                                @endif
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
