@@ -44,30 +44,8 @@
                 </div>
             </div>
 
-            <div class="row g-3">
-                <div class="col-4">
-                    <button type="button"
-                        class="btn btn-outline-success btn-sm w-100 rounded-pill {{ !isset($prices['budget_type']) ? 'active' : '' }}"
-                        wire:click="changeBudgetType" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
-                        {{ trans('index.all') }}
-                    </button>
-                </div>
-
-                @foreach (BudgetType::cases() as $budgetType)
-                    <div class="col-4">
-                        <button type="button"
-                            class="btn btn-outline-success btn-sm w-100 rounded-pill {{ isset($prices['budget_type']) && $budgetType->value == $prices['budget_type'] ? 'active' : '' }}"
-                            wire:click="changeBudgetType({{ $budgetType->value }})" wire:offline.class="disabled"
-                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
-                            {{ $budgetType->translate() }}
-                        </button>
-                    </div>
-                @endforeach
-            </div>
-
             @if (isset($prices['budget_type']) && $prices['budget_type'] == BudgetType::Monthly->value)
-                <div wire:ignore class="px-2 mt-4">
+                <div wire:ignore class="px-2">
                     <div id="monthly-slider"></div>
                 </div>
 
