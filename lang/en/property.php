@@ -147,5 +147,4 @@ return [
 
     'carpot' => 'Carpot',
     'floors' => 'Floors',
-    'eletricity' => 'Eletricity',
 ];
