@@ -34,7 +34,7 @@ class GuideEditForm extends Form
     #[Validate('nullable|string|min:1|max:65535')]
     public string $body_fr = '';
 
-    #[Validate(['required', 'array', 'min:1'])]
+    #[Validate(['nullable', 'array', 'min:0'])]
     public array $image = [];
 
     #[Validate('required|boolean')]

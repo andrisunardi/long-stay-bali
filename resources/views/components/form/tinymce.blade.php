@@ -4,7 +4,7 @@
 ])
 
 <div wire:ignore>
-    <textarea id="{{ $id }}" class="tinymcex">{{ $value }}</textarea>
+    <textarea id="{{ $id }}">{{ $value }}</textarea>
 </div>
 
 <script>
@@ -13,6 +13,7 @@
             selector: '#{{ $id }}',
             height: 500,
             plugins: [
+                'code',
                 'table',
                 'image',
                 'link',
@@ -20,9 +21,7 @@
                 'code',
                 'fullscreen'
             ],
-            toolbar: 'undo redo | styles | bold italic underline | ' +
-                'bullist numlist | link image table | ' +
-                'code fullscreen',
+            toolbar: 'undo redo | blocks | styles | bold italic underline | indent outdent | alignleft aligncenter alignright | bullist numlist | link image table | | code fullscreen',
             setup: function(editor) {
                 editor.on('change keyup', function() {
                     @this.set('form.{{ $id }}', editor.getContent());

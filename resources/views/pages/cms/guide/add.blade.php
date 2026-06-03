@@ -23,7 +23,6 @@ new #[Title('Add | Guide')] class extends Component {
 
     public function submit(): void
     {
-        dd($this->form->body);
         try {
             $this->form->submit();
 
@@ -72,7 +71,7 @@ new #[Title('Add | Guide')] class extends Component {
 
             <form wire:submit.prevent="submit" role="form" autocomplete="off">
                 <div class="row g-3">
-                    <div class="col-sm-6">
+                    <div class="col-12">
                         <label class="form-label" for="guide_category_id">
                             {{ trans('validation.attributes.guide_category_id') }}
                             <span class="text-danger">*</span>
@@ -103,7 +102,7 @@ new #[Title('Add | Guide')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-12">
                         <label class="form-label" for="title">
                             {{ trans('validation.attributes.title') }}
                             <span class="text-danger">*</span>
@@ -113,14 +112,14 @@ new #[Title('Add | Guide')] class extends Component {
                                 <span class="fas fa-newspaper fa-fw "></span>
                             </div>
                             <input type="text" class="form-control" id="title" name="title" minlength="1"
-                                maxlength="100" placeholder="{{ trans('index.ex') }}. Canggu" required
+                                maxlength="200" placeholder="{{ trans('index.ex') }}. Canggu" required
                                 wire:model="form.title" wire:offline.class="disabled" wire:offline.attr="disabled"
                                 wire:loading.class="disabled" wire:loading.attr="disabled">
                         </div>
                         <div class="form-text">
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
+                            {{ trans('helper.maxlength') }} : 200,
                             {{ trans('helper.unique') }}
                         </div>
                         @error('form.title')
@@ -128,7 +127,23 @@ new #[Title('Add | Guide')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-12">
+                        <label class="form-label" for="body">
+                            {{ trans('validation.attributes.body') }}
+                            <span class="text-danger">*</span>
+                        </label>
+                        <x-form.tinymce :id="'body'" :value="$form->body" />
+                        <div class="form-text">
+                            {{ trans('helper.required') }},
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 65.535,
+                        </div>
+                        @error('form.body')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12">
                         <label class="form-label" for="title_id">
                             {{ trans('validation.attributes.title_id') }}
                         </label>
@@ -151,7 +166,21 @@ new #[Title('Add | Guide')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-12">
+                        <label class="form-label" for="body_id">
+                            {{ trans('validation.attributes.body_id') }}
+                        </label>
+                        <x-form.tinymce :id="'body_id'" :value="$form->body_id" />
+                        <div class="form-text">
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 65.535,
+                        </div>
+                        @error('form.body_id')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12">
                         <label class="form-label" for="title_zh">
                             {{ trans('validation.attributes.title_zh') }}
                         </label>
@@ -174,7 +203,21 @@ new #[Title('Add | Guide')] class extends Component {
                         @enderror
                     </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-12">
+                        <label class="form-label" for="body_zh">
+                            {{ trans('validation.attributes.body_zh') }}
+                        </label>
+                        <x-form.tinymce :id="'body_zh'" :value="$form->body_zh" />
+                        <div class="form-text">
+                            {{ trans('helper.minlength') }} : 1,
+                            {{ trans('helper.maxlength') }} : 65.535,
+                        </div>
+                        @error('form.body_zh')
+                            <div class="form-text text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-12">
                         <label class="form-label" for="title_fr">
                             {{ trans('validation.attributes.title_fr') }}
                         </label>
@@ -198,54 +241,10 @@ new #[Title('Add | Guide')] class extends Component {
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label" for="body">
-                            {{ trans('validation.attributes.body') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <x-forms.tinymce-editor :id="'body'" :value="$form->body" />
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 65.535,
-                        </div>
-                        @error('form.body')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="body_id">
-                            {{ trans('validation.attributes.body_id') }}
-                        </label>
-                        <x-form.trix model="form.body_id" />
-                        <div class="form-text">
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 65.535,
-                        </div>
-                        @error('form.body_id')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="body_zh">
-                            {{ trans('validation.attributes.body_zh') }}
-                        </label>
-                        <x-form.trix model="form.body_zh" />
-                        <div class="form-text">
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 65.535,
-                        </div>
-                        @error('form.body_zh')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
                         <label class="form-label" for="body_fr">
                             {{ trans('validation.attributes.body_fr') }}
                         </label>
-                        <x-form.trix model="form.body_fr" />
+                        <x-form.tinymce :id="'body_fr'" :value="$form->body_fr" />
                         <div class="form-text">
                             {{ trans('helper.minlength') }} : 1,
                             {{ trans('helper.maxlength') }} : 65.535,

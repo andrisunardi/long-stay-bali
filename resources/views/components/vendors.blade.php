@@ -36,4 +36,6 @@
 
 @include('vendors.snowflakes')
 
+@include('vendors.tinymce')
+
 @include('vendors.trix')
