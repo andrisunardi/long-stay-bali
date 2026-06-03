@@ -150,11 +150,11 @@ new #[Lazy] class extends Component {
                                     alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.meta.title') }}"
                                     onerror="this.onerror=null; this.src='/images/placeholder.png';" />
 
-                                <div class="position-absolute top-0 start-0 w-100">
+                                {{-- <div class="position-absolute top-0 start-0 w-100">
                                     <span class="bg-sand px-2 rounded-top-start rounded-bottom-end">
                                         <small>{{ trans('property.inquiry_availability') }}</small>
                                     </span>
-                                </div>
+                                </div> --}}
                             </a>
                         </div>
 
