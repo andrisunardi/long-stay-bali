@@ -44,11 +44,11 @@ class GuideService
                         ->orWhereRelation('category', 'name_fr', 'like', "%{$search}%");
                 });
             })
-            ->when($guideCategoryId, fn($q) => $q->where('guide_category_id', $guideCategoryId))
-            ->when($isShow, fn($q) => $q->whereIn('is_show', $isShow))
-            ->when($isActive, fn($q) => $q->whereIn('is_active', $isActive))
-            ->when($random, fn($q) => $q->inRandomOrder())
-            ->when($trash, fn($q) => $q->onlyTrashed())
+            ->when($guideCategoryId, fn ($q) => $q->where('guide_category_id', $guideCategoryId))
+            ->when($isShow, fn ($q) => $q->whereIn('is_show', $isShow))
+            ->when($isActive, fn ($q) => $q->whereIn('is_active', $isActive))
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
             ->limit($limit);
 
@@ -175,7 +175,7 @@ class GuideService
         $directory = 'images/guide';
         $baseUrl = request()->getSchemeAndHttpHost();
 
-        $assetPath = config('constants.assets.path') . '/' . $directory;
+        $assetPath = config('constants.assets.path').'/'.$directory;
         $assetUrl = config('constants.assets.url');
 
         $fullUrl = "{$baseUrl}{$assetUrl}";
