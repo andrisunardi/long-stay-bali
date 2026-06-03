@@ -103,7 +103,7 @@
 
     <div class="row">
         <div class="col-4">
-            {{ trans('property.eletricity') }}
+            {{ trans('property.electricity') }}
         </div>
         <div class="col-8">
             {{ $property->electricity?->translate() }}
