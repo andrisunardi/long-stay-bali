@@ -4,16 +4,18 @@ use App\Enums\BudgetType;
 use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
+use App\Services\DistrictService;
 use Livewire\Attributes\Url;
 
 new class extends Component {
-    #[Url(except: null)]
-    public ?int $area_id = null;
+    #[Url(except: '')]
+    public string $area = '';
 
-    #[Url(except: null)]
-    public ?int $areaId = null;
+    #[Url(except: [])]
+    public array $districts = [];
 
-    public string $search_area = '';
+    #[Url(except: [])]
+    public array $areas = [];
 
     #[Url(except: null)]
     public ?string $start_date = null;
@@ -50,9 +52,11 @@ new class extends Component {
 
     public function mount(): void
     {
-        if ($this->areaId) {
-            $area = $this->areas()->firstWhere('id', $this->areaId);
-            $this->search_area = "{$area->name}, {$area->district?->name}";
+        if (isset($this->districts)) {
+            $districts = $this->districts()->whereIn('id', $this->districts);
+            $areaIds = $districts->pluck('areas')->flatten()->pluck('id')->unique()->values()->all();
+            $this->areas = $areaIds;
+            $this->area = $districts->pluck('name')->join(', ');
         }
 
         if (!$this->start_date) {
@@ -76,20 +80,39 @@ new class extends Component {
         }
     }
 
-    public function changeArea(int $value): void
+    public function updatedDistricts(array $values = []): void
     {
-        $this->reset(['search_area']);
-        $area = $this->areas()->firstWhere('id', $value);
-        $this->search_area = "{$area->name}, {$area->district?->name}";
-        $this->areaId = $area->id;
+        $districts = $this->districts()->whereIn('id', $values);
+        $this->area = $districts->pluck('name')->join(', ');
 
-        $this->dispatch('area-changed', id: $area->id, name: $this->search_area);
+        $areaIds = $districts->pluck('areas')->flatten()->pluck('id')->unique()->values()->all();
+        $this->areas = $areaIds;
     }
 
-    public function removeArea(): void
+    public function updatedAreas(array $values = []): void
     {
-        $this->reset(['areaId', 'search_area']);
-        $this->dispatch('area-changed', id: null, name: '');
+        $districtIds = $this->districts()
+            ->filter(function ($district) use ($values) {
+                return $district->areas->pluck('id')->intersect($values)->isNotEmpty();
+            })
+            ->pluck('id')
+            ->all();
+
+        $this->districts = $districtIds;
+    }
+
+    public function districts(): object
+    {
+        $service = new DistrictService();
+        $districts = $service->index(isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
+        $districts->loadMissing(['areas' => fn($q) => $q->show()->active()]);
+
+        return $districts;
+    }
+
+    public function clearAllArea(): void
+    {
+        $this->reset(['area', 'districts', 'areas']);
     }
 
     public function changeBedrooms(?int $value = null): void
@@ -175,10 +198,11 @@ new class extends Component {
         <div class="row g-4">
             <div class="col-lg-6 col-xl">
                 {{-- prettier-ignore --}}
-                <x-property.search.area
-                :area-id="$areaId"
-                :search-area="$search_area"
-                :areas="$this->areas()"
+                <x-search.area
+                :area="$area"
+                :districts="$districts"
+                :areas="$areas"
+                :list-districts="$this->districts()"
                 />
             </div>
 

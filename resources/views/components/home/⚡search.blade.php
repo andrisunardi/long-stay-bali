@@ -97,7 +97,7 @@ new class extends Component {
 
     public function clearAllArea(): void
     {
-        $this->reset(['districts', 'areas']);
+        $this->reset(['area', 'districts', 'areas']);
     }
 
     public function changeBedrooms(?int $value = null): void
