@@ -3,7 +3,7 @@
 return [
 
     'hero' => [
-        'title' => 'Vivez Mieux Restez Plus Longtemps',
+        'title' => 'Votre vie à Bali, en toute simplicité',
         'description' => 'Commencez votre expérience de vie mensuelle et annuelle avec nous',
     ],
 
