@@ -77,6 +77,10 @@
     <script src="https://link.msgsndr.com/js/external-tracking.js" data-tracking-id="tk_84ae764411934cd285ecfc500c5b1762">
     </script>
 
+    <script src="https://beta.leadconnectorhq.com/loader.js"
+        data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js"
+        data-widget-id="6a21e1b58cf84918be07acb8"></script>
+
     @stack('script')
 
     @livewireScripts
