@@ -10,11 +10,12 @@
                 const panzoom = Panzoom(img, {
                     maxScale: 5,
                     minScale: 1,
-                    contain: 'outside',
+                    contain: 'inside',
                     touchAction: 'pan-y pinch-zoom',
                     zoomSpeed: 0.1,
                     step: 0.1,
                     duration: 0,
+                    animate: false,
                 });
 
                 const parent = img.parentElement;
@@ -25,14 +26,14 @@
                     }
                     k
                 }, {
-                    passive: false
+                    passive: false,
                 });
 
                 img.addEventListener('dblclick', (e) => {
                     const scale = panzoom.getScale();
 
                     if (scale === 1) {
-                        panzoom.zoomToPoint(5, {
+                        panzoom.zoomToPoint(2, {
                             clientX: e.clientX,
                             clientY: e.clientY
                         });
