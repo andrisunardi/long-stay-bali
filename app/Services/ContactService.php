@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Libraries\GoHighLevel;
 use App\Models\Contact;
 use Exception;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -108,6 +109,8 @@ class ContactService
 
             $data['code'] = $contacts['contact']['id'];
 
+            Arr::pull($data, 'client_type');
+
             $contact = Contact::create($data);
 
             DB::commit();
@@ -117,8 +120,6 @@ class ContactService
             DB::rollBack();
             throw $e;
         }
-
-        return Contact::create($data);
     }
 
     public function update(Contact $contact, array $data = []): Contact
@@ -142,6 +143,10 @@ class ContactService
             $data['bedroom'] = $data['bedroom'] ?? null ?: null;
             $data['rental_type'] = $data['rental_type'] ?? null ?: null;
 
+            (new GoHighLevel)->updateContacts(id: $contact->code, data: $data);
+
+            Arr::pull($data, 'client_type');
+
             $contact->update($data);
             $contact->refresh();
 
@@ -152,8 +157,6 @@ class ContactService
             DB::rollBack();
             throw $e;
         }
-
-        return $contact;
     }
 
     public function delete(Contact $contact): bool
@@ -170,5 +173,23 @@ class ContactService
             DB::rollBack();
             throw $e;
         }
+    }
+
+    public function owner(Contact $contact): Contact
+    {
+        $data['client_type'] = 'Owner';
+
+        (new GoHighLevel)->updateContacts(id: $contact->code, data: $data);
+
+        return $contact;
+    }
+
+    public function ownerRepresentative(Contact $contact): Contact
+    {
+        $data['client_type'] = 'Owner Representative';
+
+        (new GoHighLevel)->updateContacts(id: $contact->code, data: $data);
+
+        return $contact;
     }
 }

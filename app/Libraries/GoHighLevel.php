@@ -64,16 +64,26 @@ class GoHighLevel
 
             $locationId = $data['location_id'] ?? config('constants.ghl.location_id');
 
-            $data = array_filter([
+            $customFields = [];
+
+            if (! empty($data['client_type'])) {
+                $customFields[] = [
+                    'id' => 'sO1TZ7T1kJeJo37YvMMO',
+                    'value' => $data['client_type'],
+                ];
+            }
+
+            $payload = array_filter([
                 'locationId' => $locationId,
                 'firstName' => $data['first_name'] ?? null,
                 'lastName' => $data['last_name'] ?? null,
                 'name' => $data['name'] ?? null,
                 'phone' => $data['phone'] ?? null,
                 'email' => $data['email'] ?? null,
-            ]);
+                'customFields' => ! empty($customFields) ? $customFields : null,
+            ], fn ($value) => $value !== null);
 
-            $response = Http::withHeaders($this->getHeader())->post($url, $data);
+            $response = Http::withHeaders($this->getHeader())->post($url, $payload);
             $result = $response->json();
 
             return $result;
@@ -89,16 +99,26 @@ class GoHighLevel
 
             $locationId = $data['location_id'] ?? config('constants.ghl.location_id');
 
-            $data = array_filter([
-                'locationId' => $locationId,
-                'firstName' => $data['first_name'],
-                'lastName' => $data['last_name'],
-                'name' => $data['name'],
-                'phone' => $data['phone'],
-                'email' => $data['email'],
-            ]);
+            $customFields = [];
 
-            $response = Http::withHeaders($this->getHeader())->put($url, $data);
+            if (! empty($data['client_type'])) {
+                $customFields[] = [
+                    'id' => 'sO1TZ7T1kJeJo37YvMMO',
+                    'value' => $data['client_type'],
+                ];
+            }
+
+            $payload = array_filter([
+                'locationId' => $locationId,
+                'firstName' => $data['first_name'] ?? null,
+                'lastName' => $data['last_name'] ?? null,
+                'name' => $data['name'] ?? null,
+                'phone' => $data['phone'] ?? null,
+                'email' => $data['email'] ?? null,
+                'customFields' => ! empty($customFields) ? $customFields : null,
+            ], fn ($value) => $value !== null);
+
+            $response = Http::withHeaders($this->getHeader())->put($url, $payload);
             $result = $response->json();
 
             return $result;

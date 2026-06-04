@@ -175,6 +175,14 @@ class PropertyService
                 $this->uploadImages(property: $property, images: $images);
             }
 
+            if ($data['owner_id']) {
+                (new ContactService)->owner(contact: $property->owner);
+            }
+
+            if ($data['owner_representative_id']) {
+                (new ContactService)->ownerRepresentative(contact: $property->ownerRepresentative);
+            }
+
             DB::commit();
 
             return $property->refresh();
@@ -246,6 +254,14 @@ class PropertyService
             $property->update($data);
 
             (new GoogleTranslate)->translateModel($property);
+
+            if ($data['owner_id']) {
+                (new ContactService)->owner(contact: $property->owner);
+            }
+
+            if ($data['owner_representative_id']) {
+                (new ContactService)->ownerRepresentative(contact: $property->ownerRepresentative);
+            }
 
             DB::commit();
 
