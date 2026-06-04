@@ -12,8 +12,9 @@
                     minScale: 1,
                     contain: 'outside',
                     touchAction: 'pan-y pinch-zoom',
-                    zoomSpeed: 1,
-                    step: 1,
+                    zoomSpeed: 0.1,
+                    step: 0.1,
+                    duration: 0,
                 });
 
                 const parent = img.parentElement;
@@ -22,6 +23,7 @@
                     if (e.ctrlKey) {
                         panzoom.zoomWithWheel(e);
                     }
+                    k
                 }, {
                     passive: false
                 });
