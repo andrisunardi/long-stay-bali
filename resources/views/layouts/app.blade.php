@@ -64,7 +64,7 @@
         @endif
     @endif
 
-    <x-section.whatsapp />
+    {{-- <x-section.whatsapp /> --}}
 
     @if (Route::is('cms.*'))
         <livewire:modal.search-menu />
