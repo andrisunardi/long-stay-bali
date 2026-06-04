@@ -5,13 +5,8 @@
     <script src="{{ asset('vendors/panzoom-4.6.0/js/panzoom.min.js') }}"></script>
 
     <script>
-        function initPanzoom() {
-            document.querySelectorAll('.zoom img').forEach(img => {
-                if (img.panzoomInstance) {
-                    img.parentElement.removeEventListener('wheel', img.panzoomWheelHandler);
-                    img.panzoomInstance.destroy();
-                }
-
+        document.addEventListener("livewire:navigated", () => {
+            document.querySelectorAll('.zoom img').forEach((img) => {
                 const panzoom = Panzoom(img, {
                     maxScale: 5,
                     minScale: 1,
@@ -19,14 +14,29 @@
                     touchAction: 'pan-y pinch-zoom',
                 });
 
-                const wheelHandler = panzoom.zoomWithWheel;
-                img.parentElement.addEventListener('wheel', wheelHandler);
+                const parent = img.parentElement;
 
-                img.panzoomInstance = panzoom;
-                img.panzoomWheelHandler = wheelHandler;
+                parent.addEventListener('wheel', (e) => {
+                    if (e.ctrlKey) {
+                        panzoom.zoomWithWheel(e);
+                    }
+                }, {
+                    passive: false
+                });
+
+                img.addEventListener('dblclick', (e) => {
+                    const scale = panzoom.getScale();
+
+                    if (scale === 1) {
+                        panzoom.zoomToPoint(2, {
+                            clientX: e.clientX,
+                            clientY: e.clientY
+                        });
+                    } else {
+                        panzoom.reset();
+                    }
+                });
             });
-        }
-
-        document.addEventListener("livewire:navigated", initPanzoom);
+        });
     </script>
 @endpush
