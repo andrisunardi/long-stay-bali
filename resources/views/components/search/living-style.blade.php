@@ -9,7 +9,7 @@
     </label>
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-            data-bs-toggle="dropdown">
+            data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-display="static">
             @if ($livingStyle)
                 {{ PropertyLivingStyle::from($livingStyle)->translate() }}
             @else
@@ -19,8 +19,12 @@
 
         <ul class="dropdown-menu w-100 mt-3">
             <li wire:key="living-style">
-                <button type="button" class="dropdown-item" wire:click="changeLivingStyle">
+                <button type="button" class="dropdown-item d-flex justify-content-between"
+                    wire:click="changeLivingStyle">
                     {{ trans('index.all') }}
+                    @if (!$livingStyle)
+                        <span class="fas fa-check fa-fw text-success"></span>
+                    @endif
                 </button>
             </li>
             @foreach (PropertyLivingStyle::cases() as $propertyLivingStyle)
@@ -28,6 +32,9 @@
                     <button type="button" class="dropdown-item d-flex justify-content-between"
                         wire:click="changeLivingStyle({{ $propertyLivingStyle->value }})">
                         {{ $propertyLivingStyle->translate() }}
+                        @if ($propertyLivingStyle->value == $livingStyle)
+                            <span class="fas fa-check fa-fw text-success"></span>
+                        @endif
                     </button>
                 </li>
             @endforeach

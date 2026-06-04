@@ -10,7 +10,7 @@
     <div class="input-group">
         <button type="button" id="bedroom-dropdown"
             class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-            data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-display="static">
             @if ($bedrooms)
                 {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
             @else
@@ -20,8 +20,11 @@
 
         <ul class="dropdown-menu w-100 mt-3">
             <li wire:key="bedroom">
-                <button type="button" class="dropdown-item" wire:click="changeBedrooms">
+                <button type="button" class="dropdown-item d-flex justify-content-between" wire:click="changeBedrooms">
                     {{ trans('index.all') }}
+                    @if (!$bedrooms)
+                        <span class="fas fa-check fa-fw text-success"></span>
+                    @endif
                 </button>
             </li>
             @foreach (PropertyBedroom::cases() as $propertyBedroom)

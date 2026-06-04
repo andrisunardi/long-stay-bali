@@ -12,7 +12,7 @@
     </label>
     <div class="input-group">
         <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
-            data-bs-toggle="dropdown" data-bs-auto-close="outside">
+            data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-display="static">
             @if ($area)
                 {{ $area }}
             @else
@@ -20,7 +20,7 @@
             @endif
         </button>
 
-        <div class="dropdown-menu w-100 my-2 p-3" wire:ignore.self>
+        <div class="dropdown-menu w-100 mt-3 p-3" wire:ignore.self>
             <div class="d-flex justify-content-between">
                 <div>
                     <h5>{{ trans('home.search.area_title') }}</h5>
