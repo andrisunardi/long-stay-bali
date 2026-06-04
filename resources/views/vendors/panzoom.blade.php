@@ -32,7 +32,7 @@
                     const scale = panzoom.getScale();
 
                     if (scale === 1) {
-                        panzoom.zoomToPoint(2, {
+                        panzoom.zoomToPoint(5, {
                             clientX: e.clientX,
                             clientY: e.clientY
                         });
