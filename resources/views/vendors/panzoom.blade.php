@@ -12,8 +12,8 @@
                     minScale: 1,
                     contain: 'outside',
                     touchAction: 'pan-y pinch-zoom',
-                    zoomSpeed: 0.065,
-                    step: 0.1,
+                    zoomSpeed: 1,
+                    step: 1,
                 });
 
                 const parent = img.parentElement;
