@@ -28,11 +28,15 @@ class GoogleTranslate
                 continue;
             }
 
+            $missingTranslation = collect($this->locales)
+                ->contains(fn ($locale) => blank($model->{"{$field}_{$locale}"}));
+
             if (
                 ! $force &&
                 method_exists($model, 'wasChanged') &&
                 ! $model->wasChanged($field) &&
-                ! $model->wasRecentlyCreated
+                ! $model->wasRecentlyCreated &&
+                ! $missingTranslation
             ) {
                 continue;
             }
