@@ -97,7 +97,7 @@ new #[Lazy] class extends Component {
                             </div>
                             <div class="card-footer bg-white border-0 py-3">
                                 <a draggable="false" class="btn btn-outline-success rounded-pill w-100"
-                                    href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from our services on {{ $service['name'] }}"
+                                    href="https://api.whatsapp.com/send/?phone={{ Str::slug(config('constants.contact.whatsapp'), '') }}&text=Hello, i know from your website solivingbali.com from our services on {{ $service['name'] }}"
                                     target="_blank">
                                     <span class="fab fa-whatsapp fa-fw"></span>
                                     {{ trans('service.our_services.request_a_service') }}

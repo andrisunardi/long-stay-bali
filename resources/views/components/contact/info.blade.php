@@ -12,7 +12,7 @@
     <div class="d-flex flex-column gap-3">
         <h4 class="lead fw-medium">{{ trans('contact.info.contact') }}</h4>
         <a draggable="false" class="text-body"
-            href="https://api.whatsapp.com/send/?phone={{ $whatsapp }}&text=Hello, i know from your website solivingbali.com"
+            href="https://api.whatsapp.com/send/?phone={{ Str::slug($whatsapp, '') }}&text=Hello, i know from your website solivingbali.com"
             target="_blank">
             <span class="fab fa-whatsapp fa-fw text-success"></span>
             {{ $whatsapp }}

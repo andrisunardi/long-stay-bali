@@ -25,7 +25,7 @@ new #[Title('Service')] class extends Component {};
     :image-url="asset('images/banner/service.png')"
     :button-name="trans('service.cta.button_name')"
     :button-link="'https://api.whatsapp.com/send/?phone=' .
-        config('constants.contact.whatsapp') .
+        Str::slug(config('constants.contact.whatsapp'), '') .
         '&text=Hello, i know from your website solivingbali.com from service page'"
     />
 </div>

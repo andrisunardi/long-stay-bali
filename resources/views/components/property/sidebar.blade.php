@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-6">
             <a draggable="false" class="btn btn-sm btn-success w-100 rounded-pill"
-                href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com from property page"
+                href="https://api.whatsapp.com/send/?phone={{ Str::slug(config('constants.contact.whatsapp'), '') }}&text=Hello, i know from your website solivingbali.com from property page"
                 target="_blank">
                 <i class="fab fa-whatsapp fa-fw"></i>
                 {{ trans('property.whatsapp') }}

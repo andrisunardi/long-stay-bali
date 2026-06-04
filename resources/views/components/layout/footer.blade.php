@@ -44,7 +44,7 @@
                         </div>
                         <div>
                             <a draggable="false" class="text-light"
-                                href="https://api.whatsapp.com/send/?phone={{ config('constants.contact.whatsapp') }}&text=Hello, i know from your website solivingbali.com"
+                                href="https://api.whatsapp.com/send/?phone={{ Str::slug(config('constants.contact.whatsapp'), '') }}&text=Hello, i know from your website solivingbali.com"
                                 target="_blank">
                                 <span class="fab fa-whatsapp fa-fw"></span>
                                 {{ config('constants.contact.whatsapp') }}
