@@ -11,7 +11,7 @@
                     maxScale: 5,
                     minScale: 1,
                     contain: 'outside',
-                    touchAction: '',
+                    touchAction: 'pan-y pinch-zoom',
                 });
 
                 img.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
