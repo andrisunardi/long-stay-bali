@@ -4,6 +4,7 @@ namespace App\Livewire\Forms\CMS\Area;
 
 use App\Models\Area;
 use App\Services\AreaService;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -12,7 +13,6 @@ class AreaAddForm extends Form
     #[Validate('required|integer|exists:districts,id')]
     public ?int $district_id = null;
 
-    #[Validate('required|string|min:1|max:50|unique:areas,name')]
     public string $name = '';
 
     #[Validate('required|boolean')]
@@ -23,6 +23,22 @@ class AreaAddForm extends Form
 
     #[Validate('required|boolean')]
     public bool $is_active = true;
+
+    public function rules(): array
+    {
+        return [
+            'name' => [
+                'required',
+                'string',
+                'min:1',
+                'max:50',
+                Rule::unique('areas', 'name')
+                    ->where(
+                        fn ($query) => $query->where('district_id', $this->district_id)
+                    ),
+            ],
+        ];
+    }
 
     public function submit(): Area
     {

@@ -120,8 +120,7 @@ new #[Title('Edit | Area')] class extends Component {
                         <div class="form-text">
                             {{ trans('helper.required') }},
                             {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 50,
-                            {{ trans('helper.unique') }}
+                            {{ trans('helper.maxlength') }} : 50
                         </div>
                         @error('form.name')
                             <div class="form-text text-danger">{{ $message }}</div>

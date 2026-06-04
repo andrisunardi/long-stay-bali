@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(District::class)->constrained()->cascadeOnDelete();
-            $table->string('name', 50)->unique();
+            $table->string('name', 50);
             $table->boolean('is_promoted')->unsigned()->default(true);
             $table->boolean('is_show')->unsigned()->default(true);
             $table->boolean('is_active')->unsigned()->default(true);

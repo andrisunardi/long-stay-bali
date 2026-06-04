@@ -4,6 +4,7 @@ namespace App\Livewire\Forms\CMS\Area;
 
 use App\Models\Area;
 use App\Services\AreaService;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
 
@@ -38,7 +39,17 @@ class AreaEditForm extends Form
     public function rules(): array
     {
         return [
-            'name' => "required|string|min:1|max:50|unique:areas,name,{$this->area->id}",
+            'name' => [
+                'required',
+                'string',
+                'min:1',
+                'max:50',
+                Rule::unique('areas', 'name')
+                    ->where(
+                        fn ($query) => $query->where('district_id', $this->district_id)
+                    )
+                    ->ignore($this->area->id),
+            ],
         ];
     }
 
