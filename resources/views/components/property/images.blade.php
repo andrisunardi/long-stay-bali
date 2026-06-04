@@ -30,7 +30,6 @@
                                     <div class="small">{{ trans('property.more_images') }}</div>
                                 </div>
                             @endif
-
                         </a>
                     @else
                         <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"

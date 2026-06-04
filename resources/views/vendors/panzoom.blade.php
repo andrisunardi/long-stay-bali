@@ -11,10 +11,10 @@
                     maxScale: 5,
                     minScale: 1,
                     contain: 'outside',
+                    touchAction: '',
                 });
 
                 img.parentElement.addEventListener('wheel', panzoom.zoomWithWheel);
-
             });
         });
     </script>
