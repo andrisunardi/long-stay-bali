@@ -10,7 +10,7 @@
                 const panzoom = Panzoom(img, {
                     maxScale: 5,
                     minScale: 1,
-                    contain: false,
+                    contain: 'inside',
                     touchAction: 'pan-y pinch-zoom',
                     zoomSpeed: 0.1,
                     step: 0.1,
