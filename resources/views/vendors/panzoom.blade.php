@@ -10,12 +10,11 @@
                 const panzoom = Panzoom(img, {
                     maxScale: 5,
                     minScale: 1,
-                    contain: 'inside',
+                    contain: 'outside',
                     touchAction: 'pan-y pinch-zoom',
                     zoomSpeed: 0.1,
                     step: 0.1,
-                    duration: 0,
-                    animate: false,
+                    duration: 1,
                 });
 
                 const parent = img.parentElement;
