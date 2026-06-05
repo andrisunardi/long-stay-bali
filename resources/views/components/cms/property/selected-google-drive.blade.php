@@ -59,6 +59,9 @@
                     </a>
                 </div>
 
+                <div class="text-center mt-2">{{ $file['name'] }}</div>
+                <div class="text-center">{{ $file['size'][0] }} x {{ $file['size'][1] }}</div>
+
                 <x-cms.modal.image-google-drive :id="$key" :image="'https://lh3.googleusercontent.com/d/' . $file['id']" />
             </div>
         @else
@@ -110,6 +113,9 @@
                         </span>
                     </a>
                 </div>
+
+                <div class="text-center mt-2">{{ $row['name'] }}</div>
+                <div class="text-center">{{ $row['size'][0] }} x {{ $row['size'][1] }}</div>
 
                 <x-cms.modal.image-google-drive :id="$key" :image="$row['thumbnail']" />
             </div>

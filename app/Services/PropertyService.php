@@ -244,9 +244,7 @@ class PropertyService
             //     }
             // }
 
-            if (! empty($data['images'])) {
-                $this->uploadImages(property: $property, images: $data['images']);
-            }
+            $this->uploadImages(property: $property, images: $data['images']);
 
             Arr::pull($data, 'images');
             Arr::pull($data, 'internet_speedtest_image');
@@ -317,6 +315,7 @@ class PropertyService
                 ));
             }
 
+            $propertyImage->update(['position' => null]);
             $propertyImage->delete();
         }
 

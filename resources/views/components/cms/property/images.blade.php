@@ -27,7 +27,7 @@ new #[Lazy] class extends Component {
                             'name' => $propertyImage->name,
                             'type' => 'url',
                             'thumbnail' => $propertyImage->image_url,
-                            'size' => '',
+                            'size' => getimagesize($propertyImage->image_url),
                         ],
                     )
                     ->values()
