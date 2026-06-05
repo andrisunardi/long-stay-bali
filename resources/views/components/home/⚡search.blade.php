@@ -193,7 +193,8 @@ new class extends Component {
             @if ($rental_type)
                 <div class="col-12">
                     {{-- prettier-ignore --}}
-                <x-search.price
+                    <x-search.price
+                    :rental-type="$rental_type"
                     :prices="$prices"
                     :price-min="$price_min"
                     :price-max="$price_max"

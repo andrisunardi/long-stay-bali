@@ -41,8 +41,10 @@ class ContactService
                         ->orWhere('email', 'like', "%{$search}%")
                         ->orWhere('phone', 'like', "%{$search}%")
                         ->orWhere('message', 'like', "%{$search}%")
-                        ->orWhereRelation('area.district', 'name', 'like', "%{$search}%")
-                        ->orWhereRelation('district', 'name', 'like', "%{$search}%");
+                        ->orWhereRelation('owners', 'code', 'like', "%{$search}%")
+                        ->orWhereRelation('owners', 'name', 'like', "%{$search}%")
+                        ->orWhereRelation('ownerRepresentatives', 'code', 'like', "%{$search}%")
+                        ->orWhereRelation('ownerRepresentatives', 'name', 'like', "%{$search}%");
                 });
             })
             ->when($districtId, fn ($q) => $q->whereRelation('area', 'district_id', $districtId))

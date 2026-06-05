@@ -31,6 +31,10 @@ new #[Title('Edit | Property')] class extends Component {
 
     public int $tab = PropertyTab::PropertyIndentity->value;
 
+    public ?string $search_owner = '';
+
+    public ?string $search_owner_representative = '';
+
     public ?string $owner_name = '';
 
     public ?string $owner_phone = '';
@@ -60,6 +64,32 @@ new #[Title('Edit | Property')] class extends Component {
     public function changeTab(int $tab): void
     {
         $this->tab = $tab;
+    }
+
+    public function selectOwner(int $id)
+    {
+        $contact = Contact::find($id);
+
+        if ($contact) {
+            $this->form->owner_id = $id;
+            $this->owner_name = $contact->name;
+            $this->owner_phone = $contact->phone;
+            $this->owner_email = $contact->email;
+            $this->reset(['search_owner']);
+        }
+    }
+
+    public function selectOwnerRepresentative(int $id)
+    {
+        $contact = Contact::find($id);
+
+        if ($contact) {
+            $this->form->owner_representative_id = $id;
+            $this->owner_representative_name = $contact->name;
+            $this->owner_representative_phone = $contact->phone;
+            $this->owner_representative_email = $contact->email;
+            $this->reset(['search_owner_representative']);
+        }
     }
 
     public function updatedFormOwnerId(): void
@@ -179,10 +209,30 @@ new #[Title('Edit | Property')] class extends Component {
         return $service->index(districtId: $this->form->district_id, isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
     }
 
-    public function contacts(): object
+    public function owners(): object
     {
+        if (!$this->search_owner) {
+            return collect();
+        }
+
         $service = new ContactService();
-        return $service->index(orderBy: 'name', sortBy: 'asc', paginate: false);
+        $owners = $service->index(search: $this->search_owner, orderBy: 'name', sortBy: 'asc', paginate: false);
+        $owners->loadMissing(['owners', 'ownerRepresentatives']);
+
+        return $owners;
+    }
+
+    public function ownerRepresentatives(): object
+    {
+        if (!$this->search_owner_representative) {
+            return collect();
+        }
+
+        $service = new ContactService();
+        $owners = $service->index(search: $this->search_owner_representative, orderBy: 'name', sortBy: 'asc', paginate: false);
+        $owners->loadMissing(['owners', 'ownerRepresentatives']);
+
+        return $owners;
     }
 
     public function propertyBedrooms(): array
