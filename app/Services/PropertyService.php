@@ -102,6 +102,19 @@ class PropertyService
                     (string) $prices['max'],
                 ])
             )
+            ->when(
+                $rentalType == PropertyRentalType::Both->value &&
+                    isset($prices['min']) && isset($prices['max']),
+                fn ($q) => $q->where(function ($query) use ($prices) {
+                    $query->whereBetween('monthly_price', [
+                        $prices['min'],
+                        $prices['max'],
+                    ])->orWhereBetween('yearly_price', [
+                        $prices['min'] * 12,
+                        $prices['max'] * 12,
+                    ]);
+                })
+            )
             ->when($random, fn ($q) => $q->inRandomOrder())
             ->when($trash, fn ($q) => $q->onlyTrashed())
             ->orderBy($orderBy, $sortBy)
