@@ -60,7 +60,8 @@
                 </div>
 
                 <div class="text-center mt-2">{{ $file['name'] }}</div>
-                <div class="text-center">{{ $file['size'][0] }} x {{ $file['size'][1] }}</div>
+                <div class="text-center">{{ $file['resolution'][0] ?? 0 }} x {{ $file['resolution'][1] ?? 0 }}</div>
+                <div class="text-center">{{ Str::filesize($row['size']) }}</div>
 
                 <x-cms.modal.image-google-drive :id="$key" :image="'https://lh3.googleusercontent.com/d/' . $file['id']" />
             </div>
@@ -115,7 +116,12 @@
                 </div>
 
                 <div class="text-center mt-2">{{ $row['name'] }}</div>
-                <div class="text-center">{{ $row['size'][0] }} x {{ $row['size'][1] }}</div>
+                <div class="text-center">
+                    {{ $row['resolution']['width'] ?? 0 }} x {{ $row['resolution']['height'] ?? 0 }}
+                </div>
+                <div class="text-center">
+                    {{ $row['mime'] }} - {{ Str::filesize($row['size']) }}
+                </div>
 
                 <x-cms.modal.image-google-drive :id="$key" :image="$row['thumbnail']" />
             </div>

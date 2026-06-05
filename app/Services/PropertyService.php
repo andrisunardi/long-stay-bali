@@ -8,6 +8,7 @@ use App\Libraries\GoogleDrive;
 use App\Libraries\GoogleMapsUrlParser;
 use App\Libraries\GoogleTranslate;
 use App\Models\Property;
+use App\Models\PropertyImage;
 use Exception;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -356,7 +357,9 @@ class PropertyService
                     $constraint->upsize();
                 });
 
-                $fileName = "{$property->slug}-{$position}.webp";
+                $id = PropertyImage::max('id') + 1;
+
+                $fileName = "{$property->slug}-{$id}-{$position}.webp";
                 $fullPath = "{$assetPath}/{$fileName}";
 
                 $encoded = (string) $image->encode('webp', 70);
