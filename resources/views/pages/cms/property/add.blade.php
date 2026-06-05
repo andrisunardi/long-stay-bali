@@ -92,8 +92,8 @@ new #[Title('Add | Property')] class extends Component {
 
         $data = [];
         $data['name'] = $form['owner_name'];
-        $data['phone'] = $form['owner_phone'];
-        $data['email'] = $form['owner_email'];
+        $data['phone'] = $form['owner_phone'] ?: null;
+        $data['email'] = $form['owner_email'] ?: null;
         $data['client_type'] = 'Owner';
 
         $service = new ContactService();
@@ -114,8 +114,8 @@ new #[Title('Add | Property')] class extends Component {
 
         $data = [];
         $data['name'] = $form['owner_representative_name'];
-        $data['phone'] = $form['owner_representative_phone'];
-        $data['email'] = $form['owner_representative_email'];
+        $data['phone'] = $form['owner_representative_phone'] ?: null;
+        $data['email'] = $form['owner_representative_email'] ?: null;
         $data['client_type'] = 'Owner Representative';
 
         $service = new ContactService();
