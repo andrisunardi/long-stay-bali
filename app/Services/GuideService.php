@@ -185,10 +185,10 @@ class GuideService
         try {
             $image = Image::make($content);
 
-            $image->resize(1200, null, function ($constraint) {
-                $constraint->aspectRatio();
-                $constraint->upsize();
-            });
+            // $image->resize(1200, null, function ($constraint) {
+            //     $constraint->aspectRatio();
+            //     $constraint->upsize();
+            // });
 
             $fileName = "{$guide->slug}.webp";
             $fullPath = "{$assetPath}/{$fileName}";

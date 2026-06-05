@@ -19,10 +19,10 @@ class TinymceController extends Controller
 
         $image = Image::make($request->file('file'));
 
-        $image->resize(1200, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
+        // $image->resize(1200, null, function ($constraint) {
+        //     $constraint->aspectRatio();
+        //     $constraint->upsize();
+        // });
 
         $fileName = 'tinymce-'.now()->format('Y-m-d-H-i-s').'.webp';
         $fullPath = "{$assetPath}/{$fileName}";

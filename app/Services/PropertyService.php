@@ -352,10 +352,10 @@ class PropertyService
 
                 $image = Image::make($content);
 
-                $image->resize(1200, null, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
+                // $image->resize(1200, null, function ($constraint) {
+                //     $constraint->aspectRatio();
+                //     $constraint->upsize();
+                // });
 
                 $id = PropertyImage::max('id') + 1;
 
