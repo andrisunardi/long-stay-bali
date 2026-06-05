@@ -76,7 +76,7 @@
                     mDec: "0"
                 });
 
-                $min.off("input change").on("input change", function() {
+                $min.off("input keyup").on("input keyup", function() {
                     const raw = $(this).val().replace(/\./g, '');
                     @this.set('prices.min', parseInt(raw || 0));
                 });
@@ -93,7 +93,7 @@
                     mDec: "0"
                 });
 
-                $max.off("input change").on("input change", function() {
+                $max.off("input keyup").on("input keyup", function() {
                     const raw = $(this).val().replace(/\./g, '');
                     @this.set('prices.max', parseInt(raw || 0));
                 });
