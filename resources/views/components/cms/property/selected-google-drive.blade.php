@@ -120,7 +120,7 @@
                     {{ $row['resolution']['width'] ?? 0 }} x {{ $row['resolution']['height'] ?? 0 }}
                 </div>
                 <div class="text-center">
-                    {{ $row['mime'] }} - {{ Str::filesize($row['size']) }}
+                    {{ $row['mime'] ?? "-" }} - {{ Str::filesize($row['size']) }}
                 </div>
 
                 <x-cms.modal.image-google-drive :id="$key" :image="$row['thumbnail']" />

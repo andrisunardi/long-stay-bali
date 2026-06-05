@@ -11,12 +11,12 @@
                 </span>
             </div>
             <div>
-                <h1>
-                    <a draggable="false" class="text-body" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
-                        wire:navigate>
+                <a draggable="false" class="text-body" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}"
+                    wire:navigate>
+                    <h1>
                         {{ $guide->translate_title }}
-                    </a>
-                </h1>
+                    </h1>
+                </a>
             </div>
             <div>
                 <a draggable="false" href="{{ route('guide.detail', ['slug' => $guide->slug]) }}" wire:navigate>
