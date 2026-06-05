@@ -10,7 +10,7 @@
         @endphp
 
         @if ($file)
-            <div class="col" wire:key="image-{{ $key }}">
+            <div class="col" wire:key="image-{{ $file['id'] }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $key }}">
@@ -65,7 +65,7 @@
                 <x-cms.modal.image-google-drive :id="$key" :image="'https://lh3.googleusercontent.com/d/' . $file['id']" />
             </div>
         @else
-            <div class="col" wire:key="image-{{ $key }}">
+            <div class="col" wire:key="image-{{ $row['id'] }}">
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $key }}">
