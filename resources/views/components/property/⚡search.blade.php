@@ -8,7 +8,6 @@ use App\Services\DistrictService;
 use Livewire\Attributes\Url;
 
 new class extends Component {
-    #[Url(except: '')]
     public string $area = '';
 
     #[Url(except: [])]
@@ -52,11 +51,12 @@ new class extends Component {
 
     public function mount(): void
     {
-        if (isset($this->districts)) {
-            $districts = $this->districts()->whereIn('id', $this->districts);
-            $areaIds = $districts->pluck('areas')->flatten()->pluck('id')->unique()->values()->all();
-            $this->areas = $areaIds;
-            $this->area = $districts->pluck('name')->join(', ');
+        if ($this->districts || $this->areas) {
+            $selectedDistricts = $this->districts()->whereIn('id', $this->districts);
+
+            $selectedAreas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $this->areas);
+
+            $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
         }
 
         if (!$this->start_date) {
@@ -91,23 +91,35 @@ new class extends Component {
 
     public function updatedDistricts(array $values = []): void
     {
-        $districts = $this->districts()->whereIn('id', $values);
-        $this->area = $districts->pluck('name')->join(', ');
+        $this->dispatch('keep-area-dropdown-open');
 
-        $areaIds = $districts->pluck('areas')->flatten()->pluck('id')->unique()->values()->all();
-        $this->areas = $areaIds;
+        $selectedAreas = collect();
+
+        $districts = $this->districts()->whereIn('id', $values);
+
+        foreach ($districts as $district) {
+            $selectedAreas = $selectedAreas->merge($district->areas->pluck('id'));
+        }
+
+        $this->areas = $selectedAreas->unique()->values()->all();
+
+        $this->area = collect()->merge($districts->pluck('name'))->join(', ');
     }
 
     public function updatedAreas(array $values = []): void
     {
-        $districtIds = $this->districts()
-            ->filter(function ($district) use ($values) {
-                return $district->areas->pluck('id')->intersect($values)->isNotEmpty();
-            })
-            ->pluck('id')
-            ->all();
+        $this->dispatch('keep-area-dropdown-open');
 
-        $this->districts = $districtIds;
+        $areas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $values);
+
+        $this->area = $areas->pluck('name')->join(', ');
+    }
+
+    public function clearAllArea(): void
+    {
+        $this->dispatch('keep-area-dropdown-open');
+
+        $this->reset(['area', 'districts', 'areas']);
     }
 
     public function districts(): object
@@ -138,15 +150,6 @@ new class extends Component {
     {
         $this->living_style = $livingStyle;
         $this->dispatch('living-style-changed', livingStyle: $this->living_style);
-    }
-
-    public function areas(): object
-    {
-        $service = new AreaService();
-        $areas = $service->index(search: $this->search_area, isShow: [true], isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
-        $areas->loadMissing(['district']);
-
-        return $areas;
     }
 
     public function changePropertyRentalType(?int $rentalType = null): void

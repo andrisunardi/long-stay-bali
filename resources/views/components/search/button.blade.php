@@ -16,5 +16,5 @@
     ]) }}"
     class="btn btn-success w-100 rounded-5" wire:navigate>
     <span class="fas fa-search fa-fw"></span>
-    {{ trans('search.button') }}
+    {{ trans('home.search.button') }}
 </a>
