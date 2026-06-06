@@ -156,6 +156,11 @@ new class extends Component {
         $this->dispatch('price-slider');
     }
 
+    public function updatedPrices()
+    {
+        $this->dispatch('keep-price-dropdown-open');
+    }
+
     public function clearAllPrice(): void
     {
         $this->reset(['rental_type', 'prices']);

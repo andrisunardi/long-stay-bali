@@ -10,14 +10,15 @@
         {{ trans('home.search.price') }}
     </label>
     <div class="input-group">
-        <button type="button" class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
+        <button type="button" id="price-dropdown"
+            class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-display="static">
             {{ isset($prices['min']) ? Str::thousand($prices['min']) : 0 }}
             -
             {{ isset($prices['max']) ? Str::thousand($prices['max']) : 0 }}
         </button>
 
-        <div class="dropdown-menu w-100 mt-3 p-3" wire:ignore.self>
+        <div class="dropdown-menu w-100 mt-3 p-3">
             <div class="d-flex justify-content-between">
                 <div>
                     <h5>{{ trans('home.search.price_title') }}</h5>
@@ -61,6 +62,15 @@
 
 @script
     <script>
+        function keepPriceDropdownOpen() {
+            Livewire.on('keep-price-dropdown-open', () => {
+                const button = document.getElementById('price-dropdown');
+                bootstrap.Dropdown
+                    .getOrCreateInstance(button)
+                    .show();
+            });
+        }
+
         function autoNumericInit() {
             const $min = $("#price_min");
             const $max = $("#price_max");
@@ -128,6 +138,7 @@
 
                     $wire.set('prices.min', min);
                     $wire.set('prices.max', max);
+                    $wire.dispatch('keep-price-dropdown-open');
 
                     const priceMin = $("#price_min");
                     if (priceMin.length && priceMin.data('autoNumeric')) {
@@ -142,11 +153,13 @@
             }
         }
 
+        keepPriceDropdownOpen();
         autoNumericInit();
         priceSlider();
 
         document.addEventListener('livewire:navigated', () => {
             queueMicrotask(() => {
+                keepPriceDropdownOpen();
                 autoNumericInit();
                 priceSlider();
             });
@@ -154,6 +167,7 @@
 
         window.addEventListener('price-slider', () => {
             queueMicrotask(() => {
+                keepPriceDropdownOpen();
                 autoNumericInit();
                 priceSlider();
             });
