@@ -209,7 +209,7 @@ new class extends Component {
 
             <div class="col-12">
                 {{-- prettier-ignore --}}
-                <x-home.search.button
+                <x-search.button
                 :districts="$districts"
                 :areas="$areas"
                 :bedrooms="$bedrooms"

@@ -291,7 +291,7 @@ new class extends Component {
             <div class="col-sm-6 col-lg-4">
                 <label class="form-label">&nbsp;</label>
                 {{-- prettier-ignore --}}
-                <x-home.search.button
+                <x-search.button
                 :districts="$districts"
                 :areas="$areas"
                 :bedrooms="$bedrooms"
@@ -351,7 +351,7 @@ new class extends Component {
                 </div>
                 <div class="modal-footer">
                     {{-- prettier-ignore --}}
-                    <x-home.search.button
+                    <x-search.button
                     :districts="$districts"
                     :areas="$areas"
                     :bedrooms="$bedrooms"
