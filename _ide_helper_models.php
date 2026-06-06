@@ -247,9 +247,9 @@ namespace App\Models{
  * @property string $body_fr
  * @method static Builder<static>|Guide whereBodyFr($value)
  * @method static Builder<static>|Guide whereTitleFr($value)
- * @mixin \Eloquent
  * @property int $counter
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereCounter($value)
+ * @method static Builder<static>|Guide whereCounter($value)
+ * @mixin \Eloquent
  */
 	class Guide extends \Eloquent {}
 }
@@ -577,9 +577,9 @@ namespace App\Models{
  * @property-read Contact|null $ownerRepresentative
  * @method static Builder<static>|Property whereOwnerId($value)
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
- * @mixin \Eloquent
  * @property int $counter
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCounter($value)
+ * @method static Builder<static>|Property whereCounter($value)
+ * @mixin \Eloquent
  */
 	class Property extends \Eloquent {}
 }

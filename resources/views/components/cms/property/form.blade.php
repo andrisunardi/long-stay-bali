@@ -54,5 +54,5 @@
 @endif
 
 @if ($tab == PropertyTab::Images->value)
-    <livewire:cms.property.images :property="$property" :selected="$form->images ?? []" />
+    <livewire:cms.property.images :property="$property" :form="$form" :selected="$form->images ?? []" />
 @endif

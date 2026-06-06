@@ -14,7 +14,7 @@
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $key }}">
-                        <div class="ratio ratio-1x1">
+                        <div class="ratio ratio-16x9">
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $file['thumbnail'] }}"
                                 alt="Google Drive - {{ $file['id'] }}">
@@ -70,7 +70,7 @@
                 <div class="position-relative">
                     <a draggable="false" role="button" data-bs-toggle="modal"
                         data-bs-target="#modal-image-{{ $key }}">
-                        <div class="ratio ratio-1x1">
+                        <div class="ratio ratio-16x9">
                             <img draggable="false" loading="lazy" decoding="async"
                                 class="img-fluid w-100 h-100 object-fit-cover rounded" src="{{ $row['thumbnail'] }}"
                                 alt="Google Drive - {{ $row['id'] }}">

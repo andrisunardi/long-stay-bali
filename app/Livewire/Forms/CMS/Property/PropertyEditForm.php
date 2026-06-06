@@ -379,6 +379,27 @@ class PropertyEditForm extends Form
         $this->owner_representative_id = $property->ownerRepresentative?->id;
 
         $this->status = $property->status?->value;
+
+        $this->images = $property->images ? $property->images->sortBy('position')
+            ->map(function ($propertyImage) {
+                $headers = array_change_key_case(get_headers($propertyImage->image_url, true), CASE_LOWER);
+                $getimagesize = getimagesize($propertyImage->image_url);
+
+                return [
+                    'id' => $propertyImage->google_file_id ?: $propertyImage->id,
+                    'name' => $propertyImage->name,
+                    'type' => 'url',
+                    'thumbnail' => $propertyImage->image_url,
+                    'size' => $headers['content-length'] ?? 0,
+                    'resolution' => [
+                        'width' => $getimagesize[0] ?? null,
+                        'height' => $getimagesize[1] ?? null,
+                    ],
+                    'mime' => $getimagesize['mime'] ?? null,
+                ];
+            })
+            ->values()
+            ->toArray() : [];
     }
 
     public function rules(): array
