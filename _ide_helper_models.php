@@ -248,6 +248,8 @@ namespace App\Models{
  * @method static Builder<static>|Guide whereBodyFr($value)
  * @method static Builder<static>|Guide whereTitleFr($value)
  * @mixin \Eloquent
+ * @property int $counter
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Guide whereCounter($value)
  */
 	class Guide extends \Eloquent {}
 }
@@ -576,6 +578,8 @@ namespace App\Models{
  * @method static Builder<static>|Property whereOwnerId($value)
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  * @mixin \Eloquent
+ * @property int $counter
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCounter($value)
  */
 	class Property extends \Eloquent {}
 }

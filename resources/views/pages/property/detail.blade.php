@@ -32,6 +32,8 @@ new #[Title('Property Detail')] class extends Component {
             ->only(['housekeeper', 'gardener', 'pool_guy', 'internet', 'garbage', 'banjar', 'security', 'electricity', 'others'])
             ->filter()
             ->isNotEmpty();
+
+        $service->counter(property: $this->property);
     }
 };
 ?>

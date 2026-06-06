@@ -18,6 +18,8 @@ new #[Title('Guide')] class extends Component {
         }
 
         $this->guide->loadMissing(['category']);
+
+        $service->counter(guide: $this->guide);
     }
 };
 ?>

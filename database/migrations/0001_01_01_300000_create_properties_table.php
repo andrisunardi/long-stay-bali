@@ -105,6 +105,7 @@ return new class extends Migration
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);
             $table->string('slug', 50)->unique();
             $table->string('folder_id', 50)->unique()->nullable();
+            $table->unsignedInteger('counter')->default(0);
 
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained('users')->nullOnDelete();

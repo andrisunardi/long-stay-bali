@@ -90,6 +90,7 @@ return [
     'username' => 'Username',
     'is_promoted' => 'Promoted',
 
+    'counter' => 'Counter',
     'index' => 'Index',
     'index' => 'Index',
 

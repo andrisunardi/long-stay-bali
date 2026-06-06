@@ -264,6 +264,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOwnerId($value)
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  *
+ * @property int $counter
+ *
+ * @method static Builder<static>|Property whereCounter($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -365,6 +369,7 @@ class Property extends Model
         'status',
         'slug',
         'folder_id',
+        'counter',
     ];
 
     protected $hidden = [];
@@ -461,6 +466,7 @@ class Property extends Model
             'status' => PropertyStatus::class,
             'slug' => 'string',
             'folder_id' => 'string',
+            'counter' => 'integer',
         ];
     }
 

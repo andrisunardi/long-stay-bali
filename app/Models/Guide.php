@@ -82,6 +82,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Guide whereBodyFr($value)
  * @method static Builder<static>|Guide whereTitleFr($value)
  *
+ * @property int $counter
+ *
+ * @method static Builder<static>|Guide whereCounter($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([GuideObserver::class])]
@@ -108,6 +112,7 @@ class Guide extends Model
         'is_show',
         'is_active',
         'slug',
+        'counter',
     ];
 
     protected $hidden = [];
@@ -129,6 +134,7 @@ class Guide extends Model
             'is_show' => 'boolean',
             'is_active' => 'boolean',
             'slug' => 'string',
+            'counter' => 'integer',
         ];
     }
 

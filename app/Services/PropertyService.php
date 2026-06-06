@@ -445,4 +445,9 @@ class PropertyService
 
         return $property;
     }
+
+    public function counter(Property $property): int
+    {
+        return $property->increment('counter');
+    }
 }

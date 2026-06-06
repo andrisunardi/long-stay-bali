@@ -30,6 +30,7 @@ class GuideFactory extends Factory
             'is_show' => fake()->boolean(),
             'is_active' => fake()->boolean(),
             'slug' => $slug,
+            'counter' => fake()->numberBetween(0, 1000000000),
         ];
     }
 

@@ -26,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_show')->unsigned()->default(true);
             $table->boolean('is_active')->unsigned()->default(true);
             $table->string('slug', 100)->unique();
+            $table->unsignedInteger('counter')->default(0);
             $table->foreignIdFor(User::class, 'created_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignIdFor(User::class, 'updated_by')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignIdFor(User::class, 'deleted_by')->nullable()->constrained('users')->nullOnDelete();

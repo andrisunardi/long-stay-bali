@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="19">
+            <th align="center" colspan="20">
                 <b>{{ trans('page.property') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="19"></td>
+            <td colspan="20"></td>
         </tr>
         <tr>
-            <th align="center" colspan="19">
+            <th align="center" colspan="20">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="19"></td>
+            <td colspan="20"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -70,6 +70,9 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.owner_representative') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.counter') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.created_at') }}</b>
@@ -136,6 +139,9 @@
                 <td valign="middle">
                     {{ $property->ownerRepresentative?->name }}
                 </td>
+                <td valign="middle" align="center">
+                    {{ $property->counter }}
+                </td>
                 <td valign="middle">
                     {{ $property->created_at }}
                 </td>
@@ -145,7 +151,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="19">
+                <td align="center" colspan="20">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -153,7 +159,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="19"></td>
+            <td colspan="20"></td>
         </tr>
     </tfoot>
 </table>

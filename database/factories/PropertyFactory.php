@@ -123,6 +123,7 @@ class PropertyFactory extends Factory
             'status' => fake()->randomElement(PropertyStatus::cases()),
             'slug' => $slug,
             'folder_id' => null,
+            'counter' => fake()->numberBetween(0, 1000000000),
         ];
     }
 }

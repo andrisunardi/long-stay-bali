@@ -206,4 +206,9 @@ class GuideService
             throw $e;
         }
     }
+
+    public function counter(Guide $guide): int
+    {
+        return $guide->increment('counter');
+    }
 }

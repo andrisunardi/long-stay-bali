@@ -1,20 +1,20 @@
 <table>
     <thead>
         <tr>
-            <th align="center" colspan="15">
+            <th align="center" colspan="6">
                 <b>{{ trans('page.guide') }}</b>
             </th>
         </tr>
         <tr>
-            <td colspan="15"></td>
+            <td colspan="6"></td>
         </tr>
         <tr>
-            <th align="center" colspan="15">
+            <th align="center" colspan="6">
                 {{ trans('field.printed_at') }} : {{ now()->isoFormat('LLLL') }}
             </th>
         </tr>
         <tr>
-            <td colspan="15"></td>
+            <td colspan="6"></td>
         </tr>
         <tr>
             <th valign="middle" align="center">
@@ -49,6 +49,9 @@
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.slug') }}</b>
+            </th>
+            <th valign="middle" align="center">
+                <b>{{ trans('field.counter') }}</b>
             </th>
             <th valign="middle" align="center">
                 <b>{{ trans('field.created_by') }}</b>
@@ -100,6 +103,9 @@
                 <td valign="middle" align="left">
                     {{ $guide->slug }}
                 </td>
+                <td valign="middle" align="center">
+                    {{ $guide->counter }}
+                </td>
                 <td valign="middle" align="left">
                     {{ $guide->createdBy?->name }}
                 </td>
@@ -115,7 +121,7 @@
             </tr>
         @empty
             <tr>
-                <td align="center" colspan="15">
+                <td align="center" colspan="6">
                     {{ trans('message.no_data_available') }}
                 </td>
             </tr>
@@ -123,7 +129,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <td colspan="15"></td>
+            <td colspan="6"></td>
         </tr>
     </tfoot>
 </table>
