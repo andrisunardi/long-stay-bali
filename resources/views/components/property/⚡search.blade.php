@@ -236,26 +236,6 @@ new class extends Component {
                             </div>
                         </div>
                     </a>
-
-                    <div class="modal fade" id="modal-search" tabindex="-1" wire:ignore.self>
-                        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5">
-                                        {{ trans('home.search.title') }}
-                                    </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="d-grid gap-3">
-                                        <x-search.bedrooms :bedrooms="$bedrooms" />
-
-                                        <x-search.living-style :bedrooms="$living_style" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -292,7 +272,7 @@ new class extends Component {
             </div>
 
             <div class="col-sm-6 col-lg-4">
-                <label class="form-label">Rental Type</label>
+                <label class="form-label">{{ trans('property.rental_type') }}</label>
                 <x-search.rental-type :rental-type="$rental_type" />
             </div>
 
@@ -318,6 +298,31 @@ new class extends Component {
                 :living-style="$living_style"
                 :prices="$prices"
                 />
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-search" tabindex="-1" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">
+                        {{ trans('home.search.title') }}
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-grid gap-3">
+                        <x-search.bedrooms :bedrooms="$bedrooms" />
+
+                        <x-search.living-style :bedrooms="$living_style" />
+
+                        <div>
+                            <label class="form-label">{{ trans('property.rental_type') }}</label>
+                            <x-search.rental-type :rental-type="$rental_type" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
