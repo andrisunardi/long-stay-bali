@@ -313,6 +313,22 @@ new class extends Component {
                 </div>
                 <div class="modal-body">
                     <div class="d-grid gap-3">
+                        {{-- prettier-ignore --}}
+                        <x-search.area
+                        :area="$area"
+                        :districts="$districts"
+                        :areas="$areas"
+                        :list-districts="$this->districts()"
+                        />
+
+                        <div wire:ignore>
+                            <label class="form-label">
+                                <span class="fas fa-calendar fa-fw"></span>
+                                {{ trans('validation.attributes.when') }}
+                            </label>
+                            <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
+                        </div>
+
                         <x-search.bedrooms :bedrooms="$bedrooms" />
 
                         <x-search.living-style :bedrooms="$living_style" />
@@ -321,7 +337,27 @@ new class extends Component {
                             <label class="form-label">{{ trans('property.rental_type') }}</label>
                             <x-search.rental-type :rental-type="$rental_type" />
                         </div>
+
+                        @if ($rental_type)
+                            {{-- prettier-ignore --}}
+                            <x-search.price
+                            :rental-type="$rental_type"
+                            :prices="$prices"
+                            :price-min="$price_min"
+                            :price-max="$price_max"
+                            />
+                        @endif
                     </div>
+                </div>
+                <div class="modal-footer">
+                    {{-- prettier-ignore --}}
+                    <x-home.search.button
+                    :districts="$districts"
+                    :areas="$areas"
+                    :bedrooms="$bedrooms"
+                    :living-style="$living_style"
+                    :prices="$prices"
+                    />
                 </div>
             </div>
         </div>
