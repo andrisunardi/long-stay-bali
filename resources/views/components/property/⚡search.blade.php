@@ -211,26 +211,46 @@ new class extends Component {
             </div>
             <div class="col">
                 <div class="card card-body">
-                    <div class="row align-items-center">
-                        <div class="col-auto">
-                            <span class="fas fa-search fa-fw"></span>
+                    <a draggable="false" data-bs-toggle="modal" data-bs-target="#modal-search">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <span class="fas fa-search fa-fw"></span>
+                            </div>
+                            <div class="col">
+                                <div class="fw-bold">Canggu</div>
+                                <div>
+                                    <span class="fas fa-bed fa-fw"></span>
+                                    @if ($bedrooms)
+                                        {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
+                                    @else
+                                        {{ trans('index.all') }}
+                                    @endif
+                                    <span> | </span>
+                                    <span class="fas fa-couch fa-fw"></span>
+                                    @if ($living_style)
+                                        {{ PropertyLivingStyle::from($living_style)->translate() }}
+                                    @else
+                                        {{ trans('index.all') }}
+                                    @endif
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <div class="fw-bold">Canggu</div>
-                            <div>
-                                <span class="fas fa-bed fa-fw"></span>
-                                @if ($bedrooms)
-                                    {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
-                                @else
-                                    {{ trans('index.all') }}
-                                @endif
-                                <span> | </span>
-                                <span class="fas fa-couch fa-fw"></span>
-                                @if ($living_style)
-                                    {{ PropertyLivingStyle::from($living_style)->translate() }}
-                                @else
-                                    {{ trans('index.all') }}
-                                @endif
+                    </a>
+
+                    <div class="modal fade" id="modal-search" tabindex="-1" wire:ignore.self>
+                        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5">
+                                        {{ trans('home.search.title') }}
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-grid gap-3">
+                                        <x-search.bedrooms :bedrooms="$bedrooms" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

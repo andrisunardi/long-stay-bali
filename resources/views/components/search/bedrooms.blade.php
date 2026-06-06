@@ -8,7 +8,7 @@
         {{ trans('home.search.bedroom') }}
     </label>
     <div class="input-group">
-        <button type="button" id="bedroom-dropdown"
+        <button type="button" data-bedroom-dropdown
             class="btn d-flex justify-content-between align-items-center border w-100 dropdown-toggle"
             data-bs-toggle="dropdown" data-bs-auto-close="outside" data-bs-display="static">
             @if ($bedrooms)
@@ -44,11 +44,19 @@
 
 <script>
     document.addEventListener('livewire:init', () => {
+        // Livewire.on('keep-bedroom-dropdown-open', () => {
+        //     const button = document.getElementById('bedroom-dropdown');
+        //     bootstrap.Dropdown
+        //         .getOrCreateInstance(button)
+        //         .show();
+        // });
         Livewire.on('keep-bedroom-dropdown-open', () => {
-            const button = document.getElementById('bedroom-dropdown');
-            bootstrap.Dropdown
-                .getOrCreateInstance(button)
-                .show();
-        });
+            document.querySelectorAll('[data-bedroom-dropdown]').forEach(el => {
+                const dropdown =
+                    bootstrap.Dropdown.getInstance(el) ??
+                    new bootstrap.Dropdown(el)
+                dropdown.show()
+            })
+        })
     });
 </script>
