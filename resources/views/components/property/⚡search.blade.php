@@ -202,7 +202,44 @@ new class extends Component {
 ?>
 
 <section class="pt-5">
-    <div class="container-md">
+    <div class="container-md d-block d-lg-none">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <a draggable="false" class="text-body" href="{{ route('home') }}" wire:navigate>
+                    <span class="fas fa-chevron-left fa-fw"></span>
+                </a>
+            </div>
+            <div class="col">
+                <div class="card card-body">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <span class="fas fa-search fa-fw"></span>
+                        </div>
+                        <div class="col">
+                            <div class="fw-bold">Canggu</div>
+                            <div>
+                                <span class="fas fa-bed fa-fw"></span>
+                                @if ($bedrooms)
+                                    {{ collect($bedrooms)->map(fn($bedroom) => PropertyBedroom::from($bedroom)->description())->join(', ') }}
+                                @else
+                                    {{ trans('index.all') }}
+                                @endif
+                                <span> | </span>
+                                <span class="fas fa-couch fa-fw"></span>
+                                @if ($living_style)
+                                    {{ PropertyLivingStyle::from($living_style)->translate() }}
+                                @else
+                                    {{ trans('index.all') }}
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-md d-none d-lg-block">
         <div class="row g-4">
             <div class="col-sm-6 col-lg-4">
                 {{-- prettier-ignore --}}
@@ -232,13 +269,13 @@ new class extends Component {
                 <x-search.living-style :living-style="$living_style" />
             </div>
 
-            <div class="col-sm-6 col-lg-6">
+            <div class="col-sm-6 col-lg-4">
                 <label class="form-label">Rental Type</label>
                 <x-search.rental-type :rental-type="$rental_type" />
             </div>
 
-            @if ($rental_type)
-                <div class="col-sm-6 col-lg-6">
+            <div class="col-sm-6 col-lg-4">
+                @if ($rental_type)
                     {{-- prettier-ignore --}}
                     <x-search.price
                     :rental-type="$rental_type"
@@ -246,12 +283,23 @@ new class extends Component {
                     :price-min="$price_min"
                     :price-max="$price_max"
                     />
-                </div>
-            @endif
+                @endif
+            </div>
+
+            <div class="col-sm-6 col-lg-4">
+                <label class="form-label">&nbsp;</label>
+                {{-- prettier-ignore --}}
+                <x-home.search.button
+                :districts="$districts"
+                :areas="$areas"
+                :bedrooms="$bedrooms"
+                :living-style="$living_style"
+                :prices="$prices"
+                />
+            </div>
         </div>
     </div>
 </section>
-
 
 @push('css')
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
