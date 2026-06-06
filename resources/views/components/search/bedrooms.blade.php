@@ -44,12 +44,6 @@
 
 <script>
     document.addEventListener('livewire:init', () => {
-        // Livewire.on('keep-bedroom-dropdown-open', () => {
-        //     const button = document.getElementById('bedroom-dropdown');
-        //     bootstrap.Dropdown
-        //         .getOrCreateInstance(button)
-        //         .show();
-        // });
         Livewire.on('keep-bedroom-dropdown-open', () => {
             document.querySelectorAll('[data-bedroom-dropdown]').forEach(el => {
                 const dropdown =

@@ -249,6 +249,8 @@ new class extends Component {
                                 <div class="modal-body">
                                     <div class="d-grid gap-3">
                                         <x-search.bedrooms :bedrooms="$bedrooms" />
+
+                                        <x-search.living-style :bedrooms="$living_style" />
                                     </div>
                                 </div>
                             </div>
