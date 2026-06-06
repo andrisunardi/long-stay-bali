@@ -205,7 +205,7 @@ new class extends Component {
 ?>
 
 <section class="pt-5">
-    <div class="container-md d-block d-lg-none">
+    {{-- <div class="container-md d-block d-lg-none">
         <div class="row align-items-center">
             <div class="col-auto">
                 <a draggable="false" class="text-body" href="{{ route('home') }}" wire:navigate>
@@ -242,9 +242,9 @@ new class extends Component {
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <div class="container-md d-none d-lg-block">
+    <div class="container-md d-nonex d-lg-blockx">
         <div class="row g-4">
             <div class="col-sm-6 col-lg-4">
                 {{-- prettier-ignore --}}
@@ -301,67 +301,6 @@ new class extends Component {
                 :living-style="$living_style"
                 :prices="$prices"
                 />
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modal-search" tabindex="-1" wire:ignore.self>
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-fullscreen-lg-down">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5">
-                        {{ trans('home.search.title') }}
-                    </h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="d-grid gap-3">
-                        {{-- prettier-ignore --}}
-                        <x-search.area
-                        :area="$area"
-                        :districts="$districts"
-                        :areas="$areas"
-                        :list-districts="$this->districts()"
-                        />
-
-                        <div wire:ignore>
-                            <label class="form-label">
-                                <span class="fas fa-calendar fa-fw"></span>
-                                {{ trans('validation.attributes.when') }}
-                            </label>
-                            <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
-                        </div>
-
-                        <x-search.bedrooms :bedrooms="$bedrooms" />
-
-                        <x-search.living-style :bedrooms="$living_style" />
-
-                        <div>
-                            <label class="form-label">{{ trans('property.rental_type') }}</label>
-                            <x-search.rental-type :rental-type="$rental_type" />
-                        </div>
-
-                        @if ($rental_type)
-                            {{-- prettier-ignore --}}
-                            <x-search.price
-                            :rental-type="$rental_type"
-                            :prices="$prices"
-                            :price-min="$price_min"
-                            :price-max="$price_max"
-                            />
-                        @endif
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    {{-- prettier-ignore --}}
-                    <x-search.button
-                    :districts="$districts"
-                    :areas="$areas"
-                    :bedrooms="$bedrooms"
-                    :living-style="$living_style"
-                    :prices="$prices"
-                    />
-                </div>
             </div>
         </div>
     </div>
