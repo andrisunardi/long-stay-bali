@@ -313,6 +313,10 @@ new class extends Component {
     :list-districts="$this->districts()"
     :bedrooms="$bedrooms"
     :living-style="$living_style"
+    :rental-type="$rental_type"
+    :prices="$prices"
+    :price-min="$price_min"
+    :price-max="$price_max"
     />
 </section>
 
