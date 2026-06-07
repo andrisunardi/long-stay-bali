@@ -205,7 +205,7 @@ new class extends Component {
 ?>
 
 <section class="pt-5">
-    {{-- <div class="container-md d-block d-lg-none">
+    <div class="container-md d-block d-lg-none">
         <div class="row align-items-center">
             <div class="col-auto">
                 <a draggable="false" class="text-body" href="{{ route('home') }}" wire:navigate>
@@ -242,9 +242,9 @@ new class extends Component {
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
-    <div class="container-md d-nonex d-lg-blockx">
+    <div class="container-md d-none d-lg-block">
         <div class="row g-4">
             <div class="col-sm-6 col-lg-4">
                 {{-- prettier-ignore --}}
@@ -304,6 +304,16 @@ new class extends Component {
             </div>
         </div>
     </div>
+
+    {{-- prettier-ignore --}}
+    <x-modal.search
+    :area="$area"
+    :districts="$districts"
+    :areas="$areas"
+    :list-districts="$this->districts()"
+    :bedrooms="$bedrooms"
+    :living-style="$living_style"
+    />
 </section>
 
 @push('css')
