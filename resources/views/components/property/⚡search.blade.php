@@ -53,9 +53,7 @@ new class extends Component {
     {
         if ($this->districts || $this->areas) {
             $selectedDistricts = $this->districts()->whereIn('id', $this->districts);
-
             $selectedAreas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $this->areas);
-
             $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
         }
 
@@ -91,8 +89,6 @@ new class extends Component {
 
     public function updatedDistricts(array $values = []): void
     {
-        $this->dispatch('keep-area-dropdown-open');
-
         $selectedAreas = collect();
 
         $districts = $this->districts()->whereIn('id', $values);
@@ -104,15 +100,18 @@ new class extends Component {
         $this->areas = $selectedAreas->unique()->values()->all();
 
         $this->area = collect()->merge($districts->pluck('name'))->join(', ');
+
+        $this->dispatch('keep-area-dropdown-open');
+        $this->dispatch('districts-changed', districts: $this->districts);
     }
 
     public function updatedAreas(array $values = []): void
     {
-        $this->dispatch('keep-area-dropdown-open');
-
         $areas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $values);
-
         $this->area = $areas->pluck('name')->join(', ');
+
+        $this->dispatch('keep-area-dropdown-open');
+        $this->dispatch('areas-changed', areas: $this->areas);
     }
 
     public function clearAllArea(): void

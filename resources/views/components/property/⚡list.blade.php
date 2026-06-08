@@ -9,11 +9,13 @@ use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 
 new #[Lazy] class extends Component {
-    #[Reactive]
-    public ?int $areaId = null;
+    public string $area = '';
 
-    #[Reactive]
-    public string $areaName = '';
+    #[Url(except: [])]
+    public array $districts = [];
+
+    #[Url(except: [])]
+    public array $areas = [];
 
     #[Reactive]
     public ?string $startDate = null;
@@ -38,10 +40,22 @@ new #[Lazy] class extends Component {
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
         $service = new PropertyService();
-        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, areaId: $this->areaId, bedrooms: $this->bedrooms, livingStyle: $this->living_style, rentalType: $this->rental_type, prices: $this->prices, statuses: $statuses, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, districts: $this->districts, areas: $this->areas, bedrooms: $this->bedrooms, livingStyle: $this->living_style, rentalType: $this->rental_type, prices: $this->prices, statuses: $statuses, paginate: false);
         $properties->loadMissing(['area', 'district', 'image']);
 
         return $properties;
+    }
+
+    #[On('districts-changed')]
+    public function handleDistrictsChanged(array $districts = []): void
+    {
+        $this->districts = $districts;
+    }
+
+    #[On('areas-changed')]
+    public function handleAreasChanged(array $areas = []): void
+    {
+        $this->areas = $areas;
     }
 
     #[On('bedrooms-changed')]
@@ -133,7 +147,7 @@ new #[Lazy] class extends Component {
                 <p class="mb-0">
                     {!! trans('property.property_count', [
                         'count' => $this->properties()->count(),
-                        'area' => $areaName ?: 'all areas',
+                        'area' => $area ?: 'all areas',
                     ]) !!}
                 </p>
             </div>

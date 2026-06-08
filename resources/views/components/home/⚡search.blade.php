@@ -46,9 +46,7 @@ new class extends Component {
     {
         if ($this->districts || $this->areas) {
             $selectedDistricts = $this->districts()->whereIn('id', $this->districts);
-
             $selectedAreas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $this->areas);
-
             $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
         }
 

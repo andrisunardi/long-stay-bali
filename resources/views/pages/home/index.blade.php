@@ -20,7 +20,7 @@ new #[Title('Home')] class extends Component {};
     <livewire:home.guides lazy />
 
     {{-- prettier-ignore --}}
-        <x-home.cta
+    <x-home.cta
     :image="asset('images/banner/home.png')"
     :button-name="trans('home.cta.button')"
     :button-link="route('contact')"

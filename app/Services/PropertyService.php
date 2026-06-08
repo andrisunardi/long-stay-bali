@@ -23,6 +23,8 @@ class PropertyService
         ?string $userId = null,
         ?string $districtId = null,
         ?string $areaId = null,
+        array $districts = [],
+        array $areas = [],
         ?string $bedroom = null,
         array $bedrooms = [],
         ?string $livingStyle = null,
@@ -62,6 +64,8 @@ class PropertyService
             ->when($userId, fn ($q) => $q->where('user_id', $userId))
             ->when($districtId, fn ($q) => $q->where('district_id', $districtId))
             ->when($areaId, fn ($q) => $q->where('area_id', $areaId))
+            ->when($districts, fn ($q) => $q->whereIn('district_id', $districts))
+            ->when($areas, fn ($q) => $q->whereIn('area_id', $areas))
             ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
