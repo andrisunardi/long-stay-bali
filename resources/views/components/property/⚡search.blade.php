@@ -219,7 +219,9 @@ new class extends Component {
                                 <span class="fas fa-search fa-fw"></span>
                             </div>
                             <div class="col">
-                                <div class="fw-bold">Canggu</div>
+                                <div class="fw-bold">
+                                    {{ $area }}
+                                </div>
                                 <div>
                                     <span class="fas fa-bed fa-fw"></span>
                                     @if ($bedrooms)

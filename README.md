@@ -66,3 +66,9 @@ Pls insert a dropdown list with multiple choice
     <script src="https://accounts.google.com/gsi/client"></script>
 
 AIzaSyCQalcuihucVlbQoSulGPlUPh4zWzQPwUI
+
+
+Updated Live
+- Filter When Bugs : Done
+
+- When Since the “When” feature is not functioning yet, please set the default options to “Now” and “Monthly" : Progress
