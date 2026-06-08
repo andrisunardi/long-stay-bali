@@ -1,9 +1,10 @@
 @props([
-    'districts' => $districts,
-    'areas' => $areas,
-    'bedrooms' => $bedrooms,
-    'livingStyle' => $livingStyle,
-    'prices' => $prices,
+    'districts' => [],
+    'areas' => [],
+    'bedrooms' => [],
+    'livingStyle' => null,
+    'rentalType' => null,
+    'prices' => [],
 ])
 
 <a draggable="false"
@@ -12,6 +13,7 @@
         'areas' => $areas,
         'bedrooms' => $bedrooms,
         'living_style' => $livingStyle,
+        'rental_type' => $rentalType,
         'prices' => $prices,
     ]) }}"
     class="btn btn-success w-100 rounded-5" wire:navigate>

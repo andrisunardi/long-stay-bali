@@ -30,6 +30,9 @@ new #[Title('Property')] class extends Component {
     #[Url(except: null)]
     public ?int $rental_type = null;
 
+    #[Url(except: [])]
+    public array $prices = [];
+
     public function mount(): void
     {
         if ($this->districts || $this->areas) {
@@ -40,13 +43,6 @@ new #[Title('Property')] class extends Component {
 
         $this->start_date = $this->start_date ?? today()->toDateString();
         $this->end_date = $this->end_date ?? today()->toDateString();
-    }
-
-    #[On('area-changed')]
-    public function changeArea(?int $id = null, string $name = ''): void
-    {
-        $this->area_id = $id;
-        $this->area_name = $name;
     }
 
     // CEK NANTI
@@ -75,5 +71,9 @@ new #[Title('Property')] class extends Component {
     :areas="$areas"
     :start-date="$start_date"
     :end-date="$end_date"
+    :bedrooms="$bedrooms"
+    :living-style="$living_style"
+    :rental-type="$rental_type"
+    :prices="$prices"
     lazy />
 </div>

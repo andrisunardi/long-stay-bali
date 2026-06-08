@@ -219,6 +219,7 @@ new class extends Component {
                 :areas="$areas"
                 :bedrooms="$bedrooms"
                 :living-style="$living_style"
+                :rental-type="$rental_type"
                 :prices="$prices"
                 />
             </div>

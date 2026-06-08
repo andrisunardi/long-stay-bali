@@ -1,5 +1,5 @@
 @props([
-    'area' => '',
+    'area' => null,
     'districts' => [],
     'areas' => [],
     'districts' => collect(),

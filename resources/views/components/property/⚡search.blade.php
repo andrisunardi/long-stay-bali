@@ -213,14 +213,14 @@ new class extends Component {
             </div>
             <div class="col">
                 <div class="card card-body">
-                    <a draggable="false" data-bs-toggle="modal" data-bs-target="#modal-search">
+                    <a draggable="false" class="pointer text-body" data-bs-toggle="modal" data-bs-target="#modal-search">
                         <div class="row align-items-center">
                             <div class="col-auto">
                                 <span class="fas fa-search fa-fw"></span>
                             </div>
                             <div class="col">
                                 <div class="fw-bold">
-                                    {{ $area }}
+                                    {{ $area ?: trans('index.all') . ' ' . trans('index.area') }}
                                 </div>
                                 <div>
                                     <span class="fas fa-bed fa-fw"></span>
