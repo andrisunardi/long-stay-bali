@@ -1,7 +1,7 @@
 <div class="row g-3">
     <div class="col-sm-6">
         <a draggable="false" role="button" data-bs-toggle="modal" data-bs-target="#property-images">
-            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none"
+            <img draggable="false" loading="lazy" decoding="async" class="img-fluid w-100 h-100 rounded user-select-none"
                 src="{{ $property->image?->image_url ?? asset('images/placeholder.png') }}"
                 alt="{{ trans('property.property') }} - {{ $property->name }} - {{ config('constants.title') }}" />
         </a>
@@ -17,7 +17,8 @@
                             data-bs-target="#property-images"
                             onclick="setTimeout(() => document.getElementById('property-image-{{ $i }}')?.scrollIntoView({ behavior: 'smooth' }), 300)">
 
-                            <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
+                            <img draggable="false" loading="lazy" decoding="async"
+                                class="img-fluid w-100 h-100 rounded user-select-none pe-none"
                                 src="{{ $property->images[$i]->image_url ?? asset('images/placeholder.png') }}"
                                 alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
 
@@ -32,7 +33,8 @@
                             @endif
                         </a>
                     @else
-                        <img draggable="false" class="img-fluid w-100 h-100 rounded user-select-none pe-none"
+                        <img draggable="false" loading="lazy" decoding="async"
+                            class="img-fluid w-100 h-100 rounded user-select-none pe-none"
                             src="{{ asset('images/placeholder.png') }}"
                             alt="{{ trans('property.property') }} - {{ trans('property.image') }} - {{ $property->name }} - {{ config('constants.title') }}">
                     @endisset
@@ -57,7 +59,7 @@
                     <div class="d-grid gap-4">
                         @foreach ($property->images as $key => $propertyImage)
                             <div class="zoom">
-                                <img draggable="false" class="img-fluid w-100 h-100 rounded"
+                                <img draggable="false" loading="lazy" decoding="async" class="img-fluid w-100 h-100 rounded"
                                     id="property-image-{{ $key }}"
                                     src="{{ $propertyImage->image_url ?? asset('images/placeholder.png') }}"
                                     alt="{{ trans('property.property') }} - {{ $propertyImage->name }} - {{ config('constants.title') }}" />

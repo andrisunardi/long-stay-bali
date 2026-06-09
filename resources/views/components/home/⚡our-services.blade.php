@@ -82,7 +82,7 @@ new #[Lazy] class extends Component {
                 @foreach ($services as $service)
                     <div class="col" wire:key="service-{{ $service['id'] }}">
                         <div class="card h-100">
-                            <img draggable="false"
+                            <img draggable="false" loading="lazy" decoding="async"
                                 src="{{ asset('images/service/' . Str::slug($service['name']) . '.webp') }}"
                                 class="card-img-top" alt="Service - {{ $service['name'] }}">
                             <div class="card-body">
