@@ -5,6 +5,7 @@ use App\Enums\Property\PropertyBedroom;
 use App\Livewire\Component;
 use App\Services\AreaService;
 use App\Services\DistrictService;
+use Illuminate\Support\Carbon;
 use Livewire\Attributes\Url;
 
 new class extends Component {
@@ -57,12 +58,13 @@ new class extends Component {
             $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
         }
 
-        if (!$this->start_date) {
-            $this->start_date = now()->toDateString();
-        }
+        $this->start_date = $this->start_date ?? now()->toDateString();
+        $this->end_date = $this->end_date ?? now()->toDateString();
 
-        if (!$this->end_date) {
-            $this->end_date = now()->toDateString();
+        $minimumDate = now()->addMonth()->toDateString();
+        if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->start_date)->lt($minimumDate)) {
+            $this->start_date = $minimumDate;
+            $this->end_date = $minimumDate;
         }
 
         if ($this->rental_type == PropertyRentalType::Monthly->value) {
@@ -134,6 +136,12 @@ new class extends Component {
     {
         $this->rental_type = $rentalType;
         $this->dispatch('keep-when-dropdown-open');
+
+        $minimumDate = now()->addMonth()->toDateString();
+        if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->start_date)->lt($minimumDate)) {
+            $this->start_date = $minimumDate;
+            $this->end_date = $minimumDate;
+        }
     }
 
     public function changeBedrooms(?int $value = null): void
