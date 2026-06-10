@@ -4,13 +4,13 @@
 
 <div class="card card-body">
     <div class="d-grid gap-2">
-        @if ($property->monthly_price)
+        @if ($property->rental_type = PropertyRentalType::Monthly)
             <div class="d-flex justify-content-between">
                 <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
                 <span class="text-secondary">{{ trans('property.per_month') }}</span>
             </div>
         @endif
-        @if ($property->yearly_price)
+        @if ($property->yearly_price = PropertyRentalType::Yearly)
             <div class="d-flex justify-content-between">
                 <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
                 <span class="text-secondary">{{ trans('property.per_year') }}</span>
