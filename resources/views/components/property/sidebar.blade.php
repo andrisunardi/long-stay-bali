@@ -10,7 +10,7 @@
                 <span class="text-secondary">{{ trans('property.per_month') }}</span>
             </div>
         @endif
-        @if ($property->yearly_price == PropertyRentalType::Yearly)
+        @if ($property->rental_type == PropertyRentalType::Yearly)
             <div class="d-flex justify-content-between">
                 <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
                 <span class="text-secondary">{{ trans('property.per_year') }}</span>
