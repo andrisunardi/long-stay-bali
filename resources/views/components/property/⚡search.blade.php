@@ -130,6 +130,12 @@ new class extends Component {
         return $districts;
     }
 
+    public function changeRentalType(?int $rentalType = null): void
+    {
+        $this->rental_type = $rentalType;
+        $this->dispatch('keep-when-dropdown-open');
+    }
+
     public function changeBedrooms(?int $value = null): void
     {
         $this->dispatch('keep-bedroom-dropdown-open');
@@ -235,13 +241,12 @@ new class extends Component {
             </div>
 
             <div class="col-sm-6 col-lg-4">
-                <div wire:ignore>
-                    <label class="form-label">
-                        <span class="fas fa-calendar fa-fw"></span>
-                        {{ trans('validation.attributes.when') }}
-                    </label>
-                    <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
-                </div>
+                {{-- prettier-ignore --}}
+                <x-search.when
+                :rental-type="$rental_type"
+                :start-date="$start_date"
+                :end-date="$end_date"
+                />
             </div>
 
             <div class="col-6 col-lg-2">
