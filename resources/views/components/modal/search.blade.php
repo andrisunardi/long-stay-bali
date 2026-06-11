@@ -3,6 +3,11 @@
     'districts' => [],
     'areas' => [],
     'listDistricts' => [],
+    'rentalType' => null,
+    'month' => null,
+    'calendars' => [],
+    'startDate' => null,
+    'endDate' => null,
     'bedrooms' => [],
     'livingStyle' => null,
     'rentalType' => null,
@@ -20,7 +25,7 @@
                 </h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body mb-3">
                 <div class="d-flex flex-column gap-3">
                     {{-- prettier-ignore --}}
                     <x-search.area
@@ -30,13 +35,14 @@
                     :list-districts="$listDistricts"
                     />
 
-                    <div wire:ignore>
-                        <label class="form-label">
-                            <span class="fas fa-calendar fa-fw"></span>
-                            {{ trans('validation.attributes.when') }}
-                        </label>
-                        <input type="text" id="daterange" class="form-control" autocomplete="off" readonly>
-                    </div>
+                    {{-- prettier-ignore --}}
+                    <x-search.when
+                    :rental-type="$rentalType"
+                    :month="$month"
+                    :calendars="$calendars"
+                    :start-date="$startDate"
+                    :end-date="$endDate"
+                    />
 
                     <x-search.bedrooms :bedrooms="$bedrooms" />
 

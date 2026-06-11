@@ -37,60 +37,74 @@
                 @endforeach
             </div>
 
-            <div class="card">
-                <div class="card-body">
+            <hr />
 
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <button type="button" class="btn btn-link text-success p-0" wire:click="previousMonth">
-                            <i class="fas fa-caret-left fa-fw"></i>
-                        </button>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <button type="button" class="btn btn-link text-body p-0" wire:click="previousMonth"
+                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                    wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="previousMonth">
+                        <span class="fas fa-caret-left fa-fw"></span>
+                    </span>
+                    <span wire:loading wire:target="previousMonth" class="w-100">
+                        <span class="spinner-border spinner-border-sm"></span>
+                    </span>
+                </button>
 
-                        <span class="fw-semibold">
-                            {{ Date::parse($month)->format('F Y') }}
-                        </span>
+                <span class="fw-semibold">
+                    {{ Date::parse($month)->format('F Y') }}
+                </span>
 
-                        <button type="button" class="btn btn-link text-success p-0" wire:click="nextMonth">
-                            <i class="fas fa-caret-right fa-fw"></i>
-                        </button>
-                    </div>
-
-                    <table class="table table-sm table-borderless text-center align-middle mb-0">
-                        <thead>
-                            <tr class="text-secondary">
-                                <th>S</th>
-                                <th>M</th>
-                                <th>T</th>
-                                <th>W</th>
-                                <th>T</th>
-                                <th>F</th>
-                                <th>S</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($calendars->chunk(7) as $week)
-                                <tr>
-                                    @foreach ($week as $day)
-                                        <td>
-                                            @if ($day->isSameDay(Carbon\Carbon::create(2026, 6, 4)))
-                                                <button type="button" class="btn btn-primary btn-sm rounded">
-                                                    {{ $day->day }}
-                                                </button>
-                                            @else
-                                                <button type="button"
-                                                    class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-danger' : 'text-success' }}">
-                                                    {{ $day->day }}
-                                                </button>
-                                            @endif
-                                        </td>
-                                    @endforeach
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-
-                </div>
+                <button type="button" class="btn btn-link text-body p-0" wire:click="nextMonth"
+                    wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                    wire:loading.attr="disabled">
+                    <span wire:loading.remove wire:target="nextMonth">
+                        <span class="fas fa-caret-right fa-fw"></span>
+                    </span>
+                    <span wire:loading wire:target="nextMonth" class="w-100">
+                        <span class="spinner-border spinner-border-sm"></span>
+                    </span>
+                </button>
             </div>
+
+            @php
+                $startOfWeek = now()
+                    ->locale(app()->getLocale())
+                    ->startOfWeek();
+            @endphp
+
+            <table class="table table-sm table-borderless text-center align-middle mb-0">
+                <thead>
+                    <tr class="text-secondary">
+                        @foreach (range(0, 6) as $day)
+                            <th>
+                                {{ $startOfWeek->copy()->addDays($day)->isoFormat('ddd') }}
+                            </th>
+                        @endforeach
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($calendars->chunk(7) as $week)
+                        <tr>
+                            @foreach ($week as $day)
+                                <td>
+                                    @if ($day->isSameDay(Carbon\Carbon::create(2026, 6, 4)))
+                                        <button type="button" class="btn btn-primary btn-sm rounded">
+                                            {{ $day->day }}
+                                        </button>
+                                    @else
+                                        <button type="button"
+                                            class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-danger' : 'text-success' }}">
+                                            {{ $day->day }}
+                                        </button>
+                                    @endif
+                                </td>
+                            @endforeach
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
