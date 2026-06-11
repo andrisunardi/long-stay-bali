@@ -1,5 +1,7 @@
 @props([
     'rentalType' => null,
+    'month' => null,
+    'calendars' => [],
     'startDate' => null,
     'endDate' => null,
 ])
@@ -21,7 +23,7 @@
         </button>
 
         <div class="dropdown-menu w-100 mt-3 p-3">
-            <div class="row g-3">
+            <div class="row g-3 mb-3">
                 @foreach (collect(PropertyRentalType::cases())->reject(fn(PropertyRentalType $propertyRentalType) => $propertyRentalType == PropertyRentalType::Both) as $propertyRentalType)
                     <div class="col">
                         <button type="button"
@@ -35,9 +37,60 @@
                 @endforeach
             </div>
 
-            <hr />
+            <div class="card">
+                <div class="card-body">
 
-            <div></div>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <button type="button" class="btn btn-link text-success p-0" wire:click="previousMonth">
+                            <i class="fas fa-caret-left fa-fw"></i>
+                        </button>
+
+                        <span class="fw-semibold">
+                            {{ Date::parse($month)->format('F Y') }}
+                        </span>
+
+                        <button type="button" class="btn btn-link text-success p-0" wire:click="nextMonth">
+                            <i class="fas fa-caret-right fa-fw"></i>
+                        </button>
+                    </div>
+
+                    <table class="table table-sm table-borderless text-center align-middle mb-0">
+                        <thead>
+                            <tr class="text-secondary">
+                                <th>S</th>
+                                <th>M</th>
+                                <th>T</th>
+                                <th>W</th>
+                                <th>T</th>
+                                <th>F</th>
+                                <th>S</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($calendars->chunk(7) as $week)
+                                <tr>
+                                    @foreach ($week as $day)
+                                        <td>
+                                            @if ($day->isSameDay(Carbon\Carbon::create(2026, 6, 4)))
+                                                <button type="button" class="btn btn-primary btn-sm rounded">
+                                                    {{ $day->day }}
+                                                </button>
+                                            @else
+                                                <button type="button"
+                                                    class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-danger' : 'text-success' }}">
+                                                    {{ $day->day }}
+                                                </button>
+                                            @endif
+                                        </td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>

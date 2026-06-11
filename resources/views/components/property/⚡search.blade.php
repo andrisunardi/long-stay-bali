@@ -18,6 +18,11 @@ new class extends Component {
     public array $areas = [];
 
     #[Url(except: null)]
+    public ?string $month = null;
+
+    public object $calendars;
+
+    #[Url(except: null)]
     public ?string $start_date = null;
 
     #[Url(except: null)]
@@ -56,6 +61,17 @@ new class extends Component {
             $selectedDistricts = $this->districts()->whereIn('id', $this->districts);
             $selectedAreas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $this->areas);
             $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
+        }
+
+        $this->month = now()->format('Y-m');
+        $this->calendars = collect();
+
+        $month = Carbon::parse($this->month)->startOfMonth();
+        $start = $month->copy()->startOfMonth()->startOfWeek(Carbon::SUNDAY);
+        $end = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
+
+        for ($date = $start; $date->lte($end); $date->addDay()) {
+            $this->calendars->push($date->copy());
         }
 
         $this->start_date = $this->start_date ?? now()->toDateString();
@@ -138,10 +154,23 @@ new class extends Component {
         $this->dispatch('keep-when-dropdown-open');
 
         $minimumDate = now()->addMonth()->toDateString();
+
         if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->start_date)->lt($minimumDate)) {
             $this->start_date = $minimumDate;
             $this->end_date = $minimumDate;
         }
+    }
+
+    public function previousMonth()
+    {
+        $this->month = Carbon::parse($this->month)->subMonth()->format('Y-m');
+        $this->dispatch('keep-when-dropdown-open');
+    }
+
+    public function nextMonth()
+    {
+        $this->month = Carbon::parse($this->month)->addMonth()->format('Y-m');
+        $this->dispatch('keep-when-dropdown-open');
     }
 
     public function changeBedrooms(?int $value = null): void
@@ -252,6 +281,8 @@ new class extends Component {
                 {{-- prettier-ignore --}}
                 <x-search.when
                 :rental-type="$rental_type"
+                :month="$month"
+                :calendars="$calendars"
                 :start-date="$start_date"
                 :end-date="$end_date"
                 />
