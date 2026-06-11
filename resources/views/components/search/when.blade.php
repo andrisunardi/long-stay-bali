@@ -89,12 +89,12 @@
                             @foreach ($week as $day)
                                 <td wire:key="day-{{ $day->day }}">
                                     @if ($day->isToday())
-                                        <button type="button" class="btn btn-success btn-sm rounded-pill">
+                                        <button type="button" class="btn btn-primary btn-sm rounded-pill">
                                             {{ $day->format('d') }}
                                         </button>
                                     @else
                                         <button type="button"
-                                            class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-danger' : 'text-success' }}">
+                                            class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-secondary text-opacity-50' : 'text-body' }}">
                                             {{ $day->format('d') }}
                                         </button>
                                     @endif

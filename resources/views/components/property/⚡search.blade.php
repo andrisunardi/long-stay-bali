@@ -63,16 +63,7 @@ new class extends Component {
             $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
         }
 
-        $this->month = now()->format('Y-m');
-        $this->calendars = collect();
-
-        $month = Carbon::parse($this->month)->startOfMonth();
-        $start = $month->copy()->startOfMonth()->startOfWeek(Carbon::SUNDAY);
-        $end = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
-
-        for ($date = $start; $date->lte($end); $date->addDay()) {
-            $this->calendars->push($date->copy());
-        }
+        $this->calendars();
 
         $this->start_date = $this->start_date ?? now()->toDateString();
         $this->end_date = $this->end_date ?? now()->toDateString();
@@ -148,6 +139,20 @@ new class extends Component {
         return $districts;
     }
 
+    public function calendars(): void
+    {
+        $this->month = $this->month ?? now()->format('Y-m');
+        $this->calendars = collect();
+
+        $month = Carbon::parse($this->month)->startOfMonth();
+        $start = $month->copy()->startOfMonth()->startOfWeek(Carbon::SUNDAY);
+        $end = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
+
+        for ($date = $start; $date->lte($end); $date->addDay()) {
+            $this->calendars->push($date->copy());
+        }
+    }
+
     public function changeRentalType(?int $rentalType = null): void
     {
         $this->rental_type = $rentalType;
@@ -159,17 +164,21 @@ new class extends Component {
             $this->start_date = $minimumDate;
             $this->end_date = $minimumDate;
         }
+
+        $this->calendars();
     }
 
-    public function previousMonth()
+    public function previousMonth(): void
     {
         $this->month = Carbon::parse($this->month)->subMonth()->format('Y-m');
+        $this->calendars();
         $this->dispatch('keep-when-dropdown-open');
     }
 
-    public function nextMonth()
+    public function nextMonth(): void
     {
         $this->month = Carbon::parse($this->month)->addMonth()->format('Y-m');
+        $this->calendars();
         $this->dispatch('keep-when-dropdown-open');
     }
 
