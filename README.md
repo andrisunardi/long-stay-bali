@@ -8,11 +8,6 @@ SO Living Bali
 
 ## Tasks
 
-- Property Details Images Add Panzoom
-- Guides Text Editor
-- Check Order Position Images Property
-- Mobile Property Page Filter Popup Modal
-
 Status Property Pending
 Will Notify And Need To Approve
 Manager Will Get Notification
@@ -39,36 +34,18 @@ https://www.softaculous.com/apps/cms/Open_Real_Estate
 
 https://tailux.piniastudio.com/tables/advanced-tables
 
-•⁠ ⁠Full Legal Documentation Available : Pls insert a dropdown with multiple choice instead of YES/NO. You will find below the list to use
-•⁠ ⁠Target profil : pls autorize multiple choice
-
-LEGAL DOCUMENTATION LIST :
-•⁠ ⁠Land Certificate
-•⁠ ⁠Lease Agreement
-•⁠ ⁠ID
-•⁠ ⁠Building Permit
-
-The CMS doesnt the price and the inclusion
-Could you pls add the price per month (if monthly rental is possible)
-Could you pls add the price per year (if yearly rental is possible)
-Could you pls add for monthly and for yearly (NOTE : the inclusions can be different for the same property between MONTHLY and YEARLY)
-Pls insert a dropdown list with multiple choice
-•⁠ ⁠Housekeeper (and insert a box "How many time per week" : ?)
-•⁠ ⁠Pool maintenance
-•⁠ ⁠Gardener
-•⁠ ⁠Internet
-•⁠ ⁠Banjar
-•⁠ ⁠Garbage
-•⁠ ⁠Security
-•⁠ ⁠Others : ?
-
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://accounts.google.com/gsi/client"></script>
 
 AIzaSyCQalcuihucVlbQoSulGPlUPh4zWzQPwUI
 
+if (! filter_var($propertyImage->image_url, FILTER_VALIDATE_URL)) {
+    $getimagesize[0] = null;
+    $getimagesize[1] = null;
+}
 
-Updated Live
-- Filter When Bugs : Done
+$imageInfo = @getimagesize($propertyImage->image_url);
 
-- When Since the “When” feature is not functioning yet, please set the default options to “Now” and “Monthly" : Progress
+if (! $imageInfo) {
+    return null;
+}

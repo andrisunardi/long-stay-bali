@@ -40,7 +40,9 @@
             <hr />
 
             <div class="d-flex justify-content-between align-items-center mb-3">
-                <button type="button" class="btn btn-link text-body p-0" wire:click="previousMonth"
+                <button type="button"
+                    class="btn btn-link text-body {{ Date::parse($month)->lte(now()) ? 'disabled' : '' }}"
+                    {{ Date::parse($month)->lte(now()) ? 'disabled' : '' }} wire:click="previousMonth"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="previousMonth">
@@ -55,7 +57,9 @@
                     {{ Date::parse($month)->format('F Y') }}
                 </span>
 
-                <button type="button" class="btn btn-link text-body p-0" wire:click="nextMonth"
+                <button type="button"
+                    class="btn btn-link text-body {{ Date::parse($month)->gte(now()->addMonths(6)) ? 'disabled' : '' }}"
+                    {{ Date::parse($month)->gte(now()->addMonths(6)) ? 'disabled' : '' }} wire:click="nextMonth"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="nextMonth">
@@ -78,7 +82,7 @@
                     <tr>
                         @foreach (range(0, 6) as $day)
                             <th wire:key="day-{{ $day }}">
-                                {{ $startOfWeek->copy()->addDays($day)->isoFormat('ddd') }}
+                                {{ $startOfWeek->copy()->addDays($day)->isoFormat('dd') }}
                             </th>
                         @endforeach
                     </tr>
@@ -89,7 +93,7 @@
                             @foreach ($week as $day)
                                 <td wire:key="day-{{ $day->day }}">
                                     @if ($day->isToday())
-                                        <button type="button" class="btn btn-primary btn-sm rounded-pill">
+                                        <button type="button" class="btn btn-outline-success btn-sm rounded-pill">
                                             {{ $day->format('d') }}
                                         </button>
                                     @else

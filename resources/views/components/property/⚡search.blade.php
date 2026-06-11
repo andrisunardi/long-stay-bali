@@ -139,20 +139,6 @@ new class extends Component {
         return $districts;
     }
 
-    public function calendars(): void
-    {
-        $this->month = $this->month ?? now()->format('Y-m');
-        $this->calendars = collect();
-
-        $month = Carbon::parse($this->month)->startOfMonth();
-        $start = $month->copy()->startOfMonth()->startOfWeek(Carbon::SUNDAY);
-        $end = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
-
-        for ($date = $start; $date->lte($end); $date->addDay()) {
-            $this->calendars->push($date->copy());
-        }
-    }
-
     public function changeRentalType(?int $rentalType = null): void
     {
         $this->rental_type = $rentalType;
@@ -166,6 +152,20 @@ new class extends Component {
         }
 
         $this->calendars();
+    }
+
+    public function calendars(): void
+    {
+        $this->month = $this->month ?? now()->format('Y-m');
+        $this->calendars = collect();
+
+        $month = Carbon::parse($this->month)->startOfMonth();
+        $start = $month->copy()->startOfMonth()->startOfWeek(Carbon::SUNDAY);
+        $end = $month->copy()->endOfMonth()->endOfWeek(Carbon::SATURDAY);
+
+        for ($date = $start; $date->lte($end); $date->addDay()) {
+            $this->calendars->push($date->copy());
+        }
     }
 
     public function previousMonth(): void
