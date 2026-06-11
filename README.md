@@ -2,6 +2,10 @@
 
 SO Living Bali
 
+## Design
+
+Figma : https://www.figma.com/design/tfe2ikc3LwxjCF4SMHn4gt/Long-Stay-Bali
+
 ## Concept
 
 - Whatsapp AI Agent
@@ -40,12 +44,12 @@ https://tailux.piniastudio.com/tables/advanced-tables
 AIzaSyCQalcuihucVlbQoSulGPlUPh4zWzQPwUI
 
 if (! filter_var($propertyImage->image_url, FILTER_VALIDATE_URL)) {
-    $getimagesize[0] = null;
-    $getimagesize[1] = null;
+$getimagesize[0] = null;
+$getimagesize[1] = null;
 }
 
 $imageInfo = @getimagesize($propertyImage->image_url);
 
 if (! $imageInfo) {
-    return null;
+return null;
 }

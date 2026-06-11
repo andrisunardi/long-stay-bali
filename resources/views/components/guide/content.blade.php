@@ -4,7 +4,7 @@
 
 <section class="py-5">
     <div class="container-md py-5">
-        <div class="d-grid gap-4">
+        <div class="d-flex flex-column gap-4">
             <div>
                 <span class="small border px-3 py-2 rounded-5 text-body">
                     {{ $guide->category->translate_name }}
@@ -28,7 +28,16 @@
                 </a>
             </div>
             <div>
-                <p>{!! $guide->translate_body !!}</p>
+                <p>
+                    @php
+                        $body = preg_replace(
+                            '/<table([^>]*)>(.*?)<\/table>/is',
+                            '<div class="table-responsive"><table$1 class="table table-striped table-hover table-bordered text-nowrap align-middle">$2</table></div>',
+                            $guide->translate_body,
+                        );
+                    @endphp
+                    {!! $body !!}
+                </p>
             </div>
         </div>
     </div>
