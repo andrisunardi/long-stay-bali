@@ -73,30 +73,29 @@
                     ->startOfWeek();
             @endphp
 
-            <table class="table table-sm table-borderless text-center align-middle mb-0">
+            <table class="table table-sm table-borderless text-center align-middle font-monospace mb-0">
                 <thead>
-                    <tr class="text-secondary">
+                    <tr>
                         @foreach (range(0, 6) as $day)
-                            <th>
+                            <th wire:key="day-{{ $day }}">
                                 {{ $startOfWeek->copy()->addDays($day)->isoFormat('ddd') }}
                             </th>
                         @endforeach
                     </tr>
                 </thead>
-
                 <tbody>
                     @foreach ($calendars->chunk(7) as $week)
                         <tr>
                             @foreach ($week as $day)
-                                <td>
-                                    @if ($day->isSameDay(Carbon\Carbon::create(2026, 6, 4)))
-                                        <button type="button" class="btn btn-primary btn-sm rounded">
-                                            {{ $day->day }}
+                                <td wire:key="day-{{ $day->day }}">
+                                    @if ($day->isToday())
+                                        <button type="button" class="btn btn-success btn-sm rounded-pill">
+                                            {{ $day->format('d') }}
                                         </button>
                                     @else
                                         <button type="button"
                                             class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-danger' : 'text-success' }}">
-                                            {{ $day->day }}
+                                            {{ $day->format('d') }}
                                         </button>
                                     @endif
                                 </td>
