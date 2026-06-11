@@ -144,11 +144,16 @@ new class extends Component {
         $this->rental_type = $rentalType;
         $this->dispatch('keep-when-dropdown-open');
 
-        $minimumDate = now()->addMonth()->toDateString();
+        if ($this->rental_type == PropertyRentalType::Monthly->value) {
+            $this->month = now()->format('Y-m');
+            $this->start_date = now()->toDateString();
+            $this->end_date = now()->toDateString();
+        }
 
-        if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->start_date)->lt($minimumDate)) {
-            $this->start_date = $minimumDate;
-            $this->end_date = $minimumDate;
+        if ($this->rental_type == PropertyRentalType::Yearly->value) {
+            $this->month = now()->addMonth()->format('Y-m');
+            $this->start_date = now()->addMonth()->toDateString();
+            $this->end_date = now()->addMonth()->toDateString();
         }
 
         $this->calendars();
@@ -156,7 +161,7 @@ new class extends Component {
 
     public function calendars(): void
     {
-        $this->month = $this->month ?? now()->format('Y-m');
+        $this->month = $this->month ?? ($this->rental_type === PropertyRentalType::Yearly->value ? now()->addMonth()->format('Y-m') : now()->format('Y-m'));
         $this->calendars = collect();
 
         $month = Carbon::parse($this->month)->startOfMonth();
@@ -180,6 +185,27 @@ new class extends Component {
         $this->month = Carbon::parse($this->month)->addMonth()->format('Y-m');
         $this->calendars();
         $this->dispatch('keep-when-dropdown-open');
+    }
+
+    public function selectDate(string $date): void
+    {
+        $this->dispatch('keep-when-dropdown-open');
+
+        if ($this->start_date === $this->end_date) {
+            if ($date < $this->start_date) {
+                $this->start_date = $date;
+                $this->end_date = $date;
+
+                return;
+            }
+
+            $this->end_date = $date;
+
+            return;
+        }
+
+        $this->start_date = $date;
+        $this->end_date = $date;
     }
 
     public function changeBedrooms(?int $value = null): void

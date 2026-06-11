@@ -39,10 +39,24 @@
 
             <hr />
 
+            @php
+                $minMonth =
+                    $rentalType === PropertyRentalType::Yearly->value
+                        ? now()->addMonth()->startOfMonth()
+                        : now()->startOfMonth();
+
+                $maxMonth =
+                    $rentalType === PropertyRentalType::Yearly->value
+                        ? now()->addMonths(7)->startOfMonth()
+                        : now()->addMonths(6)->startOfMonth();
+
+                $currentMonth = Date::parse($month)->startOfMonth();
+            @endphp
+
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <button type="button"
-                    class="btn btn-link text-body {{ Date::parse($month)->lte(now()) ? 'disabled' : '' }}"
-                    {{ Date::parse($month)->lte(now()) ? 'disabled' : '' }} wire:click="previousMonth"
+                    class="btn btn-link text-body {{ $currentMonth->lte($minMonth) ? 'disabled' : '' }}"
+                    {{ $currentMonth->lte($minMonth) ? 'disabled' : '' }} wire:click="previousMonth"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="previousMonth">
@@ -58,8 +72,8 @@
                 </span>
 
                 <button type="button"
-                    class="btn btn-link text-body {{ Date::parse($month)->gte(now()->addMonths(6)) ? 'disabled' : '' }}"
-                    {{ Date::parse($month)->gte(now()->addMonths(6)) ? 'disabled' : '' }} wire:click="nextMonth"
+                    class="btn btn-link text-body {{ $currentMonth->gte($maxMonth) ? 'disabled' : '' }}"
+                    {{ $currentMonth->gte($maxMonth) ? 'disabled' : '' }} wire:click="nextMonth"
                     wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
                     wire:loading.attr="disabled">
                     <span wire:loading.remove wire:target="nextMonth">
@@ -91,17 +105,38 @@
                     @foreach ($calendars->chunk(7) as $week)
                         <tr>
                             @foreach ($week as $day)
-                                <td wire:key="day-{{ $day->day }}">
-                                    @if ($day->isToday())
-                                        <button type="button" class="btn btn-outline-success btn-sm rounded-pill">
-                                            {{ $day->format('d') }}
-                                        </button>
-                                    @else
-                                        <button type="button"
-                                            class="btn btn-sm border-0 {{ !$day->isSameMonth($month) ? 'text-secondary text-opacity-50' : 'text-body' }}">
-                                            {{ $day->format('d') }}
-                                        </button>
-                                    @endif
+                                @php
+                                    $date = $day->toDateString();
+
+                                    $isStart = $date === $startDate;
+                                    $isEnd = $date === $endDate;
+                                    $isInRange = $date > $startDate && $date < $endDate;
+
+                                    $isPast = $day->lt(
+                                        $rentalType === PropertyRentalType::Yearly->value
+                                            ? now()->addMonth()->startOfDay()
+                                            : now()->startOfDay(),
+                                    );
+
+                                    $isToday = $day->isToday();
+
+                                    $buttonClass = match (true) {
+                                        $isStart && $isEnd => 'btn-success rounded-pill',
+                                        $isStart => 'btn-success rounded-start-pill rounded-end-0',
+                                        $isEnd => 'btn-success rounded-end-pill rounded-start-0',
+                                        $isInRange => 'btn-success rounded-0 border-0',
+                                        !$day->isSameMonth($month) => 'border-0 text-secondary text-opacity-50',
+                                        $isToday => 'btn-outline-success rounded-pill',
+                                        default => 'border-0 text-body',
+                                    };
+                                @endphp
+
+                                <td class="p-0 {{ $isInRange ? 'bg-success bg-opacity-25' : '' }}"
+                                    wire:key="day-{{ $date }}">
+                                    <button type="button" wire:click="selectDate('{{ $date }}')"
+                                        class="btn btn-sm w-100 {{ $buttonClass }}" @disabled($isPast)>
+                                        {{ $day->format('d') }}
+                                    </button>
                                 </td>
                             @endforeach
                         </tr>
