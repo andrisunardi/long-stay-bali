@@ -35,7 +35,16 @@
                             '<div class="table-responsive"><table$1 class="table table-striped table-hover table-bordered text-nowrap align-middle">$2</table></div>',
                             $guide->translate_body,
                         );
+
+                        $body = preg_replace(
+                            '/<img([^>]*?)class="([^"]*)"([^>]*)>/i',
+                            '<img$1class="$2 w-100"$3>',
+                            $body,
+                        );
+
+                        $body = preg_replace('/<img((?![^>]*class=)[^>]*)>/i', '<img$1 class="w-100">', $body);
                     @endphp
+
                     {!! $body !!}
                 </p>
             </div>
