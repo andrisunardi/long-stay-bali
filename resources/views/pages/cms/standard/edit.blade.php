@@ -168,106 +168,6 @@ new #[Title('Edit | Standard')] class extends Component {
                     </div>
 
                     <div class="col-sm-6">
-                        <label class="form-label" for="short_description">
-                            {{ trans('validation.attributes.short_description') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <span class="fas fa-file-text fa-fw "></span>
-                            </div>
-                            <textarea class="form-control" id="short_description" name="short_description" minlength="1" maxlength="100"
-                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.short_description"
-                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
-                                    </textarea>
-                        </div>
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
-                        </div>
-                        @error('form.short_description')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="short_description_id">
-                            {{ trans('validation.attributes.short_description_id') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <span class="fas fa-file-text fa-fw "></span>
-                            </div>
-                            <textarea class="form-control" id="short_description_id" name="short_description_id" minlength="1" maxlength="100"
-                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.short_description_id"
-                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
-                                    </textarea>
-                        </div>
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
-                        </div>
-                        @error('form.short_description_id')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="short_description_zh">
-                            {{ trans('validation.attributes.short_description_zh') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <span class="fas fa-file-text fa-fw "></span>
-                            </div>
-                            <textarea class="form-control" id="short_description_zh" name="short_description_zh" minlength="1" maxlength="100"
-                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.short_description_zh"
-                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
-                                    </textarea>
-                        </div>
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
-                        </div>
-                        @error('form.short_description_zh')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="short_description_fr">
-                            {{ trans('validation.attributes.short_description_fr') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <span class="fas fa-file-text fa-fw "></span>
-                            </div>
-                            <textarea class="form-control" id="short_description_fr" name="short_description_fr" minlength="1" maxlength="100"
-                                placeholder="{{ trans('index.ex') }}. Bearer" required wire:model="form.short_description_fr"
-                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                                wire:loading.attr="disabled">
-                                    </textarea>
-                        </div>
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 100,
-                        </div>
-                        @error('form.short_description_fr')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
                         <label class="form-label" for="description">
                             {{ trans('validation.attributes.description') }}
                             <span class="text-danger">*</span>
@@ -363,30 +263,6 @@ new #[Title('Edit | Standard')] class extends Component {
                             {{ trans('helper.maxlength') }} : 100,
                         </div>
                         @error('form.description_fr')
-                            <div class="form-text text-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="col-sm-6">
-                        <label class="form-label" for="icon">
-                            {{ trans('validation.attributes.icon') }}
-                            <span class="text-danger">*</span>
-                        </label>
-                        <div class="input-group">
-                            <div class="input-group-text">
-                                <span class="fas fa-icons fa-fw "></span>
-                            </div>
-                            <input type="text" class="form-control" id="icon" name="icon" minlength="1"
-                                maxlength="50" placeholder="{{ trans('index.ex') }}. Canggu" required
-                                wire:model="form.icon" wire:offline.class="disabled" wire:offline.attr="disabled"
-                                wire:loading.class="disabled" wire:loading.attr="disabled">
-                        </div>
-                        <div class="form-text">
-                            {{ trans('helper.required') }},
-                            {{ trans('helper.minlength') }} : 1,
-                            {{ trans('helper.maxlength') }} : 50,
-                        </div>
-                        @error('form.icon')
                             <div class="form-text text-danger">{{ $message }}</div>
                         @enderror
                     </div>

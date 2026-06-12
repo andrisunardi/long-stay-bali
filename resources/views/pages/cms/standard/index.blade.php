@@ -180,9 +180,7 @@ new #[Title('Standard')] class extends Component {
                             <th width="1%">{{ trans('field.#') }}</th>
                             <th width="1%">{{ trans('field.id') }}</th>
                             <th>{{ trans('field.title') }}</th>
-                            <th>{{ trans('field.short_description') }}</th>
                             <th>{{ trans('field.description') }}</th>
-                            <th width="1%">{{ trans('field.icon') }}</th>
                             <th width="1%">{{ trans('field.active') }}</th>
                             <th width="1%">{{ trans('field.action') }}</th>
                         </tr>
@@ -211,20 +209,10 @@ new #[Title('Standard')] class extends Component {
                                     <div>{{ $standard->title_fr }}</div>
                                 </td>
                                 <td>
-                                    <div>{{ $standard->short_description }}</div>
-                                    <div>{{ $standard->short_description_id }}</div>
-                                    <div>{{ $standard->short_description_zh }}</div>
-                                    <div>{{ $standard->short_description_fr }}</div>
-                                </td>
-                                <td>
                                     <div>{{ $standard->description }}</div>
                                     <div>{{ $standard->description_id }}</div>
                                     <div>{{ $standard->description_zh }}</div>
                                     <div>{{ $standard->description_fr }}</div>
-                                </td>
-                                <td>
-                                    <div>{{ $standard->icon }}</div>
-                                    <div><span class="{{ $standard->icon }}"></span></div>
                                 </td>
                                 <td>
                                     @can('standard.edit')

@@ -104,42 +104,6 @@ new #[Title('Detail | Standard')] class extends Component {
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.short_description') }}</div>
-                    </div>
-                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $standard->short_description }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.short_description_id') }}</div>
-                    </div>
-                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $standard->short_description_id }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.short_description_zh') }}</div>
-                    </div>
-                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $standard->short_description_zh }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.short_description_fr') }}</div>
-                    </div>
-                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $standard->short_description_fr }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
                         <div class="fw-bold">{{ trans('field.description') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
@@ -171,16 +135,6 @@ new #[Title('Detail | Standard')] class extends Component {
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
                         {{ $standard->description_fr }}
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
-                        <div class="fw-bold">{{ trans('field.icon') }}</div>
-                    </div>
-                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $standard->icon }}
-                        <span class="{{ $standard->icon }}"></span>
                     </div>
                 </div>
 
