@@ -24,59 +24,27 @@
             <td colspan="8"></td>
         </tr>
         <tr>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.#') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.id') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.name') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.guard_name') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('index.total') }} {{ trans('page.permission') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('index.total') }} {{ trans('page.user') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.created_at') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.updated_at') }}</b>
-            </th>
+            <th align="center"><b>{{ trans('field.#') }}</b></th>
+            <th align="center"><b>{{ trans('field.id') }}</b></th>
+            <th align="center"><b>{{ trans('field.name') }}</b></th>
+            <th align="center"><b>{{ trans('field.guard_name') }}</b></th>
+            <th align="center"><b>{{ trans('index.total') }} {{ trans('page.permission') }}</b></th>
+            <th align="center"><b>{{ trans('index.total') }} {{ trans('page.user') }}</b></th>
+            <th align="center"><b>{{ trans('field.created_at') }}</b></th>
+            <th align="center"><b>{{ trans('field.updated_at') }}</b></th>
         </tr>
     </thead>
     <tbody>
         @forelse ($roles as $role)
             <tr>
-                <td valign="middle" align="center">
-                    {{ $loop->iteration }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $role->id }}
-                </td>
-                <td valign="middle" align="left">
-                    {{ $role->name }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $role->guard_name }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $role->permissions_count }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $role->users_count }}
-                </td>
-                <td valign="middle" align="left">
-                    {{ $role->created_at }}
-                </td>
-                <td valign="middle" align="left">
-                    {{ $role->updated_at }}
-                </td>
+                <td align="center">{{ $loop->iteration }}</td>
+                <td align="center">{{ $role->id }}</td>
+                <td align="left">{{ $role->name }}</td>
+                <td align="center">{{ $role->guard_name }}</td>
+                <td align="center">{{ $role->permissions_count }}</td>
+                <td align="center">{{ $role->users_count }}</td>
+                <td align="left">{{ $role->created_at }}</td>
+                <td align="left">{{ $role->updated_at }}</td>
             </tr>
         @empty
             <tr>

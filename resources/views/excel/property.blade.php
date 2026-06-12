@@ -17,137 +17,53 @@
             <td colspan="20"></td>
         </tr>
         <tr>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.#') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.id') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.code') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.name') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.user') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.availability_date') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.visit_date') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.bedroom') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.villa_name') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.latitude') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.longitude') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.address') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.district_id') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.area_id') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.monthly_price') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.yearly_price') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.owner') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.owner_representative') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.counter') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.created_at') }}</b>
-            </th>
-            <th valign="middle" align="center">
-                <b>{{ trans('field.updated_at') }}</b>
-            </th>
+            <th align="center"><b>{{ trans('field.#') }}</b></th>
+            <th align="center"><b>{{ trans('field.id') }}</b></th>
+            <th align="center"><b>{{ trans('field.code') }}</b></th>
+            <th align="center"><b>{{ trans('field.name') }}</b></th>
+            <th align="center"><b>{{ trans('field.user') }}</b></th>
+            <th align="center"><b>{{ trans('field.availability_date') }}</b></th>
+            <th align="center"><b>{{ trans('field.visit_date') }}</b></th>
+            <th align="center"><b>{{ trans('field.bedroom') }}</b></th>
+            <th align="center"><b>{{ trans('field.villa_name') }}</b></th>
+            <th align="center"><b>{{ trans('field.latitude') }}</b></th>
+            <th align="center"><b>{{ trans('field.longitude') }}</b></th>
+            <th align="center"><b>{{ trans('field.address') }}</b></th>
+            <th align="center"><b>{{ trans('field.district_id') }}</b></th>
+            <th align="center"><b>{{ trans('field.area_id') }}</b></th>
+            <th align="center"><b>{{ trans('field.monthly_price') }}</b></th>
+            <th align="center"><b>{{ trans('field.yearly_price') }}</b></th>
+            <th align="center"><b>{{ trans('field.owner') }}</b></th>
+            <th align="center"><b>{{ trans('field.owner_representative') }}</b></th>
+            <th align="center"><b>{{ trans('field.counter') }}</b></th>
+            <th align="center"><b>{{ trans('field.created_at') }}</b></th>
+            <th align="center"><b>{{ trans('field.updated_at') }}</b></th>
         </tr>
     </thead>
     <tbody>
         @forelse ($properties as $property)
             <tr>
-                <td valign="middle" align="center">
-                    {{ $loop->iteration }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $property->id }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $property->code }}
-                </td>
-                <td valign="middle">
-                    {{ $property->name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->user?->name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->availability_date?->toDateString() }}
-                </td>
-                <td valign="middle">
-                    {{ $property->visit_date?->toDateString() }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $property->bedroom->name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->villa_name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->latitude }}
-                </td>
-                <td valign="middle">
-                    {{ $property->longitude }}
-                </td>
-                <td valign="middle">
-                    {{ $property->address }}
-                </td>
-                <td valign="middle">
-                    {{ $property->district?->name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->area?->name }}
-                </td>
-                <td valign="middle" align="right">
-                    {{ $property->monthly_price }}
-                </td>
-                <td valign="middle" align="right">
-                    {{ $property->yearly_price }}
-                </td>
-                <td valign="middle">
-                    {{ $property->owner?->name }}
-                </td>
-                <td valign="middle">
-                    {{ $property->ownerRepresentative?->name }}
-                </td>
-                <td valign="middle" align="center">
-                    {{ $property->counter }}
-                </td>
-                <td valign="middle">
-                    {{ $property->created_at }}
-                </td>
-                <td valign="middle">
-                    {{ $property->updated_at }}
-                </td>
+                <td align="center">{{ $loop->iteration }}</td>
+                <td align="center">{{ $property->id }}</td>
+                <td align="center">{{ $property->code }}</td>
+                <td align="left">{{ $property->name }}</td>
+                <td align="left">{{ $property->user?->name }}</td>
+                <td align="left">{{ $property->availability_date?->toDateString() }}</td>
+                <td align="left">{{ $property->visit_date?->toDateString() }}</td>
+                <td align="center">{{ $property->bedroom->name }}</td>
+                <td align="left">{{ $property->villa_name }}</td>
+                <td align="left">{{ $property->latitude }}</td>
+                <td align="left">{{ $property->longitude }}</td>
+                <td align="left">{{ $property->address }}</td>
+                <td align="left">{{ $property->district?->name }}</td>
+                <td align="left">{{ $property->area?->name }}</td>
+                <td align="right">{{ $property->monthly_price }}</td>
+                <td align="right">{{ $property->yearly_price }}</td>
+                <td align="left">{{ $property->owner?->name }}</td>
+                <td align="left">{{ $property->ownerRepresentative?->name }}</td>
+                <td align="center">{{ $property->counter }}</td>
+                <td align="left">{{ $property->created_at }}</td>
+                <td align="left">{{ $property->updated_at }}</td>
             </tr>
         @empty
             <tr>
