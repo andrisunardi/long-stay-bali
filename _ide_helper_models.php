@@ -636,6 +636,60 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $title
+ * @property string $title_id
+ * @property string $title_zh
+ * @property string $title_fr
+ * @property string $description
+ * @property string $description_id
+ * @property string $description_zh
+ * @property string $description_fr
+ * @property bool $is_active
+ * @property int|null $created_by
+ * @property int|null $updated_by
+ * @property int|null $deleted_by
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \Spatie\Activitylog\Models\Activity> $activities
+ * @property-read int|null $activities_count
+ * @property-read \App\Models\User|null $createdBy
+ * @property-read \App\Models\User|null $deletedBy
+ * @property-read string $translate_description
+ * @property-read string $translate_title
+ * @property-read \App\Models\User|null $updatedBy
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard active()
+ * @method static \Database\Factories\StandardFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard inactive()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDeletedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDescriptionFr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDescriptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereDescriptionZh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereIsActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereTitleFr($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereTitleId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereTitleZh($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard whereUpdatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Standard withoutTrashed()
+ */
+	class Standard extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property string $phone
@@ -708,12 +762,15 @@ namespace App\Models{
  * @property string $title
  * @property string $title_id
  * @property string $title_zh
+ * @property string $title_fr
  * @property string $short_description
  * @property string $short_description_id
  * @property string $short_description_zh
+ * @property string $short_description_fr
  * @property string $description
  * @property string $description_id
  * @property string $description_zh
+ * @property string $description_fr
  * @property string $icon
  * @property bool $is_active
  * @property int|null $created_by
@@ -742,27 +799,24 @@ namespace App\Models{
  * @method static Builder<static>|Value whereDeletedAt($value)
  * @method static Builder<static>|Value whereDeletedBy($value)
  * @method static Builder<static>|Value whereDescription($value)
+ * @method static Builder<static>|Value whereDescriptionFr($value)
  * @method static Builder<static>|Value whereDescriptionId($value)
  * @method static Builder<static>|Value whereDescriptionZh($value)
  * @method static Builder<static>|Value whereIcon($value)
  * @method static Builder<static>|Value whereId($value)
  * @method static Builder<static>|Value whereIsActive($value)
  * @method static Builder<static>|Value whereShortDescription($value)
+ * @method static Builder<static>|Value whereShortDescriptionFr($value)
  * @method static Builder<static>|Value whereShortDescriptionId($value)
  * @method static Builder<static>|Value whereShortDescriptionZh($value)
  * @method static Builder<static>|Value whereTitle($value)
+ * @method static Builder<static>|Value whereTitleFr($value)
  * @method static Builder<static>|Value whereTitleId($value)
  * @method static Builder<static>|Value whereTitleZh($value)
  * @method static Builder<static>|Value whereUpdatedAt($value)
  * @method static Builder<static>|Value whereUpdatedBy($value)
  * @method static Builder<static>|Value withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Value withoutTrashed()
- * @property string $title_fr
- * @property string $short_description_fr
- * @property string $description_fr
- * @method static Builder<static>|Value whereDescriptionFr($value)
- * @method static Builder<static>|Value whereShortDescriptionFr($value)
- * @method static Builder<static>|Value whereTitleFr($value)
  * @mixin \Eloquent
  */
 	class Value extends \Eloquent {}

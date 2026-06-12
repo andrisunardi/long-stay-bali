@@ -95,11 +95,9 @@ class ValueService
 
             (new GoogleTranslate)->translateModel($value);
 
-            return $value->refresh();
-
             DB::commit();
 
-            return $property->refresh();
+            return $value->refresh();
         } catch (Exception $e) {
             DB::rollBack();
             throw $e;

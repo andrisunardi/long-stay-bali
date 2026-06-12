@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Observers\ValueObserver;
+use App\Observers\StandardObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -22,15 +22,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string $title_id
  * @property string $title_zh
  * @property string $title_fr
- * @property string $short_description
- * @property string $short_description_id
- * @property string $short_description_zh
- * @property string $short_description_fr
  * @property string $description
  * @property string $description_id
  * @property string $description_zh
  * @property string $description_fr
- * @property string $icon
  * @property bool $is_active
  * @property int|null $created_by
  * @property int|null $updated_by
@@ -43,66 +38,55 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read User|null $createdBy
  * @property-read User|null $deletedBy
  * @property-read string $translate_description
- * @property-read string $translate_short_description
  * @property-read string $translate_title
  * @property-read User|null $updatedBy
  *
- * @method static Builder<static>|Value active()
- * @method static \Database\Factories\ValueFactory factory($count = null, $state = [])
- * @method static Builder<static>|Value inactive()
- * @method static Builder<static>|Value newModelQuery()
- * @method static Builder<static>|Value newQuery()
- * @method static Builder<static>|Value onlyTrashed()
- * @method static Builder<static>|Value query()
- * @method static Builder<static>|Value whereCreatedAt($value)
- * @method static Builder<static>|Value whereCreatedBy($value)
- * @method static Builder<static>|Value whereDeletedAt($value)
- * @method static Builder<static>|Value whereDeletedBy($value)
- * @method static Builder<static>|Value whereDescription($value)
- * @method static Builder<static>|Value whereDescriptionFr($value)
- * @method static Builder<static>|Value whereDescriptionId($value)
- * @method static Builder<static>|Value whereDescriptionZh($value)
- * @method static Builder<static>|Value whereIcon($value)
- * @method static Builder<static>|Value whereId($value)
- * @method static Builder<static>|Value whereIsActive($value)
- * @method static Builder<static>|Value whereShortDescription($value)
- * @method static Builder<static>|Value whereShortDescriptionFr($value)
- * @method static Builder<static>|Value whereShortDescriptionId($value)
- * @method static Builder<static>|Value whereShortDescriptionZh($value)
- * @method static Builder<static>|Value whereTitle($value)
- * @method static Builder<static>|Value whereTitleFr($value)
- * @method static Builder<static>|Value whereTitleId($value)
- * @method static Builder<static>|Value whereTitleZh($value)
- * @method static Builder<static>|Value whereUpdatedAt($value)
- * @method static Builder<static>|Value whereUpdatedBy($value)
- * @method static Builder<static>|Value withTrashed(bool $withTrashed = true)
- * @method static Builder<static>|Value withoutTrashed()
+ * @method static Builder<static>|Standard active()
+ * @method static \Database\Factories\StandardFactory factory($count = null, $state = [])
+ * @method static Builder<static>|Standard inactive()
+ * @method static Builder<static>|Standard newModelQuery()
+ * @method static Builder<static>|Standard newQuery()
+ * @method static Builder<static>|Standard onlyTrashed()
+ * @method static Builder<static>|Standard query()
+ * @method static Builder<static>|Standard whereCreatedAt($value)
+ * @method static Builder<static>|Standard whereCreatedBy($value)
+ * @method static Builder<static>|Standard whereDeletedAt($value)
+ * @method static Builder<static>|Standard whereDeletedBy($value)
+ * @method static Builder<static>|Standard whereDescription($value)
+ * @method static Builder<static>|Standard whereDescriptionFr($value)
+ * @method static Builder<static>|Standard whereDescriptionId($value)
+ * @method static Builder<static>|Standard whereDescriptionZh($value)
+ * @method static Builder<static>|Standard whereId($value)
+ * @method static Builder<static>|Standard whereIsActive($value)
+ * @method static Builder<static>|Standard whereTitle($value)
+ * @method static Builder<static>|Standard whereTitleFr($value)
+ * @method static Builder<static>|Standard whereTitleId($value)
+ * @method static Builder<static>|Standard whereTitleZh($value)
+ * @method static Builder<static>|Standard whereUpdatedAt($value)
+ * @method static Builder<static>|Standard whereUpdatedBy($value)
+ * @method static Builder<static>|Standard withTrashed(bool $withTrashed = true)
+ * @method static Builder<static>|Standard withoutTrashed()
  *
  * @mixin \Eloquent
  */
-#[ObservedBy([ValueObserver::class])]
-class Value extends Model
+#[ObservedBy([StandardObserver::class])]
+class Standard extends Model
 {
     use HasFactory;
     use LogsActivity;
     use SoftDeletes;
 
-    protected $table = 'values';
+    protected $table = 'standards';
 
     protected $fillable = [
         'title',
         'title_id',
         'title_zh',
         'title_fr',
-        'short_description',
-        'short_description_id',
-        'short_description_zh',
-        'short_description_fr',
         'description',
         'description_id',
         'description_zh',
         'description_fr',
-        'icon',
         'is_active',
     ];
 
@@ -115,22 +99,16 @@ class Value extends Model
             'title_id' => 'string',
             'title_zh' => 'string',
             'title_fr' => 'string',
-            'short_description' => 'string',
-            'short_description_id' => 'string',
-            'short_description_zh' => 'string',
-            'short_description_fr' => 'string',
             'description' => 'string',
             'description_id' => 'string',
             'description_zh' => 'string',
             'description_fr' => 'string',
-            'icon' => 'string',
             'is_active' => 'boolean',
         ];
     }
 
     public array $translatable = [
         'title',
-        'short_description',
         'description',
     ];
 
@@ -165,19 +143,6 @@ class Value extends Model
         ];
 
         return $language[$locale] ?? $this->title;
-    }
-
-    public function getTranslateShortDescriptionAttribute(): string
-    {
-        $locale = App::getLocale();
-        $language = [
-            'en' => $this->short_description,
-            'id' => $this->short_description_id,
-            'zh' => $this->short_description_zh,
-            'fr' => $this->short_description_fr,
-        ];
-
-        return $language[$locale] ?? $this->short_description;
     }
 
     public function getTranslateDescriptionAttribute(): string

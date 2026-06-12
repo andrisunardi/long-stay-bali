@@ -44,6 +44,12 @@ Route::group(['middleware' => ['auth']], function () {
         ->group(base_path('routes/cms/property-image.php'));
 
     // MASTER
+    Route::prefix('standard')
+        ->name('standard.')
+        ->as('standard.')
+        ->middleware(['permission:standard'])
+        ->group(base_path('routes/cms/standard.php'));
+
     Route::prefix('value')
         ->name('value.')
         ->as('value.')

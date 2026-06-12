@@ -2,48 +2,114 @@
 
 namespace App\Services;
 
+use App\Libraries\GoogleTranslate;
+use App\Models\Standard;
+use Exception;
+use Illuminate\Support\Facades\DB;
+
 class StandardService
 {
-    public function all(): object
-    {
-        $id = 1;
+    public function index(
+        ?string $search = null,
+        array $isActive = [],
+        bool $random = false,
+        bool $trash = false,
+        string $orderBy = 'id',
+        string $sortBy = 'desc',
+        int|string|null $limit = null,
+        bool $first = false,
+        bool $count = false,
+        bool $paginate = true,
+        int $perPage = 10,
+    ): object|int|null {
+        $standards = Standard::query()
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('title', 'like', "%{$search}%")
+                        ->orWhere('title_id', 'like', "%{$search}%")
+                        ->orWhere('title_zh', 'like', "%{$search}%")
+                        ->orWhere('title_fr', 'like', "%{$search}%")
+                        ->orWhere('description', 'like', "%{$search}%")
+                        ->orWhere('description_id', 'like', "%{$search}%")
+                        ->orWhere('description_zh', 'like', "%{$search}%")
+                        ->orWhere('description_fr', 'like', "%{$search}%");
+                });
+            })
+            ->when($isActive, fn ($q) => $q->whereIn('is_active', $isActive))
+            ->when($random, fn ($q) => $q->inRandomOrder())
+            ->when($trash, fn ($q) => $q->onlyTrashed())
+            ->orderBy($orderBy, $sortBy)
+            ->limit($limit);
 
-        return collect([
-            [
-                'id' => $id++,
-                'name' => 'Legal Clarity',
-                'description' => 'Every home is fully verified to ensure a secure and transparent rental process.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Living Quality',
-                'description' => 'Each home is inspected to meet our standards for safety, structure, and everyday living.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Honest Presentation',
-                'description' => 'All visuals are captured directly, reflecting each home as it truly is.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Fully Equipped Living',
-                'description' => 'Fully furnished and equipped with essentials, ready for everyday living.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Comfort Standards',
-                'description' => 'Each home is held to a consistent level of quality, ensuring a reliable and comfortable living experience.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Secure Process',
-                'description' => 'Deposits, inventory, and agreements are managed through a structured and transparent process for both tenants and owners.',
-            ],
-            [
-                'id' => $id++,
-                'name' => 'Transparent Experience',
-                'description' => 'Clear communication, accurate information, and a fair, documented approach at every step.',
-            ],
-        ]);
+        if ($first) {
+            return $standards->first();
+        }
+
+        if ($count) {
+            return $standards->count();
+        }
+
+        if ($paginate) {
+            return $standards->paginate($perPage);
+        }
+
+        if ($paginate) {
+            return $standards->paginate($perPage);
+        }
+
+        return $standards->get();
+    }
+
+    public function create(array $data = []): Standard
+    {
+        $table = (new Standard)->getTable();
+        DB::statement("ALTER TABLE `{$table}` AUTO_INCREMENT = 1");
+
+        try {
+            DB::beginTransaction();
+
+            $standard = Standard::create($data);
+
+            (new GoogleTranslate)->translateModel($standard);
+
+            DB::commit();
+
+            return $standard->refresh();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function update(Standard $standard, array $data = []): Standard
+    {
+        try {
+            DB::beginTransaction();
+
+            $standard->update($data);
+
+            (new GoogleTranslate)->translateModel($standard);
+
+            DB::commit();
+
+            return $standard->refresh();
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
+    }
+
+    public function delete(Standard $standard): bool
+    {
+        return $standard->delete();
+    }
+
+    public function active(Standard $standard): Standard
+    {
+        $standard->is_active = ! $standard->is_active;
+        $standard->save();
+        $standard->refresh();
+
+        return $standard;
     }
 }

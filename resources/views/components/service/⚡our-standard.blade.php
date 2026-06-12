@@ -10,7 +10,7 @@ new #[Lazy] class extends Component {
     public function mount(): void
     {
         $service = new StandardService();
-        $this->standards = $service->all();
+        $this->standards = $service->index(isActive: [true], paginate: false);
     }
 };
 ?>
@@ -63,10 +63,10 @@ new #[Lazy] class extends Component {
 
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
                 @foreach ($standards as $standard)
-                    <div class="col" wire:key="standard-{{ $standard['id'] }}">
+                    <div class="col" wire:key="standard-{{ $standard->id }}">
                         <div class="border-top border-5 py-5">
-                            <h6>{{ $standard['name'] }}</h6>
-                            <p class="small text-muted mt-4">{{ $standard['description'] }}</p>
+                            <h6>{{ $standard->translate_title }}</h6>
+                            <p class="small text-muted mt-4">{{ $standard->translate_description }}</p>
                         </div>
                     </div>
                 @endforeach

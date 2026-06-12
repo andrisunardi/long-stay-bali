@@ -1,42 +1,42 @@
 <?php
 
 use App\Livewire\Component;
-use App\Services\ValueService;
+use App\Services\StandardService;
 use Livewire\Attributes\Title;
-use App\Models\Value;
+use App\Models\Standard;
 
-new #[Title('Detail | Value')] class extends Component {
-    public Value $value;
+new #[Title('Detail | Standard')] class extends Component {
+    public Standard $standard;
 
-    public function mount(Value $value): void
+    public function mount(Standard $standard): void
     {
-        $this->value = $value;
+        $this->standard = $standard;
     }
 
     public function changeActive(): void
     {
-        $service = new ValueService();
-        $service->active(value: $this->value);
+        $service = new StandardService();
+        $service->active(standard: $this->standard);
 
-        $this->alertSuccess(title: trans('index.change_active') . ' ' . trans('index.success'), body: trans('page.value') . ' ' . trans('message.has_been_successfully_changed'));
+        $this->alertSuccess(title: trans('index.change_active') . ' ' . trans('index.success'), body: trans('page.standard') . ' ' . trans('message.has_been_successfully_changed'));
     }
 
     public function delete(): void
     {
-        $service = new ValueService();
-        $service->delete(value: $this->value);
+        $service = new StandardService();
+        $service->delete(standard: $this->standard);
 
         session()->flash('success', [
             'title' => trans('index.delete') . ' ' . trans('index.success'),
-            'message' => trans('page.value') . ' ' . trans('message.has_been_successfully_deleted'),
+            'message' => trans('page.standard') . ' ' . trans('message.has_been_successfully_deleted'),
         ]);
 
-        $this->redirect(route('cms.value.index'), navigate: true);
+        $this->redirect(route('cms.standard.index'), navigate: true);
     }
 };
 ?>
 
-@section('title', trans('page.value'))
+@section('title', trans('page.standard'))
 
 <div class="container-fluid">
     <div class="card">
@@ -47,7 +47,7 @@ new #[Title('Detail | Value')] class extends Component {
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-auto">
-                    <a draggable="false" class="btn btn-info w-100" href="{{ route('cms.value.index') }}" wire:navigate>
+                    <a draggable="false" class="btn btn-info w-100" href="{{ route('cms.standard.index') }}" wire:navigate>
                         <span class="fas fa-arrow-left fa-fw"></span>
                         {{ trans('index.back') }}
                     </a>
@@ -62,7 +62,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->id }}
+                        {{ $standard->id }}
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.title') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->title }}
+                        {{ $standard->title }}
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.title_id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->title_id }}
+                        {{ $standard->title_id }}
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.title_zh') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->title_zh }}
+                        {{ $standard->title_zh }}
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.title_fr') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->title_fr }}
+                        {{ $standard->title_fr }}
                     </div>
                 </div>
 
@@ -107,7 +107,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.short_description') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->short_description }}
+                        {{ $standard->short_description }}
                     </div>
                 </div>
 
@@ -116,7 +116,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.short_description_id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->short_description_id }}
+                        {{ $standard->short_description_id }}
                     </div>
                 </div>
 
@@ -125,7 +125,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.short_description_zh') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->short_description_zh }}
+                        {{ $standard->short_description_zh }}
                     </div>
                 </div>
 
@@ -134,7 +134,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.short_description_fr') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->short_description_fr }}
+                        {{ $standard->short_description_fr }}
                     </div>
                 </div>
 
@@ -143,7 +143,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.description') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->description }}
+                        {{ $standard->description }}
                     </div>
                 </div>
 
@@ -152,7 +152,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.description_id') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->description_id }}
+                        {{ $standard->description_id }}
                     </div>
                 </div>
 
@@ -161,7 +161,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.description_zh') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->description_zh }}
+                        {{ $standard->description_zh }}
                     </div>
                 </div>
 
@@ -170,7 +170,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.description_fr') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->description_fr }}
+                        {{ $standard->description_fr }}
                     </div>
                 </div>
 
@@ -179,8 +179,8 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.icon') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->icon }}
-                        <span class="{{ $value->icon }}"></span>
+                        {{ $standard->icon }}
+                        <span class="{{ $standard->icon }}"></span>
                     </div>
                 </div>
 
@@ -189,21 +189,21 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.active') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @can('value.edit')
+                        @can('standard.edit')
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch"
-                                    id="is_active_{{ $value->id }}" name="is_active" value="1"
-                                    {{ $value->is_active ? 'checked' : '' }}
-                                    wire:click="changeActive({{ $value->id }})" wire:offline.class="disabled"
+                                    id="is_active_{{ $standard->id }}" name="is_active" value="1"
+                                    {{ $standard->is_active ? 'checked' : '' }}
+                                    wire:click="changeActive({{ $standard->id }})" wire:offline.class="disabled"
                                     wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
-                                <label class="form-check-label text-{{ Str::successDanger($value->is_active) }}"
-                                    for="is_active_{{ $value->id }}">
-                                    {{ Str::yesNo($value->is_active) }}
+                                <label class="form-check-label text-{{ Str::successDanger($standard->is_active) }}"
+                                    for="is_active_{{ $standard->id }}">
+                                    {{ Str::yesNo($standard->is_active) }}
                                 </label>
                             </div>
                         @else
-                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($value->is_active) }}">
-                                {{ Str::yesNo($value->is_active) }}
+                            <span class="badge rounded-pill text-bg-{{ Str::successDanger($standard->is_active) }}">
+                                {{ Str::yesNo($standard->is_active) }}
                             </span>
                         @endcan
                     </div>
@@ -214,7 +214,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.created_by') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->createdBy?->name ?? '-' }}
+                        {{ $standard->createdBy?->name ?? '-' }}
                     </div>
                 </div>
 
@@ -223,7 +223,7 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.updated_by') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $value->updatedBy?->name ?? '-' }}
+                        {{ $standard->updatedBy?->name ?? '-' }}
                     </div>
                 </div>
 
@@ -232,10 +232,10 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.created_at') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @if ($value->created_at)
-                            {{ $value->created_at->isoFormat('LLLL') }}
+                        @if ($standard->created_at)
+                            {{ $standard->created_at->isoFormat('LLLL') }}
                             <br class="d-lg-none">
-                            ({{ $value->created_at->diffForHumans() }})
+                            ({{ $standard->created_at->diffForHumans() }})
                         @endif
                     </div>
                 </div>
@@ -245,10 +245,10 @@ new #[Title('Detail | Value')] class extends Component {
                         <div class="fw-bold">{{ trans('field.updated_at') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        @if ($value->updated_at)
-                            {{ $value->updated_at->isoFormat('LLLL') }}
+                        @if ($standard->updated_at)
+                            {{ $standard->updated_at->isoFormat('LLLL') }}
                             <br class="d-lg-none">
-                            ({{ $value->updated_at->diffForHumans() }})
+                            ({{ $standard->updated_at->diffForHumans() }})
                         @endif
                     </div>
                 </div>
@@ -257,17 +257,17 @@ new #[Title('Detail | Value')] class extends Component {
             <hr />
 
             <div class="row g-3">
-                @can('value.edit')
+                @can('standard.edit')
                     <div class="col-auto">
                         <a draggable="false" class="btn btn-success w-100"
-                            href="{{ route('cms.value.edit', ['value' => $value]) }}" wire:navigate>
+                            href="{{ route('cms.standard.edit', ['standard' => $standard]) }}" wire:navigate>
                             <span class="fas fa-edit fa-fw"></span>
                             {{ trans('index.edit') }}
                         </a>
                     </div>
                 @endcan
 
-                @can('value.delete')
+                @can('standard.delete')
                     <div class="col-auto">
                         <button type="button" class="btn btn-danger w-100" wire:click="delete"
                             wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
@@ -287,5 +287,5 @@ new #[Title('Detail | Value')] class extends Component {
         </div>
     </div>
 
-    <livewire:activity-log :model="$value" />
+    <livewire:activity-log :model="$standard" />
 </div>

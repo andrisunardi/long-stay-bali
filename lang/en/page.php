@@ -22,6 +22,7 @@ return [
     'guide_category' => 'Guide Category',
 
     'master' => 'Master',
+    'standard' => 'Standard',
     'value' => 'Value',
     'area' => 'Area',
     'district' => 'District',

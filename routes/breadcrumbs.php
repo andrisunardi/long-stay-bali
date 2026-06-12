@@ -175,6 +175,27 @@ Breadcrumbs::for('cms.property-image.detail', function (BreadcrumbTrail $trail, 
 });
 
 // MASTER
+// STANDARD
+Breadcrumbs::for('cms.standard.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.home');
+    $trail->push(trans('page.standard'), route('cms.standard.index'), ['icon' => 'fas fa-clipboard-check']);
+});
+
+Breadcrumbs::for('cms.standard.add', function (BreadcrumbTrail $trail) {
+    $trail->parent('cms.standard.index');
+    $trail->push(trans('index.add'), route('cms.standard.add'), ['icon' => 'fas fa-plus']);
+});
+
+Breadcrumbs::for('cms.standard.edit', function (BreadcrumbTrail $trail, $standard) {
+    $trail->parent('cms.standard.index');
+    $trail->push(trans('index.edit'), route('cms.standard.edit', $standard), ['icon' => 'fas fa-edit']);
+});
+
+Breadcrumbs::for('cms.standard.detail', function (BreadcrumbTrail $trail, $standard) {
+    $trail->parent('cms.standard.index');
+    $trail->push(trans('index.detail'), route('cms.standard.detail', $standard), ['icon' => 'fas fa-list']);
+});
+
 // VALUE
 Breadcrumbs::for('cms.value.index', function (BreadcrumbTrail $trail) {
     $trail->parent('cms.home');
