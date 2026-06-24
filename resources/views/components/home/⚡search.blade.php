@@ -72,6 +72,8 @@ new class extends Component {
 
     public function updatedDistricts(): void
     {
+        $this->dispatch('keep-area-dropdown-open');
+
         $this->syncLocations();
     }
 
@@ -96,8 +98,6 @@ new class extends Component {
 
     protected function syncLocations(): void
     {
-        $this->dispatch('keep-area-dropdown-open');
-
         $districts = $this->districts();
 
         $selectedDistrictIds = collect($this->districts);

@@ -58,9 +58,7 @@ new class extends Component {
     public function mount(): void
     {
         if ($this->districts || $this->areas) {
-            $selectedDistricts = $this->districts()->whereIn('id', $this->districts);
-            $selectedAreas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $this->areas);
-            $this->area = collect()->merge($selectedDistricts->pluck('name'))->merge($selectedAreas->pluck('name'))->unique()->join(', ');
+            $this->syncLocations();
         }
 
         $this->calendars();
@@ -96,31 +94,73 @@ new class extends Component {
         }
     }
 
-    public function updatedDistricts(array $values = []): void
+    public function updatedDistricts(): void
     {
-        $selectedAreas = collect();
-
-        $districts = $this->districts()->whereIn('id', $values);
-
-        foreach ($districts as $district) {
-            $selectedAreas = $selectedAreas->merge($district->areas->pluck('id'));
-        }
-
-        $this->areas = $selectedAreas->unique()->values()->all();
-
-        $this->area = collect()->merge($districts->pluck('name'))->join(', ');
-
         $this->dispatch('keep-area-dropdown-open');
-        $this->dispatch('districts-changed', districts: $this->districts);
+
+        $this->syncLocations();
     }
 
-    public function updatedAreas(array $values = []): void
+    public function updatedAreas(): void
     {
-        $areas = $this->districts()->pluck('areas')->flatten()->whereIn('id', $values);
-        $this->area = $areas->pluck('name')->join(', ');
-
         $this->dispatch('keep-area-dropdown-open');
-        $this->dispatch('areas-changed', areas: $this->areas);
+
+        $autoDistrictIds = collect();
+
+        foreach ($this->districts() as $district) {
+            $areaIds = $district->areas->pluck('id');
+
+            if ($areaIds->isNotEmpty() && $areaIds->diff($this->areas)->isEmpty()) {
+                $autoDistrictIds->push($district->id);
+            }
+        }
+
+        $this->districts = collect($this->districts)->merge($autoDistrictIds)->unique()->values()->all();
+
+        $this->syncAreaLabel();
+    }
+
+    protected function syncLocations(): void
+    {
+        $districts = $this->districts();
+
+        $selectedDistrictIds = collect($this->districts);
+        $selectedAreaIds = collect($this->areas);
+
+        foreach ($districts->whereIn('id', $selectedDistrictIds) as $district) {
+            $selectedAreaIds = $selectedAreaIds->merge($district->areas->pluck('id'));
+        }
+
+        foreach ($districts as $district) {
+            $districtAreaIds = $district->areas->pluck('id');
+
+            if ($districtAreaIds->isNotEmpty() && $districtAreaIds->diff($selectedAreaIds)->isEmpty()) {
+                $selectedDistrictIds->push($district->id);
+            }
+        }
+
+        $this->districts = $selectedDistrictIds->unique()->values()->all();
+
+        $this->areas = $selectedAreaIds->unique()->values()->all();
+
+        $this->syncAreaLabel();
+    }
+
+    protected function syncAreaLabel(): void
+    {
+        $names = collect();
+
+        foreach ($this->districts() as $district) {
+            if (in_array($district->id, $this->districts)) {
+                $names->push($district->name);
+
+                continue;
+            }
+
+            $names = $names->merge($district->areas->whereIn('id', $this->areas)->pluck('name'));
+        }
+
+        $this->area = $names->unique()->join(', ');
     }
 
     public function clearAllArea(): void
