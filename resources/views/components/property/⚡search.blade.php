@@ -85,13 +85,6 @@ new class extends Component {
             $this->price_min = $this->yearly_min;
             $this->price_max = $this->yearly_max;
         }
-
-        if ($this->rental_type == PropertyRentalType::Both->value) {
-            $this->prices['min'] = $this->monthly_min;
-            $this->prices['max'] = $this->monthly_max;
-            $this->price_min = $this->monthly_min;
-            $this->price_max = $this->monthly_max;
-        }
     }
 
     public function updatedDistricts(): void
@@ -286,13 +279,6 @@ new class extends Component {
             $this->prices['max'] = $this->yearly_max;
             $this->price_min = $this->yearly_min;
             $this->price_max = $this->yearly_max;
-        }
-
-        if ($rentalType == PropertyRentalType::Both->value) {
-            $this->prices['min'] = $this->monthly_min;
-            $this->prices['max'] = $this->monthly_max;
-            $this->price_min = $this->monthly_min;
-            $this->price_max = $this->monthly_max;
         }
 
         $this->dispatch('price-slider');

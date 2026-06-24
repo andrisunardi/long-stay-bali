@@ -29,7 +29,6 @@ new #[Lazy] class extends Component {
     #[Url(except: null)]
     public ?int $livingStyle = null;
 
-    #[Url(except: null)]
     public ?int $rentalType = null;
 
     #[Url(except: [])]
@@ -39,8 +38,18 @@ new #[Lazy] class extends Component {
     {
         $statuses = [PropertyStatus::AcceptUpper->value, PropertyStatus::AcceptPremium->value];
 
+        $rentalTypes = [];
+
+        if ($this->rentalType == PropertyRentalType::Monthly->value) {
+            $rentalTypes = [PropertyRentalType::Monthly->value, PropertyRentalType::Both->value];
+        }
+
+        if ($this->rentalType == PropertyRentalType::Yearly->value) {
+            $rentalTypes = [PropertyRentalType::Yearly->value, PropertyRentalType::Both->value];
+        }
+
         $service = new PropertyService();
-        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, districts: $this->districts, areas: $this->areas, bedrooms: $this->bedrooms, livingStyle: $this->livingStyle, rentalType: $this->rentalType, prices: $this->prices, statuses: $statuses, paginate: false);
+        $properties = $service->index(startDate: $this->startDate, endDate: $this->endDate, districts: $this->districts, areas: $this->areas, bedrooms: $this->bedrooms, livingStyle: $this->livingStyle, rentalTypes: $rentalTypes, prices: $this->prices, statuses: $statuses, paginate: false);
         $properties->loadMissing(['area', 'district', 'image']);
 
         return $properties;

@@ -29,6 +29,7 @@ class PropertyService
         array $bedrooms = [],
         ?string $livingStyle = null,
         ?string $rentalType = null,
+        array $rentalTypes = [],
         ?string $status = null,
         array $statuses = [],
         ?string $startDate = null,
@@ -67,13 +68,13 @@ class PropertyService
             // ->when($districts, fn ($q) => $q->whereIn('district_id', $districts))
             // ->when($areas, fn ($q) => $q->whereIn('area_id', $areas))
             ->when($districts || $areas, function ($q) use ($districts, $areas) {
-                $q->where(function ($q) use ($districts, $areas) {
+                $q->where(function ($query) use ($districts, $areas) {
                     if (! empty($districts)) {
-                        $q->whereIn('district_id', $districts);
+                        $query->whereIn('district_id', $districts);
                     }
                     if (! empty($areas)) {
                         $method = ! empty($districts) ? 'orWhereIn' : 'whereIn';
-                        $q->{$method}('area_id', $areas);
+                        $query->{$method}('area_id', $areas);
                     }
                 });
             })
@@ -81,6 +82,7 @@ class PropertyService
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
             ->when($rentalType, fn ($q) => $q->where('rental_type', $rentalType))
+            ->when($rentalTypes, fn ($q) => $q->whereIn('rental_type', $rentalTypes))
             ->when($status, fn ($q) => $q->where('status', $status))
             ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             // ->when($startDate, fn($q) => $q->whereDate('availability_date', '>=', $startDate))

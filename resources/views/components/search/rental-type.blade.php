@@ -13,6 +13,8 @@
     </div>
 
     @foreach (PropertyRentalType::cases() as $propertyRentalType)
+        @continue($propertyRentalType == PropertyRentalType::Both)
+
         <div class="col">
             <button type="button"
                 class="btn btn-outline-success btn-sm w-100 rounded-pill {{ $propertyRentalType->value == $rentalType ? 'active' : '' }}"
