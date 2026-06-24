@@ -53,3 +53,15 @@ $imageInfo = @getimagesize($propertyImage->image_url);
 if (! $imageInfo) {
 return null;
 }
+
+services
+name
+description
+inclusions
+icon
+image
+
+value
+add image
+
+icon volt
