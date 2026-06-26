@@ -23,10 +23,11 @@ new class extends Component {
     public object $calendars;
 
     #[Url(except: null)]
-    public ?string $start_date = null;
+    public ?string $date = null;
 
-    #[Url(except: null)]
-    public ?string $end_date = null;
+    public ?string $startDate = null;
+
+    public ?string $endDate = null;
 
     #[Url(except: [])]
     public array $bedrooms = [];
@@ -63,27 +64,37 @@ new class extends Component {
 
         $this->calendars();
 
-        $this->start_date = $this->start_date ?? now()->toDateString();
-        $this->end_date = $this->end_date ?? now()->toDateString();
+        $this->date = $this->date ?? now()->toDateString();
+        $this->startDate = $this->date;
+        $this->endDate = Carbon::parse($this->date)->addMonth();
 
         $minimumDate = now()->addMonth()->toDateString();
-        if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->start_date)->lt($minimumDate)) {
-            $this->start_date = $minimumDate;
-            $this->end_date = $minimumDate;
+        if ($this->rental_type == PropertyRentalType::Yearly->value && Carbon::parse($this->date)->lt($minimumDate)) {
+            $this->date = $minimumDate;
+            $this->startDate = $this->date;
+            $this->endDate = Carbon::parse($this->date)->addMonth();
         }
 
         if ($this->rental_type == PropertyRentalType::Monthly->value) {
             $this->prices['min'] = $this->prices['min'] ?? $this->monthly_min;
             $this->prices['max'] = $this->prices['max'] ?? $this->monthly_max;
+
             $this->price_min = $this->monthly_min;
             $this->price_max = $this->monthly_max;
+
+            $this->startDate = $this->date;
+            $this->endDate = Carbon::parse($this->date)->addMonth();
         }
 
         if ($this->rental_type == PropertyRentalType::Yearly->value) {
             $this->prices['min'] = $this->prices['min'] ?? $this->yearly_min;
             $this->prices['max'] = $this->prices['max'] ?? $this->yearly_max;
+
             $this->price_min = $this->yearly_min;
             $this->price_max = $this->yearly_max;
+
+            $this->startDate = $this->date;
+            $this->endDate = Carbon::parse($this->date)->addYear();
         }
     }
 
@@ -179,14 +190,16 @@ new class extends Component {
 
         if ($this->rental_type == PropertyRentalType::Monthly->value) {
             $this->month = now()->format('Y-m');
-            $this->start_date = now()->toDateString();
-            $this->end_date = now()->toDateString();
+            $this->date = now()->toDateString();
+            $this->startDate = $this->date;
+            $this->endDate = Carbon::parse($this->startDate)->addMonth();
         }
 
         if ($this->rental_type == PropertyRentalType::Yearly->value) {
             $this->month = now()->addMonth()->format('Y-m');
-            $this->start_date = now()->addMonth()->toDateString();
-            $this->end_date = now()->addMonth()->toDateString();
+            $this->date = now()->addMonth()->toDateString();
+            $this->startDate = $this->date;
+            $this->endDate = Carbon::parse($this->startDate)->addYear();
         }
 
         $this->calendars();
@@ -224,21 +237,13 @@ new class extends Component {
     {
         $this->dispatch('keep-when-dropdown-open');
 
-        if ($this->start_date === $this->end_date) {
-            if ($date < $this->start_date) {
-                $this->start_date = $date;
-                $this->end_date = $date;
+        $this->date = $date;
+        $this->startDate = $this->date;
+        $this->endDate = Carbon::parse($this->startDate)->addMonth()->toDateString();
 
-                return;
-            }
-
-            $this->end_date = $date;
-
-            return;
+        if ($this->rental_type == PropertyRentalType::Yearly->value) {
+            $this->endDate = Carbon::parse($this->startDate)->addYear()->toDateString();
         }
-
-        $this->start_date = $date;
-        $this->end_date = $date;
     }
 
     public function changeBedrooms(?int $value = null): void
@@ -344,8 +349,8 @@ new class extends Component {
                 :rental-type="$rental_type"
                 :month="$month"
                 :calendars="$calendars"
-                :start-date="$start_date"
-                :end-date="$end_date"
+                :start-date="$startDate"
+                :end-date="$endDate"
                 />
             </div>
 
@@ -396,8 +401,8 @@ new class extends Component {
     :list-districts="$this->districts()"
     :month="$month"
     :calendars="$calendars"
-    :start-date="$start_date"
-    :end-date="$end_date"
+    :start-date="$startDate"
+    :end-date="$endDate"
     :bedrooms="$bedrooms"
     :living-style="$living_style"
     :rental-type="$rental_type"
@@ -406,40 +411,3 @@ new class extends Component {
     :price-max="$price_max"
     />
 </section>
-
-@push('css')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css">
-@endpush
-
-@push('script')
-    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-
-    <script>
-        document.addEventListener('livewire:init', () => {
-            const isMobile = window.innerWidth < 576
-
-            new Litepicker({
-                element: document.getElementById('daterange'),
-                singleMode: false,
-                numberOfMonths: isMobile ? 1 : 2,
-                numberOfColumns: isMobile ? 1 : 2,
-                minDate: new Date(),
-                format: 'DD MMM YYYY',
-                startDate: '{{ $start_date }}',
-                endDate: '{{ $end_date }}',
-                setup: (picker) => {
-                    picker.on('selected', (start, end) => {
-                        @this.set(
-                            'start_date',
-                            start ? start.format('YYYY-MM-DD') : null
-                        )
-                        @this.set(
-                            'end_date',
-                            end ? end.format('YYYY-MM-DD') : null
-                        )
-                    })
-                }
-            })
-        })
-    </script>
-@endpush
