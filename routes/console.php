@@ -21,3 +21,4 @@ Artisan::command('logs:clear', function () {
 })->purpose('Delete all Laravel log files');
 
 Schedule::command('ghl:refresh-token')->daily();
+Schedule::command('exchange-rate:refresh-currency')->daily();

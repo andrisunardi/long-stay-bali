@@ -32,6 +32,13 @@ return [
         'version' => env('GHL_VERSION'),
     ],
 
+    // EXCHANGE RATE
+    'exchange_rate' => [
+        'app_url' => env('EXCHANGE_RATE_APP_URL'),
+        'url' => env('EXCHANGE_RATE_URL'),
+        'token' => env('EXCHANGE_RATE_TOKEN'),
+    ],
+
     // FOLDER
     'folder_id' => [
         'property' => env('FOLDER_ID_PROPERTY'),
