@@ -6,13 +6,13 @@
     <div class="d-grid gap-2">
         @if ($property->rental_type == PropertyRentalType::Both || $property->rental_type == PropertyRentalType::Monthly)
             <div class="d-flex justify-content-between">
-                <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                <span class="fw-medium">{{ Str::currency($property->monthly_price) }}</span>
                 <span class="text-secondary">{{ trans('property.per_month') }}</span>
             </div>
         @endif
         @if ($property->rental_type == PropertyRentalType::Both || $property->rental_type == PropertyRentalType::Yearly)
             <div class="d-flex justify-content-between">
-                <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                <span class="fw-medium">{{ Str::currency($property->yearly_price) }}</span>
                 <span class="text-secondary">{{ trans('property.per_year') }}</span>
             </div>
         @endif

@@ -219,13 +219,13 @@ new #[Lazy] class extends Component {
                         <div class="mt-3 d-grid gap-2">
                             @if ($property->monthly_price)
                                 <div class="d-flex justify-content-between">
-                                    <span class="fw-medium">{{ Str::idr($property->monthly_price) }}</span>
+                                    <span class="fw-medium">{{ Str::currency($property->monthly_price) }}</span>
                                     <span class="text-secondary">{{ trans('property.per_month') }}</span>
                                 </div>
                             @endif
                             @if ($property->yearly_price)
                                 <div class="d-flex justify-content-between">
-                                    <span class="fw-medium">{{ Str::idr($property->yearly_price) }}</span>
+                                    <span class="fw-medium">{{ Str::currency($property->yearly_price) }}</span>
                                     <span class="text-secondary">{{ trans('property.per_year') }}</span>
                                 </div>
                             @endif
