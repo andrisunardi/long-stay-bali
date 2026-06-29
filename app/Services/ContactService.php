@@ -85,10 +85,6 @@ class ContactService
         try {
             DB::beginTransaction();
 
-            $data['area_id'] = $data['area_id'] ?? null ?: null;
-            $data['bedroom'] = $data['bedroom'] ?? null ?: null;
-            $data['rental_type'] = $data['rental_type'] ?? null ?: null;
-
             if (! isset($data['name'])) {
                 $data['name'] = trim("{$data['first_name']} {$data['last_name']}");
             }
@@ -103,13 +99,17 @@ class ContactService
 
             $contacts = (new GoHighLevel)->createContacts(data: $data);
 
-            if (! ($contacts['contact']['id'] ?? null)) {
+            $contactId = $contacts['contact']['id'] ?? null;
+
+            if (! ($contactId)) {
                 throw ValidationException::withMessages([
                     'api' => [$contacts['message'] ?? 'Error From Go High Level'],
                 ]);
             }
 
-            $data['code'] = $contacts['contact']['id'];
+            $data['code'] = $contactId;
+
+            // (new GoHighLevel)->createConversationsMessagesInbound(contactId: $contactId, message: $data['message']);
 
             Arr::pull($data, 'client_type');
 

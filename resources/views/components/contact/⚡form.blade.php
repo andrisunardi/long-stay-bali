@@ -1,23 +1,16 @@
 <?php
 
-use App\Enums\Property\PropertyBedroom;
-use App\Enums\Property\PropertyRentalType;
 use App\Livewire\Component;
 use App\Livewire\Forms\Contact\ContactSubmitForm;
-use App\Services\AreaService;
-use App\Services\DistrictService;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Exception;
 
 new class extends Component {
     public ContactSubmitForm $form;
 
-    public string $district_id = '';
-
     public function resetForm(): void
     {
         $this->form->reset();
-        $this->reset(['district_id']);
     }
 
     public function submit(): void
@@ -35,28 +28,6 @@ new class extends Component {
 
             $this->alertError(title: trans('contact.form.failed.title'), body: $errors);
         }
-    }
-
-    public function districts(): object
-    {
-        $service = new DistrictService();
-        return $service->index(isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
-    }
-
-    public function areas(): object
-    {
-        $service = new AreaService();
-        return $service->index(districtId: $this->district_id, isActive: [true], orderBy: 'name', sortBy: 'asc', paginate: false);
-    }
-
-    public function propertyBedrooms(): array
-    {
-        return PropertyBedroom::cases();
-    }
-
-    public function propertyRentalTypes(): array
-    {
-        return PropertyRentalType::cases();
     }
 };
 ?>

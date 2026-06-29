@@ -27,6 +27,74 @@ class GoHighLevel
         return $header;
     }
 
+    public function oauth(string $code): Oauth
+    {
+        $response = Http::asForm()->post(config('constants.ghl.oauth_url'), [
+            'client_id' => config('constants.ghl.client_id'),
+            'client_secret' => config('constants.ghl.client_secret'),
+            'grant_type' => 'authorization_code',
+            'code' => $code,
+            'redirect_uri' => config('constants.ghl.redirect_uri'),
+            'user_type' => config('constants.ghl.user_type'),
+        ]);
+
+        if (! $response->successful()) {
+            throw new Exception('Failed Refresh Token');
+        }
+
+        $data = $response->json();
+
+        if (isset($data['error'])) {
+            throw new Exception($data['error']);
+        }
+
+        $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
+
+        $oauth->update([
+            'refresh_token' => $data['refresh_token'],
+            'access_token' => $data['access_token'],
+            'token_type' => $data['token_type'],
+            'expires_in' => $data['expires_in'],
+            'scope' => $data['scope'],
+        ]);
+
+        return $oauth->fresh();
+    }
+
+    public function refresh(): Oauth
+    {
+        $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
+
+        $response = Http::asForm()->post(config('constants.ghl.oauth_url'), [
+            'client_id' => config('constants.ghl.client_id'),
+            'client_secret' => config('constants.ghl.client_secret'),
+            'grant_type' => 'refresh_token',
+            'refresh_token' => $oauth->refresh_token,
+            'user_type' => config('constants.ghl.user_type'),
+            'redirect_uri' => config('constants.ghl.redirect_uri'),
+        ]);
+
+        if (! $response->successful()) {
+            throw new Exception('Failed Refresh Token');
+        }
+
+        $data = $response->json();
+
+        if (isset($data['error'])) {
+            throw new Exception($data['error']);
+        }
+
+        $oauth->update([
+            'refresh_token' => $data['refresh_token'],
+            'access_token' => $data['access_token'],
+            'token_type' => $data['token_type'],
+            'expires_in' => $data['expires_in'],
+            'scope' => $data['scope'],
+        ]);
+
+        return $oauth->fresh();
+    }
+
     public function getContacts(
         string $id = '',
         string $locationId = '',
@@ -127,71 +195,48 @@ class GoHighLevel
         }
     }
 
-    public function oauth(string $code): Oauth
+    public function createConversations(string $contactId): array
     {
-        $response = Http::asForm()->post(config('constants.ghl.oauth_url'), [
-            'client_id' => config('constants.ghl.client_id'),
-            'client_secret' => config('constants.ghl.client_secret'),
-            'grant_type' => 'authorization_code',
-            'code' => $code,
-            'redirect_uri' => config('constants.ghl.redirect_uri'),
-            'user_type' => config('constants.ghl.user_type'),
-        ]);
+        try {
+            $url = "{$this->baseUrl}/conversations";
 
-        if (! $response->successful()) {
-            throw new Exception('Failed Refresh Token');
+            $locationId = $data['location_id'] ?? config('constants.ghl.location_id');
+
+            $payload = array_filter([
+                'locationId' => $locationId,
+                'contactId' => $contactId,
+            ], fn ($value) => $value !== null);
+
+            $response = Http::withHeaders($this->getHeader())->post($url, $payload);
+            $result = $response->json();
+
+            return $result;
+        } catch (Exception $e) {
+            throw $e;
         }
-
-        $data = $response->json();
-
-        if (isset($data['error'])) {
-            throw new Exception($data['error']);
-        }
-
-        $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
-
-        $oauth->update([
-            'refresh_token' => $data['refresh_token'],
-            'access_token' => $data['access_token'],
-            'token_type' => $data['token_type'],
-            'expires_in' => $data['expires_in'],
-            'scope' => $data['scope'],
-        ]);
-
-        return $oauth->fresh();
     }
 
-    public function refresh(): Oauth
+    public function createConversationsMessagesInbound(string $contactId, string $message = ''): array
     {
-        $oauth = Oauth::firstOrCreate(['code' => 'GOHIGHLEVEL']);
+        try {
+            $url = "{$this->baseUrl}/conversations/messages/inbound";
 
-        $response = Http::asForm()->post(config('constants.ghl.oauth_url'), [
-            'client_id' => config('constants.ghl.client_id'),
-            'client_secret' => config('constants.ghl.client_secret'),
-            'grant_type' => 'refresh_token',
-            'refresh_token' => $oauth->refresh_token,
-            'user_type' => config('constants.ghl.user_type'),
-            'redirect_uri' => config('constants.ghl.redirect_uri'),
-        ]);
+            $locationId = $data['location_id'] ?? config('constants.ghl.location_id');
 
-        if (! $response->successful()) {
-            throw new Exception('Failed Refresh Token');
+            $payload = array_filter([
+                'locationId' => $locationId,
+                'contactId' => $contactId,
+                'channel' => 'WebChat',
+                'message' => $message,
+                'date' => now()->toDateTimeString(),
+            ], fn ($value) => $value !== null);
+
+            $response = Http::withHeaders($this->getHeader())->post($url, $payload);
+            $result = $response->json();
+
+            return $result;
+        } catch (Exception $e) {
+            throw $e;
         }
-
-        $data = $response->json();
-
-        if (isset($data['error'])) {
-            throw new Exception($data['error']);
-        }
-
-        $oauth->update([
-            'refresh_token' => $data['refresh_token'],
-            'access_token' => $data['access_token'],
-            'token_type' => $data['token_type'],
-            'expires_in' => $data['expires_in'],
-            'scope' => $data['scope'],
-        ]);
-
-        return $oauth->fresh();
     }
 }
