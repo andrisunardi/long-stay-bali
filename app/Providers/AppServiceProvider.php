@@ -53,7 +53,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Str::macro('currency', function (float $amount): string {
-            $currency = session('currency', Currency::USD->value);
+            $currency = session('currency', Currency::IDR->value);
             $rate = Cache::get("currency-{$currency}", 1);
             $convertedAmount = $amount * $rate;
 
