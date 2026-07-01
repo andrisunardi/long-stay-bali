@@ -21,10 +21,9 @@ class ExchangeRateRefreshCurrency extends Command
         $exchangeRate = (new ExchangeRate)->index(currency: Currency::IDR->value);
 
         foreach ($currencies as $currency) {
-            Cache::put(
+            Cache::forever(
                 "currency-{$currency->value}",
                 $exchangeRate['conversion_rates'][strtoupper($currency->value)],
-                now()->endOfDay(),
             );
         }
 
