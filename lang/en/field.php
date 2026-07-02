@@ -91,6 +91,15 @@ return [
     'is_promoted' => 'Promoted',
 
     'counter' => 'Counter',
+    'monthly_price' => 'Monthly Price',
+    'yearly_price' => 'Yearly Price',
+    'fully_furnished' => 'Fully Furnished',
+    'pool' => 'Pool',
+    'pool_size' => 'Pool Size',
+    'land_size' => 'Land Size',
+    'building_size' => 'Building Size',
+    'index' => 'Index',
+    'index' => 'Index',
     'index' => 'Index',
     'index' => 'Index',
 

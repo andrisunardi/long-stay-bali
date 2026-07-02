@@ -21,21 +21,18 @@
             <th align="center"><b>{{ trans('field.id') }}</b></th>
             <th align="center"><b>{{ trans('field.code') }}</b></th>
             <th align="center"><b>{{ trans('field.name') }}</b></th>
-            <th align="center"><b>{{ trans('field.user') }}</b></th>
-            <th align="center"><b>{{ trans('field.availability_date') }}</b></th>
-            <th align="center"><b>{{ trans('field.visit_date') }}</b></th>
-            <th align="center"><b>{{ trans('field.bedroom') }}</b></th>
-            <th align="center"><b>{{ trans('field.villa_name') }}</b></th>
-            <th align="center"><b>{{ trans('field.latitude') }}</b></th>
-            <th align="center"><b>{{ trans('field.longitude') }}</b></th>
-            <th align="center"><b>{{ trans('field.address') }}</b></th>
             <th align="center"><b>{{ trans('field.district_id') }}</b></th>
             <th align="center"><b>{{ trans('field.area_id') }}</b></th>
+            <th align="center"><b>{{ trans('field.image') }}</b></th>
             <th align="center"><b>{{ trans('field.monthly_price') }}</b></th>
             <th align="center"><b>{{ trans('field.yearly_price') }}</b></th>
-            <th align="center"><b>{{ trans('field.owner') }}</b></th>
-            <th align="center"><b>{{ trans('field.owner_representative') }}</b></th>
-            <th align="center"><b>{{ trans('field.counter') }}</b></th>
+            <th align="center"><b>{{ trans('field.description') }}</b></th>
+            <th align="center"><b>{{ trans('field.fully_furnished') }}</b></th>
+            <th align="center"><b>{{ trans('field.pool') }}</b></th>
+            <th align="center"><b>{{ trans('field.bedroom') }}</b></th>
+            <th align="center"><b>{{ trans('field.land_size') }}</b></th>
+            <th align="center"><b>{{ trans('field.building_size') }}</b></th>
+            <th align="center"><b>{{ trans('field.rental_type') }}</b></th>
             <th align="center"><b>{{ trans('field.created_at') }}</b></th>
             <th align="center"><b>{{ trans('field.updated_at') }}</b></th>
         </tr>
@@ -47,21 +44,22 @@
                 <td align="center">{{ $property->id }}</td>
                 <td align="center">{{ $property->code }}</td>
                 <td align="left">{{ $property->name }}</td>
-                <td align="left">{{ $property->user?->name }}</td>
-                <td align="left">{{ $property->availability_date?->toDateString() }}</td>
-                <td align="left">{{ $property->visit_date?->toDateString() }}</td>
-                <td align="center">{{ $property->bedroom->name }}</td>
-                <td align="left">{{ $property->villa_name }}</td>
-                <td align="left">{{ $property->latitude }}</td>
-                <td align="left">{{ $property->longitude }}</td>
-                <td align="left">{{ $property->address }}</td>
                 <td align="left">{{ $property->district?->name }}</td>
                 <td align="left">{{ $property->area?->name }}</td>
+                <td>
+                    <img src="{{ asset('images/logo.png') }}" width="100" />
+                </td>
                 <td align="right">{{ $property->monthly_price }}</td>
                 <td align="right">{{ $property->yearly_price }}</td>
-                <td align="left">{{ $property->owner?->name }}</td>
-                <td align="left">{{ $property->ownerRepresentative?->name }}</td>
-                <td align="center">{{ $property->counter }}</td>
+                <td align="left">
+                    {{ Str::of($property->description)->replace(['<br>', '<br/>', '<br />'], PHP_EOL)->stripTags()->toString() }}
+                </td>
+                <td align="center">{{ Str::yesNo($property->fully_furnished) }}</td>
+                <td align="center">{{ Str::yesNo($property->pool_size) }}</td>
+                <td align="center">{{ $property->bedroom?->value }}</td>
+                <td align="center">{{ $property->land_size }}</td>
+                <td align="center">{{ $property->building_size }}</td>
+                <td align="center">{{ $property->rental_type?->name }}</td>
                 <td align="left">{{ $property->created_at }}</td>
                 <td align="left">{{ $property->updated_at }}</td>
             </tr>

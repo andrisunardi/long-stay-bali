@@ -82,20 +82,20 @@ new #[Title('Property')] class extends Component {
     {
         $service = new PropertyService();
         $properties = $service->index(search: $this->search, userId: $this->user_id, districtId: $this->district_id, areaId: $this->area_id, status: $this->status, startDate: $this->start_date, endDate: $this->end_date, paginate: $paginate);
-        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image']);
+        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image', 'images']);
 
         return $properties;
     }
 
-    public function export(): BinaryFileResponse
+    public function export(string $format = 'xlsx'): BinaryFileResponse
     {
         $this->alertSuccess(title: trans('index.export') . ' ' . trans('index.success'), body: trans('page.property') . ' ' . trans('message.has_been_successfully_exported'));
 
         $service = new PropertyService();
         $properties = $service->index(orderBy: 'id', sortBy: 'asc', paginate: false);
-        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image', 'createdBy', 'updatedBy']);
+        $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image', 'images', 'createdBy', 'updatedBy']);
 
-        return Excel::download(new PropertyExport(properties: $properties), trans('page.property') . '.xlsx');
+        return Excel::download(new PropertyExport(properties: $properties), trans('page.property') . '.' . $format);
     }
 };
 ?>
@@ -285,18 +285,41 @@ new #[Title('Property')] class extends Component {
 
                 @can('property.export')
                     <div class="col-auto">
-                        <button type="button" class="btn btn-success w-100" wire:click="export"
-                            wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
-                            wire:loading.attr="disabled">
-                            <span wire:loading.remove wire:target="export">
-                                <span class="fas fa-file-excel fa-fw"></span>
-                                {{ trans('index.export') }}
-                            </span>
-                            <span wire:loading wire:target="export" class="w-100">
-                                <span class="spinner-border spinner-border-sm"></span>
-                                {{ trans('index.export') }}
-                            </span>
-                        </button>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success" wire:click="export"
+                                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                                wire:loading.attr="disabled">
+                                <span wire:loading.remove wire:target="export">
+                                    <span class="fas fa-file-excel fa-fw"></span>
+                                    {{ trans('index.export') }}
+                                </span>
+                                <span wire:loading wire:target="export" class="w-100">
+                                    <span class="spinner-border spinner-border-sm"></span>
+                                    {{ trans('index.export') }}
+                                </span>
+                            </button>
+
+                            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split"
+                                data-bs-toggle="dropdown">
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end mt-2">
+                                <li>
+                                    <a draggable="false" class="dropdown-item" role="button"
+                                        wire:click="export('xlsx')">
+                                        <span class="fas fa-file-excel fa-fw"></span>
+                                        <span>XLSX</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a draggable="false" class="dropdown-item" role="button"
+                                        wire:click="export('csv')">
+                                        <span class="fas fa-file-csv fa-fw"></span>
+                                        <span>CSV</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 @endcan
             </div>
