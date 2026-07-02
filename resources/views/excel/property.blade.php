@@ -46,9 +46,7 @@
                 <td align="left">{{ $property->name }}</td>
                 <td align="left">{{ $property->district?->name }}</td>
                 <td align="left">{{ $property->area?->name }}</td>
-                <td>
-                    <img src="{{ asset('images/logo.png') }}" width="100" />
-                </td>
+                <td height="50" width="20"></td>
                 <td align="right">{{ $property->monthly_price }}</td>
                 <td align="right">{{ $property->yearly_price }}</td>
                 <td align="left">

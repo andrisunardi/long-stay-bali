@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             URL::forceScheme('https');
         }
 
-        LogViewer::auth(fn($request) => optional($request->user())->hasRole('Admin') ?? false);
+        LogViewer::auth(fn ($request) => optional($request->user())->hasRole('Admin') ?? false);
 
         Gate::before(function (User $user) {
             return $user->hasRole('Admin');
@@ -49,7 +49,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Str::macro('idr', function ($value) {
-            return 'IDR. ' . number_format($value, 0, ',', '.');
+            return 'IDR. '.number_format($value, 0, ',', '.');
         });
 
         Str::macro('currency', function (float $amount): string {
@@ -58,11 +58,11 @@ class AppServiceProvider extends ServiceProvider
             $convertedAmount = $amount * $rate;
 
             return match ($currency) {
-                Currency::IDR->value => 'Rp ' . number_format($convertedAmount, 0, ',', '.'),
-                Currency::USD->value => '$' . number_format($convertedAmount, 2),
-                Currency::AUD->value => 'A$' . number_format($convertedAmount, 2),
-                Currency::EUR->value => '€' . number_format($convertedAmount, 2),
-                Currency::GBP->value => '£' . number_format($convertedAmount, 2),
+                Currency::IDR->value => 'Rp '.number_format($convertedAmount, 0, ',', '.'),
+                Currency::USD->value => '$'.number_format($convertedAmount, 2),
+                Currency::AUD->value => 'A$'.number_format($convertedAmount, 2),
+                Currency::EUR->value => '€'.number_format($convertedAmount, 2),
+                Currency::GBP->value => '£'.number_format($convertedAmount, 2),
             };
         });
 
@@ -74,7 +74,7 @@ class AppServiceProvider extends ServiceProvider
                 $thousands = $number / 1000;
                 $formatted = number_format($thousands, 0, ',', '.');
 
-                return $formatted . 'K';
+                return $formatted.'K';
             }
 
             return number_format($number, 0, ',', '.');
@@ -95,7 +95,7 @@ class AppServiceProvider extends ServiceProvider
             $units = ['B', 'KB', 'MB', 'GB'];
             $i = floor(log($bytes, 1024));
 
-            return round($bytes / pow(1024, $i), 2) . ' ' . $units[$i];
+            return round($bytes / pow(1024, $i), 2).' '.$units[$i];
         });
     }
 }

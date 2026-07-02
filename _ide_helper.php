@@ -5,7 +5,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 12.61.0.
+ * Generated for Laravel 12.62.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -27594,6 +27594,17 @@ namespace Illuminate\Support {
         public static function idr($value)
         {
             return \Illuminate\Support\Str::idr($value);
+        }
+
+        /**
+         * @see \App\Providers\AppServiceProvider::boot()
+         * @param float $amount
+         * @return string
+         * @static
+         */
+        public static function currency($amount)
+        {
+            return \Illuminate\Support\Str::currency($amount);
         }
 
         /**

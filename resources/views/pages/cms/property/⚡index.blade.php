@@ -92,7 +92,8 @@ new #[Title('Property')] class extends Component {
         $this->alertSuccess(title: trans('index.export') . ' ' . trans('index.success'), body: trans('page.property') . ' ' . trans('message.has_been_successfully_exported'));
 
         $service = new PropertyService();
-        $properties = $service->index(orderBy: 'id', sortBy: 'asc', paginate: false);
+        // $properties = $service->index(orderBy: 'id', sortBy: 'asc', paginate: false);
+        $properties = $service->index(search: $this->search, userId: $this->user_id, districtId: $this->district_id, areaId: $this->area_id, status: $this->status, startDate: $this->start_date, endDate: $this->end_date, orderBy: 'id', sortBy: 'asc', paginate: false);
         $properties->loadMissing(['user', 'district', 'area', 'owner', 'ownerRepresentative', 'image', 'images', 'createdBy', 'updatedBy']);
 
         return Excel::download(new PropertyExport(properties: $properties), trans('page.property') . '.' . $format);
