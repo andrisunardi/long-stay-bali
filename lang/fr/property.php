@@ -38,6 +38,7 @@ return [
     'availability_date' => 'Date de disponibilité',
     'agent_name' => "Nom de l'agent",
     'date_of_visit' => 'Date de visite',
+    'year_built' => 'Année de construction',
     'bedroom' => 'Chambre',
 
     'location' => 'Emplacement',

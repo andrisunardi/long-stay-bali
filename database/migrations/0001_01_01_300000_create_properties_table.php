@@ -25,6 +25,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->nullable()->constrained()->nullOnDelete();
             $table->date('availability_date')->nullable();
             $table->date('visit_date')->nullable();
+            $table->year('year_built')->nullable();
             $table->unsignedTinyInteger('bedroom')->default(PropertyBedroom::OneBedroom->value);
 
             $table->string('villa_name', 50)->nullable();

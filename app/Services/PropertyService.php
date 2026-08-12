@@ -25,6 +25,7 @@ class PropertyService
         ?string $areaId = null,
         array $districts = [],
         array $areas = [],
+        ?int $yearBuilt = null,
         ?string $bedroom = null,
         array $bedrooms = [],
         ?string $livingStyle = null,
@@ -55,6 +56,7 @@ class PropertyService
                         ->orWhere('description_id', 'like', "%{$search}%")
                         ->orWhere('description_zh', 'like', "%{$search}%")
                         ->orWhere('description_fr', 'like', "%{$search}%")
+                        ->orWhere('year_built', 'like', "%{$search}%")
                         ->orWhere('villa_name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
@@ -78,6 +80,7 @@ class PropertyService
                     }
                 });
             })
+            ->when($yearBuilt, fn ($q) => $q->where('year_built', $yearBuilt))
             ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
@@ -186,13 +189,15 @@ class PropertyService
             //     );
             // }
 
-            $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
+            if ($data['google_maps_url']) {
+                $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
 
-            $data['latitude'] = $result['latitude'];
-            $data['longitude'] = $result['longitude'];
+                $data['latitude'] = $result['latitude'];
+                $data['longitude'] = $result['longitude'];
 
-            if (blank($data['address'])) {
-                $data['address'] = $result['address'];
+                if (blank($data['address'])) {
+                    $data['address'] = $result['address'];
+                }
             }
 
             Arr::pull($data, 'images');
@@ -235,13 +240,15 @@ class PropertyService
 
             $data['slug'] = Str::slug($data['name']);
 
-            $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
+            if ($data['google_maps_url']) {
+                $result = GoogleMapsUrlParser::parse(url: $data['google_maps_url']);
 
-            $data['latitude'] = $result['latitude'];
-            $data['longitude'] = $result['longitude'];
+                $data['latitude'] = $result['latitude'];
+                $data['longitude'] = $result['longitude'];
 
-            if (blank($data['address'])) {
-                $data['address'] = $result['address'];
+                if (blank($data['address'])) {
+                    $data['address'] = $result['address'];
+                }
             }
 
             // if ($property->code != $data['code']) {

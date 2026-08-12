@@ -33,9 +33,17 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int $id
  * @property string $code
  * @property string $name
+ * @property string|null $description
+ * @property string|null $description_id
+ * @property string|null $description_zh
+ * @property string|null $description_fr
  * @property int|null $user_id
  * @property Carbon|null $availability_date
  * @property Carbon|null $visit_date
+ * @property string|null $year_built
+ * @property PropertyBedroom $bedroom
+ * @property string|null $villa_name
+ * @property string|null $google_maps_url
  * @property numeric|null $latitude
  * @property numeric|null $longitude
  * @property string|null $address
@@ -46,7 +54,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $number_of_floors
  * @property int|null $outdoor_area_size
  * @property string|null $pool_size
- * @property bool|null $number_of_bathrooms
+ * @property int|null $number_of_bathrooms
  * @property bool $ensuite_bathrooms
  * @property bool $guest_toilet
  * @property bool $storage
@@ -88,10 +96,17 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property array<array-key, mixed>|null $target_profiles
  * @property PropertyOperationalRisk|null $operational_risk
  * @property string|null $operational_risk_comment
+ * @property int $monthly_price
+ * @property int $yearly_price
+ * @property array<array-key, mixed>|null $monthly_inclusions
+ * @property array<array-key, mixed>|null $yearly_inclusions
+ * @property int|null $owner_id
+ * @property int|null $owner_representative_id
  * @property string|null $image_path
  * @property PropertyStatus $status
  * @property string $slug
  * @property string|null $folder_id
+ * @property int $counter
  * @property int|null $created_by
  * @property int|null $updated_by
  * @property int|null $deleted_by
@@ -104,9 +119,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property-read User|null $createdBy
  * @property-read User|null $deletedBy
  * @property-read District|null $district
- * @property-read string $image
- * @property-read string $internet_speedtest_image
- * @property-read Property|null $images
+ * @property-read string|null $translate_description
+ * @property-read PropertyImage|null $image
+ * @property-read Collection<int, PropertyImage> $images
+ * @property-read int|null $images_count
+ * @property-read Contact|null $owner
+ * @property-read Contact|null $ownerRepresentative
  * @property-read User|null $updatedBy
  * @property-read User|null $user
  *
@@ -122,6 +140,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Database\Factories\PropertyFactory factory($count = null, $state = [])
  * @method static Builder<static>|Property family()
  * @method static Builder<static>|Property fixed()
+ * @method static Builder<static>|Property fourBedroom()
  * @method static Builder<static>|Property generator()
  * @method static Builder<static>|Property high()
  * @method static Builder<static>|Property hybrid()
@@ -135,6 +154,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property newModelQuery()
  * @method static Builder<static>|Property newQuery()
  * @method static Builder<static>|Property none()
+ * @method static Builder<static>|Property oneBedroom()
  * @method static Builder<static>|Property onlyTrashed()
  * @method static Builder<static>|Property open()
  * @method static Builder<static>|Property pDAM()
@@ -144,19 +164,27 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property remoteWorker()
  * @method static Builder<static>|Property solar()
  * @method static Builder<static>|Property standard()
+ * @method static Builder<static>|Property threeedroom()
+ * @method static Builder<static>|Property twoBedroom()
  * @method static Builder<static>|Property wSMixed()
  * @method static Builder<static>|Property well()
  * @method static Builder<static>|Property whereAddress($value)
  * @method static Builder<static>|Property whereAreaId($value)
  * @method static Builder<static>|Property whereAvailabilityDate($value)
+ * @method static Builder<static>|Property whereBedroom($value)
  * @method static Builder<static>|Property whereBedroom1HasNaturalLight($value)
  * @method static Builder<static>|Property whereBedroom2HasNaturalLight($value)
  * @method static Builder<static>|Property whereBuildingSize($value)
  * @method static Builder<static>|Property whereCode($value)
+ * @method static Builder<static>|Property whereCounter($value)
  * @method static Builder<static>|Property whereCreatedAt($value)
  * @method static Builder<static>|Property whereCreatedBy($value)
  * @method static Builder<static>|Property whereDeletedAt($value)
  * @method static Builder<static>|Property whereDeletedBy($value)
+ * @method static Builder<static>|Property whereDescription($value)
+ * @method static Builder<static>|Property whereDescriptionFr($value)
+ * @method static Builder<static>|Property whereDescriptionId($value)
+ * @method static Builder<static>|Property whereDescriptionZh($value)
  * @method static Builder<static>|Property whereDesignDrivenProperty($value)
  * @method static Builder<static>|Property whereDistrictId($value)
  * @method static Builder<static>|Property whereElectricity($value)
@@ -166,6 +194,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereFolderId($value)
  * @method static Builder<static>|Property whereFullLegalDocumentation($value)
  * @method static Builder<static>|Property whereFullyFurnished($value)
+ * @method static Builder<static>|Property whereGoogleMapsUrl($value)
  * @method static Builder<static>|Property whereGuestToilet($value)
  * @method static Builder<static>|Property whereId($value)
  * @method static Builder<static>|Property whereImagePath($value)
@@ -180,6 +209,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereLivingStyle($value)
  * @method static Builder<static>|Property whereLongitude($value)
  * @method static Builder<static>|Property whereMinimumRentalDurationMonths($value)
+ * @method static Builder<static>|Property whereMonthlyInclusions($value)
+ * @method static Builder<static>|Property whereMonthlyPrice($value)
  * @method static Builder<static>|Property whereName($value)
  * @method static Builder<static>|Property whereNoFestiveVenueNearby($value)
  * @method static Builder<static>|Property whereNoOngoing($value)
@@ -191,7 +222,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOperationalRiskComment($value)
  * @method static Builder<static>|Property whereOrientation($value)
  * @method static Builder<static>|Property whereOutdoorAreaSize($value)
+ * @method static Builder<static>|Property whereOwnerId($value)
  * @method static Builder<static>|Property whereOwnerPriceFlexibility($value)
+ * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static Builder<static>|Property whereOwnersId($value)
  * @method static Builder<static>|Property wherePbg($value)
  * @method static Builder<static>|Property wherePoolSize($value)
@@ -212,61 +245,15 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereUsabilityLimitations($value)
  * @method static Builder<static>|Property whereUserId($value)
  * @method static Builder<static>|Property whereView($value)
+ * @method static Builder<static>|Property whereVillaName($value)
  * @method static Builder<static>|Property whereVisitDate($value)
  * @method static Builder<static>|Property whereWaterSource($value)
+ * @method static Builder<static>|Property whereYearBuilt($value)
+ * @method static Builder<static>|Property whereYearlyInclusions($value)
+ * @method static Builder<static>|Property whereYearlyPrice($value)
  * @method static Builder<static>|Property withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Property withoutTrashed()
  * @method static Builder<static>|Property yearly()
- *
- * @property-read int|null $images_count
- * @property string|null $description
- * @property string|null $description_id
- * @property string|null $description_zh
- * @property string|null $description_fr
- * @property-read string $translate_description
- *
- * @method static Builder<static>|Property whereDescription($value)
- * @method static Builder<static>|Property whereDescriptionFr($value)
- * @method static Builder<static>|Property whereDescriptionId($value)
- * @method static Builder<static>|Property whereDescriptionZh($value)
- *
- * @property string|null $google_maps_url
- * @property int $monthly_price
- * @property int $yearly_price
- *
- * @method static Builder<static>|Property whereGoogleMapsUrl($value)
- * @method static Builder<static>|Property whereMonthlyPrice($value)
- * @method static Builder<static>|Property whereYearlyPrice($value)
- *
- * @property PropertyBedroom $bedroom
- *
- * @method static Builder<static>|Property fourBedroom()
- * @method static Builder<static>|Property oneBedroom()
- * @method static Builder<static>|Property threeedroom()
- * @method static Builder<static>|Property twoBedroom()
- * @method static Builder<static>|Property whereBedroom($value)
- *
- * @property string|null $villa_name
- *
- * @method static Builder<static>|Property whereVillaName($value)
- *
- * @property array<array-key, mixed>|null $monthly_inclusions
- * @property array<array-key, mixed>|null $yearly_inclusions
- *
- * @method static Builder<static>|Property whereMonthlyInclusions($value)
- * @method static Builder<static>|Property whereYearlyInclusions($value)
- *
- * @property int|null $owner_id
- * @property int|null $owner_representative_id
- * @property-read Contact|null $owner
- * @property-read Contact|null $ownerRepresentative
- *
- * @method static Builder<static>|Property whereOwnerId($value)
- * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
- *
- * @property int $counter
- *
- * @method static Builder<static>|Property whereCounter($value)
  *
  * @mixin \Eloquent
  */
@@ -289,6 +276,7 @@ class Property extends Model
         'user_id',
         'availability_date',
         'visit_date',
+        'year_built',
         'bedroom',
 
         'villa_name',

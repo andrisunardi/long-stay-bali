@@ -38,6 +38,7 @@ return [
     'availability_date' => 'Availability Date',
     'agent_name' => 'Agent Name',
     'date_of_visit' => 'Date of Visit',
+    'year_built' => 'Year Built',
     'bedroom' => 'Bedroom',
 
     'location' => 'Location',

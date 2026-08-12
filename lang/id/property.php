@@ -38,6 +38,7 @@ return [
     'availability_date' => 'Tanggal Ketersediaan',
     'agent_name' => 'Nama Agen',
     'date_of_visit' => 'Tanggal Kunjungan',
+    'year_built' => 'Tahun Pembuatan',
     'bedroom' => 'Kamar Tidur',
 
     'location' => 'Lokasi',

@@ -50,6 +50,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|date|date_format:Y-m-d|before_or_equal:2999-12-31')]
     public ?string $visit_date = '';
 
+    #[Validate('nullable|integer|digits:4|min:1900|max:2100')]
+    public ?int $year_built = null;
+
     #[Validate(['required', 'integer', new Enum(PropertyBedroom::class)])]
     public int $bedroom = PropertyBedroom::OneBedroom->value;
 

@@ -45,6 +45,7 @@ class PropertyFactory extends Factory
             'user_id' => $user->id,
             'availability_date' => fake()->date(),
             'visit_date' => fake()->date(),
+            'year_built' => fake()->year(),
             'bedroom' => fake()->randomElement(PropertyBedroom::cases()),
 
             'villa_name' => fake()->name(),
