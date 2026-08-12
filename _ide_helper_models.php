@@ -367,7 +367,8 @@ namespace App\Models{
  * @property int|null $user_id
  * @property \Illuminate\Support\Carbon|null $availability_date
  * @property \Illuminate\Support\Carbon|null $visit_date
- * @property string|null $year_built
+ * @property int|null $year_built
+ * @property \Illuminate\Support\Carbon|null $completion_date
  * @property \App\Enums\Property\PropertyBedroom $bedroom
  * @property string|null $villa_name
  * @property string|null $google_maps_url
@@ -502,6 +503,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBedroom2HasNaturalLight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBuildingSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCompletionDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCounter($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCreatedBy($value)

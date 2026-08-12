@@ -39,6 +39,7 @@ return [
     'agent_name' => 'Nama Agen',
     'date_of_visit' => 'Tanggal Kunjungan',
     'year_built' => 'Tahun Pembuatan',
+    'completion_date' => 'Tanggal Serah Terima',
     'bedroom' => 'Kamar Tidur',
 
     'location' => 'Lokasi',

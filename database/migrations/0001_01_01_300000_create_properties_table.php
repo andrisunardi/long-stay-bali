@@ -26,6 +26,7 @@ return new class extends Migration
             $table->date('availability_date')->nullable();
             $table->date('visit_date')->nullable();
             $table->year('year_built')->nullable();
+            $table->date('completion_date')->nullable();
             $table->unsignedTinyInteger('bedroom')->default(PropertyBedroom::OneBedroom->value);
 
             $table->string('villa_name', 50)->nullable();

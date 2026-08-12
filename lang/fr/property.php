@@ -39,6 +39,7 @@ return [
     'agent_name' => "Nom de l'agent",
     'date_of_visit' => 'Date de visite',
     'year_built' => 'Année de construction',
+    'completion_date' => 'Date de livraison',
     'bedroom' => 'Chambre',
 
     'location' => 'Emplacement',

@@ -26,6 +26,7 @@ class PropertyService
         array $districts = [],
         array $areas = [],
         ?int $yearBuilt = null,
+        ?string $completionDate = null,
         ?string $bedroom = null,
         array $bedrooms = [],
         ?string $livingStyle = null,
@@ -81,6 +82,7 @@ class PropertyService
                 });
             })
             ->when($yearBuilt, fn ($q) => $q->where('year_built', $yearBuilt))
+            ->when($completionDate, fn ($q) => $q->whereDate('completion_date', '>=', $completionDate))
             ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
@@ -171,6 +173,7 @@ class PropertyService
 
             $data['availability_date'] = $data['availability_date'] ?: null;
             $data['visit_date'] = $data['visit_date'] ?: null;
+            $data['completion_date'] = $data['completion_date'] ?: null;
             $data['latitude'] = $data['latitude'] ?: null;
             $data['longitude'] = $data['longitude'] ?: null;
 
@@ -235,6 +238,7 @@ class PropertyService
 
             $data['availability_date'] = $data['availability_date'] ?: null;
             $data['visit_date'] = $data['visit_date'] ?: null;
+            $data['completion_date'] = $data['completion_date'] ?: null;
             $data['latitude'] = $data['latitude'] ?: null;
             $data['longitude'] = $data['longitude'] ?: null;
 

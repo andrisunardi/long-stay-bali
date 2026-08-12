@@ -136,16 +136,39 @@
                     <div class="input-group-text">
                         <span class="fas fa-calendar fa-fw "></span>
                     </div>
-                    <input type="number" class="form-control" id="year_built" name="year_built"
-                        min="1900" max="2100" placeholder="{{ trans('index.ex') . '. 2000' }}"
-                        wire:model="form.year_built" wire:offline.class="disabled"
-                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                    <input type="number" class="form-control" id="year_built" name="year_built" min="1900"
+                        max="2100" placeholder="{{ trans('index.ex') . '. 2000' }}" wire:model="form.year_built"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
                 </div>
                 <div class="form-text">
                     {{ trans('helper.min') }} : 1900,
                     {{ trans('helper.max') }} : 2100
                 </div>
                 @error('form.year_built')
+                    <div class="form-text text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div>
+                <label class="form-label" for="completion_date">
+                    {{ trans('property.completion_date') }}
+                </label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <span class="fas fa-calendar fa-fw "></span>
+                    </div>
+                    <input type="date" class="form-control" id="completion_date" name="completion_date"
+                        min="{{ $property?->completion_date?->toDateString() ?? now()->toDateString() }}"
+                        max="2099-12-31" wire:model="form.completion_date" wire:offline.class="disabled"
+                        wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                </div>
+                <div class="form-text">
+                    {{ trans('helper.min') }} : {{ trans('index.today') }},
+                    {{ trans('helper.max') }} :
+                    {{ Date::parse('2099-12-31')->isoFormat('DD MMMM YYYY') }}
+                </div>
+                @error('form.completion_date')
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>

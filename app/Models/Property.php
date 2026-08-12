@@ -40,7 +40,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $user_id
  * @property Carbon|null $availability_date
  * @property Carbon|null $visit_date
- * @property string|null $year_built
+ * @property int|null $year_built
+ * @property Carbon|null $completion_date
  * @property PropertyBedroom $bedroom
  * @property string|null $villa_name
  * @property string|null $google_maps_url
@@ -176,6 +177,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereBedroom2HasNaturalLight($value)
  * @method static Builder<static>|Property whereBuildingSize($value)
  * @method static Builder<static>|Property whereCode($value)
+ * @method static Builder<static>|Property whereCompletionDate($value)
  * @method static Builder<static>|Property whereCounter($value)
  * @method static Builder<static>|Property whereCreatedAt($value)
  * @method static Builder<static>|Property whereCreatedBy($value)
@@ -277,6 +279,7 @@ class Property extends Model
         'availability_date',
         'visit_date',
         'year_built',
+        'completion_date',
         'bedroom',
 
         'villa_name',
@@ -374,6 +377,8 @@ class Property extends Model
             'user_id' => 'integer',
             'availability_date' => 'date',
             'visit_date' => 'date',
+            'year_built' => 'integer',
+            'completion_date' => 'date',
             'bedroom' => PropertyBedroom::class,
 
             'villa_name' => 'string',

@@ -191,7 +191,16 @@ new #[Title('Detail | Property')] class extends Component {
                         <div class="fw-bold">{{ trans('property.year_built') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
-                        {{ $property->year_built }}
+                        {{ $property->year_built ?? '-' }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.completion_date') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $property->completion_date?->isoFormat('DD MMMM YYYY') ?? '-' }}
                     </div>
                 </div>
 
