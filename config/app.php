@@ -10,6 +10,7 @@ use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
@@ -71,6 +72,7 @@ return [
         'PropertyOrientation' => PropertyOrientation::class,
         'PropertyPowerBackup' => PropertyPowerBackup::class,
         'PropertyOwnerPriceFlexibility' => PropertyOwnerPriceFlexibility::class,
+        'PropertyPBGStatus' => PropertyPBGStatus::class,
         'PropertyRentalType' => PropertyRentalType::class,
         'PropertyStatus' => PropertyStatus::class,
         'PropertyTab' => PropertyTab::class,
