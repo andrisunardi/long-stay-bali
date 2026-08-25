@@ -731,6 +731,11 @@ class Property extends Model
         $query->where('status', PropertyType::VillaComplex);
     }
 
+    public function scopeOther(Builder $query): void
+    {
+        $query->where('status', PropertyType::Other);
+    }
+
     public function scopePending(Builder $query): void
     {
         $query->where('status', PropertyStatus::Pending);

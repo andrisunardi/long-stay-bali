@@ -15,4 +15,6 @@ enum PropertyType: int
     case Hotel = 5;
 
     case VillaComplex = 6;
+
+    case Other = 7;
 }
