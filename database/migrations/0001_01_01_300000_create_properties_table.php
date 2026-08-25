@@ -105,6 +105,7 @@ return new class extends Migration
             $table->foreignIdFor(Contact::class, 'owner_representative_id')->nullable()->constrained()->nullOnDelete();
 
             $table->boolean('listing_type')->unsigned()->nullable();
+            $table->string('reference', 100)->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);

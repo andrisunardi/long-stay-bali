@@ -431,6 +431,7 @@ namespace App\Models{
  * @property int|null $owner_id
  * @property int|null $owner_representative_id
  * @property \App\Enums\Property\PropertyListingType|null $listing_type
+ * @property string|null $reference
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -493,6 +494,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property oneBedroom()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property open()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property other()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property pDAM()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property pending()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property query()
@@ -571,6 +573,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePowerBackup($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePriceCoherentWithUpper($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereQuietAccessRoad($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRentalType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSignedListingAgreement($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlf($value)

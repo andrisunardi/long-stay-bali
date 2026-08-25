@@ -268,6 +268,9 @@ class PropertyAddForm extends Form
     #[Validate(['required', 'integer', new Enum(PropertyListingType::class)])]
     public ?int $listing_type = null;
 
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $reference = '';
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 

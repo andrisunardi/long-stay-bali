@@ -269,6 +269,9 @@ class PropertyEditForm extends Form
     #[Validate(['required', 'integer', new Enum(PropertyListingType::class)])]
     public ?int $listing_type = null;
 
+    #[Validate('nullable|string|min:1|max:100')]
+    public ?string $reference = '';
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 
@@ -393,6 +396,7 @@ class PropertyEditForm extends Form
         $this->owner_representative_id = $property->ownerRepresentative?->id;
 
         $this->listing_type = $property->listing_type?->value;
+        $this->reference = $property->reference;
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

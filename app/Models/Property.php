@@ -106,6 +106,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $owner_id
  * @property int|null $owner_representative_id
  * @property PropertyListingType|null $listing_type
+ * @property string|null $reference
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -169,6 +170,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property oneBedroom()
  * @method static Builder<static>|Property onlyTrashed()
  * @method static Builder<static>|Property open()
+ * @method static Builder<static>|Property other()
  * @method static Builder<static>|Property pDAM()
  * @method static Builder<static>|Property pending()
  * @method static Builder<static>|Property query()
@@ -247,6 +249,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property wherePowerBackup($value)
  * @method static Builder<static>|Property wherePriceCoherentWithUpper($value)
  * @method static Builder<static>|Property whereQuietAccessRoad($value)
+ * @method static Builder<static>|Property whereReference($value)
  * @method static Builder<static>|Property whereRentalType($value)
  * @method static Builder<static>|Property whereSignedListingAgreement($value)
  * @method static Builder<static>|Property whereSlf($value)
@@ -372,6 +375,7 @@ class Property extends Model
         'owner_representative_id',
 
         'listing_type',
+        'reference',
 
         'image_path',
         'type',
@@ -474,6 +478,7 @@ class Property extends Model
             'owner_representative_id' => 'integer',
 
             'listing_type' => PropertyListingType::class,
+            'reference' => 'string',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

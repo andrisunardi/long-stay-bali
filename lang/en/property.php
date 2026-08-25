@@ -148,11 +148,13 @@ return [
         'for_sale' => 'For Sale',
         'for_rent_and_sale' => 'For Rent And Sale',
     ],
+    'reference' => 'Reference',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',
     'comments_if_medium_or_high' => 'Comments if Medium or High',
     'final_decision' => 'Final Decision',
+    'type' => 'Type',
     'status' => 'Status',
 
     'carpot' => 'Carpot',

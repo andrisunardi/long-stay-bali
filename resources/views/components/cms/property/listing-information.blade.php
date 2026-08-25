@@ -21,4 +21,26 @@
             <div class="form-text text-danger">{{ $message }}</div>
         @enderror
     </div>
+
+    <div class="col-sm-6">
+        <label class="form-label" for="reference">
+            {{ trans('property.reference') }}
+        </label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <span class="fas fa-bullhorn fa-fw "></span>
+            </div>
+            <input type="text" class="form-control" id="reference" name="reference" minlength="1" maxlength="100"
+                placeholder="{{ trans('index.ex') }} So Living Bali" wire:model="form.reference"
+                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                wire:loading.attr="disabled">
+        </div>
+        <div class="form-text">
+            {{ trans('helper.minlength') }} : 1,
+            {{ trans('helper.maxlength') }} : 100
+        </div>
+        @error('form.reference')
+            <div class="form-text text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 </div>

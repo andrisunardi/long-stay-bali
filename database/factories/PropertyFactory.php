@@ -124,6 +124,7 @@ class PropertyFactory extends Factory
             'owner_representative_id' => $contact->id,
 
             'listing_type' => fake()->randomElement(PropertyListingType::cases()),
+            'reference' => fake()->sentence(),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),
