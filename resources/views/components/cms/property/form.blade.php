@@ -56,3 +56,7 @@
 @if ($tab == PropertyTab::Images->value)
     <livewire:cms.property.images :property="$property" :form="$form" :selected="$form->images ?? []" />
 @endif
+
+@if ($tab == PropertyTab::ListingInformation->value)
+    <x-cms.property.listing-information :property="$property" :form="$form" :type="$type" />
+@endif

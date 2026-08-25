@@ -141,6 +141,14 @@ return [
 
     'images' => 'Images',
 
+    'listing_information' => 'Listing Information',
+    'listing_type' => 'Listing Type',
+    'listing_types' => [
+        'for_rent' => 'For Rent',
+        'for_sale' => 'For Sale',
+        'for_rent_and_sale' => 'For Rent And Sale',
+    ],
+
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',
     'comments_if_medium_or_high' => 'Comments if Medium or High',
