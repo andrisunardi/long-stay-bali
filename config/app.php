@@ -13,6 +13,7 @@ use App\Enums\Property\PropertyOwnerPriceFlexibility;
 use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
+use App\Enums\Property\PropertySLFStatus;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTab;
 use App\Enums\Property\PropertyTargetProfile;
@@ -74,6 +75,7 @@ return [
         'PropertyOwnerPriceFlexibility' => PropertyOwnerPriceFlexibility::class,
         'PropertyPBGStatus' => PropertyPBGStatus::class,
         'PropertyRentalType' => PropertyRentalType::class,
+        'PropertySLFStatus' => PropertySLFStatus::class,
         'PropertyStatus' => PropertyStatus::class,
         'PropertyTab' => PropertyTab::class,
         'PropertyTargetProfile' => PropertyTargetProfile::class,
