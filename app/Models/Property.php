@@ -4,13 +4,17 @@ namespace App\Models;
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
+use App\Enums\Property\PropertyRoadAccess;
+use App\Enums\Property\PropertySLFStatus;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyType;
@@ -70,6 +74,13 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property bool $imb
  * @property bool $pbg
  * @property bool $slf
+ * @property PropertyLandTitle|null $land_title
+ * @property string|null $zoning
+ * @property PropertyPBGStatus|null $pbg_status
+ * @property PropertySLFStatus|null $slf_status
+ * @property PropertyRoadAccess|null $road_access
+ * @property string|null $road_access_width
+ * @property bool $car_access
  * @property bool $fully_furnished
  * @property PropertyRentalType|null $rental_type
  * @property int|null $minimum_rental_duration_months
@@ -191,6 +202,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereBedroom1HasNaturalLight($value)
  * @method static Builder<static>|Property whereBedroom2HasNaturalLight($value)
  * @method static Builder<static>|Property whereBuildingSize($value)
+ * @method static Builder<static>|Property whereCarAccess($value)
  * @method static Builder<static>|Property whereCode($value)
  * @method static Builder<static>|Property whereCompletionDate($value)
  * @method static Builder<static>|Property whereCounter($value)
@@ -220,6 +232,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereInternetSpeedtestImagePath($value)
  * @method static Builder<static>|Property whereLandCertificate($value)
  * @method static Builder<static>|Property whereLandSize($value)
+ * @method static Builder<static>|Property whereLandTitle($value)
  * @method static Builder<static>|Property whereLatitude($value)
  * @method static Builder<static>|Property whereLeaseAgreement($value)
  * @method static Builder<static>|Property whereListingType($value)
@@ -245,14 +258,18 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static Builder<static>|Property whereOwnersId($value)
  * @method static Builder<static>|Property wherePbg($value)
+ * @method static Builder<static>|Property wherePbgStatus($value)
  * @method static Builder<static>|Property wherePoolSize($value)
  * @method static Builder<static>|Property wherePowerBackup($value)
  * @method static Builder<static>|Property wherePriceCoherentWithUpper($value)
  * @method static Builder<static>|Property whereQuietAccessRoad($value)
  * @method static Builder<static>|Property whereReference($value)
  * @method static Builder<static>|Property whereRentalType($value)
+ * @method static Builder<static>|Property whereRoadAccess($value)
+ * @method static Builder<static>|Property whereRoadAccessWidth($value)
  * @method static Builder<static>|Property whereSignedListingAgreement($value)
  * @method static Builder<static>|Property whereSlf($value)
+ * @method static Builder<static>|Property whereSlfStatus($value)
  * @method static Builder<static>|Property whereSlug($value)
  * @method static Builder<static>|Property whereStatus($value)
  * @method static Builder<static>|Property whereStorage($value)
@@ -271,6 +288,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereYearBuilt($value)
  * @method static Builder<static>|Property whereYearlyInclusions($value)
  * @method static Builder<static>|Property whereYearlyPrice($value)
+ * @method static Builder<static>|Property whereZoning($value)
  * @method static Builder<static>|Property withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Property withoutTrashed()
  * @method static Builder<static>|Property yearly()
@@ -328,6 +346,13 @@ class Property extends Model
         'imb',
         'pbg',
         'slf',
+        'land_title',
+        'zoning',
+        'pbg_status',
+        'slf_status',
+        'road_access',
+        'road_access_width',
+        'car_access',
 
         'fully_furnished',
         'rental_type',
@@ -431,6 +456,13 @@ class Property extends Model
             'imb' => 'boolean',
             'pbg' => 'boolean',
             'slf' => 'boolean',
+            'land_title' => PropertyLandTitle::class,
+            'zoning' => 'string',
+            'pbg_status' => PropertyPBGStatus::class,
+            'slf_status' => PropertySLFStatus::class,
+            'road_access' => PropertyRoadAccess::class,
+            'road_access_width' => 'string',
+            'car_access' => 'boolean',
 
             'fully_furnished' => 'boolean',
             'rental_type' => PropertyRentalType::class,

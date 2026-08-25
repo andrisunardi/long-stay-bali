@@ -58,6 +58,13 @@ return new class extends Migration
             $table->boolean('imb')->default(false);
             $table->boolean('pbg')->default(false);
             $table->boolean('slf')->default(false);
+            $table->boolean('land_title')->unsigned()->nullable();
+            $table->string('zoning')->nullable();
+            $table->boolean('pbg_status')->unsigned()->nullable();
+            $table->boolean('slf_status')->unsigned()->nullable();
+            $table->boolean('road_access')->unsigned()->nullable();
+            $table->string('road_access_width')->nullable();
+            $table->boolean('car_access')->default(false);
 
             $table->boolean('fully_furnished')->default(false);
             $table->boolean('rental_type')->unsigned()->nullable();

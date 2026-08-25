@@ -4,13 +4,17 @@ namespace Database\Factories;
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
+use App\Enums\Property\PropertyRoadAccess;
+use App\Enums\Property\PropertySLFStatus;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyType;
@@ -79,6 +83,13 @@ class PropertyFactory extends Factory
             'imb' => fake()->boolean(),
             'pbg' => fake()->boolean(),
             'slf' => fake()->boolean(),
+            'land_title' => fake()->randomElement(PropertyLandTitle::cases()),
+            'zoning' => fake(),
+            'pbg_status' => fake()->randomElement(PropertyPBGStatus::cases()),
+            'slf_status' => fake()->randomElement(PropertySLFStatus::cases()),
+            'road_access' => fake()->randomElement(PropertyRoadAccess::cases()),
+            'road_access_width' => fake()->sentence(),
+            'car_access' => fake()->boolean,
 
             'fully_furnished' => fake()->boolean(),
             'rental_type' => fake()->randomElement(PropertyRentalType::cases()),

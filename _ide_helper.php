@@ -33021,13 +33021,17 @@ namespace  {
     class Language extends \App\Enums\Language {}
     class PropertyBedroom extends \App\Enums\Property\PropertyBedroom {}
     class PropertyElectricity extends \App\Enums\Property\PropertyElectricity {}
+    class PropertyLandTitle extends \App\Enums\Property\PropertyLandTitle {}
     class PropertyListingType extends \App\Enums\Property\PropertyListingType {}
     class PropertyLivingStyle extends \App\Enums\Property\PropertyLivingStyle {}
     class PropertyOperationalRisk extends \App\Enums\Property\PropertyOperationalRisk {}
     class PropertyOrientation extends \App\Enums\Property\PropertyOrientation {}
     class PropertyPowerBackup extends \App\Enums\Property\PropertyPowerBackup {}
     class PropertyOwnerPriceFlexibility extends \App\Enums\Property\PropertyOwnerPriceFlexibility {}
+    class PropertyPBGStatus extends \App\Enums\Property\PropertyPBGStatus {}
     class PropertyRentalType extends \App\Enums\Property\PropertyRentalType {}
+    class PropertyRoadAccess extends \App\Enums\Property\PropertyRoadAccess {}
+    class PropertySLFStatus extends \App\Enums\Property\PropertySLFStatus {}
     class PropertyStatus extends \App\Enums\Property\PropertyStatus {}
     class PropertyTab extends \App\Enums\Property\PropertyTab {}
     class PropertyTargetProfile extends \App\Enums\Property\PropertyTargetProfile {}

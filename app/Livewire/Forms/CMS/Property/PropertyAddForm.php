@@ -4,13 +4,17 @@ namespace App\Livewire\Forms\CMS\Property;
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
+use App\Enums\Property\PropertyRoadAccess;
+use App\Enums\Property\PropertySLFStatus;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
 use App\Enums\Property\PropertyType;
@@ -134,6 +138,27 @@ class PropertyAddForm extends Form
 
     #[Validate('nullable|boolean')]
     public bool $slf = false;
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyLandTitle::class)])]
+    public ?int $land_title = null;
+
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $zoning = '';
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyPBGStatus::class)])]
+    public ?int $pbg_status = null;
+
+    #[Validate(['nullable', 'integer', new Enum(PropertySLFStatus::class)])]
+    public ?int $slf_status = null;
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyRoadAccess::class)])]
+    public ?int $road_access = null;
+
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $road_access_width = '';
+
+    #[Validate('nullable|boolean')]
+    public bool $car_access = false;
 
     #[Validate('nullable|boolean')]
     public bool $fully_furnished = false;

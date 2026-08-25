@@ -76,6 +76,13 @@ return [
     'imb' => 'IMB (Building Construction Permit)',
     'pbg' => 'PBG (Building Construction Approval)',
     'slf' => 'SLF (Certificate of Functionality)',
+    'land_title' => 'Land Title',
+    'zoning' => 'Zoning',
+    'pbg_status' => 'PBG Status',
+    'slf_status' => 'SLF Status',
+    'road_access' => 'Road Access',
+    'road_access_width' => 'Road Access Width',
+    'car_access' => 'Car Access',
 
     'fully_furnished' => 'Fully Furnished',
     'rental_type_accepted' => 'Rental Type Accepted',

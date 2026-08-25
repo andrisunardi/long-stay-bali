@@ -395,6 +395,13 @@ namespace App\Models{
  * @property bool $imb
  * @property bool $pbg
  * @property bool $slf
+ * @property \App\Enums\Property\PropertyLandTitle|null $land_title
+ * @property string|null $zoning
+ * @property \App\Enums\Property\PropertyPBGStatus|null $pbg_status
+ * @property \App\Enums\Property\PropertySLFStatus|null $slf_status
+ * @property \App\Enums\Property\PropertyRoadAccess|null $road_access
+ * @property string|null $road_access_width
+ * @property bool $car_access
  * @property bool $fully_furnished
  * @property \App\Enums\Property\PropertyRentalType|null $rental_type
  * @property int|null $minimum_rental_duration_months
@@ -515,6 +522,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBedroom1HasNaturalLight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBedroom2HasNaturalLight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereBuildingSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCarAccess($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCode($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCompletionDate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCounter($value)
@@ -544,6 +552,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereInternetSpeedtestImagePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandCertificate($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLeaseAgreement($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereListingType($value)
@@ -569,14 +578,18 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnersId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbg($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbgStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePoolSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePowerBackup($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePriceCoherentWithUpper($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereQuietAccessRoad($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRentalType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccess($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccessWidth($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSignedListingAgreement($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlf($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlfStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereStorage($value)
@@ -595,6 +608,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearBuilt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyInclusions($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereYearlyPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereZoning($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property withoutTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property yearly()
