@@ -4,6 +4,7 @@ namespace App\Livewire\Forms\CMS\Property;
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
@@ -262,6 +263,9 @@ class PropertyAddForm extends Form
 
     #[Validate('nullable|integer|exists:contacts,id')]
     public ?int $owner_representative_id = null;
+
+    #[Validate(['required', 'integer', new Enum(PropertyListingType::class)])]
+    public ?int $listing_type = null;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;

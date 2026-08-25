@@ -430,6 +430,7 @@ namespace App\Models{
  * @property array<array-key, mixed>|null $yearly_inclusions
  * @property int|null $owner_id
  * @property int|null $owner_representative_id
+ * @property \App\Enums\Property\PropertyListingType|null $listing_type
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyStatus $status
  * @property string $slug
@@ -467,6 +468,9 @@ namespace App\Models{
  * @method static \Database\Factories\PropertyFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property family()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fixed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property forRent()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property forRentAndSale()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property forSale()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fourBedroom()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property generator()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property high()
@@ -533,6 +537,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLeaseAgreement($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereListingType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLivingAreaHasNaturalLight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLivingStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLongitude($value)

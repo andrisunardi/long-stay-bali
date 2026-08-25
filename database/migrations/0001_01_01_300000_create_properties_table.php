@@ -103,6 +103,8 @@ return new class extends Migration
             $table->foreignIdFor(Contact::class, 'owner_id')->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Contact::class, 'owner_representative_id')->nullable()->constrained()->nullOnDelete();
 
+            $table->boolean('listing_type')->unsigned()->nullable();
+
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);
             $table->string('slug', 50)->unique();

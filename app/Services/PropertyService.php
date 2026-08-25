@@ -32,6 +32,8 @@ class PropertyService
         ?string $livingStyle = null,
         ?string $rentalType = null,
         array $rentalTypes = [],
+        ?string $listingType = null,
+        array $listingTypes = [],
         ?string $status = null,
         array $statuses = [],
         ?string $startDate = null,
@@ -88,6 +90,8 @@ class PropertyService
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
             ->when($rentalType, fn ($q) => $q->where('rental_type', $rentalType))
             ->when($rentalTypes, fn ($q) => $q->whereIn('rental_type', $rentalTypes))
+            ->when($listingType, fn ($q) => $q->where('listing_type', $listingType))
+            ->when($listingTypes, fn ($q) => $q->whereIn('listing_type', $listingTypes))
             ->when($status, fn ($q) => $q->where('status', $status))
             ->when($statuses, fn ($q) => $q->whereIn('status', $statuses))
             // ->when($startDate, fn($q) => $q->whereDate('availability_date', '>=', $startDate))

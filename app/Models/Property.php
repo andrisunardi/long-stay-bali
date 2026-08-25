@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
@@ -103,6 +104,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property array<array-key, mixed>|null $yearly_inclusions
  * @property int|null $owner_id
  * @property int|null $owner_representative_id
+ * @property PropertyListingType|null $listing_type
  * @property string|null $image_path
  * @property PropertyStatus $status
  * @property string $slug
@@ -141,6 +143,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static \Database\Factories\PropertyFactory factory($count = null, $state = [])
  * @method static Builder<static>|Property family()
  * @method static Builder<static>|Property fixed()
+ * @method static Builder<static>|Property forRent()
+ * @method static Builder<static>|Property forRentAndSale()
+ * @method static Builder<static>|Property forSale()
  * @method static Builder<static>|Property fourBedroom()
  * @method static Builder<static>|Property generator()
  * @method static Builder<static>|Property high()
@@ -207,6 +212,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereLandSize($value)
  * @method static Builder<static>|Property whereLatitude($value)
  * @method static Builder<static>|Property whereLeaseAgreement($value)
+ * @method static Builder<static>|Property whereListingType($value)
  * @method static Builder<static>|Property whereLivingAreaHasNaturalLight($value)
  * @method static Builder<static>|Property whereLivingStyle($value)
  * @method static Builder<static>|Property whereLongitude($value)
@@ -356,6 +362,8 @@ class Property extends Model
         'owner_id',
         'owner_representative_id',
 
+        'listing_type',
+
         'image_path',
         'status',
         'slug',
@@ -454,6 +462,8 @@ class Property extends Model
 
             'owner_id' => 'integer',
             'owner_representative_id' => 'integer',
+
+            'listing_type' => PropertyListingType::class,
 
             'image_path' => 'string',
             'status' => PropertyStatus::class,
@@ -663,6 +673,21 @@ class Property extends Model
     public function scopeHigh(Builder $query): void
     {
         $query->where('operational_risk', PropertyOperationalRisk::High);
+    }
+
+    public function scopeForRent(Builder $query): void
+    {
+        $query->where('living_style', PropertyListingType::ForRent);
+    }
+
+    public function scopeForSale(Builder $query): void
+    {
+        $query->where('living_style', PropertyListingType::ForSale);
+    }
+
+    public function scopeForRentAndSale(Builder $query): void
+    {
+        $query->where('living_style', PropertyListingType::ForRentAndSale);
     }
 
     public function scopePending(Builder $query): void

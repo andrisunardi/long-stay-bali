@@ -33021,6 +33021,7 @@ namespace  {
     class Language extends \App\Enums\Language {}
     class PropertyBedroom extends \App\Enums\Property\PropertyBedroom {}
     class PropertyElectricity extends \App\Enums\Property\PropertyElectricity {}
+    class PropertyListingType extends \App\Enums\Property\PropertyListingType {}
     class PropertyLivingStyle extends \App\Enums\Property\PropertyLivingStyle {}
     class PropertyOperationalRisk extends \App\Enums\Property\PropertyOperationalRisk {}
     class PropertyOrientation extends \App\Enums\Property\PropertyOrientation {}

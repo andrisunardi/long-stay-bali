@@ -12,7 +12,7 @@
                         wire:model.lazy="form.listing_type" wire:offline.class="disabled" wire:offline.attr="disabled"
                         wire:loading.class="disabled" wire:loading.attr="disabled">
                     <label class="form-check-label" for="listing_type_{{ $propertyListingType->value }}">
-                        {{ $propertyListingType->name }}
+                        {{ Str::headline($propertyListingType->name) }}
                     </label>
                 </div>
             @endforeach
