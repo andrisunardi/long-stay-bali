@@ -14,6 +14,12 @@ enum PropertyStatus: int
 
     case Escalate = 5;
 
+    case Ready = 6;
+
+    case UnderConstruction = 7;
+
+    case OffPlan = 8;
+
     public function description(): string
     {
         return match ($this) {
@@ -22,6 +28,9 @@ enum PropertyStatus: int
             self::AcceptPremium => 'Accept Premium',
             self::Reject => 'Reject',
             self::Escalate => 'Escalate For Arbitration',
+            self::Ready => 'Ready',
+            self::UnderConstruction => 'UnderConstruction',
+            self::OffPlan => 'Off-Plan',
         };
     }
 
@@ -33,6 +42,9 @@ enum PropertyStatus: int
             self::AcceptPremium => 'primary',
             self::Reject => 'danger',
             self::Escalate => 'info',
+            self::Ready => 'success',
+            self::UnderConstruction => 'warning',
+            self::OffPlan => 'danger',
         };
     }
 }
