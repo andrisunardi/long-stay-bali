@@ -13,6 +13,7 @@ use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
+use App\Enums\Property\PropertyType;
 use App\Enums\Property\PropertyWaterSource;
 use App\Observers\PropertyObserver;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
@@ -106,6 +107,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $owner_representative_id
  * @property PropertyListingType|null $listing_type
  * @property string|null $image_path
+ * @property PropertyType $type
  * @property PropertyStatus $status
  * @property string $slug
  * @property string|null $folder_id
@@ -134,8 +136,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property acceptPremium()
  * @method static Builder<static>|Property acceptUpper()
  * @method static Builder<static>|Property afternoon()
+ * @method static Builder<static>|Property apartment()
  * @method static Builder<static>|Property both()
  * @method static Builder<static>|Property closed()
+ * @method static Builder<static>|Property commercial()
  * @method static Builder<static>|Property couple()
  * @method static Builder<static>|Property designLover()
  * @method static Builder<static>|Property eSolar()
@@ -149,7 +153,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property fourBedroom()
  * @method static Builder<static>|Property generator()
  * @method static Builder<static>|Property high()
+ * @method static Builder<static>|Property hotel()
  * @method static Builder<static>|Property hybrid()
+ * @method static Builder<static>|Property land()
  * @method static Builder<static>|Property low()
  * @method static Builder<static>|Property medium()
  * @method static Builder<static>|Property mixed()
@@ -172,6 +178,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property standard()
  * @method static Builder<static>|Property threeedroom()
  * @method static Builder<static>|Property twoBedroom()
+ * @method static Builder<static>|Property villa()
+ * @method static Builder<static>|Property villaComplex()
  * @method static Builder<static>|Property wSMixed()
  * @method static Builder<static>|Property well()
  * @method static Builder<static>|Property whereAddress($value)
@@ -248,6 +256,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereTargetProfiles($value)
  * @method static Builder<static>|Property whereTradeOffDescription($value)
  * @method static Builder<static>|Property whereTradeOffIdentified($value)
+ * @method static Builder<static>|Property whereType($value)
  * @method static Builder<static>|Property whereUpdatedAt($value)
  * @method static Builder<static>|Property whereUpdatedBy($value)
  * @method static Builder<static>|Property whereUsabilityLimitations($value)
@@ -365,6 +374,7 @@ class Property extends Model
         'listing_type',
 
         'image_path',
+        'type',
         'status',
         'slug',
         'folder_id',
@@ -466,6 +476,7 @@ class Property extends Model
             'listing_type' => PropertyListingType::class,
 
             'image_path' => 'string',
+            'type' => PropertyType::class,
             'status' => PropertyStatus::class,
             'slug' => 'string',
             'folder_id' => 'string',
@@ -688,6 +699,36 @@ class Property extends Model
     public function scopeForRentAndSale(Builder $query): void
     {
         $query->where('living_style', PropertyListingType::ForRentAndSale);
+    }
+
+    public function scopeVilla(Builder $query): void
+    {
+        $query->where('status', PropertyType::Villa);
+    }
+
+    public function scopeApartment(Builder $query): void
+    {
+        $query->where('status', PropertyType::Apartment);
+    }
+
+    public function scopeLand(Builder $query): void
+    {
+        $query->where('status', PropertyType::Land);
+    }
+
+    public function scopeCommercial(Builder $query): void
+    {
+        $query->where('status', PropertyType::Commercial);
+    }
+
+    public function scopeHotel(Builder $query): void
+    {
+        $query->where('status', PropertyType::Hotel);
+    }
+
+    public function scopeVillaComplex(Builder $query): void
+    {
+        $query->where('status', PropertyType::VillaComplex);
     }
 
     public function scopePending(Builder $query): void

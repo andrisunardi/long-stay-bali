@@ -287,6 +287,29 @@
     </div> --}}
 
     <div class="col-12">
+        <label class="form-label" for="type">
+            {{ trans('property.type') }}
+        </label>
+        <div>
+            @foreach (PropertyType::cases() as $propertyType)
+                <div class="form-check form-check-inline" wire:key="type-{{ $propertyType->value }}">
+                    <input class="form-check-input" type="radio" id="type_{{ $propertyType->value }}"
+                        name="type" value="{{ $propertyType->value }}"
+                        {{ $propertyType->value == $form->type ? 'checked' : '' }} wire:model.lazy="form.type"
+                        wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                        wire:loading.attr="disabled">
+                    <label class="form-check-label" for="type_{{ $propertyType->value }}">
+                        {{ Str::headline($propertyType->name) }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+        @error('form.type')
+            <div class="form-text text-danger">{{ $message }}</div>
+        @enderror
+    </div>
+
+    <div class="col-12">
         <label class="form-label" for="status">
             {{ trans('property.status') }}
         </label>

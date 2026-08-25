@@ -13,6 +13,7 @@ use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
+use App\Enums\Property\PropertyType;
 use App\Enums\Property\PropertyWaterSource;
 use App\Models\Area;
 use App\Models\Contact;
@@ -125,6 +126,7 @@ class PropertyFactory extends Factory
             'listing_type' => fake()->randomElement(PropertyListingType::cases()),
 
             'image_path' => null,
+            'type' => fake()->randomElement(PropertyType::cases()),
             'status' => fake()->randomElement(PropertyStatus::cases()),
             'slug' => $slug,
             'folder_id' => null,

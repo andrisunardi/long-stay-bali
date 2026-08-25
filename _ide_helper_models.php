@@ -432,6 +432,7 @@ namespace App\Models{
  * @property int|null $owner_representative_id
  * @property \App\Enums\Property\PropertyListingType|null $listing_type
  * @property string|null $image_path
+ * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
  * @property string $slug
  * @property string|null $folder_id
@@ -459,8 +460,10 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property acceptPremium()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property acceptUpper()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property afternoon()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property apartment()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property both()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property closed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property commercial()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property couple()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property designLover()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property eSolar()
@@ -474,7 +477,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fourBedroom()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property generator()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property high()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hotel()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hybrid()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property land()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property low()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property medium()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property mixed()
@@ -497,6 +502,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property standard()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property threeedroom()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property twoBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property villa()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property villaComplex()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wSMixed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property well()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereAddress($value)
@@ -573,6 +580,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTargetProfiles($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTradeOffDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTradeOffIdentified($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereUpdatedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereUsabilityLimitations($value)

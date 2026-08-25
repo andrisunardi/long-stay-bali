@@ -13,6 +13,7 @@ use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Enums\Property\PropertyTargetProfile;
+use App\Enums\Property\PropertyType;
 use App\Enums\Property\PropertyWaterSource;
 use App\Models\Property;
 use App\Services\PropertyService;
@@ -266,6 +267,9 @@ class PropertyAddForm extends Form
 
     #[Validate(['required', 'integer', new Enum(PropertyListingType::class)])]
     public ?int $listing_type = null;
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
+    public int $type = PropertyType::Villa->value;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyStatus::class)])]
     public int $status = PropertyStatus::Pending->value;

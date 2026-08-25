@@ -2,6 +2,7 @@
 
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyStatus;
+use App\Enums\Property\PropertyType;
 use App\Models\Area;
 use App\Models\Contact;
 use App\Models\District;
@@ -106,6 +107,7 @@ return new class extends Migration
             $table->boolean('listing_type')->unsigned()->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
+            $table->boolean('type')->unsigned()->default(PropertyType::Villa);
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);
             $table->string('slug', 50)->unique();
             $table->string('folder_id', 50)->unique()->nullable();
