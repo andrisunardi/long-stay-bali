@@ -4,6 +4,7 @@ use App\Enums\Currency;
 use App\Enums\Language;
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
@@ -62,6 +63,7 @@ return [
         'Language' => Language::class,
         'PropertyBedroom' => PropertyBedroom::class,
         'PropertyElectricity' => PropertyElectricity::class,
+        'PropertyListingType' => PropertyListingType::class,
         'PropertyLivingStyle' => PropertyLivingStyle::class,
         'PropertyOperationalRisk' => PropertyOperationalRisk::class,
         'PropertyOrientation' => PropertyOrientation::class,
