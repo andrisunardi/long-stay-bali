@@ -6,7 +6,7 @@ use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Libraries\GoogleMapsUrlParser;
-use App\Libraries\GoogleTranslate;
+// use App\Libraries\GoogleTranslate;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use Exception;
@@ -216,7 +216,7 @@ class PropertyService
 
             $property = Property::create($data);
 
-            (new GoogleTranslate)->translateModel($property);
+            // (new GoogleTranslate)->translateModel($property);
 
             if (! empty($images)) {
                 $this->uploadImages(property: $property, images: $images);
@@ -301,7 +301,7 @@ class PropertyService
 
             $property->update($data);
 
-            (new GoogleTranslate)->translateModel($property);
+            // (new GoogleTranslate)->translateModel($property);
 
             if ($data['owner_id']) {
                 (new ContactService)->owner(contact: $property->owner);
