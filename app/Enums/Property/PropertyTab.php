@@ -32,6 +32,8 @@ enum PropertyTab: int
 
     case ListingInformation = 14;
 
+    case SaleInformation = 15;
+
     public function description(): string
     {
         return match ($this) {
@@ -49,6 +51,7 @@ enum PropertyTab: int
             self::OwnerAndContact => trans('property.owner_and_contact'),
             self::Images => trans('property.images'),
             self::ListingInformation => trans('property.listing_information'),
+            self::SaleInformation => trans('property.sale_information'),
         };
     }
 
@@ -69,6 +72,7 @@ enum PropertyTab: int
             self::OwnerAndContact => 'fas fa-address-book fa-fw',
             self::Images => 'fas fa-images fa-fw',
             self::ListingInformation => 'fas fa-file-lines fa-fw',
+            self::SaleInformation => 'fas fa-cart-shopping fa-fw',
         };
     }
 }

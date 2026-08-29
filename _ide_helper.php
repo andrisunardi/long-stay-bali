@@ -33020,6 +33020,7 @@ namespace  {
     class Currency extends \App\Enums\Currency {}
     class Language extends \App\Enums\Language {}
     class PropertyBedroom extends \App\Enums\Property\PropertyBedroom {}
+    class PropertyCurrency extends \App\Enums\Property\PropertyCurrency {}
     class PropertyElectricity extends \App\Enums\Property\PropertyElectricity {}
     class PropertyLandTitle extends \App\Enums\Property\PropertyLandTitle {}
     class PropertyListingType extends \App\Enums\Property\PropertyListingType {}

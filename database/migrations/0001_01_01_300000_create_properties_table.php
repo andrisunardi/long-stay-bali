@@ -114,6 +114,8 @@ return new class extends Migration
             $table->boolean('listing_type')->unsigned()->nullable();
             $table->string('reference', 100)->nullable();
 
+            $table->unsignedTinyInteger('currency')->nullable();
+
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);

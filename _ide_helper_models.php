@@ -439,6 +439,7 @@ namespace App\Models{
  * @property int|null $owner_representative_id
  * @property \App\Enums\Property\PropertyListingType|null $listing_type
  * @property string|null $reference
+ * @property \App\Enums\Property\PropertyCurrency|null $currency
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -473,6 +474,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property closed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property commercial()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property couple()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property currencyOther()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property designLover()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property eSolar()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property escalate()
@@ -487,6 +489,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property high()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hotel()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hybrid()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property idr()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property land()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property low()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property medium()
@@ -511,6 +514,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property standard()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property threeedroom()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property twoBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property usd()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property villa()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property villaComplex()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wSMixed()
@@ -528,6 +532,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCounter($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCreatedBy($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereCurrency($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDeletedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDeletedBy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescription($value)

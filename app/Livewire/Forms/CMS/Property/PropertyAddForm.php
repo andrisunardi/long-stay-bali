@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms\CMS\Property;
 
 use App\Enums\Property\PropertyBedroom;
+use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
@@ -295,6 +296,9 @@ class PropertyAddForm extends Form
 
     #[Validate('nullable|string|min:1|max:100')]
     public string $reference = '';
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyCurrency::class)])]
+    public ?int $currency = null;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;

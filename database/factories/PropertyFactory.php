@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\Property\PropertyBedroom;
+use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
@@ -136,6 +137,8 @@ class PropertyFactory extends Factory
 
             'listing_type' => fake()->randomElement(PropertyListingType::cases()),
             'reference' => fake()->sentence(),
+
+            'currency' => fake()->randomElement(PropertyCurrency::cases()),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

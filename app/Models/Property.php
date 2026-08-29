@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\Property\PropertyBedroom;
+use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
@@ -118,6 +119,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $owner_representative_id
  * @property PropertyListingType|null $listing_type
  * @property string|null $reference
+ * @property PropertyCurrency|null $currency
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -153,6 +155,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property closed()
  * @method static Builder<static>|Property commercial()
  * @method static Builder<static>|Property couple()
+ * @method static Builder<static>|Property currencyOther()
  * @method static Builder<static>|Property designLover()
  * @method static Builder<static>|Property eSolar()
  * @method static Builder<static>|Property escalate()
@@ -167,6 +170,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property high()
  * @method static Builder<static>|Property hotel()
  * @method static Builder<static>|Property hybrid()
+ * @method static Builder<static>|Property idr()
  * @method static Builder<static>|Property land()
  * @method static Builder<static>|Property low()
  * @method static Builder<static>|Property medium()
@@ -191,6 +195,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property standard()
  * @method static Builder<static>|Property threeedroom()
  * @method static Builder<static>|Property twoBedroom()
+ * @method static Builder<static>|Property usd()
  * @method static Builder<static>|Property villa()
  * @method static Builder<static>|Property villaComplex()
  * @method static Builder<static>|Property wSMixed()
@@ -208,6 +213,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereCounter($value)
  * @method static Builder<static>|Property whereCreatedAt($value)
  * @method static Builder<static>|Property whereCreatedBy($value)
+ * @method static Builder<static>|Property whereCurrency($value)
  * @method static Builder<static>|Property whereDeletedAt($value)
  * @method static Builder<static>|Property whereDeletedBy($value)
  * @method static Builder<static>|Property whereDescription($value)
@@ -402,6 +408,8 @@ class Property extends Model
         'listing_type',
         'reference',
 
+        'currency',
+
         'image_path',
         'type',
         'status',
@@ -511,6 +519,8 @@ class Property extends Model
 
             'listing_type' => PropertyListingType::class,
             'reference' => 'string',
+
+            'currency' => PropertyCurrency::class,
 
             'image_path' => 'string',
             'type' => PropertyType::class,
@@ -736,6 +746,21 @@ class Property extends Model
     public function scopeForRentAndSale(Builder $query): void
     {
         $query->where('living_style', PropertyListingType::ForRentAndSale);
+    }
+
+    public function scopeIdr(Builder $query): void
+    {
+        $query->where('currency', PropertyCurrency::IDR);
+    }
+
+    public function scopeUsd(Builder $query): void
+    {
+        $query->where('currency', PropertyCurrency::USD);
+    }
+
+    public function scopeCurrencyOther(Builder $query): void
+    {
+        $query->where('currency', PropertyCurrency::Other);
     }
 
     public function scopeVilla(Builder $query): void

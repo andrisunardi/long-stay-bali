@@ -34,6 +34,8 @@ class PropertyService
         array $rentalTypes = [],
         ?string $listingType = null,
         array $listingTypes = [],
+        ?string $currency = null,
+        array $currencies = [],
         ?string $type = null,
         array $types = [],
         ?string $status = null,
@@ -94,6 +96,8 @@ class PropertyService
             ->when($rentalTypes, fn ($q) => $q->whereIn('rental_type', $rentalTypes))
             ->when($listingType, fn ($q) => $q->where('listing_type', $listingType))
             ->when($listingTypes, fn ($q) => $q->whereIn('listing_type', $listingTypes))
+            ->when($currency, fn ($q) => $q->where('currency', $currency))
+            ->when($currencies, fn ($q) => $q->whereIn('currency', $currencies))
             ->when($type, fn ($q) => $q->where('type', $type))
             ->when($types, fn ($q) => $q->whereIn('type', $types))
             ->when($status, fn ($q) => $q->where('status', $status))

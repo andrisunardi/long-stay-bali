@@ -157,6 +157,9 @@ return [
     ],
     'reference' => 'Reference',
 
+    'sale_information' => 'Sale Information',
+    'currency' => 'Currency',
+
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',
     'comments_if_medium_or_high' => 'Comments if Medium or High',

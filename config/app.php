@@ -3,6 +3,7 @@
 use App\Enums\Currency;
 use App\Enums\Language;
 use App\Enums\Property\PropertyBedroom;
+use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyListingType;
@@ -66,6 +67,7 @@ return [
         'Currency' => Currency::class,
         'Language' => Language::class,
         'PropertyBedroom' => PropertyBedroom::class,
+        'PropertyCurrency' => PropertyCurrency::class,
         'PropertyElectricity' => PropertyElectricity::class,
         'PropertyLandTitle' => PropertyLandTitle::class,
         'PropertyListingType' => PropertyListingType::class,

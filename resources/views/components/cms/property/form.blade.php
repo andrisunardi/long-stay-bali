@@ -60,3 +60,7 @@
 @if ($tab == PropertyTab::ListingInformation->value)
     <x-cms.property.listing-information :property="$property" :form="$form" :type="$type" />
 @endif
+
+@if ($tab == PropertyTab::SaleInformation->value)
+    <x-cms.property.sale-information :property="$property" :form="$form" :type="$type" />
+@endif
