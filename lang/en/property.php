@@ -160,6 +160,7 @@ return [
     'sale_information' => 'Sale Information',
     'sale_price' => 'Sale Price',
     'currency' => 'Currency',
+    'ownership_type' => 'Ownership Type',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',

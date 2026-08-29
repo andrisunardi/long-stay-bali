@@ -11,6 +11,7 @@ use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
@@ -140,6 +141,7 @@ class PropertyFactory extends Factory
 
             'sale_price' => fake()->numberBetween(100, 1000),
             'currency' => fake()->randomElement(PropertyCurrency::cases()),
+            'ownership_type' => fake()->randomElement(PropertyOwnershipType::cases()),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

@@ -441,6 +441,7 @@ namespace App\Models{
  * @property string|null $reference
  * @property int $sale_price
  * @property \App\Enums\Property\PropertyCurrency|null $currency
+ * @property \App\Enums\Property\PropertyOwnershipType|null $ownership_type
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -486,12 +487,14 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property forRentAndSale()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property forSale()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property fourBedroom()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property freehold()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property generator()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property high()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hotel()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property hybrid()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property idr()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property land()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property leasehold()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property low()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property medium()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property mixed()
@@ -583,6 +586,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerPriceFlexibility($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnersId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnershipType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbg($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbgStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePoolSize($value)

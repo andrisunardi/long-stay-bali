@@ -33029,6 +33029,7 @@ namespace  {
     class PropertyOrientation extends \App\Enums\Property\PropertyOrientation {}
     class PropertyPowerBackup extends \App\Enums\Property\PropertyPowerBackup {}
     class PropertyOwnerPriceFlexibility extends \App\Enums\Property\PropertyOwnerPriceFlexibility {}
+    class PropertyOwnershipType extends \App\Enums\Property\PropertyOwnershipType {}
     class PropertyPBGStatus extends \App\Enums\Property\PropertyPBGStatus {}
     class PropertyRentalType extends \App\Enums\Property\PropertyRentalType {}
     class PropertyRoadAccess extends \App\Enums\Property\PropertyRoadAccess {}

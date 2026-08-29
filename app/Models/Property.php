@@ -11,6 +11,7 @@ use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
@@ -121,6 +122,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string|null $reference
  * @property int $sale_price
  * @property PropertyCurrency|null $currency
+ * @property PropertyOwnershipType|null $ownership_type
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -167,12 +169,14 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property forRentAndSale()
  * @method static Builder<static>|Property forSale()
  * @method static Builder<static>|Property fourBedroom()
+ * @method static Builder<static>|Property freehold()
  * @method static Builder<static>|Property generator()
  * @method static Builder<static>|Property high()
  * @method static Builder<static>|Property hotel()
  * @method static Builder<static>|Property hybrid()
  * @method static Builder<static>|Property idr()
  * @method static Builder<static>|Property land()
+ * @method static Builder<static>|Property leasehold()
  * @method static Builder<static>|Property low()
  * @method static Builder<static>|Property medium()
  * @method static Builder<static>|Property mixed()
@@ -264,6 +268,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOwnerPriceFlexibility($value)
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static Builder<static>|Property whereOwnersId($value)
+ * @method static Builder<static>|Property whereOwnershipType($value)
  * @method static Builder<static>|Property wherePbg($value)
  * @method static Builder<static>|Property wherePbgStatus($value)
  * @method static Builder<static>|Property wherePoolSize($value)
@@ -412,6 +417,7 @@ class Property extends Model
 
         'sale_price',
         'currency',
+        'ownership_type',
 
         'image_path',
         'type',
@@ -525,6 +531,7 @@ class Property extends Model
 
             'sale_price' => 'integer',
             'currency' => PropertyCurrency::class,
+            'ownership_type' => PropertyOwnershipType::class,
 
             'image_path' => 'string',
             'type' => PropertyType::class,
@@ -765,6 +772,16 @@ class Property extends Model
     public function scopeCurrencyOther(Builder $query): void
     {
         $query->where('currency', PropertyCurrency::Other);
+    }
+
+    public function scopeFreehold(Builder $query): void
+    {
+        $query->where('ownership_type', PropertyOwnershipType::Freehold);
+    }
+
+    public function scopeLeasehold(Builder $query): void
+    {
+        $query->where('ownership_type', PropertyOwnershipType::Leasehold);
     }
 
     public function scopeVilla(Builder $query): void

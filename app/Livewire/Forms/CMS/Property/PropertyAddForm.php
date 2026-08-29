@@ -11,6 +11,7 @@ use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
 use App\Enums\Property\PropertyOrientation;
 use App\Enums\Property\PropertyOwnerPriceFlexibility;
+use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyPBGStatus;
 use App\Enums\Property\PropertyPowerBackup;
 use App\Enums\Property\PropertyRentalType;
@@ -302,6 +303,9 @@ class PropertyAddForm extends Form
 
     #[Validate(['nullable', 'integer', new Enum(PropertyCurrency::class)])]
     public ?int $currency = null;
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyOwnershipType::class)])]
+    public ?int $ownership_type = null;
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;

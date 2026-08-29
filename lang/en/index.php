@@ -76,5 +76,7 @@ return [
     'pdam' => 'PDAM',
     'well' => 'Well',
     'mixed' => 'Mixed',
+    'freehold' => 'Freehold',
+    'leasehold' => 'Leasehold',
 
 ];
