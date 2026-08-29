@@ -114,6 +114,7 @@ return new class extends Migration
             $table->boolean('listing_type')->unsigned()->nullable();
             $table->string('reference', 100)->nullable();
 
+            $table->unsignedBigInteger('sale_price')->default(0);
             $table->unsignedTinyInteger('currency')->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();

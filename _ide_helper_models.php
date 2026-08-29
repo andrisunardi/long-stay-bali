@@ -439,6 +439,7 @@ namespace App\Models{
  * @property int|null $owner_representative_id
  * @property \App\Enums\Property\PropertyListingType|null $listing_type
  * @property string|null $reference
+ * @property int $sale_price
  * @property \App\Enums\Property\PropertyCurrency|null $currency
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
@@ -592,6 +593,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRentalType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccess($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccessWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSalePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSignedListingAgreement($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlf($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlfStatus($value)

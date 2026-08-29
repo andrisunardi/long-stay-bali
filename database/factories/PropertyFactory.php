@@ -138,6 +138,7 @@ class PropertyFactory extends Factory
             'listing_type' => fake()->randomElement(PropertyListingType::cases()),
             'reference' => fake()->sentence(),
 
+            'sale_price' => fake()->numberBetween(100, 1000),
             'currency' => fake()->randomElement(PropertyCurrency::cases()),
 
             'image_path' => null,

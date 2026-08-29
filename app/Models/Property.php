@@ -119,6 +119,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int|null $owner_representative_id
  * @property PropertyListingType|null $listing_type
  * @property string|null $reference
+ * @property int $sale_price
  * @property PropertyCurrency|null $currency
  * @property string|null $image_path
  * @property PropertyType $type
@@ -273,6 +274,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereRentalType($value)
  * @method static Builder<static>|Property whereRoadAccess($value)
  * @method static Builder<static>|Property whereRoadAccessWidth($value)
+ * @method static Builder<static>|Property whereSalePrice($value)
  * @method static Builder<static>|Property whereSignedListingAgreement($value)
  * @method static Builder<static>|Property whereSlf($value)
  * @method static Builder<static>|Property whereSlfStatus($value)
@@ -408,6 +410,7 @@ class Property extends Model
         'listing_type',
         'reference',
 
+        'sale_price',
         'currency',
 
         'image_path',
@@ -520,6 +523,7 @@ class Property extends Model
             'listing_type' => PropertyListingType::class,
             'reference' => 'string',
 
+            'sale_price' => 'integer',
             'currency' => PropertyCurrency::class,
 
             'image_path' => 'string',

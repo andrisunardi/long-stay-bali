@@ -297,6 +297,9 @@ class PropertyAddForm extends Form
     #[Validate('nullable|string|min:1|max:100')]
     public string $reference = '';
 
+    #[Validate('required|integer|min:0|max:100000000000')]
+    public int $sale_price = 0;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyCurrency::class)])]
     public ?int $currency = null;
 

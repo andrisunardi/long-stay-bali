@@ -158,6 +158,7 @@ return [
     'reference' => 'Reference',
 
     'sale_information' => 'Sale Information',
+    'sale_price' => 'Sale Price',
     'currency' => 'Currency',
 
     'operational_risk' => 'Operational Risk',

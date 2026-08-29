@@ -298,6 +298,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|string|min:1|max:100')]
     public ?string $reference = '';
 
+    #[Validate('required|integer|min:0|max:100000000000')]
+    public ?int $sale_price = 0;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyCurrency::class)])]
     public ?int $currency = null;
 
@@ -434,6 +437,7 @@ class PropertyEditForm extends Form
         $this->listing_type = $property->listing_type?->value;
         $this->reference = $property->reference;
 
+        $this->sale_price = $property->sale_price;
         $this->currency = $property->currency?->value;
 
         $this->type = $property->type?->value;
