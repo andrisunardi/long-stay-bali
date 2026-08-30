@@ -124,6 +124,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property int $sale_price
  * @property PropertyCurrency|null $currency
  * @property PropertyOwnershipType|null $ownership_type
+ * @property Carbon|null $lease_expiry_date
+ * @property PropertyLeaseExtensionAvailable|null $lease_extension_available
+ * @property string|null $lease_extension_terms_or_price
+ * @property bool $payment_plan_available
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -247,6 +251,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereLandTitle($value)
  * @method static Builder<static>|Property whereLatitude($value)
  * @method static Builder<static>|Property whereLeaseAgreement($value)
+ * @method static Builder<static>|Property whereLeaseExpiryDate($value)
+ * @method static Builder<static>|Property whereLeaseExtensionAvailable($value)
+ * @method static Builder<static>|Property whereLeaseExtensionTermsOrPrice($value)
  * @method static Builder<static>|Property whereListingType($value)
  * @method static Builder<static>|Property whereLivingAreaHasNaturalLight($value)
  * @method static Builder<static>|Property whereLivingStyle($value)
@@ -270,6 +277,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOwnerRepresentativeId($value)
  * @method static Builder<static>|Property whereOwnersId($value)
  * @method static Builder<static>|Property whereOwnershipType($value)
+ * @method static Builder<static>|Property wherePaymentPlanAvailable($value)
  * @method static Builder<static>|Property wherePbg($value)
  * @method static Builder<static>|Property wherePbgStatus($value)
  * @method static Builder<static>|Property wherePoolSize($value)
@@ -306,18 +314,6 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property withTrashed(bool $withTrashed = true)
  * @method static Builder<static>|Property withoutTrashed()
  * @method static Builder<static>|Property yearly()
- *
- * @property Carbon|null $lease_expiry_date
- *
- * @method static Builder<static>|Property whereLeaseExpiryDate($value)
- *
- * @property PropertyLeaseExtensionAvailable|null $lease_extension_available
- *
- * @method static Builder<static>|Property whereLeaseExtensionAvailable($value)
- *
- * @property string|null $lease_extension_terms_or_price
- *
- * @method static Builder<static>|Property whereLeaseExtensionTermsOrPrice($value)
  *
  * @mixin \Eloquent
  */
@@ -434,6 +430,7 @@ class Property extends Model
         'lease_expiry_date',
         'lease_extension_available',
         'lease_extension_terms_or_price',
+        'payment_plan_available',
 
         'image_path',
         'type',
@@ -551,6 +548,7 @@ class Property extends Model
             'lease_expiry_date' => 'date',
             'lease_extension_available' => PropertyLeaseExtensionAvailable::class,
             'lease_extension_terms_or_price' => 'string',
+            'payment_plan_available' => 'boolean',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

@@ -317,6 +317,9 @@ class PropertyAddForm extends Form
     #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|string|min:1|max:65535')]
     public string $lease_extension_terms_or_price = '';
 
+    #[Validate('nullable|boolean')]
+    public bool $payment_plan_available = false;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 

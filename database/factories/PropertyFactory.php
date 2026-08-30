@@ -146,6 +146,7 @@ class PropertyFactory extends Factory
             'lease_expiry_date' => fake()->date(),
             'lease_extension_available' => fake()->randomElement(PropertyLeaseExtensionAvailable::cases()),
             'lease_extension_terms_or_price' => fake()->paragraph(),
+            'payment_plan_available' => fake()->boolean(),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

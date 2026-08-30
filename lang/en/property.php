@@ -165,6 +165,7 @@ return [
     'remaining_lease_period' => 'Remaining Lease Period',
     'lease_extension_available' => 'Lease Extension Available',
     'lease_extension_terms_or_price' => 'Lease Extension Terms / Price',
+    'payment_plan_available' => 'Payment Plan Available',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',

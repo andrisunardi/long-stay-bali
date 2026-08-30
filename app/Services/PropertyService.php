@@ -41,6 +41,7 @@ class PropertyService
         ?string $leaseExpiryDate = null,
         ?string $leaseExtensionAvailable = null,
         array $leaseExtensionAvailables = [],
+        array $paymentAvailable = [],
         ?string $type = null,
         array $types = [],
         ?string $status = null,
@@ -109,6 +110,7 @@ class PropertyService
             ->when($leaseExpiryDate, fn ($q) => $q->whereDate('lease_expiry_date', $leaseExpiryDate))
             ->when($leaseExtensionAvailable, fn ($q) => $q->where('lease_extension_available', $leaseExtensionAvailable))
             ->when($leaseExtensionAvailables, fn ($q) => $q->whereIn('lease_extension_available', $leaseExtensionAvailables))
+            ->when($paymentAvailable, fn ($q) => $q->whereIn('payment_available', $paymentAvailable))
             ->when($type, fn ($q) => $q->where('type', $type))
             ->when($types, fn ($q) => $q->whereIn('type', $types))
             ->when($status, fn ($q) => $q->where('status', $status))

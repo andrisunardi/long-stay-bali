@@ -139,4 +139,23 @@
             @enderror
         </div>
     @endif
+
+    <div class="col-sm-6">
+        <label class="form-label" for="payment_plan_available">
+            {{ trans('property.payment_plan_available') }}
+        </label>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="payment_plan_available"
+                name="payment_plan_available" value="1" {{ $form->payment_plan_available ? 'checked' : '' }}
+                wire:model.lazy="form.payment_plan_available" wire:offline.class="disabled"
+                wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+            <label class="form-check-label text-{{ $form->payment_plan_available ? 'success' : 'danger' }}"
+                for="payment_plan_available">
+                {{ $form->payment_plan_available ? trans('index.yes') : trans('index.no') }}
+            </label>
+        </div>
+        @error('form.payment_plan_available')
+            <div class="form-text text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 </div>
