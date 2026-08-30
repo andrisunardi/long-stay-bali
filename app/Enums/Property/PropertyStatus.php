@@ -29,7 +29,7 @@ enum PropertyStatus: int
             self::Reject => 'Reject',
             self::Escalate => 'Escalate For Arbitration',
             self::Ready => 'Ready',
-            self::UnderConstruction => 'UnderConstruction',
+            self::UnderConstruction => 'Under Construction',
             self::OffPlan => 'Off-Plan',
         };
     }

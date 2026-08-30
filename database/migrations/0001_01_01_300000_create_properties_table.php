@@ -117,6 +117,7 @@ return new class extends Migration
             $table->unsignedBigInteger('sale_price')->default(0);
             $table->unsignedTinyInteger('currency')->nullable();
             $table->unsignedTinyInteger('ownership_type')->nullable();
+            $table->date('lease_expiry_date')->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);

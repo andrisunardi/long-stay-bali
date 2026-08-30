@@ -306,6 +306,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property withoutTrashed()
  * @method static Builder<static>|Property yearly()
  *
+ * @property Carbon|null $lease_expiry_date
+ *
+ * @method static Builder<static>|Property whereLeaseExpiryDate($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -418,6 +422,7 @@ class Property extends Model
         'sale_price',
         'currency',
         'ownership_type',
+        'lease_expiry_date',
 
         'image_path',
         'type',
@@ -532,6 +537,7 @@ class Property extends Model
             'sale_price' => 'integer',
             'currency' => PropertyCurrency::class,
             'ownership_type' => PropertyOwnershipType::class,
+            'lease_expiry_date' => 'date',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

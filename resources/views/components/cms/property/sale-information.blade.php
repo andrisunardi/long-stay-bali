@@ -69,4 +69,30 @@
             <div class="form-text text-danger">{{ $message }}</div>
         @enderror
     </div>
+
+    @if ($form->ownership_type == PropertyOwnershipType::Leasehold->value)
+        <div class="col-sm-6">
+            <label class="form-label" for="lease_expiry_date">
+                {{ trans('property.lease_expiry_date') }}
+                <span class="text-danger">*</span>
+            </label>
+            <div class="input-group">
+                <div class="input-group-text">
+                    <span class="fas fa-calendar fa-fw "></span>
+                </div>
+                <input type="date" class="form-control" id="lease_expiry_date" name="lease_expiry_date"
+                    min="{{ $property?->lease_expiry_date?->toDateString() ?? now()->toDateString() }}" max="2099-12-31"
+                    required wire:model="form.lease_expiry_date" wire:offline.class="disabled" wire:offline.attr="disabled"
+                    wire:loading.class="disabled" wire:loading.attr="disabled">
+            </div>
+            <div class="form-text">
+                {{ trans('helper.min') }} : {{ trans('index.today') }},
+                {{ trans('helper.max') }} :
+                {{ Date::parse('2099-12-31')->isoFormat('DD MMMM YYYY') }}
+            </div>
+            @error('form.lease_expiry_date')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+    @endif
 </div>

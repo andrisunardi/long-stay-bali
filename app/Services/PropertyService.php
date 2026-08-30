@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
+use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
 use App\Libraries\GoogleDrive;
 use App\Libraries\GoogleMapsUrlParser;
-// use App\Libraries\GoogleTranslate;
 use App\Models\Property;
 use App\Models\PropertyImage;
 use Exception;
@@ -215,6 +215,10 @@ class PropertyService
                 }
             }
 
+            if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {
+                $data['completion_date'] = null;
+            }
+
             Arr::pull($data, 'images');
             Arr::pull($data, 'internet_speedtest_image');
 
@@ -265,6 +269,14 @@ class PropertyService
                 if (blank($data['address'])) {
                     $data['address'] = $result['address'];
                 }
+            }
+
+            if ($data['ownership_type'] != PropertyOwnershipType::Leasehold->value) {
+                $data['lease_expiry_date'] = null;
+            }
+
+            if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {
+                $data['completion_date'] = null;
             }
 
             // if ($property->code != $data['code']) {

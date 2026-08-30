@@ -51,16 +51,16 @@ class PropertyAddForm extends Form
     #[Validate('nullable|integer|exists:users,id')]
     public ?int $user_id = null;
 
-    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:today|before_or_equal:2999-12-31')]
+    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public string $availability_date = '';
 
-    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:today|before_or_equal:2999-12-31')]
+    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public string $visit_date = '';
 
-    #[Validate('nullable|integer|digits:4|min:1900|max:2100')]
+    #[Validate('nullable|integer|digits:4|min:1901|max:2100')]
     public ?int $year_built = null;
 
-    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:today|before_or_equal:2999-12-31')]
+    #[Validate('nullable|required_if:status,'.PropertyStatus::UnderConstruction->value.','.PropertyStatus::OffPlan->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public string $completion_date = '';
 
     #[Validate(['required', 'integer', new Enum(PropertyBedroom::class)])]
@@ -306,6 +306,9 @@ class PropertyAddForm extends Form
 
     #[Validate(['nullable', 'integer', new Enum(PropertyOwnershipType::class)])]
     public ?int $ownership_type = null;
+
+    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
+    public string $lease_expiry_date = '';
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;

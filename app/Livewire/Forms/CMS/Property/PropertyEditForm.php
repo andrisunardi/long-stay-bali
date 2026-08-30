@@ -58,11 +58,11 @@ class PropertyEditForm extends Form
     #[Validate('nullable|date|date_format:Y-m-d|before_or_equal:2999-12-31')]
     public ?string $visit_date = '';
 
-    #[Validate('nullable|integer|digits:4|min:1900|max:2100')]
+    #[Validate('nullable|integer|digits:4|min:1901|max:2100')]
     public ?int $year_built = null;
 
-    #[Validate('nullable|date|date_format:Y-m-d|after_or_equal:today|before_or_equal:2999-12-31')]
-    public string $completion_date = '';
+    #[Validate('nullable|required_if:status,'.PropertyStatus::UnderConstruction->value.','.PropertyStatus::OffPlan->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
+    public ?string $completion_date = '';
 
     #[Validate(['required', 'integer', new Enum(PropertyBedroom::class)])]
     public int $bedroom = PropertyBedroom::OneBedroom->value;
@@ -308,6 +308,9 @@ class PropertyEditForm extends Form
     #[Validate(['nullable', 'integer', new Enum(PropertyOwnershipType::class)])]
     public ?int $ownership_type = null;
 
+    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
+    public ?string $lease_expiry_date = '';
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 
@@ -333,6 +336,8 @@ class PropertyEditForm extends Form
         $this->user_id = $property->user_id;
         $this->availability_date = $property->availability_date?->toDateString();
         $this->visit_date = $property->visit_date?->toDateString();
+        $this->year_built = $property->year_built;
+        $this->completion_date = $property->completion_date?->toDateString();
         $this->bedroom = $property->bedroom?->value;
 
         $this->villa_name = $property->villa_name;
@@ -444,6 +449,7 @@ class PropertyEditForm extends Form
         $this->sale_price = $property->sale_price;
         $this->currency = $property->currency?->value;
         $this->ownership_type = $property->ownership_type?->value;
+        $this->lease_expiry_date = $property->lease_expiry_date?->toDateString();
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

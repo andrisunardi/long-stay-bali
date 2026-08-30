@@ -161,6 +161,7 @@ return [
     'sale_price' => 'Sale Price',
     'currency' => 'Currency',
     'ownership_type' => 'Ownership Type',
+    'lease_expiry_date' => 'Lease Expiry Date',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',
