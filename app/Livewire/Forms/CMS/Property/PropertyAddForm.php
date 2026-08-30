@@ -311,8 +311,11 @@ class PropertyAddForm extends Form
     #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public string $lease_expiry_date = '';
 
-    #[Validate(['nullable', 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
+    #[Validate(['nullable', 'required_if:status,'.PropertyOwnershipType::Leasehold->value, 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
     public ?int $lease_extension_available = null;
+
+    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|string|min:1|max:65535')]
+    public string $lease_extension_terms_or_price = '';
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;

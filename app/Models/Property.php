@@ -315,6 +315,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @method static Builder<static>|Property whereLeaseExtensionAvailable($value)
  *
+ * @property string|null $lease_extension_terms_or_price
+ *
+ * @method static Builder<static>|Property whereLeaseExtensionTermsOrPrice($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -429,6 +433,7 @@ class Property extends Model
         'ownership_type',
         'lease_expiry_date',
         'lease_extension_available',
+        'lease_extension_terms_or_price',
 
         'image_path',
         'type',
@@ -545,6 +550,7 @@ class Property extends Model
             'ownership_type' => PropertyOwnershipType::class,
             'lease_expiry_date' => 'date',
             'lease_extension_available' => PropertyLeaseExtensionAvailable::class,
+            'lease_extension_terms_or_price' => 'string',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

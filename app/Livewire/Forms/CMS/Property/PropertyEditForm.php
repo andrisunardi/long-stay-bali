@@ -312,8 +312,11 @@ class PropertyEditForm extends Form
     #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public ?string $lease_expiry_date = '';
 
-    #[Validate(['nullable', 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
+    #[Validate(['nullable', 'required_if:status,'.PropertyOwnershipType::Leasehold->value, 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
     public ?int $lease_extension_available = null;
+
+    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|string|min:1|max:65535')]
+    public ?string $lease_extension_terms_or_price = '';
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
@@ -455,6 +458,7 @@ class PropertyEditForm extends Form
         $this->ownership_type = $property->ownership_type?->value;
         $this->lease_expiry_date = $property->lease_expiry_date?->toDateString();
         $this->lease_extension_available = $property->lease_extension_available?->value;
+        $this->lease_extension_terms_or_price = $property->lease_extension_terms_or_price;
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

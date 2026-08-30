@@ -81,9 +81,9 @@
                     <span class="fas fa-calendar fa-fw "></span>
                 </div>
                 <input type="date" class="form-control" id="lease_expiry_date" name="lease_expiry_date"
-                    min="{{ $property?->lease_expiry_date?->toDateString() ?? now()->toDateString() }}" max="2099-12-31"
-                    required wire:model="form.lease_expiry_date" wire:offline.class="disabled" wire:offline.attr="disabled"
-                    wire:loading.class="disabled" wire:loading.attr="disabled">
+                    min="{{ $property?->lease_expiry_date?->toDateString() ?? now()->toDateString() }}"
+                    max="2099-12-31" required wire:model="form.lease_expiry_date" wire:offline.class="disabled"
+                    wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
             </div>
             <div class="form-text">
                 {{ trans('helper.min') }} : {{ trans('index.today') }},
@@ -96,28 +96,47 @@
         </div>
     @endif
 
-    <div class="col-sm-6">
-        <label class="form-label" for="lease_extension_available">
-            {{ trans('property.lease_extension_available') }}
-        </label>
-        <div>
-            @foreach (PropertyLeaseExtensionAvailable::cases() as $propertyLeaseExtensionAvailable)
-                <div class="form-check form-check-inline"
-                    wire:key="ownership-type-{{ $propertyLeaseExtensionAvailable->value }}">
-                    <input class="form-check-input" type="radio"
-                        id="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}" name="lease_extension_available"
-                        value="{{ $propertyLeaseExtensionAvailable->value }}"
-                        {{ $propertyLeaseExtensionAvailable->value == $form->lease_extension_available ? 'checked' : '' }}
-                        wire:model.lazy="form.lease_extension_available" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
-                    <label class="form-check-label" for="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}">
-                        {{ Str::headline($propertyLeaseExtensionAvailable->name) }}
-                    </label>
-                </div>
-            @endforeach
+    @if ($form->ownership_type == PropertyOwnershipType::Leasehold->value)
+        <div class="col-sm-6">
+            <label class="form-label" for="lease_extension_available">
+                {{ trans('property.lease_extension_available') }}
+            </label>
+            <div>
+                @foreach (PropertyLeaseExtensionAvailable::cases() as $propertyLeaseExtensionAvailable)
+                    <div class="form-check form-check-inline"
+                        wire:key="ownership-type-{{ $propertyLeaseExtensionAvailable->value }}">
+                        <input class="form-check-input" type="radio"
+                            id="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}"
+                            name="lease_extension_available" value="{{ $propertyLeaseExtensionAvailable->value }}"
+                            {{ $propertyLeaseExtensionAvailable->value == $form->lease_extension_available ? 'checked' : '' }}
+                            wire:model.lazy="form.lease_extension_available" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                        <label class="form-check-label"
+                            for="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}">
+                            {{ Str::headline($propertyLeaseExtensionAvailable->name) }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            @error('form.lease_extension_available')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
-        @error('form.lease_extension_available')
-            <div class="form-text text-danger">{{ $message }}</div>
-        @enderror
-    </div>
+    @endif
+
+    @if ($form->ownership_type == PropertyOwnershipType::Leasehold->value)
+        <div class="col-sm-6">
+            <label class="form-label" for="lease_extension_terms_or_price">
+                {{ trans('validation.attributes.lease_extension_terms_or_price') }}
+            </label>
+            <x-form.trix model="form.lease_extension_terms_or_price" />
+            <div class="form-text">
+                {{ trans('helper.minlength') }} : 1,
+                {{ trans('helper.maxlength') }} : 65.535,
+            </div>
+            @error('form.lease_extension_terms_or_price')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+    @endif
 </div>

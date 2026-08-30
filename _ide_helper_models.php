@@ -625,9 +625,11 @@ namespace App\Models{
  * @method static Builder<static>|Property yearly()
  * @property Carbon|null $lease_expiry_date
  * @method static Builder<static>|Property whereLeaseExpiryDate($value)
+ * @property PropertyLeaseExtensionAvailable|null $lease_extension_available
+ * @method static Builder<static>|Property whereLeaseExtensionAvailable($value)
  * @mixin \Eloquent
- * @property \App\Enums\Property\PropertyLeaseExtensionAvailable|null $lease_extension_available
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLeaseExtensionAvailable($value)
+ * @property string|null $lease_extension_terms_or_price
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLeaseExtensionTermsOrPrice($value)
  */
 	class Property extends \Eloquent {}
 }

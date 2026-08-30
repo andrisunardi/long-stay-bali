@@ -71,6 +71,7 @@ class PropertyService
                         ->orWhere('year_built', 'like', "%{$search}%")
                         ->orWhere('villa_name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
+                        ->orWhere('lease_extension_terms_or_price', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'phone', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
@@ -283,6 +284,8 @@ class PropertyService
 
             if ($data['ownership_type'] != PropertyOwnershipType::Leasehold->value) {
                 $data['lease_expiry_date'] = null;
+                $data['lease_extension_available'] = null;
+                $data['lease_extension_terms_or_price'] = null;
             }
 
             if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {

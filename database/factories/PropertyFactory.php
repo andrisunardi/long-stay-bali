@@ -145,6 +145,7 @@ class PropertyFactory extends Factory
             'ownership_type' => fake()->randomElement(PropertyOwnershipType::cases()),
             'lease_expiry_date' => fake()->date(),
             'lease_extension_available' => fake()->randomElement(PropertyLeaseExtensionAvailable::cases()),
+            'lease_extension_terms_or_price' => fake()->paragraph(),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),
