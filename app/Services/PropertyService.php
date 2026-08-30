@@ -74,6 +74,7 @@ class PropertyService
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhere('lease_extension_terms_or_price', 'like', "%{$search}%")
                         ->orWhere('payment_plan_details', 'like', "%{$search}%")
+                        ->orWhere('developer_name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'phone', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");

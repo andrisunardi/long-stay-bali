@@ -174,4 +174,26 @@
             @enderror
         </div>
     @endif
+
+    <div class="col-sm-6">
+        <label class="form-label" for="developer_name">
+            {{ trans('property.developer_name') }}
+        </label>
+        <div class="input-group">
+            <div class="input-group-text">
+                <span class="fas fa-font fa-fw "></span>
+            </div>
+            <input type="text" class="form-control" id="developer_name" name="developer_name" minlength="1"
+                maxlength="100" placeholder="{{ trans('index.ex') }} Villa Bali" wire:model="form.developer_name"
+                wire:offline.class="disabled" wire:offline.attr="disabled" wire:loading.class="disabled"
+                wire:loading.attr="disabled">
+        </div>
+        <div class="form-text">
+            {{ trans('helper.minlength') }} : 1,
+            {{ trans('helper.maxlength') }} : 100
+        </div>
+        @error('form.developer_name')
+            <div class="form-text text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 </div>

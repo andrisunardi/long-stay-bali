@@ -148,6 +148,7 @@ class PropertyFactory extends Factory
             'lease_extension_terms_or_price' => fake()->paragraph(),
             'payment_plan_available' => fake()->boolean(),
             'payment_plan_details' => fake()->paragraph(),
+            'developer_name' => fake()->name(),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

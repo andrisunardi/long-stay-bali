@@ -167,6 +167,7 @@ return [
     'lease_extension_terms_or_price' => 'Lease Extension Terms / Price',
     'payment_plan_available' => 'Payment Plan Available',
     'payment_plan_details' => 'Payment Plan Details',
+    'developer_name' => 'Developer Name',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',

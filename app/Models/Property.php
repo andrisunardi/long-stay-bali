@@ -129,6 +129,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string|null $lease_extension_terms_or_price
  * @property bool $payment_plan_available
  * @property string|null $payment_plan_details
+ * @property string|null $developer_name
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -232,6 +233,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereDescriptionId($value)
  * @method static Builder<static>|Property whereDescriptionZh($value)
  * @method static Builder<static>|Property whereDesignDrivenProperty($value)
+ * @method static Builder<static>|Property whereDeveloperName($value)
  * @method static Builder<static>|Property whereDistrictId($value)
  * @method static Builder<static>|Property whereElectricity($value)
  * @method static Builder<static>|Property whereEligibleForPremium($value)
@@ -434,6 +436,7 @@ class Property extends Model
         'lease_extension_terms_or_price',
         'payment_plan_available',
         'payment_plan_details',
+        'developer_name',
 
         'image_path',
         'type',
@@ -553,6 +556,7 @@ class Property extends Model
             'lease_extension_terms_or_price' => 'string',
             'payment_plan_available' => 'boolean',
             'payment_plan_details' => 'string',
+            'developer_name' => 'string',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

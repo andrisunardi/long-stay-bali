@@ -447,6 +447,7 @@ namespace App\Models{
  * @property string|null $lease_extension_terms_or_price
  * @property bool $payment_plan_available
  * @property string|null $payment_plan_details
+ * @property string|null $developer_name
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -549,6 +550,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDescriptionZh($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDesignDrivenProperty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDeveloperName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereDistrictId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereElectricity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereEligibleForPremium($value)

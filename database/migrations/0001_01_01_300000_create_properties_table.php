@@ -122,6 +122,7 @@ return new class extends Migration
             $table->text('lease_extension_terms_or_price')->nullable();
             $table->boolean('payment_plan_available')->unsigned()->default(false);
             $table->text('payment_plan_details')->nullable();
+            $table->string('developer_name', 100)->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);
