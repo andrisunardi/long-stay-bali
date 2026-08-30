@@ -6,6 +6,7 @@ use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
+use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -142,6 +143,8 @@ class PropertyFactory extends Factory
             'sale_price' => fake()->numberBetween(100, 1000),
             'currency' => fake()->randomElement(PropertyCurrency::cases()),
             'ownership_type' => fake()->randomElement(PropertyOwnershipType::cases()),
+            'lease_expiry_date' => fake()->date(),
+            'lease_extension_available' => fake()->randomElement(PropertyLeaseExtensionAvailable::cases()),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

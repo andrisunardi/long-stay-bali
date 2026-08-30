@@ -36,6 +36,11 @@ class PropertyService
         array $listingTypes = [],
         ?string $currency = null,
         array $currencies = [],
+        ?string $ownershipType = null,
+        array $ownershipTypes = [],
+        ?string $leaseExpiryDate = null,
+        ?string $leaseExtensionAvailable = null,
+        array $leaseExtensionAvailables = [],
         ?string $type = null,
         array $types = [],
         ?string $status = null,
@@ -88,7 +93,7 @@ class PropertyService
                 });
             })
             ->when($yearBuilt, fn ($q) => $q->where('year_built', $yearBuilt))
-            ->when($completionDate, fn ($q) => $q->whereDate('completion_date', '>=', $completionDate))
+            ->when($completionDate, fn ($q) => $q->whereDate('completion_date', $completionDate))
             ->when($bedroom, fn ($q) => $q->where('bedroom', $bedroom))
             ->when($bedrooms, fn ($q) => $q->whereIn('bedroom', $bedrooms))
             ->when($livingStyle, fn ($q) => $q->where('living_style', $livingStyle))
@@ -98,6 +103,11 @@ class PropertyService
             ->when($listingTypes, fn ($q) => $q->whereIn('listing_type', $listingTypes))
             ->when($currency, fn ($q) => $q->where('currency', $currency))
             ->when($currencies, fn ($q) => $q->whereIn('currency', $currencies))
+            ->when($ownershipType, fn ($q) => $q->where('ownership_type', $ownershipType))
+            ->when($ownershipTypes, fn ($q) => $q->whereIn('ownership_type', $ownershipTypes))
+            ->when($leaseExpiryDate, fn ($q) => $q->whereDate('lease_expiry_date', $leaseExpiryDate))
+            ->when($leaseExtensionAvailable, fn ($q) => $q->where('lease_extension_available', $leaseExtensionAvailable))
+            ->when($leaseExtensionAvailables, fn ($q) => $q->whereIn('lease_extension_available', $leaseExtensionAvailables))
             ->when($type, fn ($q) => $q->where('type', $type))
             ->when($types, fn ($q) => $q->whereIn('type', $types))
             ->when($status, fn ($q) => $q->where('status', $status))

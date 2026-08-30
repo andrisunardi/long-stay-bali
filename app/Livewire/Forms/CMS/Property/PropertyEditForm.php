@@ -6,6 +6,7 @@ use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
+use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -311,6 +312,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public ?string $lease_expiry_date = '';
 
+    #[Validate(['nullable', 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
+    public ?int $lease_extension_available = null;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 
@@ -450,6 +454,7 @@ class PropertyEditForm extends Form
         $this->currency = $property->currency?->value;
         $this->ownership_type = $property->ownership_type?->value;
         $this->lease_expiry_date = $property->lease_expiry_date?->toDateString();
+        $this->lease_extension_available = $property->lease_extension_available?->value;
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

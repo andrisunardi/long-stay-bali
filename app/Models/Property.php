@@ -6,6 +6,7 @@ use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
+use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -310,6 +311,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
  *
  * @method static Builder<static>|Property whereLeaseExpiryDate($value)
  *
+ * @property PropertyLeaseExtensionAvailable|null $lease_extension_available
+ *
+ * @method static Builder<static>|Property whereLeaseExtensionAvailable($value)
+ *
  * @mixin \Eloquent
  */
 #[ObservedBy([PropertyObserver::class])]
@@ -423,6 +428,7 @@ class Property extends Model
         'currency',
         'ownership_type',
         'lease_expiry_date',
+        'lease_extension_available',
 
         'image_path',
         'type',
@@ -538,6 +544,7 @@ class Property extends Model
             'currency' => PropertyCurrency::class,
             'ownership_type' => PropertyOwnershipType::class,
             'lease_expiry_date' => 'date',
+            'lease_extension_available' => PropertyLeaseExtensionAvailable::class,
 
             'image_path' => 'string',
             'type' => PropertyType::class,

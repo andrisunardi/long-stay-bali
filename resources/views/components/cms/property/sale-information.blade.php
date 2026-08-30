@@ -95,4 +95,29 @@
             @enderror
         </div>
     @endif
+
+    <div class="col-sm-6">
+        <label class="form-label" for="lease_extension_available">
+            {{ trans('property.lease_extension_available') }}
+        </label>
+        <div>
+            @foreach (PropertyLeaseExtensionAvailable::cases() as $propertyLeaseExtensionAvailable)
+                <div class="form-check form-check-inline"
+                    wire:key="ownership-type-{{ $propertyLeaseExtensionAvailable->value }}">
+                    <input class="form-check-input" type="radio"
+                        id="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}" name="lease_extension_available"
+                        value="{{ $propertyLeaseExtensionAvailable->value }}"
+                        {{ $propertyLeaseExtensionAvailable->value == $form->lease_extension_available ? 'checked' : '' }}
+                        wire:model.lazy="form.lease_extension_available" wire:offline.class="disabled" wire:offline.attr="disabled"
+                        wire:loading.class="disabled" wire:loading.attr="disabled">
+                    <label class="form-check-label" for="lease_extension_available_{{ $propertyLeaseExtensionAvailable->value }}">
+                        {{ Str::headline($propertyLeaseExtensionAvailable->name) }}
+                    </label>
+                </div>
+            @endforeach
+        </div>
+        @error('form.lease_extension_available')
+            <div class="form-text text-danger">{{ $message }}</div>
+        @enderror
+    </div>
 </div>

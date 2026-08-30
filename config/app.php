@@ -6,6 +6,7 @@ use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
 use App\Enums\Property\PropertyLandTitle;
+use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyLivingStyle;
 use App\Enums\Property\PropertyOperationalRisk;
@@ -71,6 +72,7 @@ return [
         'PropertyCurrency' => PropertyCurrency::class,
         'PropertyElectricity' => PropertyElectricity::class,
         'PropertyLandTitle' => PropertyLandTitle::class,
+        'PropertyLeaseExtensionAvailable' => PropertyLeaseExtensionAvailable::class,
         'PropertyListingType' => PropertyListingType::class,
         'PropertyLivingStyle' => PropertyLivingStyle::class,
         'PropertyOperationalRisk' => PropertyOperationalRisk::class,

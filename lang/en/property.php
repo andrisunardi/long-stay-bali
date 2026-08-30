@@ -163,6 +163,7 @@ return [
     'ownership_type' => 'Ownership Type',
     'lease_expiry_date' => 'Lease Expiry Date',
     'remaining_lease_period' => 'Remaining Lease Period',
+    'lease_extension_available' => 'Lease Extension Available',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',
