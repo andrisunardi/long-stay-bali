@@ -320,6 +320,9 @@ class PropertyAddForm extends Form
     #[Validate('nullable|boolean')]
     public bool $payment_plan_available = false;
 
+    #[Validate('nullable|required_if:payment_plan_available,1|string|min:1|max:65535')]
+    public string $payment_plan_details = '';
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 

@@ -274,6 +274,7 @@ return [
         'owner_representative_email' => 'Owner Representative Email',
         'is_promoted' => 'Promoted',
         'lease_extension_terms_or_price' => 'Lease Extension Terms / Price',
+        'payment_plan_details' => 'Payment Plan Details',
     ],
 
 ];

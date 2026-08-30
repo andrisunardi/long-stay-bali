@@ -321,6 +321,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|boolean')]
     public bool $payment_plan_available = false;
 
+    #[Validate('nullable|required_if:payment_plan_available,1|string|min:1|max:65535')]
+    public ?string $payment_plan_details = '';
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 
@@ -463,6 +466,7 @@ class PropertyEditForm extends Form
         $this->lease_extension_available = $property->lease_extension_available?->value;
         $this->lease_extension_terms_or_price = $property->lease_extension_terms_or_price;
         $this->payment_plan_available = $property->payment_plan_available;
+        $this->payment_plan_details = $property->payment_plan_details;
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

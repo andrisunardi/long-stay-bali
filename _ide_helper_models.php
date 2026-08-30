@@ -446,6 +446,7 @@ namespace App\Models{
  * @property \App\Enums\Property\PropertyLeaseExtensionAvailable|null $lease_extension_available
  * @property string|null $lease_extension_terms_or_price
  * @property bool $payment_plan_available
+ * @property string|null $payment_plan_details
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -595,6 +596,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnersId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereOwnershipType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePaymentPlanAvailable($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePaymentPlanDetails($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbg($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePbgStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePoolSize($value)

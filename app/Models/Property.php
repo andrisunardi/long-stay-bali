@@ -128,6 +128,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property PropertyLeaseExtensionAvailable|null $lease_extension_available
  * @property string|null $lease_extension_terms_or_price
  * @property bool $payment_plan_available
+ * @property string|null $payment_plan_details
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -278,6 +279,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereOwnersId($value)
  * @method static Builder<static>|Property whereOwnershipType($value)
  * @method static Builder<static>|Property wherePaymentPlanAvailable($value)
+ * @method static Builder<static>|Property wherePaymentPlanDetails($value)
  * @method static Builder<static>|Property wherePbg($value)
  * @method static Builder<static>|Property wherePbgStatus($value)
  * @method static Builder<static>|Property wherePoolSize($value)
@@ -431,6 +433,7 @@ class Property extends Model
         'lease_extension_available',
         'lease_extension_terms_or_price',
         'payment_plan_available',
+        'payment_plan_details',
 
         'image_path',
         'type',
@@ -549,6 +552,7 @@ class Property extends Model
             'lease_extension_available' => PropertyLeaseExtensionAvailable::class,
             'lease_extension_terms_or_price' => 'string',
             'payment_plan_available' => 'boolean',
+            'payment_plan_details' => 'string',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

@@ -158,4 +158,20 @@
             <div class="form-text text-danger">{{ $message }}</div>
         @enderror
     </div>
+
+    @if ($form->payment_plan_available)
+        <div class="col-sm-6">
+            <label class="form-label" for="payment_plan_details">
+                {{ trans('validation.attributes.payment_plan_details') }}
+            </label>
+            <x-form.trix model="form.payment_plan_details" />
+            <div class="form-text">
+                {{ trans('helper.minlength') }} : 1,
+                {{ trans('helper.maxlength') }} : 65.535,
+            </div>
+            @error('form.payment_plan_details')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+    @endif
 </div>

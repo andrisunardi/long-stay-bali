@@ -73,6 +73,7 @@ class PropertyService
                         ->orWhere('villa_name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhere('lease_extension_terms_or_price', 'like', "%{$search}%")
+                        ->orWhere('payment_plan_details', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'name', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'phone', 'like', "%{$search}%")
                         ->orWhereRelation('user', 'email', 'like', "%{$search}%");
@@ -228,6 +229,16 @@ class PropertyService
                 }
             }
 
+            if ($data['ownership_type'] != PropertyOwnershipType::Leasehold->value) {
+                $data['lease_expiry_date'] = null;
+                $data['lease_extension_available'] = null;
+                $data['lease_extension_terms_or_price'] = null;
+            }
+
+            if (! $data['payment_plan_available']) {
+                $data['payment_plan_details'] = null;
+            }
+
             if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {
                 $data['completion_date'] = null;
             }
@@ -288,6 +299,10 @@ class PropertyService
                 $data['lease_expiry_date'] = null;
                 $data['lease_extension_available'] = null;
                 $data['lease_extension_terms_or_price'] = null;
+            }
+
+            if (! $data['payment_plan_available']) {
+                $data['payment_plan_details'] = null;
             }
 
             if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {
