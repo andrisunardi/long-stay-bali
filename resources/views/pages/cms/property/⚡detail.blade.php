@@ -934,6 +934,24 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.remaining_lease_period') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        @if ($property->lease_expiry_date)
+                            {{ $property->lease_expiry_date->isPast()
+                                ? 'Expired'
+                                : $property->lease_expiry_date->diffForHumans(now(), [
+                                    'syntax' => \Carbon\CarbonInterface::DIFF_ABSOLUTE,
+                                    'parts' => 2,
+                                ]) }}
+                        @else
+                            -
+                        @endif
+                    </div>
+                </div>
+
                 <br />
 
                 <h5 class="fw-bold text-uppercase border-bottom pb-3">
