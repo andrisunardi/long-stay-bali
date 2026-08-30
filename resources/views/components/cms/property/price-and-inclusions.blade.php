@@ -7,6 +7,7 @@
                         <div>
                             <label class="form-label" for="monthly_price">
                                 {{ trans('property.monthly_price') }}
+                                <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
                                 <div class="input-group-text">
@@ -267,6 +268,7 @@
                         <div>
                             <label class="form-label" for="yearly_price">
                                 {{ trans('property.yearly_price') }}
+                                <span class="text-danger">*</span>
                             </label>
                             <div class="input-group">
                                 <div class="input-group-text">

@@ -201,6 +201,32 @@
                     <div class="form-text text-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            @if ($form->type == PropertyType::Land->value)
+                <div>
+                    <label class="form-label" for="price_per_are">
+                        {{ trans('property.price_per_are') }}
+                        <span class="text-danger">*</span>
+                    </label>
+                    <div class="input-group">
+                        <div class="input-group-text">
+                            <span class="fas fa-rupiah-sign fa-fw "></span>
+                        </div>
+                        <input type="number" class="form-control" id="price_per_are" name="price_per_are"
+                            min="0" max="100000000000" placeholder="{{ trans('index.ex') }}" required
+                            wire:model="form.price_per_are" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                    </div>
+                    <div class="form-text">
+                        {{ trans('helper.required') }},
+                        {{ trans('helper.min') }} : 0,
+                        {{ trans('helper.max') }} : 100.000.000.000
+                    </div>
+                    @error('form.price_per_are')
+                        <div class="form-text text-danger">{{ $message }}</div>
+                    @enderror
+                </div>
+            @endif
         </div>
     </div>
 

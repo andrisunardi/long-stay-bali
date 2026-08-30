@@ -327,6 +327,9 @@ class PropertyEditForm extends Form
     #[Validate('nullable|string|min:1|max:100')]
     public ?string $developer_name = '';
 
+    #[Validate('required|integer|min:0|max:100000000000')]
+    public ?int $price_per_are = 0;
+
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;
 
@@ -471,6 +474,8 @@ class PropertyEditForm extends Form
         $this->payment_plan_available = $property->payment_plan_available;
         $this->payment_plan_details = $property->payment_plan_details;
         $this->developer_name = $property->developer_name;
+
+        $this->price_per_are = $property->price_per_are;
 
         $this->type = $property->type?->value;
         $this->status = $property->status?->value;

@@ -124,6 +124,8 @@ return new class extends Migration
             $table->text('payment_plan_details')->nullable();
             $table->string('developer_name', 100)->nullable();
 
+            $table->unsignedBigInteger('price_per_area')->default(0);
+
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);
             $table->boolean('status')->unsigned()->default(PropertyStatus::Pending);

@@ -130,6 +130,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property bool $payment_plan_available
  * @property string|null $payment_plan_details
  * @property string|null $developer_name
+ * @property int $price_per_are
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -287,6 +288,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property wherePoolSize($value)
  * @method static Builder<static>|Property wherePowerBackup($value)
  * @method static Builder<static>|Property wherePriceCoherentWithUpper($value)
+ * @method static Builder<static>|Property wherePricePerAre($value)
  * @method static Builder<static>|Property whereQuietAccessRoad($value)
  * @method static Builder<static>|Property whereReference($value)
  * @method static Builder<static>|Property whereRentalType($value)
@@ -438,6 +440,8 @@ class Property extends Model
         'payment_plan_details',
         'developer_name',
 
+        'price_per_are',
+
         'image_path',
         'type',
         'status',
@@ -557,6 +561,8 @@ class Property extends Model
             'payment_plan_available' => 'boolean',
             'payment_plan_details' => 'string',
             'developer_name' => 'string',
+
+            'price_per_are' => 'integer',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

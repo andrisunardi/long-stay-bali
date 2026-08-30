@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
+use App\Enums\Property\PropertyType;
 use App\Libraries\GoogleDrive;
 use App\Libraries\GoogleMapsUrlParser;
 use App\Models\Property;
@@ -238,6 +239,10 @@ class PropertyService
 
             if (! $data['payment_plan_available']) {
                 $data['payment_plan_details'] = null;
+            }
+
+            if ($data['type'] != PropertyType::Land->value) {
+                $data['price_per_are'] = 0;
             }
 
             if (! in_array($data['status'], [PropertyStatus::UnderConstruction->value, PropertyStatus::OffPlan->value])) {

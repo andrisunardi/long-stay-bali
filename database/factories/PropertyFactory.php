@@ -150,6 +150,8 @@ class PropertyFactory extends Factory
             'payment_plan_details' => fake()->paragraph(),
             'developer_name' => fake()->name(),
 
+            'price_per_are' => fake()->numberBetween(100, 1000),
+
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),
             'status' => fake()->randomElement(PropertyStatus::cases()),

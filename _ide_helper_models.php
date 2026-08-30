@@ -448,6 +448,7 @@ namespace App\Models{
  * @property bool $payment_plan_available
  * @property string|null $payment_plan_details
  * @property string|null $developer_name
+ * @property int $price_per_are
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -604,6 +605,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePoolSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePowerBackup($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePriceCoherentWithUpper($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property wherePricePerAre($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereQuietAccessRoad($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereReference($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRentalType($value)

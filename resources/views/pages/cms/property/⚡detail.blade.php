@@ -1000,6 +1000,15 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.price_per_are') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ Str::idr($property->price_per_are) }}
+                    </div>
+                </div>
+
                 <br />
 
                 <h5 class="fw-bold text-uppercase border-bottom pb-3">
@@ -1034,6 +1043,17 @@ new #[Title('Detail | Property')] class extends Component {
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.type') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        <span class="badge rounded-pill text-bg-primary">
+                            {{ Str::headline($property->type?->name) }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
                         <div class="fw-bold">{{ trans('property.status') }}</div>
                     </div>
                     <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
@@ -1042,8 +1062,6 @@ new #[Title('Detail | Property')] class extends Component {
                         </span>
                     </div>
                 </div>
-
-                <br />
 
                 <div class="row">
                     <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
