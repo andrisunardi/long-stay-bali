@@ -148,7 +148,6 @@ return [
 
     'images' => 'Images',
 
-    'listing_information' => 'Listing Information',
     'listing_type' => 'Listing Type',
     'listing_types' => [
         'for_rent' => 'For Rent',
