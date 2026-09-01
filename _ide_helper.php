@@ -33022,6 +33022,7 @@ namespace  {
     class PropertyBedroom extends \App\Enums\Property\PropertyBedroom {}
     class PropertyCurrency extends \App\Enums\Property\PropertyCurrency {}
     class PropertyElectricity extends \App\Enums\Property\PropertyElectricity {}
+    class PropertyLandContour extends \App\Enums\Property\PropertyLandContour {}
     class PropertyLandTitle extends \App\Enums\Property\PropertyLandTitle {}
     class PropertyLeaseExtensionAvailable extends \App\Enums\Property\PropertyLeaseExtensionAvailable {}
     class PropertyListingType extends \App\Enums\Property\PropertyListingType {}

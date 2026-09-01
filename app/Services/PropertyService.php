@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Enums\Property\PropertyListingType;
 use App\Enums\Property\PropertyOwnershipType;
 use App\Enums\Property\PropertyRentalType;
 use App\Enums\Property\PropertyStatus;
@@ -229,6 +230,10 @@ class PropertyService
                 if (blank($data['address'])) {
                     $data['address'] = $result['address'];
                 }
+            }
+
+            if ($data['listing_type'] == PropertyListingType::ForRent->value) {
+                $data['ownership_type'] = null;
             }
 
             if ($data['ownership_type'] != PropertyOwnershipType::Leasehold->value) {

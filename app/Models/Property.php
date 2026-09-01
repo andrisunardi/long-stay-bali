@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandContour;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
@@ -131,6 +132,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property string|null $payment_plan_details
  * @property string|null $developer_name
  * @property int $price_per_are
+ * @property string|null $land_size_in_ares
+ * @property string|null $road_frontage
+ * @property PropertyLandContour|null $land_contour
+ * @property bool $subdivision_possible
+ * @property string|null $minimum_purchase_size
  * @property string|null $image_path
  * @property PropertyType $type
  * @property PropertyStatus $status
@@ -251,7 +257,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereInternetSpeedtest($value)
  * @method static Builder<static>|Property whereInternetSpeedtestImagePath($value)
  * @method static Builder<static>|Property whereLandCertificate($value)
+ * @method static Builder<static>|Property whereLandContour($value)
  * @method static Builder<static>|Property whereLandSize($value)
+ * @method static Builder<static>|Property whereLandSizeInAres($value)
  * @method static Builder<static>|Property whereLandTitle($value)
  * @method static Builder<static>|Property whereLatitude($value)
  * @method static Builder<static>|Property whereLeaseAgreement($value)
@@ -262,6 +270,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereLivingAreaHasNaturalLight($value)
  * @method static Builder<static>|Property whereLivingStyle($value)
  * @method static Builder<static>|Property whereLongitude($value)
+ * @method static Builder<static>|Property whereMinimumPurchaseSize($value)
  * @method static Builder<static>|Property whereMinimumRentalDurationMonths($value)
  * @method static Builder<static>|Property whereMonthlyInclusions($value)
  * @method static Builder<static>|Property whereMonthlyPrice($value)
@@ -294,6 +303,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereRentalType($value)
  * @method static Builder<static>|Property whereRoadAccess($value)
  * @method static Builder<static>|Property whereRoadAccessWidth($value)
+ * @method static Builder<static>|Property whereRoadFrontage($value)
  * @method static Builder<static>|Property whereSalePrice($value)
  * @method static Builder<static>|Property whereSignedListingAgreement($value)
  * @method static Builder<static>|Property whereSlf($value)
@@ -301,6 +311,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @method static Builder<static>|Property whereSlug($value)
  * @method static Builder<static>|Property whereStatus($value)
  * @method static Builder<static>|Property whereStorage($value)
+ * @method static Builder<static>|Property whereSubdivisionPossible($value)
  * @method static Builder<static>|Property whereTargetProfiles($value)
  * @method static Builder<static>|Property whereTradeOffDescription($value)
  * @method static Builder<static>|Property whereTradeOffIdentified($value)
@@ -441,6 +452,11 @@ class Property extends Model
         'developer_name',
 
         'price_per_are',
+        'land_size_in_ares',
+        'road_frontage',
+        'land_contour',
+        'subdivision_possible',
+        'minimum_purchase_size',
 
         'image_path',
         'type',
@@ -563,6 +579,11 @@ class Property extends Model
             'developer_name' => 'string',
 
             'price_per_are' => 'integer',
+            'land_size_in_ares' => 'string',
+            'road_frontage' => 'string',
+            'land_contour' => PropertyLandContour::class,
+            'subdivision_possible' => 'boolean',
+            'minimum_purchase_size' => 'string',
 
             'image_path' => 'string',
             'type' => PropertyType::class,

@@ -449,6 +449,11 @@ namespace App\Models{
  * @property string|null $payment_plan_details
  * @property string|null $developer_name
  * @property int $price_per_are
+ * @property string|null $land_size_in_ares
+ * @property string|null $road_frontage
+ * @property \App\Enums\Property\PropertyLandContour|null $land_contour
+ * @property bool $subdivision_possible
+ * @property string|null $minimum_purchase_size
  * @property string|null $image_path
  * @property \App\Enums\Property\PropertyType $type
  * @property \App\Enums\Property\PropertyStatus $status
@@ -568,7 +573,9 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereInternetSpeedtest($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereInternetSpeedtestImagePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandCertificate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandContour($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandSize($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandSizeInAres($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLandTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLatitude($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLeaseAgreement($value)
@@ -579,6 +586,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLivingAreaHasNaturalLight($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLivingStyle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereLongitude($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMinimumPurchaseSize($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMinimumRentalDurationMonths($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyInclusions($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereMonthlyPrice($value)
@@ -611,6 +619,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRentalType($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccess($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadAccessWidth($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereRoadFrontage($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSalePrice($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSignedListingAgreement($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlf($value)
@@ -618,6 +627,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSlug($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereStorage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereSubdivisionPossible($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTargetProfiles($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTradeOffDescription($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Property whereTradeOffIdentified($value)

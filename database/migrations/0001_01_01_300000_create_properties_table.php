@@ -124,7 +124,12 @@ return new class extends Migration
             $table->text('payment_plan_details')->nullable();
             $table->string('developer_name', 100)->nullable();
 
-            $table->unsignedBigInteger('price_per_area')->default(0);
+            $table->unsignedBigInteger('price_per_are')->default(0);
+            $table->string('land_size_in_ares', 100)->nullable();
+            $table->string('road_frontage', 100)->nullable();
+            $table->unsignedTinyInteger('land_contour')->nullable();
+            $table->boolean('subdivision_possible')->unsigned()->default(false);
+            $table->string('minimum_purchase_size', 100)->nullable();
 
             $table->string('image_path', 50)->unique()->nullable();
             $table->boolean('type')->unsigned()->default(PropertyType::Villa);

@@ -5,6 +5,7 @@ namespace App\Livewire\Forms\CMS\Property;
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandContour;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
@@ -308,13 +309,13 @@ class PropertyAddForm extends Form
     #[Validate(['nullable', 'integer', new Enum(PropertyOwnershipType::class)])]
     public ?int $ownership_type = null;
 
-    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
+    #[Validate('nullable|required_if:ownership_type,'.PropertyOwnershipType::Leasehold->value.'|date|date_format:Y-m-d|after_or_equal:1901-01-01|before_or_equal:2999-12-31')]
     public string $lease_expiry_date = '';
 
-    #[Validate(['nullable', 'required_if:status,'.PropertyOwnershipType::Leasehold->value, 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
+    #[Validate(['nullable', 'required_if:ownership_type,'.PropertyOwnershipType::Leasehold->value, 'integer', new Enum(PropertyLeaseExtensionAvailable::class)])]
     public ?int $lease_extension_available = null;
 
-    #[Validate('nullable|required_if:status,'.PropertyOwnershipType::Leasehold->value.'|string|min:1|max:65535')]
+    #[Validate('nullable|required_if:ownership_type,'.PropertyOwnershipType::Leasehold->value.'|string|min:1|max:65535')]
     public string $lease_extension_terms_or_price = '';
 
     #[Validate('nullable|boolean')]
@@ -328,6 +329,21 @@ class PropertyAddForm extends Form
 
     #[Validate('required|integer|min:0|max:100000000000')]
     public int $price_per_are = 0;
+
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $land_size_in_ares = '';
+
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $road_frontage = '';
+
+    #[Validate(['nullable', 'integer', new Enum(PropertyLandContour::class)])]
+    public ?int $land_contour = null;
+
+    #[Validate('nullable|boolean')]
+    public bool $subdivision_possible = false;
+
+    #[Validate('nullable|string|min:1|max:100')]
+    public string $minimum_purchase_size = '';
 
     #[Validate(['nullable', 'integer', new Enum(PropertyType::class)])]
     public int $type = PropertyType::Villa->value;

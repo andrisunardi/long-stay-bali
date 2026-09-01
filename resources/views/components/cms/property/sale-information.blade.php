@@ -45,30 +45,32 @@
         @enderror
     </div>
 
-    <div class="col-sm-6">
-        <label class="form-label" for="ownership_type">
-            {{ trans('property.ownership_type') }}
-        </label>
-        <div>
-            @foreach (PropertyOwnershipType::cases() as $propertyOwnershipType)
-                <div class="form-check form-check-inline"
-                    wire:key="ownership-type-{{ $propertyOwnershipType->value }}">
-                    <input class="form-check-input" type="radio"
-                        id="ownership_type_{{ $propertyOwnershipType->value }}" name="ownership_type"
-                        value="{{ $propertyOwnershipType->value }}"
-                        {{ $propertyOwnershipType->value == $form->ownership_type ? 'checked' : '' }}
-                        wire:model.lazy="form.ownership_type" wire:offline.class="disabled" wire:offline.attr="disabled"
-                        wire:loading.class="disabled" wire:loading.attr="disabled">
-                    <label class="form-check-label" for="ownership_type_{{ $propertyOwnershipType->value }}">
-                        {{ $propertyOwnershipType->name }}
-                    </label>
-                </div>
-            @endforeach
+    @if ($form->listing_type != PropertyListingType::ForRent->value)
+        <div class="col-sm-6">
+            <label class="form-label" for="ownership_type">
+                {{ trans('property.ownership_type') }}
+            </label>
+            <div>
+                @foreach (PropertyOwnershipType::cases() as $propertyOwnershipType)
+                    <div class="form-check form-check-inline"
+                        wire:key="ownership-type-{{ $propertyOwnershipType->value }}">
+                        <input class="form-check-input" type="radio"
+                            id="ownership_type_{{ $propertyOwnershipType->value }}" name="ownership_type"
+                            value="{{ $propertyOwnershipType->value }}"
+                            {{ $propertyOwnershipType->value == $form->ownership_type ? 'checked' : '' }}
+                            wire:model.lazy="form.ownership_type" wire:offline.class="disabled"
+                            wire:offline.attr="disabled" wire:loading.class="disabled" wire:loading.attr="disabled">
+                        <label class="form-check-label" for="ownership_type_{{ $propertyOwnershipType->value }}">
+                            {{ $propertyOwnershipType->name }}
+                        </label>
+                    </div>
+                @endforeach
+            </div>
+            @error('form.ownership_type')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
-        @error('form.ownership_type')
-            <div class="form-text text-danger">{{ $message }}</div>
-        @enderror
-    </div>
+    @endif
 
     @if ($form->ownership_type == PropertyOwnershipType::Leasehold->value)
         <div class="col-sm-6">

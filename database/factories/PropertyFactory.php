@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandContour;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
@@ -151,6 +152,11 @@ class PropertyFactory extends Factory
             'developer_name' => fake()->name(),
 
             'price_per_are' => fake()->numberBetween(100, 1000),
+            'land_size_in_ares' => fake()->name(),
+            'road_frontage' => fake()->name(),
+            'land_contour' => fake()->randomElement(PropertyLandContour::cases()),
+            'subdivision_possible' => fake()->boolean(),
+            'minimum_purchase_size' => fake()->name(),
 
             'image_path' => null,
             'type' => fake()->randomElement(PropertyType::cases()),

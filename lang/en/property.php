@@ -169,6 +169,11 @@ return [
     'developer_name' => 'Developer Name',
 
     'price_per_are' => 'Price Per Are',
+    'land_size_in_ares' => 'Land Size (In Ares)',
+    'road_frontage' => 'Road Frontage',
+    'land_contour' => 'Land Contour',
+    'subdivision_possible' => 'Subdivision Possible',
+    'minimum_purchase_size' => 'Minimum Purchase Size',
 
     'operational_risk' => 'Operational Risk',
     'operational_risk_level' => 'Low / Medium / High',

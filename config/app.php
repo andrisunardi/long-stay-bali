@@ -5,6 +5,7 @@ use App\Enums\Language;
 use App\Enums\Property\PropertyBedroom;
 use App\Enums\Property\PropertyCurrency;
 use App\Enums\Property\PropertyElectricity;
+use App\Enums\Property\PropertyLandContour;
 use App\Enums\Property\PropertyLandTitle;
 use App\Enums\Property\PropertyLeaseExtensionAvailable;
 use App\Enums\Property\PropertyListingType;
@@ -71,6 +72,7 @@ return [
         'PropertyBedroom' => PropertyBedroom::class,
         'PropertyCurrency' => PropertyCurrency::class,
         'PropertyElectricity' => PropertyElectricity::class,
+        'PropertyLandContour' => PropertyLandContour::class,
         'PropertyLandTitle' => PropertyLandTitle::class,
         'PropertyLeaseExtensionAvailable' => PropertyLeaseExtensionAvailable::class,
         'PropertyListingType' => PropertyListingType::class,

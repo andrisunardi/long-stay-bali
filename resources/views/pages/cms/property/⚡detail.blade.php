@@ -1009,6 +1009,54 @@ new #[Title('Detail | Property')] class extends Component {
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.land_size_in_ares') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $property->land_size_in_ares ?? '-' }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.road_frontage') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $property->road_frontage ?? '-' }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.land_contour') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $property->land_contour?->name ?? '-' }}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.subdivision_possible') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        <span
+                            class="badge rounded-pill text-bg-{{ $property->subdivision_possible ? 'success' : 'danger' }}">
+                            {{ $property->subdivision_possible ? trans('index.yes') : trans('index.no') }}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-4 col-lg-3 col-xl-2">
+                        <div class="fw-bold">{{ trans('property.minimum_purchase_size') }}</div>
+                    </div>
+                    <div class="col-sm-7 col-md-8 col-lg-9 col-xl-10">
+                        {{ $property->minimum_purchase_size ?? '-' }}
+                    </div>
+                </div>
+
                 <br />
 
                 <h5 class="fw-bold text-uppercase border-bottom pb-3">
