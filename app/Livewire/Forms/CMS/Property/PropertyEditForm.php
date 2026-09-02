@@ -160,7 +160,7 @@ class PropertyEditForm extends Form
     public ?int $road_access = null;
 
     #[Validate('nullable|string|min:1|max:100')]
-    public string $road_access_width = '';
+    public ?string $road_access_width = '';
 
     #[Validate('nullable|boolean')]
     public bool $car_access = false;
