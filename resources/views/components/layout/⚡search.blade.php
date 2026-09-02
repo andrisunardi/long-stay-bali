@@ -45,7 +45,7 @@ new class extends Component {
                 @forelse ($this->properties() as $property)
                     <li wire:key="property-{{ $property->id }}">
                         <a draggable="false" href="{{ route('property.detail', ['slug' => $property->slug]) }}"
-                            class="dropdown-item text-wrap icon-link" wire:click="changeArea({{ $property->id }})">
+                            class="dropdown-item text-wrap icon-link">
                             <span class="fas fa-caret-right fa-fw"></span>
                             {{ $property->code }}
                         </a>
