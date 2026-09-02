@@ -148,7 +148,7 @@ class PropertyEditForm extends Form
     public ?int $land_title = null;
 
     #[Validate('nullable|string|min:1|max:100')]
-    public string $zoning = '';
+    public ?string $zoning = '';
 
     #[Validate(['nullable', 'integer', new Enum(PropertyPBGStatus::class)])]
     public ?int $pbg_status = null;
